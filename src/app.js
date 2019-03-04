@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Banner from './components/Banner';
+import Auth from './auth/containers/auth';
+
+import "./reset.css";
 
 const App = () => {
   return (
     <div>
-      <Banner />
+      <Auth />
     </div>
   );
 };
