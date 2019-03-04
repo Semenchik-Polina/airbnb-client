@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Auth from './auth/containers/auth';
+import AuthPage from './auth/components/auth-page/auth-page';
 
-import "./reset.css";
+import './reset.css';
 
 const App = () => {
-  return (
-    <div>
-      <Auth />
-    </div>
-  );
+  return <AuthPage />;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

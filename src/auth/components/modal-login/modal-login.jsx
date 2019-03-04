@@ -58,7 +58,9 @@ class ModalLogin extends Component {
     return ReactDOM.createPortal(
       <div className="modal-login">
         <div className="modal-login__inner">
-          <button className="modal-login__inner-button modal-login__inner-button_close" onClick={this.props.onClose} />
+          <button className="modal-login__inner-button modal-login__inner-button_close" onClick={this.props.onClose}>
+            <img className="modal-login__inner-button-close-image" src="https://img.icons8.com/ios/50/000000/delete-sign.png" />
+          </button>
           {this.renderForm()}
           <span>Already have an Airbnb account?</span>
         </div>
