@@ -11,10 +11,10 @@ class Menu extends Component {
       <menu className="menu">
         <ul className="menu__list">
           <li className="menu__list-item">
-            <a className="menu__list-action" />
+            <a className="menu__list-action">Become a host</a>
           </li>
           <li className="menu__list-item">
-            <a className="menu__list-action" />
+            <a className="menu__list-action">Help</a>
           </li>
           <li className="menu__list-item">
             <a className="menu__list-action" onClick={this.handleShowMessageClick}>
@@ -22,7 +22,7 @@ class Menu extends Component {
             </a>
           </li>
           <li className="menu__list-item">
-            <a className="menu__list-action">Sign in</a>
+            <a className="menu__list-action">Log in</a>
           </li>
         </ul>
       </menu>

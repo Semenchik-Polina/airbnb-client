@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1"
   },
   "devDependencies": {
     "path": "^0.12.7"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }

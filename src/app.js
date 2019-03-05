@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AuthPage from './auth/components/auth-page/auth-page';
-
 import './reset.css';
+import "./main.scss";
 
 const App = () => {
   return <AuthPage />;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;

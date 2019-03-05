@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import ModalLogin from '../modal-login/modal-login';
-import Header from '../header/header';
+import Modal from '../../containers/modal-container';
+import Menu from '../menu/menu';
 import './auth-page.scss';
 
 class AuthPage extends Component {
-  state = {showModal: false};
+  state = {
+    showModal: false
+  };
 
   handleShowMessageClick = () => {
     this.setState({showModal: true});
@@ -17,8 +19,8 @@ class AuthPage extends Component {
   render() {
     return (
       <header>
-        <Header handleShowMessageClick={this.handleShowMessageClick} />
-        {this.state.showModal ? <ModalLogin onClose={this.handleCloseModal} /> : null}
+        <Menu handleShowMessageClick={this.handleShowMessageClick} />
+        {this.state.showModal ? <Modal onClose={this.handleCloseModal} /> : null}
       </header>
     );
   }

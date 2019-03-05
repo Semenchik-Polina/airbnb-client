@@ -40,16 +40,6 @@
 
             flex-flow: column nowrap;
             justify-content: center;
-            &-input {
-                margin: 10px 0;
-                padding: 10px 5%;
-
-                border: 1px solid rgb(146, 146, 146);
-                border-radius: 4px;
-                outline: none;
-
-                font: 400 1em/0.5em "Roboto";
-            }
         }
         &-separator {
             position: relative;
@@ -79,10 +69,11 @@
             }
         }
         &-button {
+            // position: relative;
             display: block;
 
             margin: 8px 0;
-            padding: 18px 0 18px 0;
+            padding: 15px 0 15px 0;
 
             cursor: pointer;
 
@@ -91,10 +82,12 @@
             outline: none;
 
             font: 600 1em/0.5em "Roboto";
-
+            &-text {
+                vertical-align: middle;
+            }
             &-icon {
-                position: relative;
-                top: 3.5px;
+                // position: absolute;
+                top: 0;
 
                 height: 20px;
                 margin-right: 10px;
@@ -127,7 +120,7 @@
             }
             &-close-image {
                 position: relative;
-                top: -7px;
+                top: -5px;
 
                 display: block;
 

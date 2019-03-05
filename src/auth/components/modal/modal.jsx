@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import './modal-login.scss';
 import ReactDOM from 'react-dom';
+import './modal.scss';
+import LoginForm from '../../containers/login-form-container';
 
 const modalRoot = document.getElementById('modal-root');
 
-class ModalLogin extends Component {
+class Modal extends Component {
   state = {
     showForm: false
   };
@@ -13,26 +14,19 @@ class ModalLogin extends Component {
     this.setState({showForm: true});
   };
 
+  submit = (values) => {
+    this.props.signup(values);
+  }
+
   renderForm() {
     if (this.state.showForm) {
       return (
         <Fragment>
-          <span>Sign up with Google</span>
+          <span>
+            Sign up with <a>Google</a>
+          </span>
           <span className="modal-login__inner-separator">or</span>
-          <form className="modal-login__inner-form">
-            <input className="modal-login__inner-form-input" type="text" name="email" placeholder="Email address" />
-            <input className="modal-login__inner-form-input" type="text" name="firstName" placeholder="First name" />
-            <input className="modal-login__inner-form-input" type="text" name="lastName" placeholder="Last name" />
-            <input
-              className="modal-login__inner-form-input"
-              type="password"
-              name="password"
-              placeholder="Create a Password"
-            />
-            <button className="modal-login__inner-button modal-login__inner-button_email" onClick={this.showForm}>
-              Sign up
-            </button>
-          </form>
+          <LoginForm onSubmit={this.submit}/>
         </Fragment>
       );
     }
@@ -47,8 +41,13 @@ class ModalLogin extends Component {
         </button>
         <span className="modal-login__inner-separator">or</span>
         <button className="modal-login__inner-button modal-login__inner-button_email" onClick={this.showForm}>
-          <img className="modal-login__inner-button-icon" src="https://img.icons8.com/ios/50/000000/new-post/FFFFFF" />
-          Sign up with Email
+          <span>
+            <img
+              className="modal-login__inner-button-icon"
+              src="https://img.icons8.com/ios/50/000000/new-post/FFFFFF"
+            />
+          </span>
+          <span className="modal-login__inner-button-text">Sign up with Email</span>
         </button>
       </Fragment>
     );
@@ -59,7 +58,10 @@ class ModalLogin extends Component {
       <div className="modal-login">
         <div className="modal-login__inner">
           <button className="modal-login__inner-button modal-login__inner-button_close" onClick={this.props.onClose}>
-            <img className="modal-login__inner-button-close-image" src="https://img.icons8.com/ios/50/000000/delete-sign.png" />
+            <img
+              className="modal-login__inner-button-close-image"
+              src="https://img.icons8.com/ios/50/000000/delete-sign.png"
+            />
           </button>
           {this.renderForm()}
           <span>Already have an Airbnb account?</span>
@@ -70,4 +72,4 @@ class ModalLogin extends Component {
   }
 }
 
-export default ModalLogin;
+export default Modal;
