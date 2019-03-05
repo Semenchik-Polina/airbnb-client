@@ -1,23 +1,22 @@
-.form {
-    &-wrapper {
-        display: flex;
+.text-input {
+    display: flex;
 
-        margin: 10px 0;
+    margin: 10px 0;
 
-        border: 1px solid rgb(146, 146, 146);
-        border-radius: 4px;
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 4px;
 
-        flex-flow: row nowrap;
-    }
+    flex-flow: row nowrap;
+
     &__input {
         display: flex;
 
         width: 100%;
-        margin: 5px 0;
-        padding: 10px 2%;
+        padding: 15px 2%;
 
         color: #484848;
         border: 0;
+        border-radius: 5px 0 0 5px;
         outline: none;
 
         font: 100 1em/0.5em "Roboto";

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-.modal-login {
+.modal {
     position: absolute;
     top: 0;
     right: 0;
@@ -35,12 +35,7 @@
         flex-flow: column nowrap;
         justify-content: space-between;
         justify-self: center;
-        &-form {
-            display: flex;
 
-            flex-flow: column nowrap;
-            justify-content: center;
-        }
         &-separator {
             position: relative;
 
@@ -66,81 +61,6 @@
             }
             &::after {
                 right: 0;
-            }
-        }
-        &-button {
-            // position: relative;
-            display: block;
-
-            margin: 8px 0;
-            padding: 15px 0 15px 0;
-
-            cursor: pointer;
-
-            border: 0;
-            border-radius: 5px;
-            outline: none;
-
-            font: 600 1em/0.5em "Roboto";
-            &-text {
-                vertical-align: middle;
-            }
-            &-icon {
-                // position: absolute;
-                top: 0;
-
-                height: 20px;
-                margin-right: 10px;
-
-                color: white;
-            }
-            &_google {
-                color: rgb(72, 72, 72);
-                border: 2px solid rgb(43, 40, 40);
-                background-color: white;
-                &:active {
-                    transition: 0.25s;
-
-                    background-color: rgb(221, 219, 219);
-                }
-            }
-
-            &_email {
-                transition: 0.25s;
-
-                color: white;
-                border: 2px solid rgb(255, 90, 95);
-                background-color: rgb(255, 90, 95);
-                &:active {
-                    transition: 0.25s;
-
-                    border: 2px solid rgb(214, 70, 75);
-                    background-color: rgb(214, 70, 75);
-                }
-            }
-            &-close-image {
-                position: relative;
-                top: -5px;
-
-                display: block;
-
-                height: 20px;
-                margin: 0 auto;
-            }
-            &_close {
-                width: 40px;
-                height: 40px;
-
-                cursor: pointer;
-                transition: 0.25s;
-
-                border-radius: 50%;
-                background-color: white;
-                &:active {
-                    transition: 0.25s;
-
-                    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
-                }
             }
         }
     }

@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import './menu.scss';
 
 class Menu extends Component {
-  handleShowMessageClick = () => {
-    this.props.handleShowMessageClick();
-  };
-
   render() {
     return (
       <menu className="menu">
@@ -17,12 +13,12 @@ class Menu extends Component {
             <a className="menu__list-action">Help</a>
           </li>
           <li className="menu__list-item">
-            <a className="menu__list-action" onClick={this.handleShowMessageClick}>
+            <a className="menu__list-action" onClick={this.props.handleShowSignupModal}>
               Sign up
             </a>
           </li>
           <li className="menu__list-item">
-            <a className="menu__list-action">Log in</a>
+            <a className="menu__list-action" onClick={this.props.handleShowLoginModal}>Log in</a>
           </li>
         </ul>
       </menu>

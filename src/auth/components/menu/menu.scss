@@ -9,22 +9,21 @@
     background-color: white;
 
     flex-flow: row wrap;
-}
+    &-action {
+        display: block;
 
-.menu__list-action {
-    display: block;
+        padding: 20px;
 
-    padding: 20px;
+        cursor: pointer;
+        white-space: nowrap;
+        text-decoration: none;
 
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
+        color: black;
 
-    color: black;
+        font: 600 0.9em "Roboto", sans-serif;
 
-    font: 600 0.9em "Roboto", sans-serif;
-
-    &:hover {
-        border-bottom: 3px solid #f3ebdc;
+        &:hover {
+            border-bottom: 3px solid #f3ebdc;
+        }
     }
 }

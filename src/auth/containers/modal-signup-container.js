@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Modal from '../components/modal/modal';
+import ModalSignup from '../components/modal-signup/modal-signup';
 import {userActions} from '../actions/actions';
 
 export default connect(
@@ -7,4 +7,4 @@ export default connect(
   (dispatch) => ({
     signup: (data) => dispatch(userActions.createUser(data))
   })
-)(Modal);
+)(ModalSignup);
