@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './modal-signup.scss';
 import SignupForm from '../../containers/signup-form-container';
-import Button from '../button/button';
+import Button from '../../../shared/button/button';
 
 class ModalSignup extends Component {
   state = {
@@ -67,13 +67,9 @@ class ModalSignup extends Component {
   }
 }
 
-ModalSignup.defaultProps = {
-    signup: undefined,
-};
-
 ModalSignup.propTypes = {
     switchModal: PropTypes.func.isRequired,
-    signup: PropTypes.func,
+    signup: PropTypes.func.isRequired,
 };
 
 export default ModalSignup;

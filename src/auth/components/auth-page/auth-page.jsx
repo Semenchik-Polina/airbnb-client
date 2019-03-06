@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Modal from '../modal/modal';
-import ModalSignup from '../modal-signup/modal-signup';
+import ModalSignup from '../../containers/modal-signup-container';
 import Menu from '../menu/menu';
 import './auth-page.scss';
 
