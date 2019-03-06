@@ -1,27 +1,34 @@
-import React, {Component, Fragment} from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import './modal.scss';
-import ModalSignup from '../../containers/modal-signup-container';
+
 import Button from '../button/button';
 
 const modalRoot = document.getElementById('modal-root');
 
-class Modal extends Component {
-  render() {
-    return ReactDOM.createPortal(
-      <div className="modal">
-        <div className="modal__inner">
-          <Button
-            imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
-            style="close"
-            handleClick={this.props.onClose}
-          />
-          {this.props.modalIndex ? null : <ModalSignup switchModal={this.props.switchModal} />}
-        </div>
-      </div>,
-      modalRoot
-    );
-  }
+class Modal extends PureComponent {
+    render() {
+        const { children, onClose } = this.props;
+        return ReactDOM.createPortal(
+            <div className="modal">
+                <div className="modal__inner">
+                    <Button
+                        imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
+                        buttonStyle="close"
+                        handleClick={onClose}
+                    />
+                    {children}
+                </div>
+            </div>,
+            modalRoot,
+        );
+    }
 }
+
+Modal.propTypes = {
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default Modal;

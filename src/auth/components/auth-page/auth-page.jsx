@@ -1,37 +1,43 @@
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 import Modal from '../modal/modal';
+import ModalSignup from '../modal-signup/modal-signup';
 import Menu from '../menu/menu';
 import './auth-page.scss';
 
-class AuthPage extends Component {
+class AuthPage extends PureComponent {
   state = {
-    showModal: false,
-    modalIndex: 0
+      showModal: false,
+      isShowSignUp: true,
   };
 
   handleShowSignupModal = () => {
-    this.setState({showModal: true, modalIndex: 0});
+      this.setState({ showModal: true, isShowSignUp: true });
   };
 
   handleShowLoginModal = () => {
-    this.setState({showModal: true, modalIndex: 1});
+      this.setState({ showModal: true, isShowSignUp: false });
   };
 
   handleSwitchModals = () => {
-    this.setState({modalIndex: this.state.modalIndex ? 0 : 1});
-  }
+      this.setState(prevState => ({ isShowSignUp: !prevState.isShowSignUp }));
+  };
 
   handleCloseModal = () => {
-    this.setState({showModal: false});
+      this.setState({ showModal: false });
   };
 
   render() {
-    return (
-      <header>
-        <Menu handleShowSignupModal={this.handleShowSignupModal} handleShowLoginModal={this.handleShowLoginModal} />
-        {this.state.showModal ? <Modal onClose={this.handleCloseModal} switchModal={this.handleSwitchModals} modalIndex={this.state.modalIndex} /> : null}
-      </header>
-    );
+      const { showModal, isShowSignUp } = this.state;
+      return (
+          <header>
+              <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
+              {showModal ? (
+                  <Modal onClose={this.handleCloseModal}>
+                      {isShowSignUp && <ModalSignup switchModal={this.handleSwitchModals} />}
+                  </Modal>
+              ) : null}
+          </header>
+      );
   }
 }
 

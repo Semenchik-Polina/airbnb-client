@@ -1,7 +1,6 @@
 .button {
     display: flex;
 
-    margin: 8px 0;
     padding: 15px 0 15px 0;
 
     cursor: pointer;
@@ -16,11 +15,15 @@
     align-items: center;
     justify-content: center;
 
-    &-icon {
+    &__text {
+        line-height: 1.25em;
+    }
+    &__icon {
         display: block;
 
         height: 20px;
         margin: 0 5px;
+
         color: white;
     }
 
@@ -49,11 +52,10 @@
             background-color: rgb(214, 70, 75);
         }
     }
-    
+
     &-close {
         width: 40px;
         height: 40px;
-        margin: 0;
         padding: 0;
 
         cursor: pointer;
@@ -61,6 +63,7 @@
 
         border-radius: 50%;
         background-color: white;
+
         &:active {
             transition: 0.25s;
 
