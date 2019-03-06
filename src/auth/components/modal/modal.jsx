@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import Button from '../../../shared/button/button';
 import './modal.scss';
-
-import Button from '../button/button';
 
 const modalRoot = document.getElementById('modal-root');
 

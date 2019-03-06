@@ -7,8 +7,12 @@
     border-radius: 4px;
 
     flex-flow: row nowrap;
+
     &_focused {
         border-color: rgb(66, 150, 153);
+    }
+    &_invalid {
+        border-color: rgb(236, 100, 21);
     }
     &__input {
         display: flex;
@@ -29,5 +33,16 @@
         color: rgb(146, 146, 146);
 
         align-self: center;
+    }
+    &__error,
+    &__warning {
+        padding-bottom: 10px;
+
+        text-align: left;
+
+        color: rgb(236, 100, 21);
+
+        font-size: 0.85em;
+        font-weight: 800;
     }
 }

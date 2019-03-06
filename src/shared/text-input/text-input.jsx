@@ -4,51 +4,55 @@ import './text-input.scss';
 import classNames from 'classnames';
 
 class TextInput extends Component {
-  state = {
-      isFocused: false,
-  };
+    state = {
+        isFocused: false,
+    };
 
-  handleBlur = () => {
-      this.setState({ isFocused: false });
-  };
+    handleBlur = () => {
+        this.setState({ isFocused: false });
+    };
 
-  handleFocus = () => {
-      this.setState({ isFocused: true });
-  };
+    handleFocus = () => {
+        this.setState({ isFocused: true });
+    };
 
-  render() {
-      const {
-          placeholder,
-          icon,
-          type,
-          meta: { touched, error, warning },
-          input: { onChange, onBlur, value },
-      } = this.props;
-      const { isFocused } = this.state;
-      const textInputClasses = classNames('text-input', {
-          'text-input_focused': isFocused,
-      });
-      return (
-          <Fragment>
-              <div className={textInputClasses}>
-                  <input
-                      className="text-input__input"
-                      onBlur={() => {
-                          onBlur();
-                          this.handleBlur();
-                      }}
-                      onFocus={this.handleFocus}
-                      onChange={onChange}
-                      type={type}
-                      value={value}
-                      placeholder={placeholder}
-                  />
-                  {icon ? <span className={`text-input__icon ${icon}`} /> : null}
-              </div>
-              {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-          </Fragment>
-      );
-  }
+    render() {
+        const {
+            placeholder,
+            icon,
+            essence,
+            type,
+            meta: { touched, error, warning },
+            input: { onChange, onBlur, value },
+        } = this.props;
+        const { isFocused } = this.state;
+        const textInputClasses = classNames('text-input', {
+            'text-input_focused': isFocused,
+            'text-input_invalid': error && touched,
+        });
+        return (
+            <Fragment>
+                <div className={textInputClasses}>
+                    <input
+                        className="text-input__input"
+                        onBlur={() => {
+                            onBlur();
+                            this.handleBlur();
+                        }}
+                        onFocus={this.handleFocus}
+                        onChange={onChange}
+                        type={type}
+                        value={value}
+                        placeholder={placeholder}
+                    />
+                    {icon ? <span className={`text-input__icon ${icon}`} /> : null}
+                </div>
+                {touched
+                    && ((error && <span className="text-input__error">{`${essence} ${error}`}</span>)
+                        || (warning && <span className="text-input__warning">{`${essence} ${warning}`}</span>))}
+            </Fragment>
+        );
+    }
 }
 
 TextInput.defaultProps = {
@@ -62,6 +66,7 @@ TextInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
     icon: PropTypes.string,
     type: PropTypes.string.isRequired,
+    essence: PropTypes.string.isRequired,
     input: PropTypes.shape({
         onChange: PropTypes.func.isRequired,
         onBlur: PropTypes.func.isRequired,

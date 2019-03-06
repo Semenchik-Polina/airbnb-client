@@ -6,19 +6,20 @@ import Button from '../../../shared/button/button';
 import './signup-form.scss';
 
 // can isRequired be used as validators.isRequired (no-named-as-default-member) ?
-import { isRequired } from '../../../shared/validators';
+import { isRequired, isValidEmail, minLength8 } from '../../../shared/validators';
 
 class SignupForm extends PureComponent {
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
-            <form className="signup-form" onSubmit={handleSubmit}>
+            <form className="signup-form" onSubmit={handleSubmit} noValidate>
                 <Field
-                    validate={[isRequired]}
+                    validate={[isRequired, isValidEmail]}
                     name="email"
                     icon="icon-envelop"
                     component={TextInput}
                     type="email"
+                    essence="Email"
                     placeholder="Email address"
                 />
                 <Field
@@ -27,6 +28,7 @@ class SignupForm extends PureComponent {
                     icon="icon-user"
                     component={TextInput}
                     type="text"
+                    essence="First name"
                     placeholder="First name"
                 />
                 <Field
@@ -35,14 +37,16 @@ class SignupForm extends PureComponent {
                     icon="icon-user"
                     component={TextInput}
                     type="text"
+                    essence="Last name"
                     placeholder="Last name"
                 />
                 <Field
-                    validate={[isRequired]}
+                    validate={[isRequired, minLength8]}
                     name="password"
                     icon="icon-lock"
                     component={TextInput}
                     type="password"
+                    essence="Password"
                     placeholder="Create a Password"
                 />
                 <Button buttonStyle="email" disabled={pristine || submitting} text="Sign up" />
