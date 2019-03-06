@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import TextInput from '../../../shared/text-input/text-input';
-import Button from '../../../shared/button/button';
+import TextInput from '../../../shared/components/text-input/text-input';
+import Button from '../../../shared/components/button/button';
 import './signup-form.scss';
-
-// can isRequired be used as validators.isRequired (no-named-as-default-member) ?
-import { isRequired, isValidEmail, minLength8 } from '../../../shared/validators';
+import * as validators from '../../../shared/tools/validators';
 
 class SignupForm extends PureComponent {
     render() {
@@ -14,7 +12,7 @@ class SignupForm extends PureComponent {
         return (
             <form className="signup-form" onSubmit={handleSubmit} noValidate>
                 <Field
-                    validate={[isRequired, isValidEmail]}
+                    validate={[validators.isRequired, validators.isValidEmail]}
                     name="email"
                     icon="icon-envelop"
                     component={TextInput}
@@ -23,7 +21,7 @@ class SignupForm extends PureComponent {
                     placeholder="Email address"
                 />
                 <Field
-                    validate={[isRequired]}
+                    validate={[validators.isRequired]}
                     name="firstName"
                     icon="icon-user"
                     component={TextInput}
@@ -32,7 +30,7 @@ class SignupForm extends PureComponent {
                     placeholder="First name"
                 />
                 <Field
-                    validate={[isRequired]}
+                    validate={[validators.isRequired]}
                     name="lastName"
                     icon="icon-user"
                     component={TextInput}
@@ -41,7 +39,7 @@ class SignupForm extends PureComponent {
                     placeholder="Last name"
                 />
                 <Field
-                    validate={[isRequired, minLength8]}
+                    validate={[validators.isRequired, validators.minLength8]}
                     name="password"
                     icon="icon-lock"
                     component={TextInput}

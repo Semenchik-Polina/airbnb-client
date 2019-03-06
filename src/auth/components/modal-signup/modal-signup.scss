@@ -1,78 +1,79 @@
-.modal-signup__separator {
-    position: relative;
+.modal-signup {
+    &__separator {
+        position: relative;
 
-    display: inline-block;
+        display: inline-block;
 
-    margin: 15px 0;
+        margin: 15px 0;
 
-    text-align: center;
+        text-align: center;
 
-    color: rgb(128, 128, 128);
-    &::before,
-    &::after {
-        position: absolute;
-        top: 50%;
+        color: rgb(128, 128, 128);
+        &::before,
+        &::after {
+            position: absolute;
+            top: 50%;
 
-        width: 45%;
-        height: 5px;
+            width: 45%;
+            height: 5px;
 
-        content: "";
+            content: "";
 
-        border-top: 1px solid rgb(216, 216, 216);;
+            border-top: 1px solid rgb(216, 216, 216);
+        }
+        &::before {
+            left: 0;
+        }
+        &::after {
+            right: 0;
+        }
     }
-    &::before {
-        left: 0;
+
+    &__underliner {
+        position: relative;
+
+        display: inline-block;
+
+        margin: 15px 0;
+
+        text-align: center;
+
+        color: rgb(216, 216, 216);
+
+        &::before,
+        &::after {
+            position: absolute;
+            top: 50%;
+
+            width: 50%;
+            height: 5px;
+
+            content: "";
+
+            border-top: 1px solid rgb(180, 180, 180);
+        }
+        &::before {
+            left: 0;
+        }
+        &::after {
+            right: 0;
+        }
     }
-    &::after {
-        right: 0;
+
+    &__switch {
+        display: inline;
+
+        cursor: pointer;
+
+        color: #008489;
+
+        font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+        }
     }
-}
-.modal-signup__underliner {
-    position: relative;
 
-    display: inline-block;
-
-//
-
-    margin: 15px 0;
-
-    text-align: center;
-
-    color: rgb(216, 216, 216);
-
-    &::before,
-    &::after {
-        position: absolute;
-        top: 50%;
-
-        width: 50%;
-        height: 5px;
-
-        content: "";
-
-        border-top: 1px solid rgb(180, 180, 180);
+    &__footer {
+        color: #777777;
     }
-    &::before {
-        left: 0;
-    }
-    &::after {
-        right: 0;
-    }
-}
-
-.modal-signup__switch {
-    display: inline;
-
-    cursor: pointer;
-
-    color: #008489;
-
-    font-weight: 600;
-    &:hover {
-        text-decoration: underline;
-    }
-}
-.modal-signup__footer {
-    //margin-top: 10px;
-    color: #777777;
 }
