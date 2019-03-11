@@ -27,13 +27,17 @@ class ModalLogin extends PureComponent {
                     className="google"
                     isBehavedAsLink
                     text="Log in with Google"
-                />
+                >
+                    {'Log in with Google'}
+                </Button>
                 <span className="modal-login__separator">or</span>
                 <LoginForm className="modal-login__form" onSubmit={this.submit} />
                 <span className="modal-login__underliner" />
                 <div className="modal-login__footer">
                     <span>Don`t have an account? </span>
-                    <span className="modal-login__switch" onClick={switchModal}>Sign up</span>
+                    <span className="modal-login__switch" onClick={switchModal}>
+                        {'Sign up'}
+                    </span>
                 </div>
             </Fragment>
         );

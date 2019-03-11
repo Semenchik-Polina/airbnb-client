@@ -53,7 +53,9 @@ class SignupForm extends PureComponent {
                     essence="Password"
                     placeholder="Create a Password"
                 />
-                <Button className="email signup-form__submit" disabled={pristine || submitting} text="Sign up" />
+                <Button className="email signup-form__submit" disabled={pristine || submitting}>
+                    {'Sign up'}
+                </Button>
             </form>
         );
     }

@@ -4,7 +4,7 @@ import './button.scss';
 
 const Button = (props) => {
     const {
-        handleClick, isBehavedAsLink, text, imgSrc, href, className,
+        handleClick, isBehavedAsLink, children, imgSrc, href, className,
     } = props;
     if (!isBehavedAsLink) {
         return (
@@ -14,7 +14,7 @@ const Button = (props) => {
                         <img className="button__icon" src={imgSrc} alt="icon" />
                     </span>
                 )}
-                {text && <span className="button__text">{text}</span>}
+                {children && <span className="button__text">{children}</span>}
             </button>
         );
     }
@@ -23,7 +23,7 @@ const Button = (props) => {
             <span>
                 <img className="button__icon" src={imgSrc} alt="icon" />
             </span>
-            <span className="button__text">{text}</span>
+            {children && <span className="button__text">{children}</span>}
         </a>
     );
 };
@@ -31,7 +31,7 @@ const Button = (props) => {
 Button.defaultProps = {
     handleClick: () => {},
     isBehavedAsLink: false,
-    text: '',
+    children: '',
     imgSrc: '',
     href: '',
 };
@@ -39,11 +39,10 @@ Button.defaultProps = {
 Button.propTypes = {
     handleClick: PropTypes.func,
     isBehavedAsLink: PropTypes.bool,
-    text: PropTypes.string,
+    children: PropTypes.string,
     imgSrc: PropTypes.string,
     href: PropTypes.string,
     className: PropTypes.string.isRequired,
-    type: PropTypes.string,
 };
 
 export default Button;

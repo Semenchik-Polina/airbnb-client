@@ -44,16 +44,18 @@ class ModalSignup extends PureComponent {
                     href=""
                     className="google"
                     isBehavedAsLink
-                    text="Continue with Google"
-                />
+                >
+                    {'Continue with Google'}
+                </Button>
                 <span className="modal-signup__separator">or</span>
                 <Button
                     imgSrc="https://img.icons8.com/ios/50/000000/new-post/FFFFFF"
                     className="email"
                     handleClick={this.showForm}
                     isBehavedAsButton
-                    text="Sign up with Email"
-                />
+                >
+                    {'Sign up with Email'}
+                </Button>
             </Fragment>
         );
     }
@@ -66,7 +68,9 @@ class ModalSignup extends PureComponent {
                 <span className="modal-signup__underliner" />
                 <div className="modal-signup__footer">
                     <span>Already have an Airbnb account? </span>
-                    <span className="modal-signup__switch" onClick={switchModal}>Log in</span>
+                    <span className="modal-signup__switch" onClick={switchModal}>
+                        {'Log in'}
+                    </span>
                 </div>
             </Fragment>
         );
