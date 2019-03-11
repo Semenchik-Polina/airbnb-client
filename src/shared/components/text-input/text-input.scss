@@ -34,11 +34,10 @@
 
         align-self: center;
     }
+
     &__error,
     &__warning {
-        padding-bottom: 10px;
-
-        text-align: left;
+        float: left;
 
         color: rgb(236, 100, 21);
 

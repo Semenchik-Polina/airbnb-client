@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
-import './signup-form.scss';
 import * as validators from '../../../shared/tools/validators';
+import './signup-form.scss';
 
 class SignupForm extends PureComponent {
+    static propTypes = {
+        handleSubmit: PropTypes.func.isRequired,
+        pristine: PropTypes.bool.isRequired,
+        submitting: PropTypes.bool.isRequired,
+    };
+
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
@@ -18,7 +24,7 @@ class SignupForm extends PureComponent {
                     component={TextInput}
                     type="email"
                     essence="Email"
-                    placeholder="Email address"
+                    placeholder="Email Address"
                 />
                 <Field
                     validate={[validators.isRequired]}
@@ -47,16 +53,10 @@ class SignupForm extends PureComponent {
                     essence="Password"
                     placeholder="Create a Password"
                 />
-                <Button buttonStyle="email" disabled={pristine || submitting} text="Sign up" />
+                <Button buttonStyle="email signup-form__submit" disabled={pristine || submitting} text="Sign up" />
             </form>
         );
     }
 }
-
-SignupForm.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    submitting: PropTypes.bool.isRequired,
-};
 
 export default SignupForm;

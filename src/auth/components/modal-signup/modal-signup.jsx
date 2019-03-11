@@ -1,12 +1,17 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import './modal-signup.scss';
 import SignupForm from '../../containers/signup-form-container';
 import Button from '../../../shared/components/button/button';
+import './modal-signup.scss';
 
 class ModalSignup extends PureComponent {
     state = {
         showForm: false,
+    };
+
+    static propTypes = {
+        switchModal: PropTypes.func.isRequired,
+        signup: PropTypes.func.isRequired,
     };
 
     showForm = () => {
@@ -67,10 +72,5 @@ class ModalSignup extends PureComponent {
         );
     }
 }
-
-ModalSignup.propTypes = {
-    switchModal: PropTypes.func.isRequired,
-    signup: PropTypes.func.isRequired,
-};
 
 export default ModalSignup;

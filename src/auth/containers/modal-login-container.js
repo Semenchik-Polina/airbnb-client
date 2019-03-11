@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import ModalSignup from '../components/modal-signup/modal-signup';
+import ModalLogin from '../components/modal-login/modal-login';
 import { userActions } from '../actions/actions';
 
 export default connect(
     null,
     dispatch => ({
-        signup: data => dispatch(userActions.signup(data)),
+        login: data => dispatch(userActions.login(data)),
     }),
-)(ModalSignup);
+)(ModalLogin);

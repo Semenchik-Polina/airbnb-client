@@ -4,13 +4,21 @@ const handleResponse = response => response.data;
 
 const handleError = err => Promise.reject(err.response.data);
 
-function register(data) {
+function signup(data) {
     return axios
-        .post('/register', data)
+        .post('/signup', data)
+        .then(handleResponse)
+        .catch(handleError);
+}
+
+function login(data) {
+    return axios
+        .post('/login', data)
         .then(handleResponse)
         .catch(handleError);
 }
 
 export default {
-    register,
+    signup,
+    login,
 };

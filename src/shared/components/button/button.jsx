@@ -9,12 +9,12 @@ const Button = (props) => {
     if (!isBehavedAsLink) {
         return (
             <button type="submit" className={`button button-${buttonStyle}`} onClick={handleClick}>
-                {imgSrc ? (
+                {imgSrc && (
                     <span>
                         <img className="button__icon" src={imgSrc} alt="icon" />
                     </span>
-                ) : null}
-                {text ? <span className="button__text">{text}</span> : null}
+                )}
+                {text && <span className="button__text">{text}</span>}
             </button>
         );
     }

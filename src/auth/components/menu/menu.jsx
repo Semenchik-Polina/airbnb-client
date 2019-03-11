@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import './menu.scss';
 
 class Menu extends PureComponent {
+    static propTypes = {
+        showSignupModal: PropTypes.func.isRequired,
+        showLoginModal: PropTypes.func.isRequired,
+    };
+
     render() {
         const { showSignupModal, showLoginModal } = this.props;
         return (
@@ -25,10 +30,5 @@ class Menu extends PureComponent {
         );
     }
 }
-
-Menu.propTypes = {
-    showSignupModal: PropTypes.func.isRequired,
-    showLoginModal: PropTypes.func.isRequired,
-};
 
 export default Menu;

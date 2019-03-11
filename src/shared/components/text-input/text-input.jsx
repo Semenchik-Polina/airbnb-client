@@ -1,14 +1,37 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './text-input.scss';
 import classNames from 'classnames';
+import './text-input.scss';
 
 class TextInput extends Component {
     state = {
         isFocused: false,
     };
 
+    static defaultProps = {
+        icon: undefined,
+    };
+
+    static propTypes = {
+        placeholder: PropTypes.string.isRequired,
+        icon: PropTypes.string,
+        type: PropTypes.string.isRequired,
+        essence: PropTypes.string.isRequired,
+        input: PropTypes.shape({
+            onChange: PropTypes.func.isRequired,
+            onBlur: PropTypes.func.isRequired,
+            value: PropTypes.string,
+        }).isRequired,
+        meta: PropTypes.shape({
+            touched: PropTypes.bool.isRequired,
+        }).isRequired,
+    };
+
     handleBlur = () => {
+        const {
+            input: { onBlur },
+        } = this.props;
+        onBlur();
         this.setState({ isFocused: false });
     };
 
@@ -23,7 +46,7 @@ class TextInput extends Component {
             essence,
             type,
             meta: { touched, error, warning },
-            input: { onChange, onBlur, value },
+            input: { onChange, value },
         } = this.props;
         const { isFocused } = this.state;
         const textInputClasses = classNames('text-input', {
@@ -31,50 +54,25 @@ class TextInput extends Component {
             'text-input_invalid': error && touched,
         });
         return (
-            <Fragment>
+            <div>
                 <div className={textInputClasses}>
                     <input
                         className="text-input__input"
-                        onBlur={() => {
-                            onBlur();
-                            this.handleBlur();
-                        }}
+                        onBlur={this.handleBlur}
                         onFocus={this.handleFocus}
                         onChange={onChange}
                         type={type}
                         value={value}
                         placeholder={placeholder}
                     />
-                    {icon ? <span className={`text-input__icon ${icon}`} /> : null}
+                    {icon && <span className={`text-input__icon ${icon}`} />}
                 </div>
                 {touched
                     && ((error && <span className="text-input__error">{`${essence} ${error}`}</span>)
                         || (warning && <span className="text-input__warning">{`${essence} ${warning}`}</span>))}
-            </Fragment>
+            </div>
         );
     }
 }
-
-TextInput.defaultProps = {
-    icon: undefined,
-};
-
-// meta: { touched, error, warning }
-// eslint do not fire warnings, but i am not describing all meta fields in propTypes
-
-TextInput.propTypes = {
-    placeholder: PropTypes.string.isRequired,
-    icon: PropTypes.string,
-    type: PropTypes.string.isRequired,
-    essence: PropTypes.string.isRequired,
-    input: PropTypes.shape({
-        onChange: PropTypes.func.isRequired,
-        onBlur: PropTypes.func.isRequired,
-        value: PropTypes.string,
-    }).isRequired,
-    meta: PropTypes.shape({
-        touched: PropTypes.bool.isRequired,
-    }).isRequired,
-};
 
 export default TextInput;
