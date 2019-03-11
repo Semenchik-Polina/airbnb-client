@@ -13,6 +13,8 @@ class ModalLogin extends PureComponent {
     submit = (values) => {
         const { login } = this.props;
         login(values);
+        // if login is successful, <redirect /> or history.push("...")
+        // else -- show error or warning under the form
     };
 
     render() {
@@ -22,7 +24,7 @@ class ModalLogin extends PureComponent {
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    buttonStyle="google"
+                    className="google"
                     isBehavedAsLink
                     text="Log in with Google"
                 />
@@ -30,7 +32,7 @@ class ModalLogin extends PureComponent {
                 <LoginForm className="modal-login__form" onSubmit={this.submit} />
                 <span className="modal-login__underliner" />
                 <div className="modal-login__footer">
-                    <span>Don`t have an Airbnb account? </span>
+                    <span>Don`t have an account? </span>
                     <span className="modal-login__switch" onClick={switchModal}>Sign up</span>
                 </div>
             </Fragment>

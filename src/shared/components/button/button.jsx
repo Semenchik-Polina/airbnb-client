@@ -4,11 +4,11 @@ import './button.scss';
 
 const Button = (props) => {
     const {
-        handleClick, isBehavedAsLink, text, imgSrc, href, buttonStyle,
+        handleClick, isBehavedAsLink, text, imgSrc, href, className,
     } = props;
     if (!isBehavedAsLink) {
         return (
-            <button type="submit" className={`button button-${buttonStyle}`} onClick={handleClick}>
+            <button type="submit" className={`button button-${className}`} onClick={handleClick}>
                 {imgSrc && (
                     <span>
                         <img className="button__icon" src={imgSrc} alt="icon" />
@@ -19,7 +19,7 @@ const Button = (props) => {
         );
     }
     return (
-        <a className={`button button-${buttonStyle}`} href={href} target="_blank" rel="noopener noreferrer">
+        <a className={`button button-${className}`} href={href} target="_blank" rel="noopener noreferrer">
             <span>
                 <img className="button__icon" src={imgSrc} alt="icon" />
             </span>
@@ -29,11 +29,11 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-    handleClick: undefined,
+    handleClick: () => {},
     isBehavedAsLink: false,
-    text: undefined,
-    imgSrc: undefined,
-    href: undefined,
+    text: '',
+    imgSrc: '',
+    href: '',
 };
 
 Button.propTypes = {
@@ -42,7 +42,8 @@ Button.propTypes = {
     text: PropTypes.string,
     imgSrc: PropTypes.string,
     href: PropTypes.string,
-    buttonStyle: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired,
+    type: PropTypes.string,
 };
 
 export default Button;

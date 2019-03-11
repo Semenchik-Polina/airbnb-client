@@ -42,14 +42,14 @@ class ModalSignup extends PureComponent {
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    buttonStyle="google"
+                    className="google"
                     isBehavedAsLink
                     text="Continue with Google"
                 />
                 <span className="modal-signup__separator">or</span>
                 <Button
                     imgSrc="https://img.icons8.com/ios/50/000000/new-post/FFFFFF"
-                    buttonStyle="email"
+                    className="email"
                     handleClick={this.showForm}
                     isBehavedAsButton
                     text="Sign up with Email"

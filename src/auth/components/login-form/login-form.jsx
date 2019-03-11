@@ -35,7 +35,7 @@ class LoginForm extends PureComponent {
                     essence="Password"
                     placeholder="Password"
                 />
-                <Button buttonStyle="email login-form__submit" disabled={pristine || submitting} text="Log in" />
+                <Button className="email login-form__submit" disabled={pristine || submitting} text="Log in" />
             </form>
         );
     }
