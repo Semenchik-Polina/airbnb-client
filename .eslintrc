@@ -30,6 +30,7 @@
         "import/extensions": "off",
         "import/prefer-default-export": "off",
         "linebreak-style": "off",
+        "react/destructuring-assignment": "off",
         "no-underscore-dangle": [
             "error",
             {

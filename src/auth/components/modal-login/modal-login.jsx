@@ -26,7 +26,6 @@ class ModalLogin extends PureComponent {
                     href=""
                     className="google"
                     isBehavedAsLink
-                    text="Log in with Google"
                 >
                     {'Log in with Google'}
                 </Button>

@@ -29,7 +29,7 @@
         color: white;
     }
 
-    &-google {
+    &_google {
         color: rgb(72, 72, 72);
         border: 2px solid rgb(43, 40, 40);
         background-color: white;
@@ -40,7 +40,7 @@
         }
     }
 
-    &-email {
+    &_email {
         transition: 0.25s;
 
         color: white;
@@ -55,7 +55,7 @@
         }
     }
 
-    &-close {
+    &_close {
         width: 40px;
         height: 40px;
         padding: 0;

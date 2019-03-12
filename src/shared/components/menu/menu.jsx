@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink, withRouter } from 'react-router-dom';
 import './menu.scss';
 
 class Menu extends PureComponent {
@@ -17,13 +18,17 @@ class Menu extends PureComponent {
                         <a className="menu__list-action">Become a host</a>
                     </li>
                     <li className="menu__list-item">
-                        <a className="menu__list-action">Help</a>
+                        <NavLink exact to="/admin-home" className="menu__list-action">Help</NavLink>
                     </li>
                     <li className="menu__list-item">
-                        <a className="menu__list-action" onClick={showSignupModal}>Sign up</a>
+                        <a className="menu__list-action" onClick={showSignupModal}>
+                            {'Sign up'}
+                        </a>
                     </li>
                     <li className="menu__list-item">
-                        <a className="menu__list-action" onClick={showLoginModal}>Log in</a>
+                        <a className="menu__list-action" onClick={showLoginModal}>
+                            {'Log in'}
+                        </a>
                     </li>
                 </ul>
             </menu>
@@ -31,4 +36,4 @@ class Menu extends PureComponent {
     }
 }
 
-export default Menu;
+export default withRouter(Menu);

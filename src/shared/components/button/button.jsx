@@ -6,9 +6,11 @@ const Button = (props) => {
     const {
         handleClick, isBehavedAsLink, children, imgSrc, href, className,
     } = props;
+
+
     if (!isBehavedAsLink) {
         return (
-            <button type="submit" className={`button button-${className}`} onClick={handleClick}>
+            <button type="submit" className={`button button_${className}`} onClick={handleClick}>
                 {imgSrc && (
                     <span>
                         <img className="button__icon" src={imgSrc} alt="icon" />
@@ -19,7 +21,7 @@ const Button = (props) => {
         );
     }
     return (
-        <a className={`button button-${className}`} href={href} target="_blank" rel="noopener noreferrer">
+        <a className={`button button_${className}`} href={href} target="_blank" rel="noopener noreferrer">
             <span>
                 <img className="button__icon" src={imgSrc} alt="icon" />
             </span>

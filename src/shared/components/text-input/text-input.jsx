@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './text-input.scss';
 
-class TextInput extends Component {
+class TextInput extends PureComponent {
     state = {
         isFocused: false,
     };
