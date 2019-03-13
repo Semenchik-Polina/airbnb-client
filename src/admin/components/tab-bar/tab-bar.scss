@@ -1,31 +1,34 @@
 .tabBar {
     display: flex;
 
-    width: 100%;
     margin: 0 auto;
     padding: 0;
 
     border: none;
 
+    font: 100 1em "Roboto";
+
+    flex-flow: row wrap;
+    justify-content: center;
+
     &__tab {
         display: block;
 
-        width: 150px;
         height: 30px;
         margin: 0 5px;
-        padding: 20px 30px 10px 30px;
+        padding: 10px 30px 0 30px;
 
         text-align: center;
         text-decoration: none;
 
-        color: black;
-        border-bottom: 4px solid blue;
+        color: rgb(158, 152, 152);
+        border-bottom: 4px solid rgb(127, 127, 192);
 
         font-weight: 400;
     }
 
     .active {
-        border-bottom: 4px solid rgb(9, 223, 238);
-        background-color: rgb(230, 229, 227);
+        color: black;
+        border-bottom: 4px solid rgb(9, 5, 151);
     }
 }

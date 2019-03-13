@@ -5,6 +5,17 @@ export const isValidEmail = (email) => {
     return reg.test(email) ? undefined : 'is invalid';
 };
 
+export const isInt = (number) => {
+    const reg = /^\d+$/;
+    return reg.test(number) ? undefined : 'is not an integer';
+}
+
+export const isFloat = (number) => {
+    const reg = /^-?\d+\.?\d*$/;
+    return reg.test(number) ? undefined : 'is not a number';
+};
+
+
 export const minLength = min => (value) => {
     if (value && value.length < min) {
         return `have to contain at least ${min} characters`;

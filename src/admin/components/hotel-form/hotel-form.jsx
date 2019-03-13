@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import {Field} from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
+import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import * as validators from '../../../shared/tools/validators';
 import './hotel-form.scss';
 
@@ -10,17 +11,18 @@ class HotelForm extends PureComponent {
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
-        submitting: PropTypes.bool.isRequired,
+        submitting: PropTypes.bool.isRequired
     };
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const {handleSubmit, pristine, submitting} = this.props;
         return (
             <form className="hotel-form" onSubmit={handleSubmit} noValidate>
-                <label htmlFor="hotelName">
+                <label className="hotel-form__label" htmlFor="hotelName">
                     {'What is your hotel name?'}
                     <Field
                         validate={[validators.isRequired]}
+                        className="hotel-form__field"
                         name="hotelName"
                         icon="icon-envelop"
                         component={TextInput}
@@ -29,11 +31,12 @@ class HotelForm extends PureComponent {
                         placeholder="Hotel name"
                     />
                 </label>
-                <div>Where is your hotel placed?</div>
+                <div className="hotel-form__section">Where is your hotel placed?</div>
                 <label htmlFor="hotelName">
                     {'Street and house number'}
                     <Field
                         validate={[validators.isRequired]}
+                        className="hotel-form__field"
                         name="streetHouse"
                         icon="icon-envelop"
                         component={TextInput}
@@ -44,55 +47,27 @@ class HotelForm extends PureComponent {
                 </label>
                 <label htmlFor="hotelName">
                     {'Country/territory'}
-                    <Field name="country" component="select">
-                        <option value="Belarus">Belarus</option>
-                        <option value="Russia">Russia</option>
-                        <option value="Ukraine">Ukraine</option>
-                    </Field>
+                    <Field
+                        className="hotel-form__field"
+                        name="country"
+                        component={DropDownSelect}
+                        options={['Belarus', 'Russia']}
+                        essence="Country"
+                    />
                 </label>
-                <Field
-                    validate={[validators.isRequired]}
-                    name="sity"
-                    icon="icon-envelop"
-                    component={TextInput}
-                    type="text"
-                    essence="Sity"
-                    placeholder="Sity"
-                />
-
-                {/* <Field
-                    validate={[validators.isRequired]}
-                    name="numberOfRooms"
-                    icon="icon-envelop"
-                    component={TextInput}
-                    type="number"
-                    essence="Number of rooms"
-                    placeholder="Number of rooms"
-                />
-                <Field
-                    validate={[validators.isRequired]}
-                    name="roomType"
-                    component={TextInput}
-                    type="text"
-                    essence="Room type"
-                    placeholder="Room type"
-                />
-                <Field
-                    validate={[validators.isRequired]}
-                    name="comfortLevel"
-                    component={TextInput}
-                    type="text"
-                    essence="Comfort level"
-                    placeholder="Comfort level"
-                />
-                <Field
-                    validate={[validators.isRequired]}
-                    name="roomCost"
-                    component={TextInput}
-                    type="number"
-                    essence="Cost of the room"
-                    placeholder="Cost of the room"
-                /> */}
+                <label htmlFor="hotelName">
+                    {'Sity'}
+                    <Field
+                        validate={[validators.isRequired]}
+                        className="hotel-form__field"
+                        name="sity"
+                        icon="icon-envelop"
+                        component={TextInput}
+                        type="text"
+                        essence="Sity"
+                        placeholder="Sity"
+                    />
+                </label>
                 <Button className="hotel-form__submit" disabled={pristine || submitting}>
                     {'Add hotel'}
                 </Button>

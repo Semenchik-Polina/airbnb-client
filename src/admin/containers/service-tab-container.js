@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import ServiceTab from '../components/service-tab/service-tab';
-import { hotelActions } from '../actions/actions';
+import {adminActions} from '../actions/actions';
 
 export default connect(
     null,
-    dispatch => ({
-        createHotel: data => dispatch(hotelActions.createHotel(data)),
-    }),
+    (dispatch) => ({
+        addServices: (data) => dispatch(adminActions.addServices(data))
+    })
 )(ServiceTab);

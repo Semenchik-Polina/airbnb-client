@@ -1,7 +1,7 @@
 .text-input {
     display: flex;
 
-    margin: 10px 0;
+// margin: 10px 0;
 
     border: 1px solid rgb(146, 146, 146);
     border-radius: 4px;
@@ -38,6 +38,8 @@
     &__error,
     &__warning {
         float: left;
+
+        padding-bottom: 15px;
 
         color: rgb(236, 100, 21);
 

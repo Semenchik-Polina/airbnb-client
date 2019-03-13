@@ -9,10 +9,13 @@ class TextInput extends PureComponent {
     };
 
     static defaultProps = {
-        icon: undefined,
+        icon: "",
+        className: "",
+        pattern: "",
     };
 
     static propTypes = {
+        className: PropTypes.string,
         placeholder: PropTypes.string.isRequired,
         icon: PropTypes.string,
         type: PropTypes.string.isRequired,
@@ -41,6 +44,7 @@ class TextInput extends PureComponent {
 
     render() {
         const {
+            className,
             placeholder,
             icon,
             essence,
@@ -52,6 +56,7 @@ class TextInput extends PureComponent {
         const textInputClasses = classNames('text-input', {
             'text-input_focused': isFocused,
             'text-input_invalid': error && touched,
+            [`${className}`] : className
         });
         return (
             <div>

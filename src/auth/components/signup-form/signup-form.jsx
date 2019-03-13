@@ -19,6 +19,7 @@ class SignupForm extends PureComponent {
             <form className="signup-form" onSubmit={handleSubmit} noValidate>
                 <Field
                     validate={[validators.isRequired, validators.isValidEmail]}
+                    className="signup-form__field"
                     name="email"
                     icon="icon-envelop"
                     component={TextInput}
@@ -28,6 +29,7 @@ class SignupForm extends PureComponent {
                 />
                 <Field
                     validate={[validators.isRequired]}
+                    className="signup-form__field"
                     name="firstName"
                     icon="icon-user"
                     component={TextInput}
@@ -37,6 +39,7 @@ class SignupForm extends PureComponent {
                 />
                 <Field
                     validate={[validators.isRequired]}
+                    className="signup-form__field"
                     name="lastName"
                     icon="icon-user"
                     component={TextInput}
@@ -46,6 +49,7 @@ class SignupForm extends PureComponent {
                 />
                 <Field
                     validate={[validators.isRequired, validators.minLength8]}
+                    className="signup-form__field"
                     name="password"
                     icon="icon-lock"
                     component={TextInput}

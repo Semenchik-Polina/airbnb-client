@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import './button.scss';
 
 const Button = (props) => {
-    const {
-        handleClick, isBehavedAsLink, children, imgSrc, href, className,
-    } = props;
-
+    const {handleClick, isBehavedAsLink, children, imgSrc, href, className, type} = props;
 
     if (!isBehavedAsLink) {
         return (
-            <button type="submit" className={`button button_${className}`} onClick={handleClick}>
+            <button type={type} className={`button button_${className}`} onClick={handleClick}>
                 {imgSrc && (
                     <span>
                         <img className="button__icon" src={imgSrc} alt="icon" />
@@ -36,6 +33,8 @@ Button.defaultProps = {
     children: '',
     imgSrc: '',
     href: '',
+    type: 'submit',
+    className: '',
 };
 
 Button.propTypes = {
@@ -44,7 +43,8 @@ Button.propTypes = {
     children: PropTypes.string,
     imgSrc: PropTypes.string,
     href: PropTypes.string,
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    type: PropTypes.oneOf(['submit', 'button', 'reset'])
 };
 
 export default Button;

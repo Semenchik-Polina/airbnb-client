@@ -1,5 +1,19 @@
 .room-form {
     display: flex;
 
+    width: 100%;
+    max-width: 500px;
+    margin: 5% auto 0 auto;
+
+    font: 100 1em "Roboto";
+
     flex-flow: column nowrap;
+    &__multiple-field {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    &__field {
+        margin: 10px 0;
+    }
 }
