@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AdminHome from '../components/admin-home/admin-home';
+import ServiceTab from '../components/service-tab/service-tab';
 import { hotelActions } from '../actions/actions';
 
 export default connect(
@@ -7,4 +7,4 @@ export default connect(
     dispatch => ({
         createHotel: data => dispatch(hotelActions.createHotel(data)),
     }),
-)(AdminHome);
+)(ServiceTab);

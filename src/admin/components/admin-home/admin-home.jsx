@@ -1,25 +1,14 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import HotelForm from '../../containers/hotel-form-container';
+import React, { Component } from 'react';
 
+import TabBar from '../tab-bar/tab-bar';
 import './admin-home.scss';
 
-class AdminHome extends PureComponent {
-    static propTypes = {
-        createHotel: PropTypes.func.isRequired,
-    };
-
-    submit = (values) => {
-        console.log('submit');
-        const { createHotel } = this.props;
-        createHotel(values);
-    };
-
+class AdminHome extends Component {
     render() {
         return (
             <div>
                 <div>Admin`s home!</div>
-                <HotelForm onSubmit={this.submit} />
+                <TabBar />
             </div>
         );
     }

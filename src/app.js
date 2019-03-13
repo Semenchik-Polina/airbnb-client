@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import AuthPage from './auth/components/auth-page/auth-page';
 // import AdminHome from './admin/components/admin-home/admin-home';
-import AdminHome from './admin/containers/admin-home-container';
+import AdminHome from './admin/components/admin-home/admin-home';
 import './reset.css';
 import './main.scss';
 
@@ -10,7 +10,7 @@ const App = () => (
     <BrowserRouter>
         <div className="App">
             <Route exact path="/" component={AuthPage} />
-            <Route exact path="/admin-home" component={AdminHome} />
+            <Route path="/admin-home" component={AdminHome} />
         </div>
     </BrowserRouter>
 );

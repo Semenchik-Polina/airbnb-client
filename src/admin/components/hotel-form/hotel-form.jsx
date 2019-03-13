@@ -17,15 +17,39 @@ class HotelForm extends PureComponent {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
             <form className="hotel-form" onSubmit={handleSubmit} noValidate>
-                <Field
-                    validate={[validators.isRequired]}
-                    name="country"
-                    icon="icon-envelop"
-                    component={TextInput}
-                    type="text"
-                    essence="Country"
-                    placeholder="Country"
-                />
+                <label htmlFor="hotelName">
+                    {'What is your hotel name?'}
+                    <Field
+                        validate={[validators.isRequired]}
+                        name="hotelName"
+                        icon="icon-envelop"
+                        component={TextInput}
+                        type="text"
+                        essence="Hotel name"
+                        placeholder="Hotel name"
+                    />
+                </label>
+                <div>Where is your hotel placed?</div>
+                <label htmlFor="hotelName">
+                    {'Street and house number'}
+                    <Field
+                        validate={[validators.isRequired]}
+                        name="streetHouse"
+                        icon="icon-envelop"
+                        component={TextInput}
+                        type="text"
+                        essence="Street and house number"
+                        placeholder="For example, Red Square, house 1"
+                    />
+                </label>
+                <label htmlFor="hotelName">
+                    {'Country/territory'}
+                    <Field name="country" component="select">
+                        <option value="Belarus">Belarus</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Ukraine">Ukraine</option>
+                    </Field>
+                </label>
                 <Field
                     validate={[validators.isRequired]}
                     name="sity"
@@ -35,16 +59,8 @@ class HotelForm extends PureComponent {
                     essence="Sity"
                     placeholder="Sity"
                 />
-                <Field
-                    validate={[validators.isRequired]}
-                    name="hotelName"
-                    icon="icon-envelop"
-                    component={TextInput}
-                    type="text"
-                    essence="Hotel name"
-                    placeholder="Hotel name"
-                />
-                <Field
+
+                {/* <Field
                     validate={[validators.isRequired]}
                     name="numberOfRooms"
                     icon="icon-envelop"
@@ -76,7 +92,7 @@ class HotelForm extends PureComponent {
                     type="number"
                     essence="Cost of the room"
                     placeholder="Cost of the room"
-                />
+                /> */}
                 <Button className="hotel-form__submit" disabled={pristine || submitting}>
                     {'Add hotel'}
                 </Button>
