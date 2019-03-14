@@ -18,8 +18,8 @@ class LoginForm extends PureComponent {
         return (
             <form className="login-form" onSubmit={handleSubmit} noValidate>
                 <Field
-                    validate={[validators.isRequired, validators.isValidEmail]}     
-                    className="login-form__field"           
+                    validate={[validators.isRequired, validators.isValidEmail]}
+                    className="login-form__field"
                     name="email"
                     icon="icon-envelop"
                     component={TextInput}

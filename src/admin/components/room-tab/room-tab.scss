@@ -4,7 +4,33 @@
     max-width: 500px;
     margin: 5% auto 0 auto;
 
-    font: 100 1em 'Roboto';
+    font: 100 1em "Roboto";
 
     flex-flow: column nowrap;
+
+    &__inner {
+        display: flex;
+
+        margin: 5% 0;
+
+        justify-content: row nowrap;
+        &-button {
+            width: 100%;
+        }
+        &-button:first-child {
+            margin-right: 5%;
+        }
+    }
+    &__switch {
+        display: inline;
+
+        cursor: pointer;
+
+        color: #5e6c6d;
+
+        font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

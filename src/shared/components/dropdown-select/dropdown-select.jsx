@@ -1,16 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './dropdown-select.scss';
 
 class DropDownSelect extends PureComponent {
     state = {
-        isFocused: false
+        isFocused: false,
     };
 
     static defaultProps = {
-        icon: "",
-        className: "",
+        className: '',
     };
 
     static propTypes = {
@@ -19,23 +18,23 @@ class DropDownSelect extends PureComponent {
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
-            value: PropTypes.string
-        }).isRequired
+            value: PropTypes.string,
+        }).isRequired,
     };
 
     handleBlur = () => {
         const {
-            input: {onBlur}
+            input: { onBlur },
         } = this.props;
         onBlur();
-        this.setState({isFocused: false});
+        this.setState({ isFocused: false });
     };
 
     handleFocus = () => {
-        this.setState({isFocused: true});
+        this.setState({ isFocused: true });
     };
 
-    renderSelectOptions = (option) => (
+    renderSelectOptions = option => (
         <option key={option} value={option}>
             {option}
         </option>
@@ -44,14 +43,12 @@ class DropDownSelect extends PureComponent {
     render() {
         const {
             className,
-            placeholder,
-            type,
-            input: {onChange, value}
+            input: { onChange, value },
         } = this.props;
-        const {isFocused} = this.state;
+        const { isFocused } = this.state;
         const textInputClasses = classNames('dropdown-select', {
             'dropdown-select_focused': isFocused,
-            [`${className}`] : className,
+            [`${className}`]: className,
         });
         return (
             <div>
@@ -60,9 +57,8 @@ class DropDownSelect extends PureComponent {
                     onBlur={this.handleBlur}
                     onFocus={this.handleFocus}
                     onChange={onChange}
-                    type={type}
                     value={value}
-                    placeholder={placeholder}>
+                >
                     {this.props.options.map(this.renderSelectOptions)}
                 </select>
             </div>

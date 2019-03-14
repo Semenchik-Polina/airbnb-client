@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
+import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import * as validators from '../../../shared/tools/validators';
 import './service-form.scss';
 
@@ -17,18 +18,19 @@ class ServiceForm extends PureComponent {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
             <form className="service-form" onSubmit={handleSubmit} noValidate>
+                <div className="service-form__header">Facilities and Services</div>
+                <div className="service-form__section">Internet</div>
+
                 <label htmlFor="hotelName">
-                    {'Room type?'}
+                    {'Will your guests have access to the Internet?'}
                     <Field
-                        validate={[validators.isRequired]}
-                        name="hotelName"
-                        icon="icon-envelop"
-                        component={TextInput}
-                        type="text"
-                        essence="Hotel name"
-                        placeholder="Hotel name"
+                        className="hotel-form__field"
+                        name="country"
+                        component={DropDownSelect}
+                        options={['Yes, for free', 'Yes, for money', 'No']}
                     />
                 </label>
+
                 <Button className="hotel-form__submit" disabled={pristine || submitting}>
                     {'Add hotel'}
                 </Button>

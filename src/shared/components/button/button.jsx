@@ -1,13 +1,19 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './button.scss';
 
 const Button = (props) => {
-    const {handleClick, isBehavedAsLink, children, imgSrc, href, className, type} = props;
-
+    const {
+        handleClick, isBehavedAsLink, children, imgSrc, href, className, type,
+    } = props;
+    const buttonClasses = classNames('button', {
+        [`${className}`]: className,
+    });
     if (!isBehavedAsLink) {
         return (
-            <button type={type} className={`button button_${className}`} onClick={handleClick}>
+            <button type={type} className={buttonClasses} onClick={handleClick}>
                 {imgSrc && (
                     <span>
                         <img className="button__icon" src={imgSrc} alt="icon" />
@@ -44,7 +50,7 @@ Button.propTypes = {
     imgSrc: PropTypes.string,
     href: PropTypes.string,
     className: PropTypes.string,
-    type: PropTypes.oneOf(['submit', 'button', 'reset'])
+    type: PropTypes.oneOf(['submit', 'button', 'reset']),
 };
 
 export default Button;

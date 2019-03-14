@@ -1,6 +1,6 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {Field} from 'redux-form';
+import { Field } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
@@ -11,11 +11,11 @@ class HotelForm extends PureComponent {
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
-        submitting: PropTypes.bool.isRequired
+        submitting: PropTypes.bool.isRequired,
     };
 
     render() {
-        const {handleSubmit, pristine, submitting} = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <form className="hotel-form" onSubmit={handleSubmit} noValidate>
                 <label className="hotel-form__label" htmlFor="hotelName">
@@ -51,8 +51,7 @@ class HotelForm extends PureComponent {
                         className="hotel-form__field"
                         name="country"
                         component={DropDownSelect}
-                        options={['Belarus', 'Russia']}
-                        essence="Country"
+                        options={['Belarus', 'Russia']}                     
                     />
                 </label>
                 <label htmlFor="hotelName">

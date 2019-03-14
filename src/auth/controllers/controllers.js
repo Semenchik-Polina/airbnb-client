@@ -6,14 +6,14 @@ const handleError = err => Promise.reject(err.response.data);
 
 function signup(data) {
     return axios
-        .post('/signup', data)
+        .post('/api/signup', data)
         .then(handleResponse)
         .catch(handleError);
 }
 
 function login(data) {
     return axios
-        .post('/login', data)
+        .post('/api/login', data)
         .then(handleResponse)
         .catch(handleError);
 }

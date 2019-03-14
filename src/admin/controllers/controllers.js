@@ -6,7 +6,7 @@ const handleError = err => Promise.reject(err.response.data);
 
 function createHotel(data) {
     return axios
-        .post('/admin/createHotel', data)
+        .post('api/admin/createHotel', data)
         .then(handleResponse)
         .catch(handleError);
 }

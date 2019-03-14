@@ -1,6 +1,6 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {Field} from 'redux-form';
+import { Field } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
@@ -11,34 +11,34 @@ class RoomForm extends PureComponent {
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
-        submitting: PropTypes.bool.isRequired
+        submitting: PropTypes.bool.isRequired,
     };
 
     render() {
-        const {handleSubmit, pristine, submitting} = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <form className="room-form" onSubmit={handleSubmit} noValidate>
-                <label htmlFor="roomType">
+                <label htmlFor="type">
                     {'Choose room type'}
                     <Field
                         className="room-form__field"
-                        name="roomType"
+                        name="type"
                         component={DropDownSelect}
-                        options={['Single', 'Double', 'Twin']}
+                        options={['Single', 'Double', 'Twin', 'Apartment']}
                     />
                 </label>
 
                 <div className="room-form__multiple-field">
-                    <label htmlFor="numberOfType">
+                    <label htmlFor="amount">
                         {'Number of type'}
                         <Field
                             className="room-form__field"
-                            name="numberOfType"
+                            name="amount"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt]}
                             type="text"
                             essence="Number of type"
-                            placeholder=""
+                            placeholder="0"
                         />
                     </label>
                     <label htmlFor="capacity">
@@ -50,7 +50,7 @@ class RoomForm extends PureComponent {
                             validate={[validators.isRequired, validators.isInt]}
                             type="text"
                             essence="Capacity"
-                            placeholder=""
+                            placeholder="0"
                         />
                     </label>
                     <label htmlFor="cost">
@@ -62,7 +62,7 @@ class RoomForm extends PureComponent {
                             validate={[validators.isRequired, validators.isFloat]}
                             type="text"
                             essence="Cost"
-                            placeholder=""
+                            placeholder="0"
                         />
                     </label>
                 </div>

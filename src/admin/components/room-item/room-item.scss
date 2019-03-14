@@ -1,0 +1,31 @@
+.room-item {
+    display: flex;
+
+    padding: 20px;
+
+    border: 1px solid rgb(204, 195, 195);
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px, rgba(100, 100, 100, 0.1) 0 1px 2px;
+
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    &__type {
+        width: 70px;
+
+        font-weight: 600;
+    }
+
+    &__action {
+        display: inline;
+
+        cursor: pointer;
+
+        color: #0838bb;
+
+        font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

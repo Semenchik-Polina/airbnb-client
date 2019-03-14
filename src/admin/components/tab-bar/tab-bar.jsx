@@ -1,5 +1,7 @@
-import React, {Component} from 'React';
-import {withRouter, BrowserRouter, Route, NavLink} from 'react-router-dom';
+import React, { Component } from 'React';
+import {
+    withRouter, BrowserRouter, Route, NavLink,
+} from 'react-router-dom';
 import HotelTab from '../../containers/hotel-tab-container';
 import RoomTab from '../../containers/room-tab-container';
 import ServiceTab from '../../containers/service-tab-container';
@@ -16,7 +18,7 @@ class TabBar extends Component {
                                 {'Main information'}
                             </NavLink>
                         </li>
-                        <li >
+                        <li>
                             <NavLink className="tabBar__tab" to="/admin-home/rooms">
                                 {'Rooms'}
                             </NavLink>

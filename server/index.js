@@ -9,7 +9,7 @@ const colorCode = '\x1b[36m%s\x1b[0m';
 
 app.use(express.static('../dist'));
 app.use(
-    '/',
+    '/api',
     proxy({
         target: 'http://localhost:3000',
     }),
