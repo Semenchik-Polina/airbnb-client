@@ -51,7 +51,7 @@ class HotelForm extends PureComponent {
                         className="hotel-form__field"
                         name="country"
                         component={DropDownSelect}
-                        options={['Belarus', 'Russia']}                     
+                        options={['Belarus', 'Russia']}
                     />
                 </label>
                 <label htmlFor="hotelName">

@@ -14,7 +14,11 @@ class HotelTab extends PureComponent {
     };
 
     render() {
-        return <HotelForm onSubmit={this.handleSubmit} />;
+        return (
+            <div className="hotel-tab">
+                <HotelForm onSubmit={this.handleSubmit} />
+            </div>
+        );
     }
 }
 

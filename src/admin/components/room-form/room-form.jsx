@@ -27,7 +27,6 @@ class RoomForm extends PureComponent {
                         options={['Single', 'Double', 'Twin', 'Apartment']}
                     />
                 </label>
-
                 <div className="room-form__multiple-field">
                     <label htmlFor="amount">
                         {'Number of type'}

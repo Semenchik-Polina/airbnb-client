@@ -14,7 +14,11 @@ class ServiceTab extends PureComponent {
     };
 
     render() {
-        return <ServiceForm onSubmit={this.handleSubmit} />;
+        return (
+            <div className="service-tab">
+                <ServiceForm onSubmit={this.handleSubmit} />
+            </div>
+        );
     }
 }
 

@@ -2,7 +2,6 @@
     display: flex;
 
     max-width: 500px;
-    margin: 5% auto 0 auto;
 
     font: 100 1em "Roboto";
 
@@ -17,4 +16,8 @@
 
         font: 400 1.3em "Roboto";
     }
+    &__submit {
+        margin-top: 10px;
+    }
 }
+

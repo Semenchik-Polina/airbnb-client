@@ -5,9 +5,12 @@ import {
 import HotelTab from '../../containers/hotel-tab-container';
 import RoomTab from '../../containers/room-tab-container';
 import ServiceTab from '../../containers/service-tab-container';
+import PhotoTab from '../photo-tab/photo-tab';
 import './tab-bar.scss';
 
 class TabBar extends Component {
+    method() {}
+
     render() {
         return (
             <BrowserRouter>
@@ -28,11 +31,17 @@ class TabBar extends Component {
                                 {'Services'}
                             </NavLink>
                         </li>
+                        <li className="tabBar__item">
+                            <NavLink className="tabBar__tab" to="/admin-home/photos">
+                                {'Photos'}
+                            </NavLink>
+                        </li>
                     </ul>
 
                     <Route path="/admin-home/main-info" component={HotelTab} />
                     <Route path="/admin-home/rooms" component={RoomTab} />
                     <Route path="/admin-home/services" component={ServiceTab} />
+                    <Route path="/admin-home/photos" component={PhotoTab} />
                 </div>
             </BrowserRouter>
         );
