@@ -1,40 +1,36 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './room-item.scss';
 
-class RoomItem extends PureComponent {
-    static propTypes = {
-        room: PropTypes.shape({
-            type: PropTypes.string.isRequired,
-            amount: PropTypes.number.isRequired,
-            id: PropTypes.number.isRequired,
-        }).isRequired,
-        deleteRoomType: PropTypes.func.isRequired,
-    };
+const RoomItem = (props) => {
+    const {
+        deleteRoomType,
+        room: { type, amount, id },
+    } = props;
 
-    deleteRoomType = () => {
-        const {
-            deleteRoomType,
-            room: { id },
-        } = this.props;
+    const handleClick = () => {
         deleteRoomType(id);
     };
 
-    render() {
-        const {
-            room: { type, amount },
-        } = this.props;
-        return (
-            <div className="room-item">
-                <span className="room-item__type">{type}</span>
-                <span>{`Amount: ${amount}`}</span>
-                <span>Edit</span>
-                <span className="room-item__action" onClick={this.deleteRoomType}>
-                    {'Delete'}
-                </span>
-            </div>
-        );
-    }
-}
+    return (
+        <div className="room-item">
+            <span className="room-item__type">{type}</span>
+            <span>{`Amount: ${amount}`}</span>
+            <span>Edit</span>
+            <span className="room-item__action" onClick={handleClick}>
+                {'Delete'}
+            </span>
+        </div>
+    );
+};
+
+RoomItem.propTypes = {
+    room: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
+        id: PropTypes.number.isRequired,
+    }).isRequired,
+    deleteRoomType: PropTypes.func.isRequired,
+};
 
 export default RoomItem;
