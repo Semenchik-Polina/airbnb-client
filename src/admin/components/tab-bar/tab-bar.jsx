@@ -37,11 +37,10 @@ class TabBar extends Component {
                             </NavLink>
                         </li>
                     </ul>
-
-                    <Route path="/admin-home/main-info" component={HotelTab} />
-                    <Route path="/admin-home/rooms" component={RoomTab} />
-                    <Route path="/admin-home/services" component={ServiceTab} />
-                    <Route path="/admin-home/photos" component={PhotoTab} />
+                    <Route exact path="/admin-home/main-info" component={HotelTab} />
+                    <Route exact path="/admin-home/rooms" component={RoomTab} />
+                    <Route exact path="/admin-home/services" component={ServiceTab} />
+                    <Route exact path="/admin-home/photos" component={PhotoTab} />
                 </div>
             </BrowserRouter>
         );

@@ -18,7 +18,12 @@ class ModalSignup extends PureComponent {
         this.setState({ showForm: true });
     };
 
-    submit = values => this.props.signup(values);
+    // async func
+    submit = (values) => {
+        this.props.signup(values).then(() => {
+            this.props.switchModal();
+        });
+    };
 
     renderForm() {
         const { showForm } = this.state;

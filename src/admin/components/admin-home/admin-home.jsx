@@ -8,10 +8,9 @@ class AdminHome extends Component {
 
     render() {
         return (
-            <div>
-                <div>Admin`s home!</div>
-                <NavLink exact to="/">
-                    {'Go Home'}
+            <div className="admin-home">
+                <NavLink className="admin-home__link" exact to="/">
+                    {'Go Back'}
                 </NavLink>
                 <TabBar />
             </div>

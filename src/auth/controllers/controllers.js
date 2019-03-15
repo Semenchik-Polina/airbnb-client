@@ -18,7 +18,15 @@ function login(data) {
         .catch(handleError);
 }
 
+function logout() {
+    return axios
+        .get('/api/logout')
+        .then(handleResponse)
+        .catch(handleError);
+}
+
 export default {
     signup,
     login,
+    logout,
 };

@@ -10,11 +10,14 @@ class ModalLogin extends PureComponent {
         login: PropTypes.func.isRequired,
     };
 
+    // async func
     submit = (values) => {
         const { login } = this.props;
-        login(values);
-        // if login is successful, <redirect /> or history.push("...")
-        // else -- show error or warning under the form
+        login(values).then(() => {
+            // go home
+            // if login is successful, <redirect /> or history.push("...")
+            // else -- show error or warning under the form
+        });
     };
 
     render() {

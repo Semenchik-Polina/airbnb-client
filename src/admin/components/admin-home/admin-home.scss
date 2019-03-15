@@ -1,0 +1,11 @@
+.admin-home {
+    font: 100 1em "Roboto";
+    &__link {
+        text-align: center;
+        text-decoration: none;
+
+        color: rgb(158, 152, 152);
+
+        font-weight: 400;
+    }
+}

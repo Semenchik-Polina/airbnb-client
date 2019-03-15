@@ -1,0 +1,24 @@
+.photo-tab {
+    display: flex;
+
+    max-width: 500px;
+    margin: 2% auto 0 auto;
+
+    font: 100 1em "Roboto";
+
+    justify-content: center;
+
+    &__uploader {
+        width: 100%;
+        padding: 10%;
+
+        cursor: pointer;
+
+        color: rgb(105, 102, 102);
+        border: 1px dashed gray;
+        border-radius: 5px;
+        &:hover {
+            color: rgb(0, 0, 0);
+        }
+    }
+}

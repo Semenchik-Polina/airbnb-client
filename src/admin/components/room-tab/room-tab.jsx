@@ -12,7 +12,7 @@ class RoomTab extends PureComponent {
     };
 
     static propTypes = {
-        // addRooms: PropTypes.func.isRequired,
+        addRooms: PropTypes.func.isRequired,
         addRoomType: PropTypes.func.isRequired,
         deleteRoomType: PropTypes.func.isRequired,
         destroyRoomForm: PropTypes.func.isRequired,
@@ -38,7 +38,8 @@ class RoomTab extends PureComponent {
 
     handleSubmit = () => {
         // send data to server
-        console.log('submit');
+        console.log(this.props.rooms);
+        this.props.addRooms(this.props.rooms);
     };
 
     showForm = () => {

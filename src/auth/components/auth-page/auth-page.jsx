@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Modal from '../modal/modal';
 import ModalSignup from '../../containers/modal-signup-container';
 import ModalLogin from '../../containers/modal-login-container';
-import Menu from '../../../shared/components/menu/menu';
+import Menu from '../../containers/menu-container';
 import './auth-page.scss';
 
 class AuthPage extends PureComponent {
