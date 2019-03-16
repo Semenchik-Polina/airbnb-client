@@ -1,4 +1,16 @@
 .modal-login {
+    &__button {
+        &_google {
+            color: rgb(72, 72, 72);
+            border: 2px solid rgb(43, 40, 40);
+            background-color: white;
+            &:active {
+                transition: 0.25s;
+    
+                background-color: rgb(221, 219, 219);
+            }
+        }
+    }
     &__separator {
         position: relative;
 

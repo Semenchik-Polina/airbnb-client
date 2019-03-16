@@ -26,6 +26,7 @@ class Menu extends PureComponent {
         const isUserValidated = Boolean(Object.entries(user).length);
 
         const homeUrl = isUserValidated && (user.role === 'Admin' ? '/admin-home' : '/');
+
         return (
             <menu className="menu">
                 <ul className="menu__list">

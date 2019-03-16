@@ -19,7 +19,7 @@ class Modal extends PureComponent {
                 <div className="modal__inner">
                     <Button
                         imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
-                        className="modal__inner-button_close"
+                        className="modal__inner-button modal__inner-button_close"
                         handleClick={onClose}
                     />
                     {children}

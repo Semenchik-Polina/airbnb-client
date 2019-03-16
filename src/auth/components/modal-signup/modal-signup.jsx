@@ -18,11 +18,13 @@ class ModalSignup extends PureComponent {
         this.setState({ showForm: true });
     };
 
-    // async func
-    submit = (values) => {
-        this.props.signup(values).then(() => {
+    submit = async (values) => {
+        try {
+            await this.props.signup(values);
             this.props.switchModal();
-        });
+        } catch (err) {
+            // show error message
+        }
     };
 
     renderForm() {
@@ -44,7 +46,7 @@ class ModalSignup extends PureComponent {
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    className="google"
+                    className="modal-signup__button modal-signup__button_google"
                     isBehavedAsLink
                 >
                     {'Continue with Google'}
@@ -52,9 +54,8 @@ class ModalSignup extends PureComponent {
                 <span className="modal-signup__separator">or</span>
                 <Button
                     imgSrc="https://img.icons8.com/ios/50/000000/new-post/FFFFFF"
-                    className="email"
+                    className="modal-signup__button modal-signup__button_email"
                     handleClick={this.showForm}
-                    isBehavedAsButton
                 >
                     {'Sign up with Email'}
                 </Button>

@@ -37,22 +37,24 @@
         justify-self: center;
     }
 
-    &__inner-button_close {
-        width: 40px;
-        height: 40px;
-        margin-bottom: 10px;
-        padding: 0;
+    &__inner-button {
+        &_close {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+            padding: 0;
 
-        cursor: pointer;
-        transition: 0.25s;
-
-        border-radius: 50%;
-        background-color: white;
-
-        &:active {
+            cursor: pointer;
             transition: 0.25s;
 
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+            border-radius: 50%;
+            background-color: white;
+
+            &:active {
+                transition: 0.25s;
+
+                box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+            }
         }
     }
 }

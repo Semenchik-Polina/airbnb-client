@@ -30,17 +30,11 @@ const rooms = (state = initialState, action) => {
         };
     }
     case adminTypes.EDIT_ROOM_TYPE: {
-        const { roomType } = action;
-        const roomTypes = [...state.roomTypes];
+        // not implemented
         return {
             ...state,
         };
     }
-    // const editedType = roomTypes.indexOf()
-    // console.log(action);
-    // return {
-    //     roomTypes: [...state.roomTypes, roomType],
-    // };
 
     default:
         return state;

@@ -14,7 +14,7 @@ class DropDownSelect extends PureComponent {
 
     static propTypes = {
         className: PropTypes.string,
-        options: PropTypes.array.isRequired,
+        options: PropTypes.arrayOf(PropTypes.string).isRequired,
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,

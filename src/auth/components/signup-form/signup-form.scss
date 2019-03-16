@@ -6,12 +6,29 @@
     flex-flow: column nowrap;
     justify-content: center;
 
-    &__submit {
+    &__button {
         margin-top: 10px;
+
+        &_email {
+            transition: 0.25s;
+
+            color: white;
+            border: 2px solid rgb(255, 90, 95);
+            background-color: rgb(255, 90, 95);
+
+            &:active {
+                transition: 0.25s;
+
+                border: 2px solid rgb(214, 70, 75);
+                background-color: rgb(214, 70, 75);
+            }
+        }
     }
+    
     &__field:first-of-type {
         margin-bottom: 10px;
     }
+
     &__field {
         margin: 10px 0;
     }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RoomForm from '../../containers/room-form-container';
 import Button from '../../../shared/components/button/button';
 import RoomList from '../room-list/room-list';
-
 import './room-tab.scss';
 
 class RoomTab extends PureComponent {
@@ -37,8 +36,6 @@ class RoomTab extends PureComponent {
     };
 
     handleSubmit = () => {
-        // send data to server
-        console.log(this.props.rooms);
         this.props.addRooms(this.props.rooms);
     };
 

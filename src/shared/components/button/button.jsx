@@ -8,27 +8,27 @@ const Button = (props) => {
     const {
         handleClick, isBehavedAsLink, children, imgSrc, href, className, type,
     } = props;
+
     const buttonClasses = classNames('button', {
         [`${className}`]: className,
     });
+
+    const renderButtonIcon = () => imgSrc && (<span><img className="button__icon" src={imgSrc} alt="icon" /></span>);
+
+    const renderButtonChildren = () => children && <span className="button__text">{children}</span>;
+
     if (!isBehavedAsLink) {
         return (
             <button type={type} className={buttonClasses} onClick={handleClick}>
-                {imgSrc && (
-                    <span>
-                        <img className="button__icon" src={imgSrc} alt="icon" />
-                    </span>
-                )}
-                {children && <span className="button__text">{children}</span>}
+                {renderButtonIcon()}
+                {renderButtonChildren()}
             </button>
         );
     }
     return (
-        <a className={`button button_${className}`} href={href} target="_blank" rel="noopener noreferrer">
-            <span>
-                <img className="button__icon" src={imgSrc} alt="icon" />
-            </span>
-            {children && <span className="button__text">{children}</span>}
+        <a className={buttonClasses} href={href} target="_blank" rel="noopener noreferrer">
+            {renderButtonIcon()}
+            {renderButtonChildren()}
         </a>
     );
 };

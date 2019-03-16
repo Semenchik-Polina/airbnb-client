@@ -30,10 +30,7 @@ class TextInput extends PureComponent {
     };
 
     handleBlur = () => {
-        const {
-            input: { onBlur },
-        } = this.props;
-        onBlur();
+        this.props.input.onBlur();
         this.setState({ isFocused: false });
     };
 
@@ -51,12 +48,14 @@ class TextInput extends PureComponent {
             meta: { touched, error, warning },
             input: { onChange, value },
         } = this.props;
+
         const { isFocused } = this.state;
         const textInputClasses = classNames('text-input', {
             'text-input_focused': isFocused,
             'text-input_invalid': error && touched,
             [`${className}`]: className,
         });
+
         return (
             <div>
                 <div className={textInputClasses}>

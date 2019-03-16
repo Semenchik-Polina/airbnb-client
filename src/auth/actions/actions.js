@@ -5,7 +5,6 @@ function signup(data) {
     return async () => {
         try {
             await controllers.signup(data);
-            // if ok -- showModal with signUp
         } catch (err) {
             console.log(err);
         }

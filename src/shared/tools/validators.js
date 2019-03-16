@@ -8,7 +8,7 @@ export const isValidEmail = (email) => {
 export const isInt = (number) => {
     const reg = /^\d+$/;
     return reg.test(number) ? undefined : 'is not an integer';
-}
+};
 
 export const isFloat = (number) => {
     const reg = /^-?\d+\.?\d*$/;

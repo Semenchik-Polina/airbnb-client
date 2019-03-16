@@ -2,10 +2,9 @@ import controllers from '../controllers/controllers';
 import { adminTypes } from './types';
 
 function createHotel(data) {
-    return async (dispatch) => {
+    return async () => {
         try {
             await controllers.createHotel(data);
-            //  dispatch({type: userTypes.CREATE_USER}, newUser);
         } catch (err) {
             console.log(err);
         }
@@ -13,10 +12,9 @@ function createHotel(data) {
 }
 
 function addRooms(data) {
-    return async (dispatch) => {
+    return async () => {
         try {
             await controllers.addRooms(data);
-            //  dispatch({type: userTypes.CREATE_USER}, newUser);
         } catch (err) {
             console.log(err);
         }
@@ -24,10 +22,9 @@ function addRooms(data) {
 }
 
 function addServices(data) {
-    return async (dispatch) => {
+    return async () => {
         try {
             await controllers.addServices(data);
-            //  dispatch({type: userTypes.CREATE_USER}, newUser);
         } catch (err) {
             console.log(err);
         }
@@ -37,7 +34,6 @@ function addServices(data) {
 function addRoomType(roomType) {
     return async (dispatch) => {
         try {
-            // await controllers.createHotel(data);
             const {
                 amount, capacity, cost, ...rest
             } = roomType;
@@ -59,8 +55,6 @@ function addRoomType(roomType) {
 function deleteRoomType(id) {
     return async (dispatch) => {
         try {
-            // await controllers.createHotel(data);
-            console.log('delete');
             dispatch({
                 type: adminTypes.DELETE_ROOM_TYPE,
                 id,
@@ -74,7 +68,6 @@ function deleteRoomType(id) {
 function editRoomType(data) {
     return async (dispatch) => {
         try {
-            // await controllers.createHotel(data);
             dispatch({
                 type: adminTypes.EDIT_ROOM_TYPE,
                 data,

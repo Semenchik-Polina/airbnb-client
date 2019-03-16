@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 
-// I hope the Render Props pattern is not forbidden
-// because of () => {} usage in render :(
 const PrivateRoute = ({
     component: Components, isLoggedIn, role, requiredRoles, ...rest
 }) => {
