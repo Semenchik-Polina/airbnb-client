@@ -1,5 +1,5 @@
 import controllers from '../controllers/controllers';
-import { userTypes, modalTypes } from './types';
+import { userTypes } from './types';
 
 function signup(data) {
     return async () => {
@@ -34,19 +34,8 @@ function logout() {
     };
 }
 
-function switchModal() {
-    return (dispatch) => {
-        dispatch({ type: modalTypes.SWITCH_MODAL });
-    };
-}
-
 export const userActions = {
     signup,
     login,
     logout,
-    switchModal,
-};
-
-export const modalActions = {
-    switchModal,
 };

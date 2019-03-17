@@ -1,7 +1,5 @@
 import React, { Component } from 'React';
-import {
-    withRouter, BrowserRouter, Route, NavLink,
-} from 'react-router-dom';
+import { withRouter, Route, NavLink } from 'react-router-dom';
 import HotelTab from '../../containers/hotel-tab-container';
 import RoomTab from '../../containers/room-tab-container';
 import ServiceTab from '../../containers/service-tab-container';
@@ -13,36 +11,34 @@ class TabBar extends Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <div>
-                    <ul className="tabBar">
-                        <li>
-                            <NavLink className="tabBar__tab" to="/admin-home/main-info">
-                                {'Main information'}
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="tabBar__tab" to="/admin-home/rooms">
-                                {'Rooms'}
-                            </NavLink>
-                        </li>
-                        <li className="tabBar__item">
-                            <NavLink className="tabBar__tab" to="/admin-home/services">
-                                {'Services'}
-                            </NavLink>
-                        </li>
-                        <li className="tabBar__item">
-                            <NavLink className="tabBar__tab" to="/admin-home/photos">
-                                {'Photos'}
-                            </NavLink>
-                        </li>
-                    </ul>
-                    <Route exact path="/admin-home/main-info" component={HotelTab} />
-                    <Route exact path="/admin-home/rooms" component={RoomTab} />
-                    <Route exact path="/admin-home/services" component={ServiceTab} />
-                    <Route exact path="/admin-home/photos" component={PhotoTab} />
-                </div>
-            </BrowserRouter>
+            <div>
+                <ul className="tabBar">
+                    <li>
+                        <NavLink className="tabBar__tab" exact to="/admin-home/create-new-hotel/main-info">
+                            {'Main information'}
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="tabBar__tab" exact to="/admin-home/create-new-hotel/rooms">
+                            {'Rooms'}
+                        </NavLink>
+                    </li>
+                    <li className="tabBar__item">
+                        <NavLink className="tabBar__tab" exact to="/admin-home/create-new-hotel/services">
+                            {'Services'}
+                        </NavLink>
+                    </li>
+                    <li className="tabBar__item">
+                        <NavLink className="tabBar__tab" exact to="/admin-home/create-new-hotel/photos">
+                            {'Photos'}
+                        </NavLink>
+                    </li>
+                </ul>
+                <Route exact path="/admin-home/create-new-hotel/main-info" component={HotelTab} />
+                <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
+                <Route exact path="/admin-home/create-new-hotel/services" component={ServiceTab} />
+                <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
+            </div>
         );
     }
 }
