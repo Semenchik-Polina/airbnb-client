@@ -60,7 +60,7 @@ class RoomTab extends PureComponent {
                                 {'Add room'}
                             </Button>
                             {!rooms.length || (
-                                <Button className="room-tab__inner-button" handleClick={this.handleSubmit}>
+                                <Button className="room-tab__inner-button room-tab__inner-button_submit" handleClick={this.handleSubmit}>
                                     {'Continue'}
                                 </Button>
                             )}

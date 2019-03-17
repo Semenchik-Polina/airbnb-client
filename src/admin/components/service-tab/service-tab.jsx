@@ -9,7 +9,6 @@ class ServiceTab extends PureComponent {
     };
 
     handleSubmit = (values) => {
-        console.log(values);
         this.props.addServices(values);
     };
 

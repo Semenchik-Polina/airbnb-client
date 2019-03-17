@@ -38,6 +38,16 @@ class DropDownSelect extends PureComponent {
             }),
         };
 
+        const customTheme = theme => ({
+            ...theme,
+            borderRadius: 0,
+            colors: {
+                ...theme.colors,
+                primary: 'rgb(1, 122, 133)',
+                primary25: 'rgba(1, 122, 133,0.2)',
+            },
+        });
+
         return (
             <Select
                 styles={customStyles}
@@ -45,6 +55,7 @@ class DropDownSelect extends PureComponent {
                 className={selectClasses}
                 defaultValue={options[0]}
                 isSearchable
+                theme={customTheme}
                 onChange={this.handleOnChange}
             />
         );

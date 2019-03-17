@@ -38,7 +38,7 @@ class RoomForm extends PureComponent {
                     <label htmlFor="amount">
                         {'Number of type'}
                         <Field
-                            className="room-form__field"
+                            className="room-form__field room-form__field_left"
                             name="amount"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt]}
@@ -50,7 +50,7 @@ class RoomForm extends PureComponent {
                     <label htmlFor="capacity">
                         {'Сapacity'}
                         <Field
-                            className="room-form__field"
+                            className="room-form__field room-form__field_center"
                             name="capacity"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt]}
@@ -62,7 +62,7 @@ class RoomForm extends PureComponent {
                     <label htmlFor="cost">
                         {'Basic cost per night'}
                         <Field
-                            className="room-form__field"
+                            className="room-form__field room-form__field_right"
                             name="cost"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isFloat]}
@@ -72,7 +72,7 @@ class RoomForm extends PureComponent {
                         />
                     </label>
                 </div>
-                <Button className="hotel-form__submit" disabled={pristine || submitting}>
+                <Button className="room-form__submit" disabled={pristine || submitting}>
                     {'Continue'}
                 </Button>
             </form>
