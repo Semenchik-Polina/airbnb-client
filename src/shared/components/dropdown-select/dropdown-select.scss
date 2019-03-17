@@ -1,17 +1,3 @@
 .dropdown-select {
-    display: flex;
-    overflow: hidden;
-
-    width: 100%;
-    padding: 15px 2%;
-
-    border: 1px solid rgb(146, 146, 146);
-    border-radius: 4px;
-    outline: none;
-
-    font: 100 1em/0.5em "Roboto";
-
-    &_focused {
-        border-color: rgb(66, 150, 153);
-    }
+    font: 100 1em/0.5em 'Roboto';
 }

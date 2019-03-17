@@ -16,6 +16,11 @@ class HotelForm extends PureComponent {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
+        const options = [
+            { value: 'Belarus', label: 'Belarus' },
+            { value: 'Russia', label: 'Russia' },
+        ];
+
         return (
             <form className="hotel-form" onSubmit={handleSubmit} noValidate>
                 <label className="hotel-form__label" htmlFor="hotelName">
@@ -51,7 +56,7 @@ class HotelForm extends PureComponent {
                         className="hotel-form__field"
                         name="country"
                         component={DropDownSelect}
-                        options={['Belarus', 'Russia']}
+                        options={options}
                     />
                 </label>
                 <label htmlFor="hotelName">

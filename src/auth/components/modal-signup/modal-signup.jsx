@@ -10,7 +10,7 @@ class ModalSignup extends PureComponent {
     };
 
     static propTypes = {
-        switchModal: PropTypes.func.isRequired,
+        switchModalInner: PropTypes.func.isRequired,
         signup: PropTypes.func.isRequired,
     };
 
@@ -21,7 +21,7 @@ class ModalSignup extends PureComponent {
     submit = async (values) => {
         try {
             await this.props.signup(values);
-            this.props.switchModal();
+            this.props.switchModalInner();
         } catch (err) {
             // show error message
         }
@@ -64,14 +64,14 @@ class ModalSignup extends PureComponent {
     }
 
     render() {
-        const { switchModal } = this.props;
+        const { switchModalInner } = this.props;
         return (
             <Fragment>
                 {this.renderForm()}
                 <span className="modal-signup__underliner" />
                 <div className="modal-signup__footer">
                     <span>Already have an Airbnb account? </span>
-                    <span className="modal-signup__switch" onClick={switchModal}>
+                    <span className="modal-signup__switch" onClick={switchModalInner}>
                         {'Log in'}
                     </span>
                 </div>

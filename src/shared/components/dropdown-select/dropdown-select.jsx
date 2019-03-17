@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './dropdown-select.scss';
+import Select from 'react-select';
 
 class DropDownSelect extends PureComponent {
-    state = {
-        isFocused: false,
-    };
-
     static defaultProps = {
         className: '',
     };
@@ -22,46 +18,35 @@ class DropDownSelect extends PureComponent {
         }).isRequired,
     };
 
-    handleBlur = () => {
-        const {
-            input: { onBlur },
-        } = this.props;
-        onBlur();
-        this.setState({ isFocused: false });
-    };
-
-    handleFocus = () => {
-        this.setState({ isFocused: true });
-    };
-
-    renderSelectOptions = option => (
-        <option key={option} value={option}>
-            {option}
-        </option>
-    );
+    handleOnChange = option => this.props.input.onChange(option.value);
 
     render() {
-        const {
-            className,
-            input: { onChange, value },
-        } = this.props;
-        const { isFocused } = this.state;
-        const textInputClasses = classNames('dropdown-select', {
-            'dropdown-select_focused': isFocused,
+        const { options, className } = this.props;
+        const selectClasses = classNames('dropdown-select', {
             [`${className}`]: className,
         });
+
+        const customStyles = {
+            input: provided => ({
+                ...provided,
+                paddingTop: 10,
+                paddingBottom: 10,
+            }),
+            control: provided => ({
+                ...provided,
+                boxShadow: 'none',
+            }),
+        };
+
         return (
-            <div>
-                <select
-                    className={textInputClasses}
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                    onChange={onChange}
-                    value={value}
-                >
-                    {this.props.options.map(this.renderSelectOptions)}
-                </select>
-            </div>
+            <Select
+                styles={customStyles}
+                options={options}
+                className={selectClasses}
+                defaultValue={options[0]}
+                isSearchable
+                onChange={this.handleOnChange}
+            />
         );
     }
 }

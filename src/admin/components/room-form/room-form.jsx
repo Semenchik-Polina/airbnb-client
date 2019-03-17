@@ -16,6 +16,13 @@ class RoomForm extends PureComponent {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
+        const options = [
+            { value: 'Single', label: 'Single' },
+            { value: 'Double', label: 'Double' },
+            { value: 'Twin', label: 'Twin' },
+            { value: 'Apartment', label: 'Apartment' },
+        ];
+
         return (
             <form className="room-form" onSubmit={handleSubmit} noValidate>
                 <label htmlFor="type">
@@ -24,7 +31,7 @@ class RoomForm extends PureComponent {
                         className="room-form__field"
                         name="type"
                         component={DropDownSelect}
-                        options={['Single', 'Double', 'Twin', 'Apartment']}
+                        options={options}
                     />
                 </label>
                 <div className="room-form__multiple-field">

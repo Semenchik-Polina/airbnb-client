@@ -22,6 +22,11 @@ class ServiceForm extends PureComponent {
             { id: 4, name: 'Air conditioning' },
             { id: 5, name: 'Massage' },
         ];
+        const options = [
+            { value: 'Yes, for free', label: 'Yes, for free' },
+            { value: 'Yes, for money', label: 'Yes, for money' },
+            { value: 'No', label: 'No' },
+        ];
 
         return (
             <form className="service-form" onSubmit={handleSubmit} noValidate>
@@ -33,7 +38,7 @@ class ServiceForm extends PureComponent {
                         className="service-form__field"
                         name="internet"
                         component={DropDownSelect}
-                        options={['Yes, for free', 'Yes, for money', 'No']}
+                        options={options}
                     />
                 </label>
                 <div className="service-form__section">Parking</div>
@@ -43,7 +48,7 @@ class ServiceForm extends PureComponent {
                         className="service-form__field"
                         name="parking"
                         component={DropDownSelect}
-                        options={['Yes, for free', 'Yes, for money', 'No']}
+                        options={options}
                     />
                 </label>
                 <div className="service-form__section">Breakfast</div>
@@ -53,7 +58,7 @@ class ServiceForm extends PureComponent {
                         className="service-form__field"
                         name="breakfast"
                         component={DropDownSelect}
-                        options={['Yes', 'No']}
+                        options={options}
                     />
                 </label>
                 <div className="service-form__section">Another popular facilities</div>

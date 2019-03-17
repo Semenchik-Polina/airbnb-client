@@ -19,7 +19,7 @@ class AuthPage extends PureComponent {
         this.setState({ showModal: true, isShowSignUp: false });
     };
 
-    handleSwitchModals = () => {
+    handleSwitchModalInner = () => {
         this.setState(prevState => ({ isShowSignUp: !prevState.isShowSignUp }));
     };
 
@@ -34,8 +34,11 @@ class AuthPage extends PureComponent {
                 <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
                 {showModal && (
                     <Modal onClose={this.handleCloseModal}>
-                        {(isShowSignUp && <ModalSignup switchModal={this.handleSwitchModals} />) || (
-                            <ModalLogin switchModal={this.handleSwitchModals} />
+                        {(isShowSignUp && <ModalSignup switchModalInner={this.handleSwitchModalInner} />) || (
+                            <ModalLogin
+                                switchModalInner={this.handleSwitchModalInner}
+                                onClose={this.handleCloseModal}
+                            />
                         )}
                     </Modal>
                 )}

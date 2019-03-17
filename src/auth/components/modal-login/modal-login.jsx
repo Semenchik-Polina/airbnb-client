@@ -6,22 +6,23 @@ import './modal-login.scss';
 
 class ModalLogin extends PureComponent {
     static propTypes = {
-        switchModal: PropTypes.func.isRequired,
+        switchModalInner: PropTypes.func.isRequired,
         login: PropTypes.func.isRequired,
+        onClose: PropTypes.func.isRequired,
     };
 
-    // async func
-    submit = (values) => {
+    submit = async (values) => {
         const { login } = this.props;
-        login(values).then(() => {
-            // go home
-            // if login is successful, <redirect /> or history.push("...")
-            // else -- show error or warning under the form
-        });
+        try {
+            await login(values);
+            this.props.onClose();
+        } catch (err) {
+            // show error message
+        }
     };
 
     render() {
-        const { switchModal } = this.props;
+        const { switchModalInner } = this.props;
         return (
             <Fragment>
                 <Button
@@ -37,7 +38,7 @@ class ModalLogin extends PureComponent {
                 <span className="modal-login__underliner" />
                 <div className="modal-login__footer">
                     <span>Don`t have an account? </span>
-                    <span className="modal-login__switch" onClick={switchModal}>
+                    <span className="modal-login__switch" onClick={switchModalInner}>
                         {'Sign up'}
                     </span>
                 </div>
