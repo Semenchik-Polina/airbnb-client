@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 .modal {
+    @media only screen and (max-width: 515px) {
+       // position: static;
+        .modal__inner {
+            position: static;
+            min-width: 0;
+            width: 100%;
+        }
+    }
     position: absolute;
     top: 0;
     right: 0;
