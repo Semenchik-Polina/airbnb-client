@@ -4,10 +4,6 @@ import classNames from 'classnames';
 import './text-input.scss';
 
 class TextInput extends PureComponent {
-    state = {
-        isFocused: false,
-    };
-
     static defaultProps = {
         icon: '',
         className: '',
@@ -27,6 +23,10 @@ class TextInput extends PureComponent {
         meta: PropTypes.shape({
             touched: PropTypes.bool.isRequired,
         }).isRequired,
+    };
+
+    state = {
+        isFocused: false,
     };
 
     handleBlur = () => {
@@ -50,10 +50,9 @@ class TextInput extends PureComponent {
         } = this.props;
 
         const { isFocused } = this.state;
-        const textInputClasses = classNames('text-input', {
+        const textInputClasses = classNames('text-input', className, {
             'text-input_focused': isFocused,
             'text-input_invalid': error && touched,
-            [`${className}`]: className,
         });
 
         return (

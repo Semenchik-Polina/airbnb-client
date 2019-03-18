@@ -6,10 +6,6 @@ import RoomList from '../room-list/room-list';
 import './room-tab.scss';
 
 class RoomTab extends PureComponent {
-    state = {
-        hideForm: true,
-    };
-
     static propTypes = {
         addRooms: PropTypes.func.isRequired,
         addRoomType: PropTypes.func.isRequired,
@@ -23,6 +19,10 @@ class RoomTab extends PureComponent {
                 id: PropTypes.number.isRequired,
             }),
         ).isRequired,
+    };
+
+    state = {
+        hideForm: true,
     };
 
     hideForm = () => {
@@ -46,13 +46,13 @@ class RoomTab extends PureComponent {
     render() {
         const { rooms, deleteRoomType } = this.props;
         return (
-            <div className="room-tab">
+            <Fragment>
                 {this.state.hideForm || (
                     <span className="room-tab__switch" onClick={this.showForm}>
                         {'Go back'}
                     </span>
                 )}
-                {(this.state.hideForm && (
+                {this.state.hideForm ? (
                     <Fragment>
                         <RoomList rooms={rooms} deleteRoomType={deleteRoomType} />
                         <div className="room-tab__inner">
@@ -66,8 +66,8 @@ class RoomTab extends PureComponent {
                             )}
                         </div>
                     </Fragment>
-                )) || <RoomForm onSubmit={this.addRoomType} hideForm={this.hideForm} />}
-            </div>
+                ) : <RoomForm onSubmit={this.addRoomType} hideForm={this.hideForm} />}
+            </Fragment>
         );
     }
 }

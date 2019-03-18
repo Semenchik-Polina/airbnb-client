@@ -5,6 +5,7 @@ import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import * as validators from '../../../shared/tools/validators';
+import { COUNTRIES } from '../../constants/index';
 import './hotel-form.scss';
 
 class HotelForm extends PureComponent {
@@ -16,10 +17,6 @@ class HotelForm extends PureComponent {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
-        const options = [
-            { value: 'Belarus', label: 'Belarus' },
-            { value: 'Russia', label: 'Russia' },
-        ];
 
         return (
             <form className="hotel-form" onSubmit={handleSubmit} noValidate>
@@ -52,12 +49,7 @@ class HotelForm extends PureComponent {
                 </label>
                 <label htmlFor="hotelName">
                     {'Country/territory'}
-                    <Field
-                        className="hotel-form__field"
-                        name="country"
-                        component={DropDownSelect}
-                        options={options}
-                    />
+                    <Field className="hotel-form__field" name="country" component={DropDownSelect} options={COUNTRIES} />
                 </label>
                 <label htmlFor="hotelName">
                     {'Sity'}

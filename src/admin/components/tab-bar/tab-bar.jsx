@@ -14,30 +14,32 @@ class TabBar extends PureComponent {
             <div>
                 <ul className="tab-bar">
                     <li>
-                        <NavLink className="tab-bar__tab" exact to="/admin-home/create-new-hotel/main-info">
+                        <NavLink className="tab-bar__link" exact to="/admin-home/create-new-hotel/main-info">
                             {'Main information'}
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="tab-bar__tab" exact to="/admin-home/create-new-hotel/rooms">
+                        <NavLink className="tab-bar__link" exact to="/admin-home/create-new-hotel/rooms">
                             {'Rooms'}
                         </NavLink>
                     </li>
                     <li className="tab-bar__item">
-                        <NavLink className="tab-bar__tab" exact to="/admin-home/create-new-hotel/services">
+                        <NavLink className="tab-bar__link" exact to="/admin-home/create-new-hotel/services">
                             {'Services'}
                         </NavLink>
                     </li>
                     <li className="tab-bar__item">
-                        <NavLink className="tab-bar__tab" exact to="/admin-home/create-new-hotel/photos">
+                        <NavLink className="tab-bar__link" exact to="/admin-home/create-new-hotel/photos">
                             {'Photos'}
                         </NavLink>
                     </li>
                 </ul>
-                <Route exact path="/admin-home/create-new-hotel/main-info" component={HotelTab} />
-                <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
-                <Route exact path="/admin-home/create-new-hotel/services" component={ServiceTab} />
-                <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
+                <div className="tab-bar__tab">
+                    <Route exact path="/admin-home/create-new-hotel/main-info" component={HotelTab} />
+                    <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
+                    <Route exact path="/admin-home/create-new-hotel/services" component={ServiceTab} />
+                    <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
+                </div>
             </div>
         );
     }

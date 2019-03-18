@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import HotelForm from '../../containers/hotel-form-container';
-import './hotel-tab.scss';
 
 class HotelTab extends PureComponent {
     static propTypes = {
@@ -14,11 +13,7 @@ class HotelTab extends PureComponent {
     };
 
     render() {
-        return (
-            <div className="hotel-tab">
-                <HotelForm onSubmit={this.handleSubmit} />
-            </div>
-        );
+        return <HotelForm onSubmit={this.handleSubmit} />;
     }
 }
 

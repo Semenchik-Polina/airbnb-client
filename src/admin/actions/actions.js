@@ -1,12 +1,18 @@
+import { toast } from 'react-toastify';
 import controllers from '../controllers/controllers';
 import { adminTypes } from './types';
+
+const showErrorToast = (err) => {
+    const message = err.response && err.response.data ? err.response.data.error.message : `🦄 ${err}`;
+    toast(message);
+};
 
 function createHotel(data) {
     return async () => {
         try {
             await controllers.createHotel(data);
         } catch (err) {
-            console.log(err);
+            showErrorToast(err);
         }
     };
 }
@@ -16,7 +22,7 @@ function addRooms(data) {
         try {
             await controllers.addRooms(data);
         } catch (err) {
-            console.log(err);
+            showErrorToast(err);
         }
     };
 }
@@ -26,7 +32,7 @@ function addServices(data) {
         try {
             await controllers.addServices(data);
         } catch (err) {
-            console.log(err);
+            showErrorToast(err);
         }
     };
 }

@@ -8,17 +8,10 @@ class ModalLogin extends PureComponent {
     static propTypes = {
         switchModalInner: PropTypes.func.isRequired,
         login: PropTypes.func.isRequired,
-        onClose: PropTypes.func.isRequired,
     };
 
-    submit = async (values) => {
-        const { login } = this.props;
-        try {
-            await login(values);
-            this.props.onClose();
-        } catch (err) {
-            // show error message
-        }
+    submit = (values) => {
+        this.props.login(values);
     };
 
     render() {

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ServiceForm from '../../containers/service-form-container';
-import './service-tab.scss';
 
 class ServiceTab extends PureComponent {
     static propTypes = {
@@ -13,11 +12,7 @@ class ServiceTab extends PureComponent {
     };
 
     render() {
-        return (
-            <div className="service-tab">
-                <ServiceForm onSubmit={this.handleSubmit} />
-            </div>
-        );
+        return <ServiceForm onSubmit={this.handleSubmit} />;
     }
 }
 

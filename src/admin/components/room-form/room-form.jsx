@@ -5,6 +5,7 @@ import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import * as validators from '../../../shared/tools/validators';
+import { ROOM_TYPES } from '../../constants/index';
 import './room-form.scss';
 
 class RoomForm extends PureComponent {
@@ -16,12 +17,6 @@ class RoomForm extends PureComponent {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
-        const options = [
-            { value: 'Single', label: 'Single' },
-            { value: 'Double', label: 'Double' },
-            { value: 'Twin', label: 'Twin' },
-            { value: 'Apartment', label: 'Apartment' },
-        ];
 
         return (
             <form className="room-form" onSubmit={handleSubmit} noValidate>
@@ -31,7 +26,7 @@ class RoomForm extends PureComponent {
                         className="room-form__field"
                         name="type"
                         component={DropDownSelect}
-                        options={options}
+                        options={ROOM_TYPES}
                     />
                 </label>
                 <div className="room-form__multiple-field">

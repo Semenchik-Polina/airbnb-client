@@ -5,26 +5,21 @@ import Button from '../../../shared/components/button/button';
 import './modal-signup.scss';
 
 class ModalSignup extends PureComponent {
-    state = {
-        showForm: false,
-    };
-
     static propTypes = {
         switchModalInner: PropTypes.func.isRequired,
         signup: PropTypes.func.isRequired,
+    };
+
+    state = {
+        showForm: false,
     };
 
     showForm = () => {
         this.setState({ showForm: true });
     };
 
-    submit = async (values) => {
-        try {
-            await this.props.signup(values);
-            this.props.switchModalInner();
-        } catch (err) {
-            // show error message
-        }
+    submit = (values) => {
+        this.props.signup(values);
     };
 
     renderForm() {

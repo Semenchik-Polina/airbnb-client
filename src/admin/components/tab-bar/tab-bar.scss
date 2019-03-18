@@ -11,7 +11,7 @@
     flex-flow: row wrap;
     justify-content: center;
 
-    &__tab {
+    &__link {
         display: block;
 
         height: 30px;
@@ -25,6 +25,16 @@
         border-bottom: 4px solid rgb(2, 167, 182);
 
         font-weight: 400;
+    }
+    &__tab {
+        display: flex;
+
+        max-width: 500px;
+        margin: 2% auto 0 auto;
+
+        font: 100 1em "Roboto";
+
+        flex-flow: column nowrap;
     }
 
     .active {

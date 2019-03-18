@@ -3,11 +3,13 @@ import Dropzone from 'react-dropzone';
 import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {
-    method() {}
+    onDrop = (acceptedFiles) => {
+        console.log(acceptedFiles);
+    }
 
     render() {
         return (
-            <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+            <Dropzone onDrop={this.onDrop}>
                 {({ getRootProps, getInputProps }) => (
                     <section className="photo-tab">
                         <div className="photo-tab__uploader" {...getRootProps()}>

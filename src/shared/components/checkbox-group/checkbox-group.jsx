@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './checkbox-group.scss';
+import '../../../styles/checkbox-materialize-css.scss'; // is it ok?
 
-const CheckboxGroup = (props) => {
-    const { options, input } = props;
+class CheckboxGroup extends PureComponent {
+    static propTypes = {
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string,
+            }),
+        ).isRequired,
+        input: PropTypes.shape({
+            name: PropTypes.string,
+        }).isRequired,
+    };
 
-    const handleChange = option => (event) => {
+    handleChange = (option, input) => (event) => {
         const newValue = [...input.value];
 
         if (event.target.checked) {
@@ -17,36 +26,28 @@ const CheckboxGroup = (props) => {
         return input.onChange(newValue);
     };
 
-    return (
-        <div>
-            {options.map((option, index) => (
-                <div className="checkbox" key={index}>
-                    <label htmlFor={`${input.name}[${index}]`}>
-                        <input
-                            type="checkbox"
-                            name={`${input.name}[${index}]`}
-                            id={`${input.name}[${index}]`}
-                            value={option.name}
-                            checked={input.value.indexOf(option.name) !== -1}
-                            onChange={handleChange(option)}
-                        />
-                        <span>{option.name}</span>
-                    </label>
-                </div>
-            ))}
-        </div>
-    );
-};
-
-CheckboxGroup.propTypes = {
-    options: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string,
-        }),
-    ).isRequired,
-    input: PropTypes.shape({
-        name: PropTypes.string,
-    }).isRequired,
-};
+    render() {
+        const { options, input } = this.props;
+        return (
+            <div>
+                {options.map((option, index) => (
+                    <div className="checkbox" key={index}>
+                        <label htmlFor={`${input.name}[${index}]`}>
+                            <input
+                                type="checkbox"
+                                name={`${input.name}[${index}]`}
+                                id={`${input.name}[${index}]`}
+                                value={option.name}
+                                checked={input.value.indexOf(option.name) !== -1}
+                                onChange={this.handleChange(option, input)}
+                            />
+                            <span>{option.name}</span>
+                        </label>
+                    </div>
+                ))}
+            </div>
+        );
+    }
+}
 
 export default CheckboxGroup;

@@ -1,11 +1,7 @@
 .room-form {
-    display: flex;
-
     width: 100%;
 
     font: 100 1em "Roboto";
-
-    flex-flow: column nowrap;
 
     &__multiple-field {
         display: flex;
@@ -18,14 +14,13 @@
             border-radius: 5px 0 0 5px;
         }
         &_center {
-            border-radius: 0;
-            border-left: 0;
             border-right: 0;
+            border-left: 0;
+            border-radius: 0;
         }
         &_right {
             border-radius: 0 5px 5px 0;
         }
-
     }
     &__submit {
         transition: 0.25s;

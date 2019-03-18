@@ -10,7 +10,10 @@ class DropDownSelect extends PureComponent {
 
     static propTypes = {
         className: PropTypes.string,
-        options: PropTypes.arrayOf(PropTypes.string).isRequired,
+        options: PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+        })).isRequired,
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
@@ -22,9 +25,7 @@ class DropDownSelect extends PureComponent {
 
     render() {
         const { options, className } = this.props;
-        const selectClasses = classNames('dropdown-select', {
-            [`${className}`]: className,
-        });
+        const selectClasses = classNames('dropdown-select', className);
 
         const customStyles = {
             input: provided => ({

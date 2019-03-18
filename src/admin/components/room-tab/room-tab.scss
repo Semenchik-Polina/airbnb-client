@@ -1,13 +1,4 @@
 .room-tab {
-    display: flex;
-
-    max-width: 500px;
-    margin: 2% auto 0 auto;
-
-    font: 100 1em "Roboto";
-
-    flex-flow: column nowrap;
-
     &__inner {
         display: flex;
 

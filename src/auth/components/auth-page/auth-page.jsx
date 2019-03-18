@@ -1,40 +1,50 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { ToastContainer } from 'react-toastify';
 import Modal from '../modal/modal';
 import ModalSignup from '../../containers/modal-signup-container';
 import ModalLogin from '../../containers/modal-login-container';
 import Menu from '../../containers/menu-container';
+import 'react-toastify/dist/ReactToastify.css';
 import './auth-page.scss';
 
 class AuthPage extends PureComponent {
-    state = {
-        showModal: false,
-        isShowSignUp: true,
+    static propTypes = {
+        switchModalInner: PropTypes.func.isRequired,
+        isModalShown: PropTypes.bool.isRequired,
+        showSignupModal: PropTypes.func.isRequired,
+        showLoginModal: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
+        isShowSignUp: PropTypes.bool.isRequired,
     };
 
     handleShowSignupModal = () => {
-        this.setState({ showModal: true, isShowSignUp: true });
+        this.props.showSignupModal();
     };
 
     handleShowLoginModal = () => {
-        this.setState({ showModal: true, isShowSignUp: false });
+        this.props.showLoginModal();
     };
 
     handleSwitchModalInner = () => {
-        this.setState(prevState => ({ isShowSignUp: !prevState.isShowSignUp }));
+        this.props.switchModalInner();
     };
 
     handleCloseModal = () => {
-        this.setState({ showModal: false });
+        this.props.hideModal();
     };
 
     render() {
-        const { showModal, isShowSignUp } = this.state;
+        const { isModalShown, isShowSignUp } = this.props;
         return (
             <header>
+                <ToastContainer autoClose={2000} />
                 <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
-                {showModal && (
+                {isModalShown && (
                     <Modal onClose={this.handleCloseModal}>
-                        {(isShowSignUp && <ModalSignup switchModalInner={this.handleSwitchModalInner} />) || (
+                        {isShowSignUp ? (
+                            <ModalSignup switchModalInner={this.handleSwitchModalInner} />
+                        ) : (
                             <ModalLogin
                                 switchModalInner={this.handleSwitchModalInner}
                                 onClose={this.handleCloseModal}
