@@ -18,9 +18,6 @@ class AdminHome extends PureComponent {
     render() {
         return (
             <div className="admin-home">
-                <NavLink className="admin-home__link" exact to="/">
-                    {'Go Back'}
-                </NavLink>
                 <Route exact path="/admin-home" component={this.renderAdminActivity} />
                 <Route path="/admin-home/create-new-hotel" component={TabBar} />
             </div>

@@ -5,8 +5,14 @@
 
     font: 100 1em "Roboto";
 
+    @media only screen and (max-width: 350px) {
+        font: 100 0.85em "Roboto";
+    }
+
     &__multiple-field {
         display: flex;
+
+        margin-top: 20px;
 
         flex-flow: row nowrap;
     }
@@ -24,7 +30,21 @@
             border-radius: 0 5px 5px 0;
         }
     }
-    &__submit {
-        @include primary-button;
+    &__buttons-container {
+        display: flex;
+
+        justify-content: row wrap;
+    }
+    &__buttons-container-item {
+        margin-right: 5%;
+        &_submit {
+            @include secondary-button;
+        }
+        &_quit {
+            @include primary-button;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }

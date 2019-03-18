@@ -13,21 +13,19 @@ class RoomForm extends PureComponent {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
+        hideForm: PropTypes.func.isRequired,
     };
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const {
+            handleSubmit, pristine, submitting, hideForm,
+        } = this.props;
 
         return (
             <form className="room-form" onSubmit={handleSubmit} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
-                    <Field
-                        className="room-form__field"
-                        name="type"
-                        component={DropDownSelect}
-                        options={ROOM_TYPES}
-                    />
+                    <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
                 </label>
                 <div className="room-form__multiple-field">
                     <label htmlFor="amount">
@@ -36,7 +34,7 @@ class RoomForm extends PureComponent {
                             className="room-form__field room-form__field_left"
                             name="amount"
                             component={TextInput}
-                            validate={[validators.isRequired, validators.isInt]}
+                            validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
                             type="text"
                             essence="Number of type"
                             placeholder="0"
@@ -48,28 +46,40 @@ class RoomForm extends PureComponent {
                             className="room-form__field room-form__field_center"
                             name="capacity"
                             component={TextInput}
-                            validate={[validators.isRequired, validators.isInt]}
+                            validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
                             type="text"
                             essence="Capacity"
                             placeholder="0"
                         />
                     </label>
                     <label htmlFor="cost">
-                        {'Basic cost per night'}
+                        {'Сost per night'}
                         <Field
                             className="room-form__field room-form__field_right"
                             name="cost"
                             component={TextInput}
-                            validate={[validators.isRequired, validators.isFloat]}
+                            validate={[validators.isRequired, validators.isFloat, validators.isAboveZero]}
                             type="text"
                             essence="Cost"
                             placeholder="0"
                         />
                     </label>
                 </div>
-                <Button className="room-form__submit" disabled={pristine || submitting}>
-                    {'Continue'}
-                </Button>
+                <div className="room-form__buttons-container">
+                    <Button
+                        className="room-form__buttons-container-item room-form__buttons-container-item_quit"
+                        type="button"
+                        handleClick={hideForm}
+                    >
+                        {'Bo back'}
+                    </Button>
+                    <Button
+                        className="room-form__buttons-container-item room-form__buttons-container-item_submit"
+                        disabled={pristine || submitting}
+                    >
+                        {'Continue'}
+                    </Button>
+                </div>
             </form>
         );
     }

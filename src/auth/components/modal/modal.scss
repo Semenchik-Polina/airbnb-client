@@ -1,13 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .modal {
-    @media only screen and (max-width: 515px) {
-        .modal__inner {
-            position: static;
-            min-width: 0;
-            width: 100%;
-        }
-    }
     position: absolute;
     top: 0;
     right: 0;
@@ -20,10 +13,18 @@
 
     background-color: rgba(0, 0, 0, 0.3);
 
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     align-items: center;
     justify-content: center;
+    @media only screen and (max-width: 515px) {
+        .modal__inner {
+            position: static;
+
+            width: 100%;
+            min-width: 0;
+        }
+    }
 
     &__inner {
         position: relative;
@@ -63,5 +64,79 @@
                 box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
             }
         }
+    }
+}
+
+@mixin separator {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    color: rgb(128, 128, 128);
+    &::before,
+    &::after {
+        position: absolute;
+        top: 50%;
+
+        width: 45%;
+        height: 5px;
+
+        content: '';
+
+        border-top: 1px solid rgb(216, 216, 216);
+    }
+    &::before {
+        left: 0;
+    }
+    &::after {
+        right: 0;
+    }
+}
+
+@mixin underliner {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    color: rgb(216, 216, 216);
+
+    &::before,
+    &::after {
+        position: absolute;
+        top: 50%;
+
+        width: 50%;
+        height: 5px;
+
+        content: '';
+
+        border-top: 1px solid rgb(180, 180, 180);
+    }
+    &::before {
+        left: 0;
+    }
+    &::after {
+        right: 0;
+    }
+}
+
+@mixin switch {
+    display: inline;
+
+    cursor: pointer;
+
+    color: #008489;
+
+    font-weight: 600;
+    &:hover {
+        text-decoration: underline;
     }
 }

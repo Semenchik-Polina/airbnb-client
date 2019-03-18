@@ -38,49 +38,37 @@ function addServices(data) {
 }
 
 function addRoomType(roomType) {
-    return async (dispatch) => {
-        try {
-            const {
-                amount, capacity, cost, ...rest
-            } = roomType;
-            dispatch({
-                type: adminTypes.ADD_ROOM_TYPE,
-                roomType: {
-                    amount: +amount,
-                    capacity: +capacity,
-                    cost: +cost,
-                    ...rest,
-                },
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    return (dispatch) => {
+        const {
+            amount, capacity, cost, ...rest
+        } = roomType;
+        dispatch({
+            type: adminTypes.ADD_ROOM_TYPE,
+            roomType: {
+                amount: +amount,
+                capacity: +capacity,
+                cost: +cost,
+                ...rest,
+            },
+        });
     };
 }
 
 function deleteRoomType(id) {
-    return async (dispatch) => {
-        try {
-            dispatch({
-                type: adminTypes.DELETE_ROOM_TYPE,
-                id,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.DELETE_ROOM_TYPE,
+            id,
+        });
     };
 }
 
 function editRoomType(data) {
-    return async (dispatch) => {
-        try {
-            dispatch({
-                type: adminTypes.EDIT_ROOM_TYPE,
-                data,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.EDIT_ROOM_TYPE,
+            data,
+        });
     };
 }
 

@@ -45,7 +45,7 @@ class TextInput extends PureComponent {
             icon,
             essence,
             type,
-            meta: { touched, error, warning },
+            meta: { touched, error },
             input: { onChange, value },
         } = this.props;
 
@@ -69,9 +69,7 @@ class TextInput extends PureComponent {
                     />
                     {icon && <span className={`text-input__icon ${icon}`} />}
                 </div>
-                {touched
-                    && ((error && <span className="text-input__error">{`${essence} ${error}`}</span>)
-                        || (warning && <span className="text-input__warning">{`${essence} ${warning}`}</span>))}
+                {(touched && error) && <span className="text-input__error">{`${essence} ${error}`}</span>}
             </div>
         );
     }

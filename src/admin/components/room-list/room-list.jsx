@@ -1,8 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import RoomItem from '../room-item/room-item';
 
 class RoomForm extends PureComponent {
+    static defaultProps = {
+        className: '',
+    };
+
     static propTypes = {
         rooms: PropTypes.arrayOf(
             PropTypes.shape({
@@ -12,15 +17,20 @@ class RoomForm extends PureComponent {
             }),
         ).isRequired,
         deleteRoomType: PropTypes.func.isRequired,
+        className: PropTypes.string,
     };
 
+    renderItem = (room, index) => (
+        <RoomItem key={index} room={room} deleteRoomType={this.props.deleteRoomType} />
+    );
+
     render() {
-        const { rooms, deleteRoomType } = this.props;
+        const { rooms, className } = this.props;
+        const roomListClasses = classNames('room-list', className);
+
         return (
-            <div>
-                {rooms.map((room, index) => (
-                    <RoomItem key={index} room={room} deleteRoomType={deleteRoomType} />
-                ))}
+            <div className={roomListClasses}>
+                {rooms.map(this.renderItem)}
             </div>
         );
     }

@@ -1,33 +1,24 @@
 @import "../admin-home/admin-home.scss";
 
 .room-tab {
-    &__inner {
+    &__buttons-container {
         display: flex;
 
         margin: 5% 0;
 
         justify-content: row nowrap;
     }
-    &__inner-button {
-        @include secondary-button;
 
-        &:first-child {
-            margin-right: 5%;
+    &__buttons-container-item {
+        margin-right: 5%;
+        &_submit {
+            @include secondary-button;
         }
-    }
-    &__inner-button_submit {
-        @include primary-button;
-    }
-    &__switch {
-        display: inline;
-
-        cursor: pointer;
-
-        color: #5e6c6d;
-
-        font-weight: 600;
-        &:hover {
-            text-decoration: underline;
-        }
+        &_add {
+            @include primary-button;
+        }   
+        &:last-child {
+            margin-right: 0;
+        }  
     }
 }
