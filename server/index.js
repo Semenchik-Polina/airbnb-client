@@ -4,7 +4,7 @@ const app = express();
 const proxy = require('http-proxy-middleware');
 const path = require('path');
 
-const PORT = 4000;
+const PORT = 1234;
 const colorCode = '\x1b[36m%s\x1b[0m';
 
 app.use(express.static('../dist'));

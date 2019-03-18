@@ -3,7 +3,7 @@ import controllers from '../controllers/controllers';
 import { userTypes, modalTypes } from './types';
 
 const showErrorToast = (err) => {
-    const message = err.response && err.response.data ? err.response.data.error.message : `🦄 ${err}`;
+    const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
     toast(message);
 };
 

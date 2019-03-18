@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel public/index.html",
+    "dev": "node index",
     "build": "parcel build public/index.html"
   },
   "repository": {
@@ -39,6 +39,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "http-proxy-middleware": "^0.19.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-dropzone": "^10.0.3",
@@ -52,6 +53,5 @@
     "redux-form": "^8.1.0",
     "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }
