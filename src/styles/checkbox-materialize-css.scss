@@ -1,4 +1,4 @@
-.checkbox {
+@mixin checkbox {
     [type="checkbox"] {
         &:not(:checked),
         &:checked {

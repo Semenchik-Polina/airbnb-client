@@ -1,0 +1,5 @@
+@import "../../../styles/checkbox-materialize-css.scss";
+
+.checkbox {
+    @include checkbox;
+}

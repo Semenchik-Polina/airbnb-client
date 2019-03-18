@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import '../../../styles/checkbox-materialize-css.scss'; // is it ok?
+import './checkbox-group.scss';
 
 class CheckboxGroup extends PureComponent {
     static propTypes = {
