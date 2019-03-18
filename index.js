@@ -9,6 +9,14 @@ const colorCode = '\x1b[36m%s\x1b[0m';
 const file = path.join(__dirname, '/public/index.html');
 const bundler = new Bundler(file, {});
 
+bundler.on('buildError', (error) => {
+    console.log(error);
+});
+
+bundler.on('bundled', () => {
+    console.log(colorCode, `Parcel run dev on ${PORT} port`);
+});
+
 app.use(
     '/api',
     proxy({
@@ -18,6 +26,4 @@ app.use(
 
 app.use(bundler.middleware());
 
-app.listen(PORT, () => {
-    console.log(colorCode, ` Parcel run dev on ${PORT} port`);
-});
+app.listen(PORT);
