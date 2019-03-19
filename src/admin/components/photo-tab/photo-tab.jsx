@@ -3,9 +3,7 @@ import Dropzone from 'react-dropzone';
 import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {
-    onDrop = (acceptedFiles) => {
-        console.log(acceptedFiles);
-    }
+    onDrop = () => {}
 
     render() {
         return (

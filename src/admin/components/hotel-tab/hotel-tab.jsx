@@ -8,7 +8,6 @@ class HotelTab extends PureComponent {
     };
 
     handleSubmit = (values) => {
-        console.log(values);
         this.props.createHotel(values);
     };
 
