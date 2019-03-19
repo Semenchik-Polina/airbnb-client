@@ -1,0 +1,7 @@
+@import "../../../styles/checkbox-materialize-css.scss";
+
+.checkbox-group {
+    &__item {
+        @include checkbox;
+    }
+}

@@ -1,0 +1,17 @@
+.hotel-form {
+    display: flex;
+
+    font: 100 1em "Roboto";
+
+    flex-flow: column nowrap;
+
+    &__section {
+        margin: 10px 0;
+
+        font: 400 1.3em "Roboto";
+    }
+    
+    &__field {
+        margin: 10px 0;
+    }
+}

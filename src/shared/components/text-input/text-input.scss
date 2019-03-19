@@ -1,0 +1,50 @@
+.text-input {
+    display: flex;
+
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+
+    flex-flow: row nowrap;
+
+    &_focused {
+        border-color: rgb(66, 150, 153);
+    }
+
+    &_invalid {
+        border-color: rgb(236, 100, 21);
+    }
+
+    &__input {
+        display: flex;
+
+        width: 100%;
+        padding: 15px 10px;
+
+        color: #484848;
+        border: 0;
+        border-radius: 5px;
+        outline: none;
+
+        font: 100 1em/0.5em "Roboto";
+    }
+    
+    &__icon {
+        margin-right: 10px;
+
+        color: rgb(146, 146, 146);
+
+        align-self: center;
+    }
+
+    &__error,
+    &__warning {
+        float: left;
+
+        padding-bottom: 15px;
+
+        color: rgb(236, 100, 21);
+
+        font-size: 0.85em;
+        font-weight: 800;
+    }
+}

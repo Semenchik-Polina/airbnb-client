@@ -1,0 +1,21 @@
+@import "../auth-page/auth-page.scss";
+
+.modal-signup {
+    &__separator {
+        @include separator;
+    }
+
+    &__underliner {
+        @include underliner;
+    }
+
+    &__switch {
+        @include switch;
+    }
+
+    &__footer {
+        margin-top: 30px;
+
+        color: #777777;
+    }
+}

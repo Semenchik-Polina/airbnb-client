@@ -1,0 +1,49 @@
+.room-form {
+    width: 100%;
+
+    font: 100 1em "Roboto";
+
+    @media only screen and (max-width: 350px) {
+        font: 100 0.85em "Roboto";
+    }
+
+    &__multiple-field {
+        display: flex;
+
+        margin-top: 20px;
+
+        flex-flow: row nowrap;
+    }
+
+    &__field {
+        margin: 10px 0;
+
+        &_left {
+            border-radius: 5px 0 0 5px;
+        }
+
+        &_center {
+            border-right: 0;
+            border-left: 0;
+            border-radius: 0;
+        }
+
+        &_right {
+            border-radius: 0 5px 5px 0;
+        }
+    }
+
+    &__buttons-container {
+        display: flex;
+
+        justify-content: row wrap;
+    }
+
+    &__buttons-container-item {
+        margin-right: 5%;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

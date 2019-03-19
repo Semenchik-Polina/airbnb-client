@@ -1,0 +1,17 @@
+.room-tab {
+    &__buttons-container {
+        display: flex;
+
+        margin: 5% 0;
+
+        justify-content: row nowrap;
+    }
+
+    &__buttons-container-item {
+        margin-right: 5%;
+    
+        &:last-child {
+            margin-right: 0;
+        }  
+    }
+}

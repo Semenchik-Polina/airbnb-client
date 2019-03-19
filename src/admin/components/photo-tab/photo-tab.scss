@@ -1,0 +1,17 @@
+.photo-tab {
+    justify-content: center;
+    
+    &__uploader {
+        padding: 10%;
+
+        cursor: pointer;
+
+        color: rgb(105, 102, 102);
+        border: 1px dashed gray;
+        border-radius: 5px;
+
+        &:hover {
+            color: rgb(0, 0, 0);
+        }
+    }
+}

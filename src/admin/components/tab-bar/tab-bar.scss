@@ -1,0 +1,45 @@
+.tab-bar {
+    &__links {
+        display: flex;
+
+        margin: 0 auto;
+        padding: 0;
+
+        border: none;
+
+        font: 100 1em "Roboto";
+
+        flex-flow: row wrap;
+        justify-content: center;    
+    }
+    &__links-item {
+        display: block;
+
+        height: 30px;
+        margin: 0 5px;
+        padding: 10px 30px 0 30px;
+
+        text-align: center;
+        text-decoration: none;
+
+        color: rgb(158, 152, 152);
+        border-bottom: 4px solid rgb(2, 167, 182);
+
+        font-weight: 400;
+    }
+    &__route {
+        display: flex;
+
+        max-width: 500px;
+        margin: 2% auto 0 auto;
+
+        font: 100 1em "Roboto";
+
+        flex-flow: column nowrap;
+    }
+
+    .active {
+        color: black;
+        border-bottom: 4px solid rgb(1, 95, 104);
+    }
+}

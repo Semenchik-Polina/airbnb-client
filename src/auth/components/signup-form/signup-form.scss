@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import '../auth-page/auth-page.scss';
+
+.signup-form {
+    display: flex;
+
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    &__button {
+        margin-top: 10px;
+    }
+    
+    &__field:first-of-type {
+        margin-bottom: 10px;
+    }
+
+    &__field {
+        margin: 10px 0;
+    }
+}
