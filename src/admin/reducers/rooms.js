@@ -1,4 +1,4 @@
-import { adminTypes } from '../actions/types';
+import { adminTypes } from '../constants';
 
 const initialState = {
     roomTypes: [

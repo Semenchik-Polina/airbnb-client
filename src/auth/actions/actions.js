@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import controllers from '../controllers/controllers';
-import { userTypes, modalTypes } from './types';
+import { userTypes, modalTypes } from '../constants';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
@@ -11,7 +11,7 @@ function signup(data) {
     return async (dispatch) => {
         try {
             await controllers.signup(data);
-            dispatch({ type: modalTypes.SWITCH_MODAL_INNER });
+            dispatch({ type: modalTypes.HIDE_MODAL });
         } catch (err) {
             showErrorToast(err);
         }
@@ -43,19 +43,9 @@ function logout() {
     };
 }
 
-function switchModalInner() {
+function showModal() {
     return (dispatch) => {
-        dispatch({ type: modalTypes.SWITCH_MODAL_INNER });
-    };
-}
-function showSignUpModal() {
-    return (dispatch) => {
-        dispatch({ type: modalTypes.SHOW_SIGNUP_MODAL });
-    };
-}
-function showLoginModal() {
-    return (dispatch) => {
-        dispatch({ type: modalTypes.SHOW_LOGIN_MODAL });
+        dispatch({ type: modalTypes.SHOW_MODAL });
     };
 }
 
@@ -72,8 +62,6 @@ export const userActions = {
 };
 
 export const modalActions = {
-    switchModalInner,
-    showLoginModal,
-    showSignUpModal,
+    showModal,
     hideModal,
 };

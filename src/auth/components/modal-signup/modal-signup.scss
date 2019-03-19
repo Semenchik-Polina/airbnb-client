@@ -1,5 +1,4 @@
-@import '../modal/modal.scss';
-@import '../auth-page/auth-page.scss';
+@import "../auth-page/auth-page.scss";
 
 .modal-signup {
     &__button {
@@ -30,6 +29,8 @@
     }
 
     &__footer {
+        margin-top: 30px;
+
         color: #777777;
     }
 }

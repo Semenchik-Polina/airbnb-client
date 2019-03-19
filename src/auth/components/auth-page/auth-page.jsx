@@ -10,24 +10,27 @@ import './auth-page.scss';
 
 class AuthPage extends PureComponent {
     static propTypes = {
-        switchModalInner: PropTypes.func.isRequired,
         isModalShown: PropTypes.bool.isRequired,
-        showSignupModal: PropTypes.func.isRequired,
-        showLoginModal: PropTypes.func.isRequired,
+        showModal: PropTypes.func.isRequired,
         hideModal: PropTypes.func.isRequired,
-        isShowSignUp: PropTypes.bool.isRequired,
+    };
+
+    state = {
+        isShowSignUp: true,
     };
 
     handleShowSignupModal = () => {
-        this.props.showSignupModal();
+        this.setState({ isShowSignUp: true });
+        this.props.showModal();
     };
 
     handleShowLoginModal = () => {
-        this.props.showLoginModal();
+        this.setState({ isShowSignUp: false });
+        this.props.showModal();
     };
 
     handleSwitchModalInner = () => {
-        this.props.switchModalInner();
+        this.setState(prevState => ({ isShowSignUp: !prevState.isShowSignUp }));
     };
 
     handleCloseModal = () => {
@@ -35,7 +38,8 @@ class AuthPage extends PureComponent {
     };
 
     render() {
-        const { isModalShown, isShowSignUp } = this.props;
+        const { isModalShown } = this.props;
+        const { isShowSignUp } = this.state;
         return (
             <header>
                 <ToastContainer autoClose={2000} />

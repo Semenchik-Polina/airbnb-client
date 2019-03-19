@@ -1,4 +1,5 @@
 const express = require('express');
+const Bundler = require('parcel-bundler');
 
 const app = express();
 const proxy = require('http-proxy-middleware');
@@ -7,7 +8,6 @@ const path = require('path');
 const PORT = 1234;
 const colorCode = '\x1b[36m%s\x1b[0m';
 
-app.use(express.static('../dist'));
 app.use(
     '/api',
     proxy({
@@ -15,10 +15,28 @@ app.use(
     }),
 );
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') {
+    const file = path.join(__dirname, '../public/index.html');
+    const bundler = new Bundler(file, {});
 
-app.listen(PORT, () => {
-    console.log(colorCode, `React server is running on ${PORT} port!`);
-});
+    bundler.on('buildError', (error) => {
+        console.log(error);
+    });
+
+    bundler.on('bundled', () => {
+        console.log(colorCode, `Development server is running on ${PORT} port`);
+    });
+
+    app.use(bundler.middleware());
+    app.listen(PORT);
+} else {
+    app.use(express.static('../dist'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+    });
+
+    app.listen(PORT, () => {
+        console.log(colorCode, `Production server is running on ${PORT} port!`);
+    });
+}

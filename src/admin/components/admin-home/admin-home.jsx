@@ -9,7 +9,7 @@ class AdminHome extends PureComponent {
             <div className="admin-home__activity">
                 <div className="admin-home__activity-image" />
                 <NavLink className="admin-home__activity-link" exact to="/admin-home/create-new-hotel">
-                    {'Create an awesome new hotel'}
+                    Create an awesome new hotel
                 </NavLink>
             </div>
         );

@@ -24,19 +24,16 @@ class ModalSignup extends PureComponent {
 
     renderForm() {
         const { showForm } = this.state;
-        if (showForm) {
-            return (
-                <Fragment>
-                    <div>
-                        <span>Sign up with </span>
-                        <a className="modal-signup__switch">Google</a>
-                    </div>
-                    <span className="modal-signup__separator">or</span>
-                    <SignupForm className="modal-signup__form" onSubmit={this.submit} />
-                </Fragment>
-            );
-        }
-        return (
+        return showForm ? (
+            <Fragment>
+                <div>
+                    <span>Sign up with </span>
+                    <a className="modal-signup__switch">Google</a>
+                </div>
+                <span className="modal-signup__separator">or</span>
+                <SignupForm className="modal-signup__form" onSubmit={this.submit} />
+            </Fragment>
+        ) : (
             <Fragment>
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
@@ -44,7 +41,7 @@ class ModalSignup extends PureComponent {
                     className="modal-signup__button modal-signup__button_google"
                     isBehavedAsLink
                 >
-                    {'Continue with Google'}
+                    Continue with Google
                 </Button>
                 <span className="modal-signup__separator">or</span>
                 <Button
@@ -52,7 +49,7 @@ class ModalSignup extends PureComponent {
                     className="modal-signup__button modal-signup__button_email"
                     handleClick={this.showForm}
                 >
-                    {'Sign up with Email'}
+                    Sign up with Email
                 </Button>
             </Fragment>
         );
@@ -61,16 +58,16 @@ class ModalSignup extends PureComponent {
     render() {
         const { switchModalInner } = this.props;
         return (
-            <Fragment>
+            <div className="modal-signup">
                 {this.renderForm()}
                 <span className="modal-signup__underliner" />
                 <div className="modal-signup__footer">
                     <span>Already have an Airbnb account? </span>
                     <span className="modal-signup__switch" onClick={switchModalInner}>
-                        {'Log in'}
+                        Log in
                     </span>
                 </div>
-            </Fragment>
+            </div>
         );
     }
 }

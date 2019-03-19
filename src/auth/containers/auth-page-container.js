@@ -9,8 +9,7 @@ export default connect(
     }),
     dispatch => ({
         switchModalInner: () => dispatch(modalActions.switchModalInner()),
-        showSignupModal: () => dispatch(modalActions.showSignUpModal()),
-        showLoginModal: () => dispatch(modalActions.showLoginModal()),
+        showModal: () => dispatch(modalActions.showModal()),
         hideModal: () => dispatch(modalActions.hideModal()),
     }),
 )(AuthPage);

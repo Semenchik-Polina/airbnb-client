@@ -1,6 +1,7 @@
-@import '../modal/modal.scss';
+@import "../auth-page/auth-page.scss";
 
 .modal-login {
+    display: inline;
     &__button {
         &_google {
             color: rgb(72, 72, 72);
@@ -8,7 +9,7 @@
             background-color: white;
             &:active {
                 transition: 0.25s;
-    
+
                 background-color: rgb(221, 219, 219);
             }
         }
@@ -26,6 +27,8 @@
     }
 
     &__footer {
+        margin-top: 30px;
+
         color: #777777;
     }
 }

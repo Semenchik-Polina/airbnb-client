@@ -1,5 +1,8 @@
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+
 import HotelTab from '../components/hotel-tab/hotel-tab';
+
 import { adminActions } from '../actions/actions';
 
 export default connect(
@@ -7,4 +10,12 @@ export default connect(
     dispatch => ({
         createHotel: data => dispatch(adminActions.createHotel(data)),
     }),
-)(HotelTab);
+)(
+    reduxForm({
+        form: 'hotelForm',
+        initialValues: {
+            country: 'Belarus',
+        },
+        destroyOnUnmount: false,
+    })(HotelTab),
+);

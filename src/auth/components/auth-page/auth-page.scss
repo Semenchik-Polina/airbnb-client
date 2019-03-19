@@ -1,6 +1,6 @@
 @mixin primary-button {
     transition: 0.25s;
-    
+
     color: white;
     border: 2px solid rgb(255, 90, 95);
     background-color: rgb(255, 90, 95);
@@ -10,5 +10,79 @@
 
         border: 2px solid rgb(214, 70, 75);
         background-color: rgb(214, 70, 75);
+    }
+}
+
+@mixin separator {
+    position: relative;
+
+    display: block;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    color: rgb(128, 128, 128);
+    &::before,
+    &::after {
+        position: absolute;
+        top: 50%;
+
+        width: 45%;
+        height: 5px;
+
+        content: "";
+
+        border-top: 1px solid rgb(216, 216, 216);
+    }
+    &::before {
+        left: 0;
+    }
+    &::after {
+        right: 0;
+    }
+}
+
+@mixin underliner {
+    position: relative;
+
+    display: block;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    color: rgb(216, 216, 216);
+
+    &::before,
+    &::after {
+        position: absolute;
+        top: 50%;
+
+        width: 50%;
+        height: 5px;
+
+        content: "";
+
+        border-top: 1px solid rgb(180, 180, 180);
+    }
+    &::before {
+        left: 0;
+    }
+    &::after {
+        right: 0;
+    }
+}
+
+@mixin switch {
+    display: inline;
+
+    cursor: pointer;
+
+    color: #008489;
+
+    font-weight: 600;
+    &:hover {
+        text-decoration: underline;
     }
 }

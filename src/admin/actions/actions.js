@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import controllers from '../controllers/controllers';
-import { adminTypes } from './types';
+import { adminTypes } from '../constants';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data ? err.response.data.error.message : `🦄 ${err}`;

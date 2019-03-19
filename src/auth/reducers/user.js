@@ -1,4 +1,4 @@
-import { userTypes } from '../actions/types';
+import { userTypes } from '../constants';
 
 const initialState = JSON.parse(localStorage.getItem('user')) || {};
 
