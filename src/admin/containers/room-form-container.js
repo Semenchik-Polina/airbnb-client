@@ -1,10 +1,21 @@
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+
 import RoomForm from '../components/room-form/room-form';
 
-export default reduxForm({
-    form: 'roomForm',
-    initialValues: {
-        type: 'Single',
-    },
-    destroyOnUnmount: false,
-})(RoomForm);
+import { adminActions } from '../actions/actions';
+
+export default connect(
+    null,
+    dispatch => ({
+        addRoomType: data => dispatch(adminActions.addRoomType(data)),
+    }),
+)(
+    reduxForm({
+        form: 'roomForm',
+        initialValues: {
+            type: 'Single',
+        },
+        destroyOnUnmount: false,
+    })(RoomForm),
+);

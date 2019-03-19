@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
 import Button from '../../../shared/components/button/button';
+
 import './modal.scss';
 
 const modalRoot = document.getElementById('modal-root');
@@ -14,6 +16,7 @@ class Modal extends PureComponent {
 
     render() {
         const { children, onClose } = this.props;
+
         return ReactDOM.createPortal(
             <div className="modal">
                 <div className="modal__inner">

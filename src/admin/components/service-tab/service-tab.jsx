@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field, Form } from 'redux-form';
+
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import CheckboxGroup from '../../../shared/components/checkbox-group/checkbox-group';
+
 import { POPULAR_FACILITIES, SERVICE_ANSWERS } from '../../constants/index';
 
 import './service-tab.scss';
@@ -58,7 +60,7 @@ class ServiceTab extends PureComponent {
                 </label>
                 <div className="service-form__section">Another popular facilities</div>
                 <Field name="facilities" component={CheckboxGroup} options={POPULAR_FACILITIES} />
-                <Button className="service-form__submit" disabled={pristine || submitting}>
+                <Button className="service-form__submit" color="primary" disabled={pristine || submitting}>
                     {'Continue'}
                 </Button>
             </Form>

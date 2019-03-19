@@ -15,7 +15,7 @@ app.use(
     }),
 );
 
-if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') {
+if (process.env.NODE_ENV === 'dev') {
     const file = path.join(__dirname, '../public/index.html');
     const bundler = new Bundler(file, {});
 
@@ -30,10 +30,12 @@ if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'dev') {
     app.use(bundler.middleware());
     app.listen(PORT);
 } else {
-    app.use(express.static('../dist'));
+    app.use(express.static('./dist'));
+
+    const file = path.join(__dirname, '../dist/index.html');
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../dist/index.html'));
+        res.sendFile(file);
     });
 
     app.listen(PORT, () => {

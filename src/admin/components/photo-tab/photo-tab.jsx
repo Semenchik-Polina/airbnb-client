@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dropzone from 'react-dropzone';
+
 import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {

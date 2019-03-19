@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { Field, Form } from 'redux-form';
+
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
+
 import * as validators from '../../../shared/tools/validators';
 import { ROOM_TYPES } from '../../constants/index';
+
 import './room-form.scss';
 
 class RoomForm extends PureComponent {
@@ -14,6 +17,12 @@ class RoomForm extends PureComponent {
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         hideForm: PropTypes.func.isRequired,
+        addRoomType: PropTypes.func.isRequired,
+    };
+
+    handleSubmit = (values) => {
+        this.props.addRoomType(values);
+        this.props.hideForm();
     };
 
     render() {
@@ -22,7 +31,7 @@ class RoomForm extends PureComponent {
         } = this.props;
 
         return (
-            <form className="room-form" onSubmit={handleSubmit} noValidate>
+            <Form className="room-form" onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
                     <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
@@ -67,20 +76,22 @@ class RoomForm extends PureComponent {
                 </div>
                 <div className="room-form__buttons-container">
                     <Button
-                        className="room-form__buttons-container-item room-form__buttons-container-item_quit"
+                        className="room-form__buttons-container-item"
                         type="button"
+                        color="secondary"
                         handleClick={hideForm}
                     >
-                        {'Bo back'}
+                        Bo back
                     </Button>
                     <Button
-                        className="room-form__buttons-container-item room-form__buttons-container-item_submit"
+                        className="room-form__buttons-container-item"
+                        color="primary"
                         disabled={pristine || submitting}
                     >
-                        {'Continue'}
+                        Continue
                     </Button>
                 </div>
-            </form>
+            </Form>
         );
     }
 }

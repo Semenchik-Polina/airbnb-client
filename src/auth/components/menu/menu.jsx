@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import { NavLink, withRouter } from 'react-router-dom';
+
 import './menu.scss';
 
 class Menu extends PureComponent {

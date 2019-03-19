@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import './room-item.scss';
 
 class RoomItem extends PureComponent {
@@ -18,6 +19,7 @@ class RoomItem extends PureComponent {
 
     render() {
         const { room } = this.props;
+
         return (
             <div className="room-item">
                 <span className="room-item__type">{room.type}</span>

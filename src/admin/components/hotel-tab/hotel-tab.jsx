@@ -78,7 +78,7 @@ class HotelTab extends PureComponent {
                         placeholder="Sity"
                     />
                 </label>
-                <Button className="hotel-form__submit" disabled={pristine || submitting}>
+                <Button className="hotel-form__submit" color="primary" disabled={pristine || submitting}>
                     {'Add hotel'}
                 </Button>
             </Form>

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import RoomItem from '../room-item/room-item';
 
 class RoomForm extends PureComponent {

@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+
+import { Field, Form } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
+
 import * as validators from '../../../shared/tools/validators';
+
 import './signup-form.scss';
 
 class SignupForm extends PureComponent {
@@ -11,12 +14,16 @@ class SignupForm extends PureComponent {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
+        signup: PropTypes.func.isRequired,
     };
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const {
+            handleSubmit, pristine, submitting, signup,
+        } = this.props;
+
         return (
-            <form className="signup-form" onSubmit={handleSubmit} noValidate>
+            <Form className="signup-form" onSubmit={handleSubmit(signup)} noValidate>
                 <Field
                     validate={[validators.isRequired, validators.isValidEmail]}
                     className="signup-form__field"
@@ -57,10 +64,10 @@ class SignupForm extends PureComponent {
                     essence="Password"
                     placeholder="Create a Password"
                 />
-                <Button className="signup-form__button signup-form__button_email" disabled={pristine || submitting}>
-                    {'Sign up'}
+                <Button className="signup-form__button" color="primary" disabled={pristine || submitting}>
+                    Sign up
                 </Button>
-            </form>
+            </Form>
         );
     }
 }

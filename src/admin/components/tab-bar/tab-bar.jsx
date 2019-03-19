@@ -1,9 +1,11 @@
 import React from 'React';
 import { withRouter, Route, NavLink } from 'react-router-dom';
+
 import HotelTab from '../../containers/hotel-tab-container';
 import RoomTab from '../../containers/room-tab-container';
 import ServiceTab from '../../containers/service-tab-container';
 import PhotoTab from '../photo-tab/photo-tab';
+
 import './tab-bar.scss';
 
 const TabBar = () => (

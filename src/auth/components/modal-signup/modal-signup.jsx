@@ -1,13 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
 import SignupForm from '../../containers/signup-form-container';
 import Button from '../../../shared/components/button/button';
+
 import './modal-signup.scss';
 
 class ModalSignup extends PureComponent {
     static propTypes = {
         switchModalInner: PropTypes.func.isRequired,
-        signup: PropTypes.func.isRequired,
     };
 
     state = {
@@ -18,12 +19,9 @@ class ModalSignup extends PureComponent {
         this.setState({ showForm: true });
     };
 
-    submit = (values) => {
-        this.props.signup(values);
-    };
-
     renderForm() {
         const { showForm } = this.state;
+
         return showForm ? (
             <Fragment>
                 <div>
@@ -31,14 +29,14 @@ class ModalSignup extends PureComponent {
                     <a className="modal-signup__switch">Google</a>
                 </div>
                 <span className="modal-signup__separator">or</span>
-                <SignupForm className="modal-signup__form" onSubmit={this.submit} />
+                <SignupForm />
             </Fragment>
         ) : (
             <Fragment>
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    className="modal-signup__button modal-signup__button_google"
+                    color="google"
                     isBehavedAsLink
                 >
                     Continue with Google
@@ -46,7 +44,7 @@ class ModalSignup extends PureComponent {
                 <span className="modal-signup__separator">or</span>
                 <Button
                     imgSrc="https://img.icons8.com/ios/50/000000/new-post/FFFFFF"
-                    className="modal-signup__button modal-signup__button_email"
+                    color="primary"
                     handleClick={this.showForm}
                 >
                     Sign up with Email
@@ -57,6 +55,7 @@ class ModalSignup extends PureComponent {
 
     render() {
         const { switchModalInner } = this.props;
+
         return (
             <div className="modal-signup">
                 {this.renderForm()}

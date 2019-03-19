@@ -9,10 +9,6 @@
 
     &__button {
         margin-top: 10px;
-
-        &_email {
-            @include primary-button;
-        }
     }
     
     &__field:first-of-type {

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 import PrivateRoute from '../components/private-route/private-route';
 
 const mapStateToProps = state => ({

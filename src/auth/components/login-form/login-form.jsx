@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+
+import { Field, Form } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
+
 import * as validators from '../../../shared/tools/validators';
+
 import './login-form.scss';
 
 class LoginForm extends PureComponent {
@@ -11,12 +14,16 @@ class LoginForm extends PureComponent {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
+        login: PropTypes.func.isRequired,
     };
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const {
+            handleSubmit, pristine, submitting, login,
+        } = this.props;
+
         return (
-            <form className="login-form" onSubmit={handleSubmit} noValidate>
+            <Form className="login-form" onSubmit={handleSubmit(login)} noValidate>
                 <Field
                     validate={[validators.isRequired, validators.isValidEmail]}
                     className="login-form__field"
@@ -40,7 +47,7 @@ class LoginForm extends PureComponent {
                 <Button className="login-form__button login-form__button_email" disabled={pristine || submitting}>
                     {'Log in'}
                 </Button>
-            </form>
+            </Form>
         );
     }
 }

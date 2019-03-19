@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { NavLink, withRouter, Route } from 'react-router-dom';
+
 import TabBar from '../tab-bar/tab-bar';
+
 import './admin-home.scss';
 
 class AdminHome extends PureComponent {

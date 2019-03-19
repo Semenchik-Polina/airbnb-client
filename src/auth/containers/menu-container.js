@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import Menu from '../components/menu/menu';
+
 import { userActions } from '../actions/actions';
 
 export default connect(

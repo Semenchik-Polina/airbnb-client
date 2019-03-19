@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import './text-input.scss';
 
 class TextInput extends PureComponent {
@@ -49,9 +50,8 @@ class TextInput extends PureComponent {
             input: { onChange, value },
         } = this.props;
 
-        const { isFocused } = this.state;
         const textInputClasses = classNames('text-input', className, {
-            'text-input_focused': isFocused,
+            'text-input_focused': this.state.isFocused,
             'text-input_invalid': error && touched,
         });
 

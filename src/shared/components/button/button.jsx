@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import './button.scss';
 
 class Button extends PureComponent {
@@ -13,12 +14,14 @@ class Button extends PureComponent {
         href: '',
         type: 'submit',
         className: '',
+        color: '',
     };
 
     static propTypes = {
         handleClick: PropTypes.func,
         isBehavedAsLink: PropTypes.bool,
         children: PropTypes.string,
+        color: PropTypes.string,
         imgSrc: PropTypes.string,
         href: PropTypes.string,
         className: PropTypes.string,
@@ -35,24 +38,21 @@ class Button extends PureComponent {
 
     render() {
         const {
-            handleClick, isBehavedAsLink, children, imgSrc, href, className, type,
+            handleClick, isBehavedAsLink, children, imgSrc, href, className, type, color,
         } = this.props;
 
-        const buttonClasses = classNames('button', className);
+        const buttonClasses = classNames('button', { [`button_${color}`]: color }, className);
 
-        if (!isBehavedAsLink) {
-            return (
-                <button type={type} className={buttonClasses} onClick={handleClick}>
-                    {this.renderButtonIcon(imgSrc)}
-                    {this.renderButtonChildren(children)}
-                </button>
-            );
-        }
-        return (
+        return isBehavedAsLink ? (
             <a className={buttonClasses} href={href} target="_blank" rel="noopener noreferrer">
                 {this.renderButtonIcon(imgSrc)}
                 {this.renderButtonChildren(children)}
             </a>
+        ) : (
+            <button type={type} className={buttonClasses} onClick={handleClick}>
+                {this.renderButtonIcon(imgSrc)}
+                {this.renderButtonChildren(children)}
+            </button>
         );
     }
 }

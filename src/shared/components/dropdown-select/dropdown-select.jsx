@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import Select from 'react-select';
+
+import './dropdown-select.scss';
 
 class DropDownSelect extends PureComponent {
     static defaultProps = {
@@ -25,6 +28,7 @@ class DropDownSelect extends PureComponent {
 
     render() {
         const { options, className } = this.props;
+
         const selectClasses = classNames('dropdown-select', className);
 
         const customStyles = {

@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import { ToastContainer } from 'react-toastify';
 import Modal from '../modal/modal';
-import ModalSignup from '../../containers/modal-signup-container';
-import ModalLogin from '../../containers/modal-login-container';
+import ModalSignup from '../modal-signup/modal-signup';
+import ModalLogin from '../modal-login/modal-login';
 import Menu from '../../containers/menu-container';
+
 import 'react-toastify/dist/ReactToastify.css';
 import './auth-page.scss';
 
@@ -40,6 +42,7 @@ class AuthPage extends PureComponent {
     render() {
         const { isModalShown } = this.props;
         const { isShowSignUp } = this.state;
+
         return (
             <header>
                 <ToastContainer autoClose={2000} />
