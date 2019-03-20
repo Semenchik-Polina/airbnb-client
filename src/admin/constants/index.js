@@ -5,6 +5,15 @@ export const ROOM_TYPES = [
     { value: 'Apartment', label: 'Apartment' },
 ];
 
+export const HOTEL_ZONES = [
+    { value: 'Hotel', label: 'Hotel' },
+    { value: 'Outdoor space', label: 'Outdoor space' },
+    { value: 'Bar', label: 'Bar' },
+    { value: 'Restaurant', label: 'Restaurant' },
+    { value: 'Room', label: 'Room' },
+    { value: 'Bathroom', label: 'Bathroom' },
+];
+
 export const COUNTRIES = [
     { value: 'Belarus', label: 'Belarus' },
     { value: 'Russia', label: 'Russia' },
@@ -25,7 +34,9 @@ export const SERVICE_ANSWERS = [
 ];
 
 export const adminTypes = {
-    CREATE_HOTEL: 'CREATE_HOTEL',
+    ADD_HOTEL_MAIN_INFO: 'ADD_HOTEL_MAIN_INFO',
+    ADD_SERVICE_INFO: 'ADD_SERVICE_INFO',
+    ADD_PHOTOS: 'ADD_PHOTOS',
     ADD_ROOM_TYPE: 'ADD_ROOM_TYPE',
     DELETE_ROOM_TYPE: 'DELETE_ROOM_TYPE',
     EDIT_ROOM_TYPE: 'EDIT_ROOM_TYPE',

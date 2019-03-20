@@ -1,6 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import history from '../../../shared/tools/history';
+
 import RoomForm from '../../containers/room-form-container';
 import Button from '../../../shared/components/button/button';
 import RoomList from '../room-list/room-list';
@@ -9,7 +11,6 @@ import './room-tab.scss';
 
 class RoomTab extends PureComponent {
     static propTypes = {
-        addRooms: PropTypes.func.isRequired,
         deleteRoomType: PropTypes.func.isRequired,
         destroyRoomForm: PropTypes.func.isRequired,
         rooms: PropTypes.arrayOf(
@@ -36,7 +37,7 @@ class RoomTab extends PureComponent {
     };
 
     handleSubmit = () => {
-        this.props.addRooms(this.props.rooms);
+        history.push('/admin-home/create-new-hotel/services');
     };
 
     render() {

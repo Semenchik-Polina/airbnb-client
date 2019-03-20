@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field, Form } from 'redux-form';
 
+import history from '../../../shared/tools/history';
+
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
@@ -16,12 +18,12 @@ class HotelTab extends PureComponent {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
-        createHotel: PropTypes.func.isRequired,
+        addHotelInfo: PropTypes.func.isRequired,
     };
 
-
     onSubmit = (values) => {
-        this.props.createHotel(values);
+        this.props.addHotelInfo(values);
+        history.push('/admin-home/create-new-hotel/rooms');
     };
 
     render() {
@@ -79,7 +81,7 @@ class HotelTab extends PureComponent {
                     />
                 </label>
                 <Button className="hotel-form__submit" color="primary" disabled={pristine || submitting}>
-                    {'Add hotel'}
+                    Continue
                 </Button>
             </Form>
         );

@@ -1,6 +1,6 @@
 .photo-tab {
     justify-content: center;
-    
+
     &__uploader {
         padding: 10%;
 
@@ -13,5 +13,9 @@
         &:hover {
             color: rgb(0, 0, 0);
         }
+    }
+
+    &__image {
+        width: 100px;
     }
 }

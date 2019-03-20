@@ -7,33 +7,30 @@ const showErrorToast = (err) => {
     toast(message);
 };
 
-function createHotel(data) {
-    return async () => {
-        try {
-            await controllers.createHotel(data);
-        } catch (err) {
-            showErrorToast(err);
-        }
+function addHotelInfo(hotel) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.ADD_HOTEL_MAIN_INFO,
+            hotel,
+        });
     };
 }
 
-function addRooms(data) {
-    return async () => {
-        try {
-            await controllers.addRooms(data);
-        } catch (err) {
-            showErrorToast(err);
-        }
+function addServices(services) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.ADD_SERVICE_INFO,
+            services,
+        });
     };
 }
 
-function addServices(data) {
-    return async () => {
-        try {
-            await controllers.addServices(data);
-        } catch (err) {
-            showErrorToast(err);
-        }
+function addPhotos(photos) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.ADD_PHOTOS,
+            photos,
+        });
     };
 }
 
@@ -72,11 +69,22 @@ function editRoomType(data) {
     };
 }
 
+function createHotel(data) {
+    return async () => {
+        try {
+            await controllers.createHotel(data);
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
 export const adminActions = {
-    createHotel,
-    addRooms,
+    addHotelInfo,
     addRoomType,
     addServices,
+    addPhotos,
     deleteRoomType,
     editRoomType,
+    createHotel,
 };

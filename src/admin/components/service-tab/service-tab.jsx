@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Field, Form } from 'redux-form';
 
+import history from '../../../shared/tools/history';
+
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import CheckboxGroup from '../../../shared/components/checkbox-group/checkbox-group';
@@ -12,14 +14,15 @@ import './service-tab.scss';
 
 class ServiceTab extends PureComponent {
     static propTypes = {
-        addServices: PropTypes.func.isRequired,
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
+        addServices: PropTypes.func.isRequired,
     };
 
     onSubmit = (values) => {
         this.props.addServices(values);
+        history.push('/admin-home/create-new-hotel/photos');
     };
 
     render() {

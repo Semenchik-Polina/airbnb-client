@@ -8,7 +8,7 @@ import { adminActions } from '../actions/actions';
 export default connect(
     null,
     dispatch => ({
-        createHotel: data => dispatch(adminActions.createHotel(data)),
+        addHotelInfo: data => dispatch(adminActions.addHotelInfo(data)),
     }),
 )(
     reduxForm({

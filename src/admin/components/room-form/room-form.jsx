@@ -34,7 +34,7 @@ class RoomForm extends PureComponent {
             <Form className="room-form" onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
-                    <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
+                    <Field className="room-form__field" name="zone" component={DropDownSelect} options={ROOM_TYPES} />
                 </label>
                 <div className="room-form__multiple-field">
                     <label htmlFor="amount">

@@ -7,7 +7,7 @@ import { adminActions } from '../actions/actions';
 
 export default connect(
     state => ({
-        rooms: state.adminReducer.rooms.roomTypes,
+        rooms: state.adminReducer.hotelInfo.roomTypes,
     }),
     dispatch => ({
         addRooms: data => dispatch(adminActions.addRooms(data)),

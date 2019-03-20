@@ -43,6 +43,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
+    "history": "^4.9.0",
     "http-proxy-middleware": "^0.19.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -55,7 +56,6 @@
     "react-toastify": "^4.5.2",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
-    "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0"
   }
 }
