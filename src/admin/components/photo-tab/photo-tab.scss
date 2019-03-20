@@ -1,6 +1,22 @@
 .photo-tab {
     justify-content: center;
 
+    &__buttons-container {
+        display: flex;
+
+        margin-bottom: 10px;
+
+        justify-content: row wrap;
+    }
+
+    &__buttons-container-item {
+        margin-right: 5%;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
     &__uploader {
         padding: 10%;
 

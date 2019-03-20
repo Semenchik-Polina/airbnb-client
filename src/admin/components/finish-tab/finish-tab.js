@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import history from '../../../shared/tools/history';
-
 import Button from '../../../shared/components/button/button';
+import PhotoItem from '../photo-item/photo-item';
 
 import './finish-tab.scss';
 
@@ -13,18 +12,23 @@ class FinishTab extends PureComponent {
         hotelInfo: PropTypes.shape().isRequired,
     };
 
-    onSubmit = () => {
-        this.props.createHotel();
-        history.push('/admin-home/create-new-hotel/rooms');
+    handleClick = () => {
+        this.props.createHotel(this.props.hotelInfo);
     };
 
+    renderPhotoItems = (item, index) => <PhotoItem photoItem={item} key={index} />;
+
     render() {
-        console.log(this.props.hotelInfo);
+        const { hotelMainInfo, photos } = this.props.hotelInfo;
 
         return (
-            <Button className="finish-form__submit" color="primary">
-                Continue
-            </Button>
+            <div className="finish-tab">
+                <span className="finish-tab__header">{hotelMainInfo.hotelName}</span>
+                {photos.map(this.renderPhotoItems)}
+                <Button className="finish-tab__submit" handleClick={this.handleClick} color="primary">
+                    Continue
+                </Button>
+            </div>
         );
     }
 }

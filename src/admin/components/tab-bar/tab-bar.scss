@@ -6,6 +6,7 @@
         padding: 0;
 
         border: none;
+        background-color: gainsboro;
 
         font: 100 1em "Roboto";
 
@@ -44,6 +45,9 @@
         font: 100 1em "Roboto";
 
         flex-flow: column nowrap;
+        @media only screen and (max-width: 515px) {
+            margin: 10px;
+        }
     }
 
     .active {

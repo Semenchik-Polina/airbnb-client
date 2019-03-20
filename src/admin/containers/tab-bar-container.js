@@ -8,5 +8,6 @@ export default connect(
         hotelFormSubmitSucceeded: hasSubmitSucceeded('hotelForm')(state),
         serviceFormSubmitSucceeded: hasSubmitSucceeded('serviceForm')(state),
         roomFormSubmitSucceeded: Boolean(state.adminReducer.hotelInfo.roomTypes.length),
+        photoFormSubmitSucceeded: Boolean(state.adminReducer.hotelInfo.photos.length),
     }),
 )(TabBar);

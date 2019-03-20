@@ -24,7 +24,7 @@ class RoomTab extends PureComponent {
     };
 
     state = {
-        isFormHidden: true,
+        isFormHidden: (this.props.rooms.length > 0),
     };
 
     hideForm = () => {

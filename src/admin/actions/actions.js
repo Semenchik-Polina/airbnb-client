@@ -3,7 +3,7 @@ import controllers from '../controllers/controllers';
 import { adminTypes } from '../constants';
 
 const showErrorToast = (err) => {
-    const message = err.response && err.response.data ? err.response.data.error.message : `🦄 ${err}`;
+    const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
     toast(message);
 };
 
@@ -36,9 +36,7 @@ function addPhotos(photos) {
 
 function addRoomType(roomType) {
     return (dispatch) => {
-        const {
-            amount, capacity, cost, ...rest
-        } = roomType;
+        const { amount, capacity, cost, ...rest } = roomType;
         dispatch({
             type: adminTypes.ADD_ROOM_TYPE,
             roomType: {

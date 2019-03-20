@@ -16,10 +16,16 @@ class TabBar extends PureComponent {
         hotelFormSubmitSucceeded: PropTypes.bool.isRequired,
         roomFormSubmitSucceeded: PropTypes.bool.isRequired,
         serviceFormSubmitSucceeded: PropTypes.bool.isRequired,
+        photoFormSubmitSucceeded: PropTypes.bool.isRequired,
     };
 
     render() {
-        const { hotelFormSubmitSucceeded, roomFormSubmitSucceeded, serviceFormSubmitSucceeded } = this.props;
+        const {
+            hotelFormSubmitSucceeded,
+            roomFormSubmitSucceeded,
+            serviceFormSubmitSucceeded,
+            photoFormSubmitSucceeded,
+        } = this.props;
 
         const roomTabClasses = classNames('tab-bar__links-item', {
             'tab-bar__links-item_disabled': !hotelFormSubmitSucceeded,
@@ -29,9 +35,17 @@ class TabBar extends PureComponent {
             'tab-bar__links-item_disabled': !hotelFormSubmitSucceeded || !roomFormSubmitSucceeded,
         });
 
-        const secondaryTabClasses = classNames('tab-bar__links-item', {
+        const photoTabClasses = classNames('tab-bar__links-item', {
             'tab-bar__links-item_disabled':
                 !hotelFormSubmitSucceeded || !roomFormSubmitSucceeded || !serviceFormSubmitSucceeded,
+        });
+
+        const finishTabClasses = classNames('tab-bar__links-item', {
+            'tab-bar__links-item_disabled':
+                !hotelFormSubmitSucceeded
+                || !roomFormSubmitSucceeded
+                || !serviceFormSubmitSucceeded
+                || !photoFormSubmitSucceeded,
         });
 
         return (
@@ -53,27 +67,28 @@ class TabBar extends PureComponent {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={secondaryTabClasses} exact to="/admin-home/create-new-hotel/photos">
+                        <NavLink className={photoTabClasses} exact to="/admin-home/create-new-hotel/photos">
                             Photos
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={secondaryTabClasses} exact to="/admin-home/create-new-hotel/finish">
+                        <NavLink className={finishTabClasses} exact to="/admin-home/create-new-hotel/finish">
                             Finish
                         </NavLink>
                     </li>
                 </ul>
                 <div className="tab-bar__route">
                     <Route exact path="/admin-home/create-new-hotel/main-info" component={HotelTab} />
-                    <Route exact path="/admin-home/create-new-hotel/finish" component={FinishTab} />
-                    <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
-                    <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
                     {hotelFormSubmitSucceeded && (
                         <Fragment>
                             <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
                             {roomFormSubmitSucceeded && (
                                 <Fragment>
-                                    <Route exact path="/admin-home/create-new-hotel/services" render={() => <ServiceTab />} />
+                                    <Route
+                                        exact
+                                        path="/admin-home/create-new-hotel/services"
+                                        render={() => <ServiceTab />}
+                                    />
                                     <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
                                     <Route exact path="/admin-home/create-new-hotel/finish" component={FinishTab} />
                                 </Fragment>
