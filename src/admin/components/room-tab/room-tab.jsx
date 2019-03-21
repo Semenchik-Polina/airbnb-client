@@ -24,7 +24,7 @@ class RoomTab extends PureComponent {
     };
 
     state = {
-        isFormHidden: (this.props.rooms.length > 0),
+        isFormHidden: this.props.rooms.length > 0,
     };
 
     hideForm = () => {
@@ -44,31 +44,35 @@ class RoomTab extends PureComponent {
         const { rooms, deleteRoomType } = this.props;
         const { isFormHidden } = this.state;
 
-        return isFormHidden ? (
-            <Fragment>
-                {rooms.length > 0 && <RoomList rooms={rooms} deleteRoomType={deleteRoomType} />}
-                <div className="room-tab__buttons-container">
-                    <Button
-                        type="button"
-                        className="room-tab__buttons-container-item"
-                        color="primary"
-                        handleClick={this.showForm}
-                    >
-                        Add room
-                    </Button>
-                    {rooms.length > 0 && (
-                        <Button
-                            className="room-tab__buttons-container-item"
-                            color="secondary"
-                            handleClick={this.handleSubmit}
-                        >
-                            Continue
-                        </Button>
-                    )}
-                </div>
-            </Fragment>
-        ) : (
-            <RoomForm hideForm={this.hideForm} />
+        return (
+            <div className="room-tab">
+                {isFormHidden ? (
+                    <Fragment>
+                        {rooms.length > 0 && <RoomList rooms={rooms} deleteRoomType={deleteRoomType} />}
+                        <div className="room-tab__buttons-container">
+                            <Button
+                                type="button"
+                                className="room-tab__buttons-container-item"
+                                color="white"
+                                handleClick={this.showForm}
+                            >
+                                Add room
+                            </Button>
+                            {rooms.length > 0 && (
+                                <Button
+                                    className="room-tab__buttons-container-item"
+                                    color="secondary"
+                                    handleClick={this.handleSubmit}
+                                >
+                                    Continue
+                                </Button>
+                            )}
+                        </div>
+                    </Fragment>
+                ) : (
+                    <RoomForm hideForm={this.hideForm} />
+                )}
+            </div>
         );
     }
 }

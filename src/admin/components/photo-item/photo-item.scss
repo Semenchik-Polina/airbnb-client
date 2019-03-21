@@ -1,0 +1,135 @@
+.photo-item {
+    .carousel.carousel-slider {
+        &:hover {
+                 opacity: 1;
+
+            filter: alpha(opacity=100);
+            -moz-opacity: 1;
+        }
+    }
+    .slider-wrapper {
+        border-radius: 5px;
+    }
+    .carousel-status {
+        display: none;
+    }
+    .carousel.carousel-slider {
+        border-radius: 5px;
+    }
+    .carousel.carousel-slider .control-arrow:nth-of-type(1):hover {
+        border-radius: 5px 0 0 5px;
+        background:    -moz-linear-gradient(
+        left,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.05) 8%,
+        rgba(0, 0, 0, 0.06) 9%,
+        rgba(0, 0, 0, 0.13) 21%,
+        rgba(0, 0, 0, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+        left,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.05) 8%,
+        rgba(0, 0, 0, 0.06) 9%,
+        rgba(0, 0, 0, 0.13) 21%,
+        rgba(0, 0, 0, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background:         linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.05) 8%,
+        rgba(0, 0, 0, 0.06) 9%,
+        rgba(0, 0, 0, 0.13) 21%,
+        rgba(0, 0, 0, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96000000', endColorstr='#00ffffff',GradientType=1 );
+    }
+    .carousel.carousel-slider .control-arrow:nth-of-type(2):hover {
+        border-radius: 0 5px 5px 0;
+        background:    -moz-linear-gradient(
+        left,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 8%,
+        rgba(255, 255, 255, 0.06) 9%,
+        rgba(255, 255, 255, 0.13) 21%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+        left,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 8%,
+        rgba(255, 255, 255, 0.06) 9%,
+        rgba(255, 255, 255, 0.13) 21%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background:         linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.05) 8%,
+        rgba(0, 0, 0, 0.06) 9%,
+        rgba(0, 0, 0, 0.13) 21%,
+        rgba(0, 0, 0, 0.15) 25%,
+        rgba(0, 0, 0, 0.59) 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#96000000',GradientType=1 );
+    }
+    .slide.selected {
+        border-radius: 5px 5px 5px 5px;
+    }
+    .carousel {
+        .control-next.control-arrow {
+            width: 80px;
+
+            &:before {
+                display: inline-block;
+
+                margin-left: 30px;
+                padding: 10px 4px 4px 10px;
+
+                content: "";
+                transform: rotate(-45deg);
+
+                border: solid rgb(255, 255, 255);
+                border-width: 0 2px 2px 0;
+
+                font: 100 1em "Roboto";
+            }
+        }
+        .control-prev.control-arrow {
+            width: 80px;
+            &:before {
+                display: inline-block;
+
+                margin-right: 30px;
+                padding: 10px 4px 4px 10px;
+
+                content: "";
+                transform: rotate(135deg);
+
+                border: solid rgb(255, 255, 255);
+                border-width: 0 2px 2px 0;
+
+                font: 100 1em "Roboto";
+            }
+        }
+    }
+    .slide {
+        background: none;
+
+        img {
+            height: 250px;
+
+            object-fit: cover;
+        }
+    }
+    .thumbs-wrapper {
+        display: none;
+    }
+}

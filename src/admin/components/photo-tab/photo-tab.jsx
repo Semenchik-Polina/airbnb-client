@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../../../shared/components/button/button';
@@ -7,18 +7,35 @@ import PhotoForm from '../../containers/photo-form-container';
 
 import history from '../../../shared/tools/history';
 
+import defaultImg from '../../../../public/images/hotel-default.jpg';
+
 import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {
     static propTypes = {
-        photoItems: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+        hotelInfo: PropTypes.shape().isRequired,
+        removePhotoItem: PropTypes.func.isRequired,
     };
 
     state = {
         isFormHidden: true,
     };
 
-    renderPhotoItems = (item, index) => <PhotoItem photoItem={item} key={index} />;
+    removePhotoItem = id => () => {
+        this.props.removePhotoItem(id);
+    };
+
+    renderPhotoItems = item => (
+        <div className="photo-tab__photo-container" key={item.id}>
+            <Button
+                className="photo-tab__photo-container-delete"
+                imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
+                handleClick={this.removePhotoItem(item.id)}
+            />
+            <PhotoItem className="photo-tab__photo-container-item" photoItem={item} />
+            <span className="photo-tab__photo-container-type">{item.type}</span>
+        </div>
+    );
 
     showForm = () => {
         this.setState({ isFormHidden: false });
@@ -33,26 +50,39 @@ class PhotoTab extends PureComponent {
     };
 
     render() {
-        return this.state.isFormHidden ? (
-            <div>
-                <div className="photo-tab__buttons-container">
-                    <Button className="photo-tab__buttons-container-item" handleClick={this.showForm} color="primary">
-                        Add photos
-                    </Button>
-                    {this.props.photoItems.length > 0 && (
-                        <Button
-                            className="photo-tab__buttons-container-item"
-                            handleClick={this.handleClick}
-                            color="secondary"
-                        >
-                            Continue
-                        </Button>
-                    )}
-                </div>
-                {this.props.photoItems.reverse().map(this.renderPhotoItems)}
+        return (
+            <div className="photo-tab">
+                {this.state.isFormHidden ? (
+                    <Fragment>
+                        <div className="photo-tab__buttons-container">
+                            <Button
+                                className="photo-tab__buttons-container-item"
+                                handleClick={this.showForm}
+                                color="white"
+                            >
+                                Add photos
+                            </Button>
+                            {this.props.hotelInfo.photos.length > 0 && (
+                                <Button
+                                    className="photo-tab__buttons-container-item"
+                                    handleClick={this.handleClick}
+                                    color="secondary"
+                                >
+                                    Continue
+                                </Button>
+                            )}
+                        </div>
+                        {this.props.hotelInfo.photos.length === 0 && (
+                            <div className="photo-tab__photo-container">
+                                <PhotoItem photoItem={{ photos: [{ preview: defaultImg }], type: 'Default' }} />
+                            </div>
+                        )}
+                        {this.props.hotelInfo.photos.map(this.renderPhotoItems)}
+                    </Fragment>
+                ) : (
+                    <PhotoForm hideForm={this.hideForm} />
+                )}
             </div>
-        ) : (
-            <PhotoForm hideForm={this.hideForm} />
         );
     }
 }

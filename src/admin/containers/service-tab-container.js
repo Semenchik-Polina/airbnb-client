@@ -18,6 +18,7 @@ export default connect(
             internet: 'Yes, for free',
             parking: 'Yes, for free',
             breakfast: 'Yes',
+            facilities: [],
         },
     })(ServiceTab),
 );

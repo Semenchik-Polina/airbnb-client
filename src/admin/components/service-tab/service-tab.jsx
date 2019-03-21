@@ -63,7 +63,7 @@ class ServiceTab extends PureComponent {
                 </label>
                 <div className="service-form__section">Another popular facilities</div>
                 <Field name="facilities" component={CheckboxGroup} options={POPULAR_FACILITIES} />
-                <Button className="service-form__submit" color="primary" disabled={pristine || submitting}>
+                <Button className="service-form__submit" color="secondary" disabled={pristine || submitting}>
                     {'Continue'}
                 </Button>
             </Form>

@@ -35,20 +35,20 @@ class PhotoForm extends PureComponent {
     };
 
     showUploadedImages = (file, index) => (
-        <div key={index}>
-            <div>
-                <img className="photo-tab__image" src={file.preview} alt="hotel" />
-            </div>
+        <div className="photo-form__uploader-aside-container" key={index}>
+            <img className="photo-form__uploader-aside-container-image" src={file.preview} alt="hotel" />
         </div>
     );
 
     renderUploader = () => ({ getRootProps, getInputProps }) => (
-        <section className="photo-tab__uploader">
+        <section className="photo-form__uploader">
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p>Drag `n` drop photos here, or click to select photos</p>
+                <p className="photo-form__uploader-active-zone">Drag `n` drop photos here, or click to select photos</p>
             </div>
-            {this.state.files.length > 0 && <aside>{this.state.files.map(this.showUploadedImages)}</aside>}
+            {this.state.files.length > 0 && (
+                <aside className="photo-form__uploader-aside">{this.state.files.map(this.showUploadedImages)}</aside>
+            )}
         </section>
     );
 
@@ -66,7 +66,7 @@ class PhotoForm extends PureComponent {
     };
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, hideForm } = this.props;
 
         return (
             <Form className="photo-form" onSubmit={handleSubmit(this.handleSubmit)}>
@@ -75,9 +75,20 @@ class PhotoForm extends PureComponent {
                     <Field className="photo-form__field" name="type" component={DropDownSelect} options={HOTEL_ZONES} />
                 </label>
                 <Field name="photos" validate={[validators.isRequired]} component={this.renderDropZoneField} />
-                <Button className="photo-form__button" color="primary">
-                    Add photos
-                </Button>
+                <div className="photo-form__buttons-container">
+                    <Button
+                        imgSrc="https://img.icons8.com/ios/26/007883/back-filled.png"
+                        className="photo-form__buttons-container-item"
+                        type="button"
+                        color="back"
+                        handleClick={hideForm}
+                    >
+                        Go back
+                    </Button>
+                    <Button className="photo-form__buttons-container-item" color="secondary">
+                        Add photos
+                    </Button>
+                </div>
             </Form>
         );
     }

@@ -41,7 +41,12 @@
 
     &__buttons-container-item {
         margin-right: 5%;
-
+        &:first-child {
+            margin-right: 50%;
+            @media only screen and (max-width: 550px) {
+                margin-right: 20%;
+            }
+        }
         &:last-child {
             margin-right: 0;
         }

@@ -1,9 +1,82 @@
 .finish-tab {
-    &__header {
+    width: 100%;
+
+    &__wrapper {
+        display: flex;
+
+        padding: 20px;
+
+        flex-flow: row nowrap;
+    }
+
+    &__tour {
         display: block;
 
-        margin: 10px 0;
-        text-align: center;
-        font: 900 1.5em 'Roboto';
+        padding: 10px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
+    }
+
+    &__overview {
+        padding: 20px;
+
+        font: 500 1.25em "Roboto";
+    }
+    &__gallery {
+        display: flex;
+
+        width: 100%;
+
+        &-item {
+            width: 450px;
+            padding: 20px;
+        }
+    }
+
+    &__photo-container {
+        flex: auto;
+
+        &-item {
+            width: 100%;
+            min-height: 600px;
+            max-height: 700px;
+
+            object-fit: cover;
+        }
+    }
+
+    &__main-info {
+        display: flex;
+
+        margin-right: 2%;
+        padding: 50px;
+
+        letter-spacing: 1px;
+
+        background-color: rgb(243, 243, 243);
+
+        align-content: center;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+
+        &-sity {
+            display: block;
+
+            color: rgb(129, 129, 129);
+
+            font: 700 1em "Roboto";
+        }
+
+        &-name {
+            display: block;
+
+            margin: 40px 0;
+
+            color: rgb(63, 62, 62);
+
+            font: 500 2.5em "Roboto";
+        }
     }
 }

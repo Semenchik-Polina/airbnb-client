@@ -1,6 +1,9 @@
 .hotel-form {
     display: flex;
 
+    width: 100%;
+    max-width: 500px;
+
     font: 100 1em "Roboto";
 
     flex-flow: column nowrap;
@@ -10,7 +13,7 @@
 
         font: 400 1.3em "Roboto";
     }
-    
+
     &__field {
         margin: 10px 0;
     }

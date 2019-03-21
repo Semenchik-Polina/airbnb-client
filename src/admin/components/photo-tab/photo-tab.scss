@@ -1,6 +1,54 @@
 .photo-tab {
+    display: flex;
+
+    width: 100%;
+    max-width: 500px;
+
+    flex-flow: column nowrap;
     justify-content: center;
 
+    &__photo-container {
+        position: relative;
+
+        display: flex;
+
+        margin: 0 auto;
+        padding-top: 15px;
+
+        flex-flow: column nowrap;
+
+        &-delete {
+            position: absolute;
+            z-index: 10;
+            top: -3px;
+            left: -10px;
+
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+            padding: 0;
+
+            cursor: pointer;
+            transition: 0.25s;
+
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+            &:active {
+                transition: 0.25s;
+
+                background-color: rgb(233, 80, 80);
+                box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+            }
+        }
+        &-type {
+            display: block;
+
+            margin: 10px 0;
+
+            font: 500 1.5em "Roboto";
+        }
+    }
     &__buttons-container {
         display: flex;
 
@@ -15,23 +63,5 @@
         &:last-child {
             margin-right: 0;
         }
-    }
-
-    &__uploader {
-        padding: 10%;
-
-        cursor: pointer;
-
-        color: rgb(105, 102, 102);
-        border: 1px dashed gray;
-        border-radius: 5px;
-
-        &:hover {
-            color: rgb(0, 0, 0);
-        }
-    }
-
-    &__image {
-        width: 100px;
     }
 }

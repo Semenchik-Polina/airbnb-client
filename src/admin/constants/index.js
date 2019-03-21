@@ -20,11 +20,14 @@ export const COUNTRIES = [
 ];
 
 export const POPULAR_FACILITIES = [
-    { id: 1, name: 'Restaurant' },
-    { id: 2, name: 'Spa and Wellness Center' },
+    { id: 1, name: 'TV' },
+    { id: 2, name: 'Wifi' },
     { id: 3, name: 'Swimming pool' },
     { id: 4, name: 'Air conditioning' },
-    { id: 5, name: 'Massage' },
+    { id: 5, name: 'Hair dryer' },
+    { id: 6, name: 'Iron' },
+    { id: 7, name: 'Coffe maker' },
+    { id: 7, name: 'Elevator' },
 ];
 
 export const SERVICE_ANSWERS = [
@@ -37,6 +40,7 @@ export const adminTypes = {
     ADD_HOTEL_MAIN_INFO: 'ADD_HOTEL_MAIN_INFO',
     ADD_SERVICE_INFO: 'ADD_SERVICE_INFO',
     ADD_PHOTOS: 'ADD_PHOTOS',
+    REMOVE_PHOTO_ITEM: 'REMOVE_PHOTO_ITEM',
     ADD_ROOM_TYPE: 'ADD_ROOM_TYPE',
     DELETE_ROOM_TYPE: 'DELETE_ROOM_TYPE',
     EDIT_ROOM_TYPE: 'EDIT_ROOM_TYPE',

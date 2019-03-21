@@ -34,9 +34,20 @@ function addPhotos(photos) {
     };
 }
 
+function removePhotoItem(id) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.REMOVE_PHOTO_ITEM,
+            id,
+        });
+    };
+}
+
 function addRoomType(roomType) {
     return (dispatch) => {
-        const { amount, capacity, cost, ...rest } = roomType;
+        const {
+            amount, capacity, cost, ...rest
+        } = roomType;
         dispatch({
             type: adminTypes.ADD_ROOM_TYPE,
             roomType: {
@@ -85,4 +96,5 @@ export const adminActions = {
     deleteRoomType,
     editRoomType,
     createHotel,
+    removePhotoItem,
 };

@@ -36,10 +36,20 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case adminTypes.ADD_PHOTOS: {
         const { photos } = action;
+        photos.id = Math.random();
         // remove id later
         return {
             ...state,
             photos: [...state.photos, photos],
+        };
+    }
+    case adminTypes.REMOVE_PHOTO_ITEM: {
+        const { id } = action;
+        const items = state.photos.filter(item => item.id !== id);
+
+        return {
+            ...state,
+            photos: items,
         };
     }
     case adminTypes.DELETE_ROOM_TYPE: {

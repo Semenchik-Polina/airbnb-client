@@ -57,6 +57,7 @@ class RoomForm extends PureComponent {
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
                             type="text"
+                            icon="icon-user"
                             essence="Capacity"
                             placeholder="0"
                         />
@@ -76,16 +77,17 @@ class RoomForm extends PureComponent {
                 </div>
                 <div className="room-form__buttons-container">
                     <Button
+                        imgSrc="https://img.icons8.com/ios/26/007883/back-filled.png"
                         className="room-form__buttons-container-item"
                         type="button"
-                        color="secondary"
+                        color="back"
                         handleClick={hideForm}
                     >
-                        Bo back
+                        Go back
                     </Button>
                     <Button
                         className="room-form__buttons-container-item"
-                        color="primary"
+                        color="secondary"
                         disabled={pristine || submitting}
                     >
                         Continue
