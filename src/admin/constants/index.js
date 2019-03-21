@@ -21,12 +21,11 @@ export const COUNTRIES = [
 
 export const POPULAR_FACILITIES = [
     { id: 1, name: 'TV' },
-    { id: 2, name: 'Wifi' },
-    { id: 3, name: 'Swimming pool' },
-    { id: 4, name: 'Air conditioning' },
+    { id: 2, name: 'Wi-Fi' },
+    { id: 3, name: 'Kitchen' },
     { id: 5, name: 'Hair dryer' },
     { id: 6, name: 'Iron' },
-    { id: 7, name: 'Coffe maker' },
+    { id: 7, name: 'Coffee maker' },
     { id: 7, name: 'Elevator' },
 ];
 

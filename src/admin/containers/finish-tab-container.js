@@ -10,5 +10,6 @@ export default connect(
     }),
     dispatch => ({
         createHotel: data => dispatch(adminActions.createHotel(data)),
+        fetchHotel: () => dispatch(adminActions.fetchHotel()),
     }),
 )(FinishTab);
