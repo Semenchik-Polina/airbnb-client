@@ -27,6 +27,8 @@ export const POPULAR_FACILITIES = [
     { id: 6, name: 'Iron' },
     { id: 7, name: 'Coffee maker' },
     { id: 7, name: 'Elevator' },
+    { id: 8, name: 'Bathroom essentials' },
+    { id: 9, name: 'Self check-in' },
 ];
 
 export const SERVICE_ANSWERS = [
@@ -43,4 +45,6 @@ export const adminTypes = {
     ADD_ROOM_TYPE: 'ADD_ROOM_TYPE',
     DELETE_ROOM_TYPE: 'DELETE_ROOM_TYPE',
     EDIT_ROOM_TYPE: 'EDIT_ROOM_TYPE',
+    FETCH_ALL_HOTELS: 'FETCH_ALL_HOTELS',
+    RESET_HOTEL_INFO: 'RESET_HOTEL_INFO',
 };

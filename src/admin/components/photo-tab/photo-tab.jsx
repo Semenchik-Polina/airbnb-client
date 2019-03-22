@@ -7,8 +7,6 @@ import PhotoForm from '../../containers/photo-form-container';
 
 import history from '../../../shared/tools/history';
 
-import defaultImg from '../../../../public/images/hotel-default.jpg';
-
 import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {
@@ -74,7 +72,9 @@ class PhotoTab extends PureComponent {
                         </div>
                         {this.props.hotelInfo.photos.length === 0 && (
                             <div className="photo-tab__photo-container">
-                                <PhotoItem photoItem={{ photos: [{ preview: defaultImg }], type: 'Default' }} />
+                                <PhotoItem
+                                    photoItem={{ photos: [{ preview: '/images/hotel-default.jpg' }], type: 'Default' }}
+                                />
                             </div>
                         )}
                         {this.props.hotelInfo.photos.map(this.renderPhotoItems)}

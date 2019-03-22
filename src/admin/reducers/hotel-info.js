@@ -60,6 +60,9 @@ const hotelInfoReducer = (state = initialState, action) => {
             roomTypes: [...roomTypes],
         };
     }
+    case adminTypes.RESET_HOTEL_INFO: {
+        return initialState;
+    }
     default:
         return state;
     }

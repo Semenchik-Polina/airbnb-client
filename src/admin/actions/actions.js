@@ -1,9 +1,19 @@
 import { toast } from 'react-toastify';
+import _ from 'lodash';
+import { destroy } from 'redux-form';
+
+import history from '../../shared/tools/history';
+
 import controllers from '../controllers/controllers';
+
 import { adminTypes } from '../constants';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
+    toast(message);
+};
+
+const showSuccessToast = (message) => {
     toast(message);
 };
 
@@ -45,7 +55,9 @@ function removePhotoItem(id) {
 
 function addRoomType(roomType) {
     return (dispatch) => {
-        const { amount, capacity, cost, ...rest } = roomType;
+        const {
+            amount, capacity, cost, ...rest
+        } = roomType;
         dispatch({
             type: adminTypes.ADD_ROOM_TYPE,
             roomType: {
@@ -76,35 +88,43 @@ function editRoomType(data) {
     };
 }
 
-function fetchHotel() {
-    return () => ({
-        hotelMainInfo: {
-            country: 'Belarus',
-            hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
-            sity: 'Minsk',
-            streetHouse: 'F',
-        },
-        photos: [
-            {
-                id: 33,
-                photos: [{ preview: 'blob:http://localhost:1234/d029d306-ae28-4afb-adb5-6a710c20d77c', type: 'hotel' }],
-            },
-        ],
-        roomTypes: [{ amount: 4, capacity: 4, cost: 4, type: 'Twin', id: 0.5962465506667141 }],
-        serviceInfo: {
-            breakfast: 'Yes',
-            internet: 'Yes, for free',
-            parking: 'Yes, for free',
-            facilities: ['Hair dryer', 'Kitchen', 'Wi-Fi', 'TV'],
-        },
-    });
+function fetchHotels() {
+    return async (dispatch) => {
+        try {
+            const { data } = await controllers.fetchHotels();
+
+            dispatch({
+                type: adminTypes.FETCH_ALL_HOTELS,
+                data,
+            });
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
+function formatData(data) {
+    const formData = new FormData();
+    const images = _.flattenDeep(data.photos.map(item => item.photos));
+    images.forEach(image => formData.append('image', image));
+    const hotelInfo = JSON.stringify(data);
+    formData.append('info', hotelInfo);
+    return formData;
 }
 
 function createHotel(data) {
-    return async () => {
+    return async (dispatch) => {
         try {
-            // await controllers.createHotel(data);
-            console.log(data);
+            const formData = formatData(data);
+            await controllers.createHotel(formData);
+            showSuccessToast('Hotel created!');
+            dispatch({
+                type: adminTypes.RESET_HOTEL_INFO,
+            });
+            dispatch(destroy('hotelForm'));
+            dispatch(destroy('serviceForm'));
+
+            history.push('/admin-home/');
         } catch (err) {
             showErrorToast(err);
         }
@@ -120,5 +140,5 @@ export const adminActions = {
     editRoomType,
     createHotel,
     removePhotoItem,
-    fetchHotel,
+    fetchHotels,
 };
