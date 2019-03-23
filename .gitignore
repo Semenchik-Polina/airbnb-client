@@ -64,7 +64,7 @@ typings/
 .cache
 dist
 
-
+# dev build
 public/*
 !public/fonts/*
 !public/images/*
