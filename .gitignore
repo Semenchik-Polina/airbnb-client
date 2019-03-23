@@ -66,5 +66,5 @@ dist
 
 # dev build
 public/*
-!public/fonts/*
-!public/images/*
+!public/fonts
+!public/images
