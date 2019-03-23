@@ -63,3 +63,8 @@ typings/
 # parsel cache
 .cache
 dist
+
+
+public/*
+!public/fonts/*
+!public/images/*
