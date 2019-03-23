@@ -43,7 +43,6 @@ class HotelTab extends PureComponent {
                         validate={[validators.isRequired]}
                         className="hotel-form__field"
                         name="hotelName"
-                        icon="icon-envelop"
                         component={TextInput}
                         type="text"
                         essence="Hotel name"
@@ -57,7 +56,6 @@ class HotelTab extends PureComponent {
                         validate={[validators.isRequired]}
                         className="hotel-form__field"
                         name="streetHouse"
-                        icon="icon-envelop"
                         component={TextInput}
                         type="text"
                         essence="Street and house number"
@@ -79,7 +77,6 @@ class HotelTab extends PureComponent {
                         validate={[validators.isRequired]}
                         className="hotel-form__field"
                         name="sity"
-                        icon="icon-envelop"
                         component={TextInput}
                         type="text"
                         essence="Sity"

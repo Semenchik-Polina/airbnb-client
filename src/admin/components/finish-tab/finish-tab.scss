@@ -12,6 +12,7 @@
     &__banner-info {
         display: flex;
 
+        width: 70%;
         margin-right: 2%;
         padding: 50px;
 
@@ -88,12 +89,15 @@
             padding: 10px;
         }
 
-        &-gallery-item-category {
+        &-gallery-item-categoty {
             display: block;
 
             margin: 10px 0;
 
+            color: rgb(63, 62, 62);
+
             font: 500 1.5em "Roboto";
+            ;
         }
     }
 

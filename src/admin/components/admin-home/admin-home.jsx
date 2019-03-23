@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import {
     NavLink, withRouter, Route, Redirect,
 } from 'react-router-dom';
 
-import _ from 'lodash';
-
+import Tool from '../../../shared/components/tool/tool';
 import TabBar from '../../containers/tab-bar-container';
 import PhotoItem from '../photo-item/photo-item';
 
@@ -21,10 +22,13 @@ class AdminHome extends PureComponent {
         this.props.fetchHotels();
     }
 
-    renderHotel = (hotel) => {
-        const item = { photos: _.flattenDeep(hotel.photos.map(photoContainer => photoContainer.photos)) };
-        return item;
-    };
+    flatImageArray = photos => ({
+        photos: _.flattenDeep(photos.map(photoContainer => photoContainer.photos)),
+    });
+
+    removeHotel = hotel => () => {};
+
+    editHotel = hotel => () => {};
 
     renderAdminActivity = () => (
         <div className="admin-home">
@@ -36,14 +40,30 @@ class AdminHome extends PureComponent {
             </div>
             {this.props.hotels.length > 0 && (
                 <section className="admin-home__hotels">
-                    {this.props.hotels.map((hotel, index) => (
-                        <div key={index} className="finish-tab__tour-gallery-item">
-                            <PhotoItem photoItem={this.renderHotel(hotel)} />
-                            <span className="finish-tab__tour-gallery-item-categoty">
-                                {hotel.mainInfo.hotelName}
-                            </span>
-                        </div>
-                    ))}
+                    <span className="admin-home__hotels-header">Hotels</span>
+                    <div className="admin-home__hotels-container">
+                        {this.props.hotels.map((hotel, index) => (
+                            <div
+                                key={index}
+                                className="admin-home__hotels-container-item"
+                            >
+                                <Tool
+                                    src="/images/tools/delete.png"
+                                    className="admin-home__hotels-container-item-delete"
+                                    handleClick={this.removeHotel(hotel)}
+                                />
+                                <Tool
+                                    src="/images/tools/edit.png"
+                                    className="admin-home__hotels-container-item-edit"
+                                    handleClick={this.editHotel(hotel)}
+                                />
+                                <PhotoItem photoItem={this.flatImageArray(hotel.photos)} />
+                                <span className="admin-home__hotels-container-item-name">
+                                    {hotel.mainInfo.hotelName}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </section>
             )}
         </div>

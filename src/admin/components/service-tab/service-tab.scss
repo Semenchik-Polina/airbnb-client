@@ -7,16 +7,19 @@
     font: 100 1em "Roboto";
 
     flex-flow: column nowrap;
+    
     &__header {
         margin: 10px 0;
 
         font: 900 1.5em "Roboto";
     }
+
     &__section {
         margin: 10px 0;
 
         font: 400 1.3em "Roboto";
     }
+
     &__submit {
         margin-top: 10px;
     }

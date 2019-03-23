@@ -30,7 +30,7 @@ class PhotoItem extends PureComponent {
         const itemClasses = classNames('photo-item', className);
 
         return (
-            <Carousel className={itemClasses} dynamicHeight={false} showArrows>
+            <Carousel infiniteLoop className={itemClasses} dynamicHeight={false} showArrows>
                 {photoItem.photos.map(this.renderCarouselItem)}
             </Carousel>
         );
