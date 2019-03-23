@@ -18,40 +18,4 @@
             margin-right: 0;
         }
     }
-    &__uploader {
-        margin: 15px 0;
-
-// padding: 5%;
-
-        cursor: pointer;
-
-        color: rgb(105, 102, 102);
-        border: 1px dashed gray;
-        border-radius: 5px;
-    }
-    &__uploader-active-zone {
-        padding: 7% 5%;
-
-        transition: 0.5s;
-        text-align: center;
-        &:hover {
-            color: rgb(0, 0, 0);
-        }
-    }
-    &__uploader-aside {
-        display: flex;
-
-        padding: 0 3% 2% 3%;
-
-        flex-flow: row wrap;
-        justify-content: space-evenly;
-        &-container {
-            padding: 5px;
-        }
-        &-container-image {
-            width: 100px;
-
-            border-radius: 5px;
-        }
-    }
 }

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { adminTypes } from '../constants';
 
 const initialState = {
@@ -29,6 +31,7 @@ const hotelInfoReducer = (state = initialState, action) => {
         const { roomType } = action;
         // remove id later
         roomType.id = Math.random();
+
         return {
             ...state,
             roomTypes: [...state.roomTypes, roomType],
@@ -36,11 +39,21 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case adminTypes.ADD_PHOTOS: {
         const { photos } = action;
+        const { type } = photos;
+
         photos.id = Math.random();
-        // remove id later
+
+        const newPhotos = _.cloneDeep(state.photos);
+        const existingItem = _.find(newPhotos, { type });
+        if (existingItem) {
+            existingItem.photos = [...existingItem.photos, ...photos.photos];
+        } else {
+            newPhotos.push(photos);
+        }
+
         return {
             ...state,
-            photos: [...state.photos, photos],
+            photos: newPhotos,
         };
     }
     case adminTypes.REMOVE_PHOTO_ITEM: {
