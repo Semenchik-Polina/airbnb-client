@@ -45,7 +45,7 @@ class RoomForm extends PureComponent {
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
                             type="text"
-                            essence="Number of type"
+                            essence="Number"
                             placeholder="0"
                         />
                     </label>

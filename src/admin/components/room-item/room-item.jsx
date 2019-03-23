@@ -25,7 +25,7 @@ class RoomItem extends PureComponent {
             <div className="room-item">
                 <span className="room-item__type">{room.type}</span>
                 <span>{`Amount: ${room.amount}`}</span>
-                <span onClick={this.editRoom}>Edit</span>
+                <span className="room-item__action" onClick={this.editRoom}>Edit</span>
                 <span className="room-item__action" onClick={this.deleteRoom}>
                     Delete
                 </span>

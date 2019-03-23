@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuidv1 from 'uuid/v1';
 
 import { adminTypes } from '../constants';
 
@@ -35,8 +36,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             newTypes = _.cloneDeep(state.roomTypes);
             newTypes[_.findIndex(state.roomTypes, { id })] = roomType;
         } else {
-            // remove id later
-            roomType.id = Math.random();
+            roomType.id = uuidv1();
             newTypes = [...state.roomTypes, roomType];
         }
 
@@ -49,13 +49,12 @@ const hotelInfoReducer = (state = initialState, action) => {
         const { photos } = action;
         const { type } = photos;
 
-        photos.id = Math.random();
-
         const newPhotos = _.cloneDeep(state.photos);
         const existingItem = _.find(newPhotos, { type });
         if (existingItem) {
             existingItem.photos = [...existingItem.photos, ...photos.photos];
         } else {
+            photos.id = uuidv1();
             newPhotos.push(photos);
         }
 
