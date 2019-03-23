@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Dropzone from 'react-dropzone';
-import Button from '../../../shared/components/button/button';
+import Tool from '../../../shared/components/tool/tool';
 
 import './image-uploader.scss';
 
@@ -47,10 +47,9 @@ class ImageUploader extends PureComponent {
 
     renderUploadedImages = () => this.state.files.map((file, index) => (
         <div className="uploader__aside-container" key={index}>
-            <Button
-                className="photo-tab__photo-container-delete"
-                type="button"
-                imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
+            <Tool
+                src="/images/tools/delete.png"
+                className="uploader__aside-container-delete"
                 handleClick={this.removeItem(file)}
             />
             <img className="uploader__aside-container-image" src={file.preview} alt="hotel" />

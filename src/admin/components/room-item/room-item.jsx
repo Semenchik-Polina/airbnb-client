@@ -26,7 +26,7 @@ class RoomItem extends PureComponent {
                 <span>{`Amount: ${room.amount}`}</span>
                 <span>Edit</span>
                 <span className="room-item__action" onClick={this.handleClick}>
-                    {'Delete'}
+                    Delete
                 </span>
             </div>
         );

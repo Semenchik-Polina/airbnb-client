@@ -2,6 +2,8 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../../../shared/components/button/button';
+import Tool from '../../../shared/components/tool/tool';
+
 import PhotoItem from '../photo-item/photo-item';
 import PhotoForm from '../../containers/photo-form-container';
 
@@ -25,9 +27,9 @@ class PhotoTab extends PureComponent {
 
     renderPhotoItems = item => (
         <div className="photo-tab__photo-container" key={item.id}>
-            <Button
+            <Tool
                 className="photo-tab__photo-container-delete"
-                imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
+                src="/images/tools/delete.png"
                 handleClick={this.removePhotoItem(item.id)}
             />
             <PhotoItem className="photo-tab__photo-container-item" photoItem={item} />

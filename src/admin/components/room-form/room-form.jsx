@@ -77,7 +77,7 @@ class RoomForm extends PureComponent {
                 </div>
                 <div className="room-form__buttons-container">
                     <Button
-                        imgSrc="https://img.icons8.com/ios/26/007883/back-filled.png"
+                        src="https://img.icons8.com/ios/26/007883/back-filled.png"
                         className="room-form__buttons-container-item"
                         type="button"
                         color="back"

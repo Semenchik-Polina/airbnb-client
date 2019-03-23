@@ -34,10 +34,10 @@ class PhotoForm extends PureComponent {
                     {'Choose hotel zone'}
                     <Field className="photo-form__field" name="type" component={DropDownSelect} options={HOTEL_ZONES} />
                 </label>
-                <Field name="photos" validate={[validators.isRequired]} component={ImageUploader} />
+                <Field name="photos" className="photo-form__field" validate={[validators.isRequired]} component={ImageUploader} />
                 <div className="photo-form__buttons-container">
                     <Button
-                        imgSrc="https://img.icons8.com/ios/26/007883/back-filled.png"
+                        src="https://img.icons8.com/ios/26/007883/back-filled.png"
                         className="photo-form__buttons-container-item"
                         type="button"
                         color="back"

@@ -17,9 +17,9 @@ class ModalLogin extends PureComponent {
         return (
             <div className="modal-login">
                 <Button
-                    imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
+                    src="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    color="google"
+                    color="white"
                     isBehavedAsLink
                 >
                     Log in with Google

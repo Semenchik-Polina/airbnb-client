@@ -10,7 +10,7 @@ class Button extends PureComponent {
         handleClick: () => {},
         isBehavedAsLink: false,
         children: '',
-        imgSrc: '',
+        src: '',
         href: '',
         type: 'submit',
         className: '',
@@ -22,15 +22,15 @@ class Button extends PureComponent {
         isBehavedAsLink: PropTypes.bool,
         children: PropTypes.string,
         color: PropTypes.string,
-        imgSrc: PropTypes.string,
+        src: PropTypes.string,
         href: PropTypes.string,
         className: PropTypes.string,
         type: PropTypes.oneOf(['submit', 'button', 'reset']),
     };
 
-    renderButtonIcon = imgSrc => imgSrc && (
+    renderButtonIcon = src => src && (
         <span>
-            <img className="button__icon" src={imgSrc} alt="icon" />
+            <img className="button__icon" src={src} alt="icon" />
         </span>
     );
 
@@ -38,19 +38,19 @@ class Button extends PureComponent {
 
     render() {
         const {
-            handleClick, isBehavedAsLink, children, imgSrc, href, className, type, color,
+            handleClick, isBehavedAsLink, children, src, href, className, type, color,
         } = this.props;
 
         const buttonClasses = classNames('button', { [`button_${color}`]: color }, className);
 
         return isBehavedAsLink ? (
             <a className={buttonClasses} href={href} target="_blank" rel="noopener noreferrer">
-                {this.renderButtonIcon(imgSrc)}
+                {this.renderButtonIcon(src)}
                 {this.renderButtonChildren(children)}
             </a>
         ) : (
             <button type={type} className={buttonClasses} onClick={handleClick}>
-                {this.renderButtonIcon(imgSrc)}
+                {this.renderButtonIcon(src)}
                 {this.renderButtonChildren(children)}
             </button>
         );

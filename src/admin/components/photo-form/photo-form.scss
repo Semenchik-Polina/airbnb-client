@@ -1,4 +1,8 @@
 .photo-form {
+    &__field {
+        margin: 15px 0;
+    }
+
     &__buttons-container {
         display: flex;
 
