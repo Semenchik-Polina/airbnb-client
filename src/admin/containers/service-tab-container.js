@@ -6,7 +6,9 @@ import ServiceTab from '../components/service-tab/service-tab';
 import { adminActions } from '../actions/actions';
 
 export default connect(
-    null,
+    state => ({
+        initialValues: state.adminReducer.hotelInfo.services,
+    }),
     dispatch => ({
         addServices: data => dispatch(adminActions.addServices(data)),
     }),
@@ -14,11 +16,5 @@ export default connect(
     reduxForm({
         form: 'serviceForm',
         destroyOnUnmount: false,
-        initialValues: {
-            internet: 'Yes, for free',
-            parking: 'Yes, for free',
-            breakfast: 'Yes',
-            facilities: [],
-        },
     })(ServiceTab),
 );

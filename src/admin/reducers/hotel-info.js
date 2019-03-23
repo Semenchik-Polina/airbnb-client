@@ -3,9 +3,9 @@ import _ from 'lodash';
 import { adminTypes } from '../constants';
 
 const initialState = {
-    hotelMainInfo: {},
+    mainInfo: {},
     roomTypes: [],
-    serviceInfo: {},
+    services: {},
     photos: [],
 };
 
@@ -16,7 +16,7 @@ const hotelInfoReducer = (state = initialState, action) => {
 
         return {
             ...state,
-            hotelMainInfo: { ...hotel },
+            mainInfo: { ...hotel },
         };
     }
     case adminTypes.ADD_SERVICE_INFO: {
@@ -24,17 +24,25 @@ const hotelInfoReducer = (state = initialState, action) => {
 
         return {
             ...state,
-            serviceInfo: { ...services },
+            services: { ...services },
         };
     }
     case adminTypes.ADD_ROOM_TYPE: {
         const { roomType } = action;
-        // remove id later
-        roomType.id = Math.random();
+        let newTypes;
+        const { id } = roomType;
+        if (id) {
+            newTypes = _.cloneDeep(state.roomTypes);
+            newTypes[_.findIndex(state.roomTypes, { id })] = roomType;
+        } else {
+            // remove id later
+            roomType.id = Math.random();
+            newTypes = [...state.roomTypes, roomType];
+        }
 
         return {
             ...state,
-            roomTypes: [...state.roomTypes, roomType],
+            roomTypes: newTypes,
         };
     }
     case adminTypes.ADD_PHOTOS: {

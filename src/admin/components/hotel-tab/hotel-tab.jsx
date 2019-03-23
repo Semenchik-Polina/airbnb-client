@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import { Field, Form } from 'redux-form';
-
-import history from '../../../shared/tools/history';
-
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
@@ -15,15 +14,22 @@ import './hotel-tab.scss';
 
 class HotelTab extends PureComponent {
     static propTypes = {
+        initialValues: PropTypes.shape().isRequired,
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         addHotelInfo: PropTypes.func.isRequired,
+        initialize: PropTypes.func.isRequired,
+    };
+
+    componentDidMount = () => {
+        if (_.isEmpty(this.props.initialValues)) {
+            this.props.initialize({ country: 'Russia' });
+        }
     };
 
     onSubmit = (values) => {
         this.props.addHotelInfo(values);
-        history.push('/admin-home/create-new-hotel/rooms');
     };
 
     render() {

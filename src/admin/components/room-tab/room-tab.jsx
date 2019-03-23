@@ -13,22 +13,18 @@ class RoomTab extends PureComponent {
     static propTypes = {
         deleteRoomType: PropTypes.func.isRequired,
         destroyRoomForm: PropTypes.func.isRequired,
-        rooms: PropTypes.arrayOf(
-            PropTypes.shape({
-                type: PropTypes.string.isRequired,
-                amount: PropTypes.number.isRequired,
-                capacity: PropTypes.number.isRequired,
-                id: PropTypes.number.isRequired,
-            }),
-        ).isRequired,
+        rooms: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     };
 
     state = {
         isFormHidden: this.props.rooms.length > 0,
+        initialValues: {
+            type: 'Twin',
+        },
     };
 
     hideForm = () => {
-        this.setState({ isFormHidden: true });
+        this.resetInitialValues();
         this.props.destroyRoomForm();
     };
 
@@ -40,6 +36,22 @@ class RoomTab extends PureComponent {
         history.push('/admin-home/create-new-hotel/services');
     };
 
+    editRoomType = (room) => {
+        this.setState(() => ({
+            initialValues: { ...room },
+            isFormHidden: false,
+        }));
+    };
+
+    resetInitialValues = () => {
+        this.setState(() => ({
+            initialValues: {
+                type: 'Twin',
+            },
+            isFormHidden: true,
+        }));
+    };
+
     render() {
         const { rooms, deleteRoomType } = this.props;
         const { isFormHidden } = this.state;
@@ -48,7 +60,9 @@ class RoomTab extends PureComponent {
             <div className="room-tab">
                 {isFormHidden ? (
                     <Fragment>
-                        {rooms.length > 0 && <RoomList rooms={rooms} deleteRoomType={deleteRoomType} />}
+                        {rooms.length > 0 && (
+                            <RoomList rooms={rooms} deleteRoomType={deleteRoomType} editRoomType={this.editRoomType} />
+                        )}
                         <div className="room-tab__buttons-container">
                             <Button
                                 type="button"
@@ -70,7 +84,7 @@ class RoomTab extends PureComponent {
                         </div>
                     </Fragment>
                 ) : (
-                    <RoomForm hideForm={this.hideForm} />
+                    <RoomForm hideForm={this.hideForm} initialValues={this.state.initialValues} />
                 )}
             </div>
         );

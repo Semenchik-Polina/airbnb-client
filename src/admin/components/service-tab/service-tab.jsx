@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import { Field, Form } from 'redux-form';
-
-import history from '../../../shared/tools/history';
-
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import CheckboxGroup from '../../../shared/components/checkbox-group/checkbox-group';
@@ -18,11 +17,23 @@ class ServiceTab extends PureComponent {
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         addServices: PropTypes.func.isRequired,
+        initialize: PropTypes.func.isRequired,
+        initialValues: PropTypes.shape().isRequired,
+    };
+
+    componentDidMount = () => {
+        if (_.isEmpty(this.props.initialValues)) {
+            this.props.initialize({
+                internet: 'Yes, for free',
+                parking: 'Yes, for free',
+                breakfast: 'Yes',
+                facilities: [],
+            });
+        }
     };
 
     onSubmit = (values) => {
         this.props.addServices(values);
-        history.push('/admin-home/create-new-hotel/photos');
     };
 
     render() {

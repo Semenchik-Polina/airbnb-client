@@ -1,8 +1,11 @@
-import React, { PureComponent, Fragment } from 'React';
+import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withRouter, Route, NavLink } from 'react-router-dom';
+import _ from 'lodash';
 
+import {
+    withRouter, Route, NavLink, Redirect,
+} from 'react-router-dom';
 import HotelTab from '../../containers/hotel-tab-container';
 import RoomTab from '../../containers/room-tab-container';
 import ServiceTab from '../../containers/service-tab-container';
@@ -13,40 +16,40 @@ import './tab-bar.scss';
 
 class TabBar extends PureComponent {
     static propTypes = {
-        hotelFormSubmitSucceeded: PropTypes.bool.isRequired,
-        roomFormSubmitSucceeded: PropTypes.bool.isRequired,
-        serviceFormSubmitSucceeded: PropTypes.bool.isRequired,
-        photoFormSubmitSucceeded: PropTypes.bool.isRequired,
+        hotelInfo: PropTypes.shape().isRequired,
     };
+
+    redirectToMainForm = () => <Redirect exact to="/admin-home/create-new-hotel/main-info" />;
+
+    // an error occurs because of reduxForm in container, so i have to place tab in a method
+    renderServiceTab = () => <ServiceTab />;
 
     render() {
         const {
-            hotelFormSubmitSucceeded,
-            roomFormSubmitSucceeded,
-            serviceFormSubmitSucceeded,
-            photoFormSubmitSucceeded,
+            hotelInfo: {
+                mainInfo, roomTypes, services, photos,
+            },
         } = this.props;
 
+        const isMainInfoFilled = !_.isEmpty(mainInfo);
+        const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
+        const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
+        const isPhotoFormFilled = !_.isEmpty(photos) && isServiceFormFilled;
+
         const roomTabClasses = classNames('tab-bar__links-item', {
-            'tab-bar__links-item_disabled': !hotelFormSubmitSucceeded,
+            'tab-bar__links-item_disabled': !isMainInfoFilled,
         });
 
         const serviceTabClasses = classNames('tab-bar__links-item', {
-            'tab-bar__links-item_disabled': !hotelFormSubmitSucceeded || !roomFormSubmitSucceeded,
+            'tab-bar__links-item_disabled': !isRoomFormFilled,
         });
 
         const photoTabClasses = classNames('tab-bar__links-item', {
-            'tab-bar__links-item_disabled':
-                !hotelFormSubmitSucceeded || !roomFormSubmitSucceeded || !serviceFormSubmitSucceeded,
+            'tab-bar__links-item_disabled': !isServiceFormFilled,
         });
 
-        // looks like hell
         const finishTabClasses = classNames('tab-bar__links-item', {
-            'tab-bar__links-item_disabled':
-                !hotelFormSubmitSucceeded
-                || !roomFormSubmitSucceeded
-                || !serviceFormSubmitSucceeded
-                || !photoFormSubmitSucceeded,
+            'tab-bar__links-item_disabled': !isPhotoFormFilled,
         });
 
         return (
@@ -80,22 +83,26 @@ class TabBar extends PureComponent {
                 </ul>
                 <div className="tab-bar__route">
                     <Route exact path="/admin-home/create-new-hotel/main-info" component={HotelTab} />
-                    {hotelFormSubmitSucceeded && (
-                        <Fragment>
-                            <Route exact path="/admin-home/create-new-hotel/rooms" component={RoomTab} />
-                            {roomFormSubmitSucceeded && (
-                                <Fragment>
-                                    <Route
-                                        exact
-                                        path="/admin-home/create-new-hotel/services"
-                                        render={() => <ServiceTab />}
-                                    />
-                                    <Route exact path="/admin-home/create-new-hotel/photos" component={PhotoTab} />
-                                    <Route exact path="/admin-home/create-new-hotel/finish" component={FinishTab} />
-                                </Fragment>
-                            )}
-                        </Fragment>
-                    )}
+                    <Route
+                        exact
+                        path="/admin-home/create-new-hotel/rooms"
+                        component={isMainInfoFilled ? RoomTab : this.redirectToMainForm}
+                    />
+                    <Route
+                        exact
+                        path="/admin-home/create-new-hotel/services"
+                        render={isRoomFormFilled ? this.renderServiceTab : this.redirectToMainForm}
+                    />
+                    <Route
+                        exact
+                        path="/admin-home/create-new-hotel/photos"
+                        component={isServiceFormFilled ? PhotoTab : this.redirectToMainForm}
+                    />
+                    <Route
+                        exact
+                        path="/admin-home/create-new-hotel/finish"
+                        component={isPhotoFormFilled ? FinishTab : this.redirectToMainForm}
+                    />
                 </div>
             </div>
         );

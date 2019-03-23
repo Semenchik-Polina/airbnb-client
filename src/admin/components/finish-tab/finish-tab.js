@@ -51,7 +51,7 @@ class FinishTab extends PureComponent {
 
     render() {
         const {
-            hotelMainInfo, photos, roomTypes, serviceInfo,
+            mainInfo, photos, roomTypes, services,
         } = this.props.hotelInfo;
 
         const totalCapacity = roomTypes.reduce((total, room) => total + room.capacity * room.amount, 0);
@@ -61,8 +61,8 @@ class FinishTab extends PureComponent {
             <div className="finish-tab">
                 <div className="finish-tab__banner">
                     <div className="finish-tab__banner-info">
-                        <span className="finish-tab__banner-info-sity">Hotel in {hotelMainInfo.sity}</span>
-                        <span className="finish-tab__banner-info-name">{hotelMainInfo.hotelName}</span>
+                        <span className="finish-tab__banner-info-sity">Hotel in {mainInfo.sity}</span>
+                        <span className="finish-tab__banner-info-name">{mainInfo.hotelName}</span>
                     </div>
                     {photos.length > 0 && (
                         <div className="finish-tab__banner-image-container">
@@ -79,7 +79,7 @@ class FinishTab extends PureComponent {
                     <span className="finish-tab__overview-item">{totalRooms} rooms</span>
                 </div>
                 {photos.length > 0 && this.renderTourSection(photos)}
-                {serviceInfo.facilities && this.renderFacilitySection(serviceInfo.facilities)}
+                {services.facilities && this.renderFacilitySection(services.facilities)}
                 <Button className="finish-tab__submit" handleClick={this.handleClick} color="secondary">
                     Continue
                 </Button>

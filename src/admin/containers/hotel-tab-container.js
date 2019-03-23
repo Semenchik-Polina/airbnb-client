@@ -6,16 +6,14 @@ import HotelTab from '../components/hotel-tab/hotel-tab';
 import { adminActions } from '../actions/actions';
 
 export default connect(
-    null,
+    state => ({
+        initialValues: state.adminReducer.hotelInfo.mainInfo,
+    }),
     dispatch => ({
         addHotelInfo: data => dispatch(adminActions.addHotelInfo(data)),
     }),
 )(
     reduxForm({
         form: 'hotelForm',
-        initialValues: {
-            country: 'Belarus',
-        },
-        destroyOnUnmount: false,
     })(HotelTab),
 );

@@ -15,7 +15,7 @@ export const isFloat = (number) => {
     return reg.test(number) ? undefined : 'is not valid';
 };
 
-export const isAboveZero = number => (number > 0 ? undefined : 'have to be positive');
+export const isAboveZero = number => (+number > 0 ? undefined : 'have to be positive');
 
 export const minLength = min => (value) => {
     if (value && value.length < min) {

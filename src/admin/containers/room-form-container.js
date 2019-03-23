@@ -13,9 +13,5 @@ export default connect(
 )(
     reduxForm({
         form: 'roomForm',
-        initialValues: {
-            type: 'Single',
-        },
-        destroyOnUnmount: false,
     })(RoomForm),
 );

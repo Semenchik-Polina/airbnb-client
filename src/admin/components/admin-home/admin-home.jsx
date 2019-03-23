@@ -40,7 +40,7 @@ class AdminHome extends PureComponent {
                         <div key={index} className="finish-tab__tour-gallery-item">
                             <PhotoItem photoItem={this.renderHotel(hotel)} />
                             <span className="finish-tab__tour-gallery-item-categoty">
-                                {hotel.hotelMainInfo.hotelName}
+                                {hotel.mainInfo.hotelName}
                             </span>
                         </div>
                     ))}

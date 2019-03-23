@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 import Select from 'react-select';
 
@@ -13,10 +14,12 @@ class DropDownSelect extends PureComponent {
 
     static propTypes = {
         className: PropTypes.string,
-        options: PropTypes.arrayOf(PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            label: PropTypes.string.isRequired,
-        })).isRequired,
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.string.isRequired,
+                label: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
@@ -27,7 +30,7 @@ class DropDownSelect extends PureComponent {
     handleOnChange = option => this.props.input.onChange(option.value);
 
     render() {
-        const { options, className } = this.props;
+        const { options, className, input } = this.props;
 
         const selectClasses = classNames('dropdown-select', className);
 
@@ -58,7 +61,7 @@ class DropDownSelect extends PureComponent {
                 styles={customStyles}
                 options={options}
                 className={selectClasses}
-                defaultValue={options[0]}
+                value={_.find(options, { value: input.value }) || options[0]}
                 isSearchable
                 theme={customTheme}
                 onChange={this.handleOnChange}

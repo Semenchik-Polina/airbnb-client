@@ -23,6 +23,7 @@ function addHotelInfo(hotel) {
             type: adminTypes.ADD_HOTEL_MAIN_INFO,
             hotel,
         });
+        history.push('/admin-home/create-new-hotel/rooms');
     };
 }
 
@@ -32,6 +33,7 @@ function addServices(services) {
             type: adminTypes.ADD_SERVICE_INFO,
             services,
         });
+        history.push('/admin-home/create-new-hotel/photos');
     };
 }
 
@@ -55,17 +57,9 @@ function removePhotoItem(id) {
 
 function addRoomType(roomType) {
     return (dispatch) => {
-        const {
-            amount, capacity, cost, ...rest
-        } = roomType;
         dispatch({
             type: adminTypes.ADD_ROOM_TYPE,
-            roomType: {
-                amount: +amount,
-                capacity: +capacity,
-                cost: +cost,
-                ...rest,
-            },
+            roomType,
         });
     };
 }
