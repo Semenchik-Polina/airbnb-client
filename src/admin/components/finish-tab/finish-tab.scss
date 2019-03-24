@@ -7,6 +7,12 @@
         padding: 20px;
 
         flex-flow: row nowrap;
+        @media only screen and (max-width: 715px) {
+            padding: 0;
+
+            align-items: center;
+            flex-flow: column nowrap;
+        }
     }
 
     &__banner-info {
@@ -24,11 +30,17 @@
         flex-flow: column nowrap;
         justify-content: flex-start;
 
+        @media only screen and (max-width: 715px) {
+            margin-right: 0;
+            padding: 0;
+            width: 100%;
+        }
+
         &-sity {
             display: block;
 
             color: rgb(129, 129, 129);
-
+            padding: 50px 50px 0 20px;
             font: 700 1em "Roboto";
         }
 
@@ -36,7 +48,7 @@
             display: block;
 
             margin: 40px 0;
-
+            padding: 0 50px 50px 20px;
             color: rgb(63, 62, 62);
 
             font: 500 2.5em "Roboto";
@@ -81,8 +93,9 @@
 
             @media only screen and (max-width: 715px) {
                 margin: 10px;
-                flex-flow: column nowrap;
+
                 align-items: center;
+                flex-flow: column nowrap;
             }
         }
 
@@ -126,8 +139,8 @@
 
                 flex-flow: row nowrap;
                 @media only screen and (max-width: 865px) {
-                    flex-flow: column nowrap;
                     align-items: center;
+                    flex-flow: column nowrap;
                 }
             }
         }
