@@ -31,23 +31,50 @@ class FinishTab extends PureComponent {
         </section>
     );
 
-    renderFacilitySection = facilities => (
-        <section className="finish-tab__facilities">
-            <span className="finish-tab__facilities-header">Facilities and services</span>
-            <div className="finish-tab__facilities-container">
-                {facilities.map((item, index) => (
-                    <div key={index} className="finish-tab__facilities-container-item">
-                        <img
-                            className="finish-tab__facilities-container-item-image"
-                            src={`/images/facilities/${_.kebabCase(item)}.png`}
-                            alt="hotel"
-                        />
-                        <span className="finish-tab__facilities-container-item-facility">{item}</span>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
+    devideArray = (array, size) => {
+        const devidedArray = [];
+        for (let i = 0; i < Math.ceil(array.length / size); i += 1) {
+            devidedArray[i] = array.slice(i * size, i * size + size);
+        }
+
+        return devidedArray;
+    };
+
+    renderFacilitySection = (facilities) => {
+        let devidedFacilities = this.devideArray(facilities, 3);
+        devidedFacilities = this.devideArray(devidedFacilities, 2);
+
+        return (
+            <section className="finish-tab__facilities">
+                <span className="finish-tab__facilities-header">Facilities and services</span>
+                <div className="finish-tab__facilities-containers">
+                    {devidedFacilities.map((container, index) => (
+                        <div className="finish-tab__facilities-containers-wrapper" key={index}>
+                            {container.map((items, containerIndex) => (
+                                <div key={containerIndex} className="finish-tab__facilities-containers-wrapper-container">
+                                    {items.map((item, itemIndex) => (
+                                        <div
+                                            key={itemIndex}
+                                            className="finish-tab__facilities-containers-wrapper-container-item"
+                                        >
+                                            <img
+                                                className="finish-tab__facilities-containers-wrapper-container-item-image"
+                                                src={`/images/facilities/${_.kebabCase(item)}.png`}
+                                                alt="hotel"
+                                            />
+                                            <span className="finish-tab__facilities-containers-wrapper-container-item-facility">
+                                                {item}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+    };
 
     render() {
         const {
