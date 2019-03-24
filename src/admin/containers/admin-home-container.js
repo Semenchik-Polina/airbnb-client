@@ -10,5 +10,8 @@ export default connect(
     }),
     dispatch => ({
         fetchHotels: () => dispatch(adminActions.fetchHotels()),
+        removeHotel: id => dispatch(adminActions.removeHotel(id)),
+        startEditingHotel: hotel => dispatch(adminActions.startEditingHotel(hotel)),
+        startCreatingHotel: () => dispatch(adminActions.startCreatingHotel()),
     }),
 )(AdminHome);

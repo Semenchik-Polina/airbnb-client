@@ -8,6 +8,7 @@ const initialState = {
     roomTypes: [],
     services: {},
     photos: [],
+    id: '',
 };
 
 const hotelInfoReducer = (state = initialState, action) => {
@@ -78,6 +79,12 @@ const hotelInfoReducer = (state = initialState, action) => {
         return {
             ...state,
             roomTypes: [...roomTypes],
+        };
+    }
+    case adminTypes.FILL_HOTEL_INFO: {
+        const { hotel } = action;
+        return {
+            ...hotel,
         };
     }
     case adminTypes.RESET_HOTEL_INFO: {

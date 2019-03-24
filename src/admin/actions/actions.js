@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify';
 import _ from 'lodash';
-import { destroy } from 'redux-form';
 
 import history from '../../shared/tools/history';
 
@@ -101,27 +100,85 @@ function formatData(data) {
     const formData = new FormData();
     const images = _.flattenDeep(data.photos.map(item => item.photos));
     images.forEach(image => formData.append('image', image));
+
     const hotelInfo = JSON.stringify(data);
     formData.append('info', hotelInfo);
+
     return formData;
 }
 
 function createHotel(data) {
     return async (dispatch) => {
         try {
+            console.log(data);
             const formData = formatData(data);
-            await controllers.createHotel(formData);
-            showSuccessToast('Hotel created!');
+            if (!data.id) {
+                const {
+                    data: { hotel },
+                } = await controllers.createHotel(formData);
+
+                dispatch({
+                    type: adminTypes.ADD_NEW_HOTEL,
+                    hotel,
+                });
+
+                showSuccessToast('Hotel created!');
+            } else {
+                // const {
+                //     data: { hotel },
+                // } = await controllers.editHotel(formData);
+
+                dispatch({
+                    type: adminTypes.EDIT_HOTEL,
+                    data,
+                });
+                showSuccessToast('Hotel edited!');
+            }
+
             dispatch({
                 type: adminTypes.RESET_HOTEL_INFO,
             });
-            dispatch(destroy('hotelForm'));
-            dispatch(destroy('serviceForm'));
+
 
             history.push('/admin-home/');
         } catch (err) {
             showErrorToast(err);
         }
+    };
+}
+
+function removeHotel(id) {
+    return async (dispatch) => {
+        try {
+            // await controllers.removeHotel(id);
+            showSuccessToast('Hotel removed!');
+            dispatch({
+                type: adminTypes.REMOVE_HOTEL,
+                id,
+            });
+            history.push('/admin-home/');
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
+function startEditingHotel(hotel) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.FILL_HOTEL_INFO,
+            hotel,
+        });
+        history.push('/admin-home/create-new-hotel');
+    };
+}
+
+function startCreatingHotel() {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.RESET_HOTEL_INFO,
+        });
+        history.push('/admin-home/create-new-hotel');
     };
 }
 
@@ -135,4 +192,7 @@ export const adminActions = {
     createHotel,
     removePhotoItem,
     fetchHotels,
+    removeHotel,
+    startEditingHotel,
+    startCreatingHotel,
 };
