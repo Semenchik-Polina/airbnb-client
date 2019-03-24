@@ -149,10 +149,6 @@
             display: flex;
 
             flex-flow: row nowrap;
-            @media only screen and (max-width: 465px) {
-                align-items: center;
-                flex-flow: column nowrap;
-            }
         }
 
         &-containers-wrapper-container-item {
