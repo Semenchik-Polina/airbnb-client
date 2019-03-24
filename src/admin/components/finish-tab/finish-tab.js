@@ -24,12 +24,20 @@ class FinishTab extends PureComponent {
         </div>
     );
 
-    renderTourSection = photos => (
-        <section className="finish-tab__tour">
-            <span className="finish-tab__tour-header">Tour this hotel</span>
-            <div className="finish-tab__tour-gallery">{photos.map(this.renderPhotoItems)}</div>
-        </section>
-    );
+    renderTourSection = (photos) => {
+        const devidedPhotos = this.devideArray(photos, 4);
+
+        return (
+            <section className="finish-tab__tour">
+                <span className="finish-tab__tour-header">Tour this hotel</span>
+                {devidedPhotos.map((item, index) => (
+                    <div className="finish-tab__tour-wrapper" key={index}>
+                        <div className="finish-tab__tour-gallery">{item.map(this.renderPhotoItems)}</div>
+                    </div>
+                ))}
+            </section>
+        );
+    };
 
     devideArray = (array, size) => {
         const devidedArray = [];
@@ -51,7 +59,10 @@ class FinishTab extends PureComponent {
                     {devidedFacilities.map((container, index) => (
                         <div className="finish-tab__facilities-containers-wrapper" key={index}>
                             {container.map((items, containerIndex) => (
-                                <div key={containerIndex} className="finish-tab__facilities-containers-wrapper-container">
+                                <div
+                                    key={containerIndex}
+                                    className="finish-tab__facilities-containers-wrapper-container"
+                                >
                                     {items.map((item, itemIndex) => (
                                         <div
                                             key={itemIndex}
