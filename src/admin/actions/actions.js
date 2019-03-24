@@ -110,7 +110,6 @@ function formatData(data) {
 function createHotel(data) {
     return async (dispatch) => {
         try {
-            console.log(data);
             const formData = formatData(data);
             if (!data.id) {
                 const {
