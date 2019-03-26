@@ -150,7 +150,23 @@ export function createHotel(data) {
     };
 }
 
-function startEditingHotel(hotel) {
+export function removeHotel(id) {
+    return async (dispatch) => {
+        try {
+            // await controllers.removeHotel(id);
+            showSuccessToast('Hotel removed!');
+            dispatch({
+                type: adminTypes.REMOVE_HOTEL,
+                id,
+            });
+            history.push('/admin-home/');
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
+export function startEditingHotel(hotel) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.FILL_HOTEL_INFO,
@@ -160,7 +176,7 @@ function startEditingHotel(hotel) {
     };
 }
 
-function startCreatingHotel() {
+export function startCreatingHotel() {
     return (dispatch) => {
         dispatch({
             type: adminTypes.RESET_HOTEL_INFO,
@@ -168,21 +184,6 @@ function startCreatingHotel() {
         history.push('/admin-home/create-new-hotel');
     };
 }
-
-export const adminActions = {
-    addHotelInfo,
-    addRoomType,
-    addServices,
-    addPhotos,
-    deleteRoomType,
-    editRoomType,
-    createHotel,
-    removePhotoItem,
-    fetchHotels,
-    removeHotel,
-    startEditingHotel,
-    startCreatingHotel,
-};
 
 export function setEditableId(id) {
     return (dispatch) => {

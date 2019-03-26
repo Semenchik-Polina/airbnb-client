@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { NavLink, Redirect } from 'react-router-dom';
 import Tool from '../../../shared/components/tool/tool';
 import PhotoItem from '../photo-item/photo-item';
 
@@ -10,37 +9,48 @@ import './admin-panel.scss';
 
 class AdminPanel extends PureComponent {
     static propTypes = {
-        hotels: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            mainInfo: PropTypes.shape({
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
-                address: PropTypes.string.isRequired,
-            }).isRequired,
-            roomTypes: PropTypes.arrayOf(PropTypes.shape({
+        hotels: PropTypes.arrayOf(
+            PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                amount: PropTypes.number.isRequired,
-                capacity: PropTypes.number.isRequired,
-                cost: PropTypes.number.isRequired,
-                type: PropTypes.string.isRequired,
-            })).isRequired,
-            services: PropTypes.shape({
-                internet: PropTypes.string.isRequired,
-                parking: PropTypes.string.isRequired,
-                breakfast: PropTypes.string.isRequired,
-                facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-            }).isRequired,
-            photoTour: PropTypes.arrayOf(PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                type: PropTypes.string.isRequired,
-                photos: PropTypes.arrayOf(PropTypes.shape({
-                    src: PropTypes.string.isRequired,
-                })).isRequired,
-            })).isRequired,
-        })).isRequired,
+                mainInfo: PropTypes.shape({
+                    country: PropTypes.string.isRequired,
+                    city: PropTypes.string.isRequired,
+                    hotelName: PropTypes.string.isRequired,
+                    address: PropTypes.string.isRequired,
+                }).isRequired,
+                roomTypes: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        amount: PropTypes.number.isRequired,
+                        capacity: PropTypes.number.isRequired,
+                        cost: PropTypes.number.isRequired,
+                        type: PropTypes.string.isRequired,
+                    }),
+                ).isRequired,
+                services: PropTypes.shape({
+                    internet: PropTypes.string.isRequired,
+                    parking: PropTypes.string.isRequired,
+                    breakfast: PropTypes.string.isRequired,
+                    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+                }).isRequired,
+                photoTour: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        type: PropTypes.string.isRequired,
+                        photos: PropTypes.arrayOf(
+                            PropTypes.shape({
+                                src: PropTypes.string.isRequired,
+                            }),
+                        ).isRequired,
+                    }),
+                ).isRequired,
+            }),
+        ).isRequired,
 
         fetchHotels: PropTypes.func.isRequired,
+        removeHotel: PropTypes.func.isRequired,
+        startEditingHotel: PropTypes.func.isRequired,
+        startCreatingHotel: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -51,18 +61,26 @@ class AdminPanel extends PureComponent {
         photos: _.flattenDeep(photoTour.map(tour => tour.photos)),
     });
 
-    removeHotel = hotel => () => {};
+    removeHotel = hotel => () => {
+        this.props.removeHotel(hotel.id);
+    };
 
-    editHotel = hotel => () => {};
+    startEditingHotel = hotel => () => {
+        this.props.startEditingHotel(hotel);
+    };
+
+    startCreatingHotel = () => {
+        this.props.startCreatingHotel();
+    };
 
     render() {
         return (
             <div className="admin-panel">
                 <div className="admin-panel__activity">
                     <div className="admin-panel__activity-image" />
-                    <NavLink className="admin-panel__activity-link" exact to="/admin-home/create-new-hotel/main-info">
+                    <button type="button" className="admin-home__activity-link" onClick={this.startCreatingHotel}>
                         Create an awesome new hotel
-                    </NavLink>
+                    </button>
                 </div>
                 {this.props.hotels.length > 0 && (
                     <section className="admin-panel__hotels">

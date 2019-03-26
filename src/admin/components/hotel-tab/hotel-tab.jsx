@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { Field, Form } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
@@ -14,18 +13,10 @@ import './hotel-tab.scss';
 
 class HotelTab extends PureComponent {
     static propTypes = {
-        initialValues: PropTypes.shape().isRequired,
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         addHotelInfo: PropTypes.func.isRequired,
-        initialize: PropTypes.func.isRequired,
-    };
-
-    componentDidMount = () => {
-        if (_.isEmpty(this.props.initialValues)) {
-            this.props.initialize({ country: 'Russia' });
-        }
     };
 
     onSubmit = (values) => {
