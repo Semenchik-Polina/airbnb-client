@@ -50,7 +50,7 @@ class HotelTab extends PureComponent {
                             placeholder="Hotel name"
                         />
                     </label>
-                    <div className="hotel-tab__form-section">Where is your hotel placed?</div>
+                    <span className="hotel-tab__form-section">Where is your hotel placed?</span>
                     <label htmlFor="hotelName">
                         {'Street and house number'}
                         <Field

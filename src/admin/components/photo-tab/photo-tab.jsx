@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../../../shared/components/button/button';
@@ -53,10 +53,10 @@ class PhotoTab extends PureComponent {
         return (
             <div className="photo-tab">
                 {this.state.isFormHidden ? (
-                    <Fragment>
-                        <div className="photo-tab__buttons-container">
+                    <div className="photo-tab__content">
+                        <div className="photo-tab__content-buttons-container">
                             <Button
-                                className="photo-tab__buttons-container-item"
+                                className="photo-tab__content-buttons-container-item"
                                 handleClick={this.showForm}
                                 color="white"
                             >
@@ -64,7 +64,7 @@ class PhotoTab extends PureComponent {
                             </Button>
                             {this.props.photoTour.length > 0 && (
                                 <Button
-                                    className="photo-tab__buttons-container-item"
+                                    className="photo-tab__content-buttons-container-item"
                                     handleClick={this.handleClick}
                                     color="secondary"
                                 >
@@ -73,16 +73,16 @@ class PhotoTab extends PureComponent {
                             )}
                         </div>
                         {this.props.photoTour.length === 0 && (
-                            <div className="photo-tab__photo-container">
+                            <div className="photo-tab__content-photo-container">
                                 <PhotoItem
                                     photoItem={{ photos: [{ src: '/images/hotel-default.jpg' }], type: 'Default' }}
                                 />
                             </div>
                         )}
                         {this.props.photoTour.map(this.renderPhotoItems)}
-                    </Fragment>
+                    </div>
                 ) : (
-                    <PhotoForm hideForm={this.hideForm} />
+                    <PhotoForm className="photo-tab__content" hideForm={this.hideForm} />
                 )}
             </div>
         );

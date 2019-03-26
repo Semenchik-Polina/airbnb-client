@@ -17,6 +17,8 @@
         flex-flow: column nowrap;
 
         &-section {
+            display: block;
+
             margin: 10px 0;
 
             font: 400 1.3em "Roboto";

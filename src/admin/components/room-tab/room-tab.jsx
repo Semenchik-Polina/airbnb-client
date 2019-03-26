@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import history from '../../../shared/tools/history';
@@ -56,14 +56,14 @@ class RoomTab extends PureComponent {
         return (
             <div className="room-tab">
                 {isFormHidden ? (
-                    <Fragment>
+                    <div className="room-tab__content">
                         {rooms.length > 0 && (
                             <RoomList rooms={rooms} deleteRoomType={deleteRoomType} editRoomType={this.editRoomType} />
                         )}
-                        <div className="room-tab__buttons-container">
+                        <div className="room-tab__content-buttons-container">
                             <Button
                                 type="button"
-                                className="room-tab__buttons-container-item"
+                                className="room-tab__content-buttons-container-item"
                                 color="white"
                                 handleClick={this.showForm}
                             >
@@ -71,7 +71,7 @@ class RoomTab extends PureComponent {
                             </Button>
                             {rooms.length > 0 && (
                                 <Button
-                                    className="room-tab__buttons-container-item"
+                                    className="room-tab__content-buttons-container-item"
                                     color="secondary"
                                     handleClick={this.handleSubmit}
                                 >
@@ -79,9 +79,9 @@ class RoomTab extends PureComponent {
                                 </Button>
                             )}
                         </div>
-                    </Fragment>
+                    </div>
                 ) : (
-                    <RoomForm hideForm={this.hideForm} />
+                    <RoomForm className="room-tab__content" hideForm={this.hideForm} />
                 )}
             </div>
         );

@@ -1,8 +1,16 @@
 .room-tab {
-    // width: 100%;
-    // max-width: 500px;
+    display: flex;
 
-    &__buttons-container {
+    width: 100%;
+
+    justify-content: center;
+
+    &__content {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    &__content-buttons-container {
         display: flex;
 
         margin: 5% 0;
@@ -10,7 +18,7 @@
         justify-content: row nowrap;
     }
 
-    &__buttons-container-item {
+    &__content-buttons-container-item {
         margin-right: 5%;
 
         &:last-child {
