@@ -78,7 +78,7 @@ class AdminPanel extends PureComponent {
             <div className="admin-panel">
                 <div className="admin-panel__activity">
                     <div className="admin-panel__activity-image" />
-                    <button type="button" className="admin-home__activity-link" onClick={this.startCreatingHotel}>
+                    <button type="button" className="admin-panel__activity-link" onClick={this.startCreatingHotel}>
                         Create an awesome new hotel
                     </button>
                 </div>
@@ -96,7 +96,7 @@ class AdminPanel extends PureComponent {
                                     <Tool
                                         src="/images/tools/edit.png"
                                         className="admin-panel__hotels-container-item-edit"
-                                        handleClick={this.editHotel(hotel)}
+                                        handleClick={this.startEditingHotel(hotel)}
                                     />
                                     <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
                                     <span className="admin-panel__hotels-container-item-name">

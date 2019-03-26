@@ -34,33 +34,29 @@
         &:active {
             background-color: rgb(233, 80, 80);
         }
+    }
 
-        &-type {
-            display: block;
-        }
+    &__content-photo-container-type {
+        display: block;
 
-        &__content-photo-container-type {
-            display: block;
+        margin: 10px 0;
 
-            margin: 10px 0;
+        font: 500 1.5em "Roboto";
+    }
 
-            font: 500 1.5em "Roboto";
-        }
+    &__content-buttons-container {
+        display: flex;
 
-        &__content-buttons-container {
-            display: flex;
+        margin-bottom: 10px;
 
-            margin-bottom: 10px;
+        justify-content: row wrap;
+    }
 
-            justify-content: row wrap;
-        }
+    &__content-buttons-container-item {
+        margin-right: 5%;
 
-        &__content-buttons-container-item {
-            margin-right: 5%;
-
-            &:last-child {
-                margin-right: 0;
-            }
+        &:last-child {
+            margin-right: 0;
         }
     }
 }

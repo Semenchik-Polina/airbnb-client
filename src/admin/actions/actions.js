@@ -159,7 +159,6 @@ export function removeHotel(id) {
                 type: adminTypes.REMOVE_HOTEL,
                 id,
             });
-            history.push('/admin-home/');
         } catch (err) {
             showErrorToast(err);
         }
@@ -201,4 +200,3 @@ export function unsetEditableId() {
         });
     };
 }
-
