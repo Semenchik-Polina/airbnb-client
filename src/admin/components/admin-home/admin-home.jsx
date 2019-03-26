@@ -1,14 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
+import React, { PureComponent, Fragment } from 'react';
 
-import { withRouter, Route, Redirect } from 'react-router-dom';
-
+import { Route, Redirect } from 'react-router-dom';
 import Tool from '../../../shared/components/tool/tool';
-import TabBar from '../../containers/tab-bar-container';
-import PhotoItem from '../photo-item/photo-item';
+import AdminPanel from '../../containers/admin-panel-container';
 
-import './admin-home.scss';
+import TabBar from '../../containers/tab-bar-container';
 
 class AdminHome extends PureComponent {
     static propTypes = {
@@ -81,13 +77,13 @@ class AdminHome extends PureComponent {
 
     render() {
         return (
-            <div className="admin-home">
-                <Route exact path="/admin-home" component={this.renderAdminActivity} />
+            <Fragment>
+                <Route exact path="/admin-home" component={AdminPanel} />
                 <Route exact path="/admin-home/create-new-hotel" component={this.renderRiderect} />
                 <Route path="/admin-home/create-new-hotel/" component={TabBar} />
-            </div>
+            </Fragment>
         );
     }
 }
 
-export default withRouter(AdminHome);
+export default AdminHome;

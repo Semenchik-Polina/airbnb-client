@@ -7,8 +7,8 @@ const initialState = {
     mainInfo: {},
     roomTypes: [],
     services: {},
-    photos: [],
-    id: '',
+    photoTour: [],
+    editableId: null,
 };
 
 const hotelInfoReducer = (state = initialState, action) => {
@@ -47,30 +47,30 @@ const hotelInfoReducer = (state = initialState, action) => {
         };
     }
     case adminTypes.ADD_PHOTOS: {
-        const { photos } = action;
-        const { type } = photos;
+        const { photoTour } = action;
+        const { type } = photoTour;
 
-        const newPhotos = _.cloneDeep(state.photos);
+        const newPhotos = _.cloneDeep(state.photoTour);
         const existingItem = _.find(newPhotos, { type });
         if (existingItem) {
-            existingItem.photos = [...existingItem.photos, ...photos.photos];
+            existingItem.photos = [...existingItem.photos, ...photoTour.photos];
         } else {
-            photos.id = uuidv1();
-            newPhotos.push(photos);
+            photoTour.id = uuidv1();
+            newPhotos.push(photoTour);
         }
 
         return {
             ...state,
-            photos: newPhotos,
+            photoTour: newPhotos,
         };
     }
     case adminTypes.REMOVE_PHOTO_ITEM: {
         const { id } = action;
-        const items = state.photos.filter(item => item.id !== id);
+        const items = state.photoTour.filter(item => item.id !== id);
 
         return {
             ...state,
-            photos: items,
+            photoTour: items,
         };
     }
     case adminTypes.DELETE_ROOM_TYPE: {
@@ -89,6 +89,19 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case adminTypes.RESET_HOTEL_INFO: {
         return initialState;
+    }
+    case adminTypes.SET_EDITABLE_ID: {
+        const { id } = action;
+        return {
+            ...state,
+            editableId: id,
+        };
+    }
+    case adminTypes.UNSET_EDITABLE_ID: {
+        return {
+            ...state,
+            editableId: null,
+        };
     }
     default:
         return state;

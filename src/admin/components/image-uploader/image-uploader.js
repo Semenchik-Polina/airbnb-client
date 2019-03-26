@@ -21,40 +21,29 @@ class ImageUploader extends PureComponent {
     };
 
     state = {
-        files: [],
+        images: [],
     };
 
     handleDrop = (acceptedFiles) => {
         this.setState(state => ({
-            files: [
-                ...state.files,
-                ...acceptedFiles.map(file => Object.assign(file, { preview: URL.createObjectURL(file) })),
+            images: [
+                ...state.images,
+                ...acceptedFiles.map(file => Object.assign(file, { src: URL.createObjectURL(file) })),
             ],
         }));
 
-        this.props.input.onChange(this.state.files);
+        this.props.input.onChange(this.state.images);
     };
 
     removeItem = removingFile => () => {
-        const newFiles = this.state.files.filter(file => file !== removingFile);
+        const newFiles = this.state.images.filter(file => file !== removingFile);
 
         this.setState(() => ({
-            files: newFiles,
+            images: newFiles,
         }));
 
         this.props.input.onChange(newFiles.length > 0 ? newFiles : null);
     };
-
-    renderUploadedImages = () => this.state.files.map((file, index) => (
-        <div className="uploader__aside-container" key={index}>
-            <Tool
-                src="/images/tools/delete.png"
-                className="uploader__aside-container-delete"
-                handleClick={this.removeItem(file)}
-            />
-            <img className="uploader__aside-container-image" src={file.preview} alt="hotel" />
-        </div>
-    ));
 
     renderUploader = ({ getRootProps, getInputProps }) => {
         const {
@@ -76,7 +65,20 @@ class ImageUploader extends PureComponent {
                     <input {...getInputProps()} />
                     <p className={activeZoneClasses}>Drag `n` drop photos here, or click to select photos</p>
                 </div>
-                {this.state.files.length > 0 && <aside className="uploader__aside">{this.renderUploadedImages()}</aside>}
+                {this.state.images.length > 0 && (
+                    <aside className="uploader__aside">
+                        {this.state.images.map((file, index) => (
+                            <div className="uploader__aside-container" key={index}>
+                                <Tool
+                                    src="/images/tools/delete.png"
+                                    className="uploader__aside-container-delete"
+                                    handleClick={this.removeItem(file)}
+                                />
+                                <img className="uploader__aside-container-image" src={file.src} alt="hotel" />
+                            </div>
+                        ))}
+                    </aside>
+                )}
             </section>
         );
     };

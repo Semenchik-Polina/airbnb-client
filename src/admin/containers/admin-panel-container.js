@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import AdminHome from '../components/admin-home/admin-home';
+import AdminPanel from '../components/admin-panel/admin-panel';
 
-import { adminActions } from '../actions/actions';
+import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
@@ -14,4 +14,4 @@ export default connect(
         startEditingHotel: hotel => dispatch(adminActions.startEditingHotel(hotel)),
         startCreatingHotel: () => dispatch(adminActions.startCreatingHotel()),
     }),
-)(AdminHome);
+)(AdminPanel);

@@ -1,0 +1,136 @@
+.admin-panel {
+    font: 100 1em "Roboto";
+
+    &__link {
+        text-align: center;
+        text-decoration: none;
+
+        color: rgb(158, 152, 152);
+
+        font-weight: 400;
+    }
+
+    &__activity {
+        display: flex;
+
+        padding: 24px 20px;
+
+        border-bottom: 1px solid #ebebeb;
+
+        @media only screen and (max-width: 515px) {
+            padding: 24px 0;
+        }
+    }
+
+    &__activity-image {
+        width: 96px;
+        height: 64px;
+        margin: 0 10px;
+
+        border-radius: 5px;
+        background-image: url("https://a0.muscache.com/pictures/acbbe4a6-18b3-4c73-a7f6-891dbdb4d97b.jpg");
+        background-size: cover;
+    }
+
+    &__activity-link {
+        text-align: center;
+        text-decoration: none;
+
+        color: rgb(68, 67, 67);
+
+        font: 500 1.5em "Roboto";
+        font-weight: 400;
+
+        align-self: center;
+
+        @media only screen and (max-width: 515px) {
+            text-align: left;
+
+            font: 800 1em "Roboto";
+        }
+
+        &:hover {
+            color: rgb(2, 140, 144);
+        }
+    }
+
+    &__hotels {
+        padding: 10px;
+    }
+
+    &__hotels-header {
+        display: block;
+
+        padding: 10px 20px 0 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
+
+        @media only screen and (max-width: 515px) {
+            padding: 10px 4px;
+        }
+    }
+
+    &__hotels-container {
+        display: flex;
+
+        @media only screen and (max-width: 515px) {
+            align-items: center;
+            flex-flow: column nowrap;
+        }
+    }
+
+    &__hotels-container-item {
+        position: relative;
+
+        max-width: 400px;
+        margin: 20px;
+
+        @media only screen and (max-width: 515px) {
+            margin: 5px;
+        }
+    }
+
+    &__hotels-container-item-delete {
+        position: absolute;
+        z-index: 3;
+        top: -13px;
+        left: -5px;
+
+        &:hover {
+            transition: 0.5s;
+
+            background-color: rgb(243, 172, 172);
+        }
+
+        &:active {
+            background-color: rgb(233, 80, 80);
+        }
+    }
+
+    &__hotels-container-item-edit {
+        position: absolute;
+        z-index: 3;
+        top: -13px;
+        right: -5px;
+
+        &:hover {
+            transition: 0.5s;
+
+            background-color: rgb(160, 228, 235);
+        }
+
+        &:active {
+            background-color: rgb(6, 139, 151);
+        }
+    }
+
+    &__hotels-container-item-name {
+        display: block;
+
+        margin: 10px 0;
+
+        font: 500 1.1em "Roboto";
+    }
+}

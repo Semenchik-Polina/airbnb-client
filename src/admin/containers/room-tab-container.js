@@ -3,7 +3,7 @@ import { destroy } from 'redux-form';
 
 import RoomTab from '../components/room-tab/room-tab';
 
-import { adminActions } from '../actions/actions';
+import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
@@ -12,6 +12,8 @@ export default connect(
     dispatch => ({
         addRooms: data => dispatch(adminActions.addRooms(data)),
         deleteRoomType: id => dispatch(adminActions.deleteRoomType(id)),
+        setEditableId: id => dispatch(adminActions.setEditableId(id)),
+        unsetEditableId: () => dispatch(adminActions.unsetEditableId()),
         destroyRoomForm: () => dispatch(destroy('roomForm')),
     }),
 )(RoomTab);

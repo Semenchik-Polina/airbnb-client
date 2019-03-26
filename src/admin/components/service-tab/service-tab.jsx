@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { Field, Form } from 'redux-form';
 import Button from '../../../shared/components/button/button';
@@ -17,19 +16,6 @@ class ServiceTab extends PureComponent {
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         addServices: PropTypes.func.isRequired,
-        initialize: PropTypes.func.isRequired,
-        initialValues: PropTypes.shape().isRequired,
-    };
-
-    componentDidMount = () => {
-        if (_.isEmpty(this.props.initialValues)) {
-            this.props.initialize({
-                internet: 'Yes, for free',
-                parking: 'Yes, for free',
-                breakfast: 'Yes',
-                facilities: [],
-            });
-        }
     };
 
     onSubmit = (values) => {
@@ -40,44 +26,46 @@ class ServiceTab extends PureComponent {
         const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-            <Form className="service-form" onSubmit={handleSubmit(this.onSubmit)} noValidate>
-                <div className="service-form__header">Facilities and Services</div>
-                <div className="service-form__section">Internet</div>
-                <label htmlFor="internet">
-                    {'Will your guests have access to the Internet?'}
-                    <Field
-                        className="service-form__field"
-                        name="internet"
-                        component={DropDownSelect}
-                        options={SERVICE_ANSWERS}
-                    />
-                </label>
-                <div className="service-form__section">Parking</div>
-                <label htmlFor="parking">
-                    {'Is parking available?'}
-                    <Field
-                        className="service-form__field"
-                        name="parking"
-                        component={DropDownSelect}
-                        options={SERVICE_ANSWERS}
-                    />
-                </label>
-                <div className="service-form__section">Breakfast</div>
-                <label htmlFor="breakfast">
-                    {'Is breakfast served for guests?'}
-                    <Field
-                        className="service-form__field"
-                        name="breakfast"
-                        component={DropDownSelect}
-                        options={SERVICE_ANSWERS}
-                    />
-                </label>
-                <div className="service-form__section">Another popular facilities</div>
-                <Field name="facilities" component={CheckboxGroup} options={POPULAR_FACILITIES} />
-                <Button className="service-form__submit" color="secondary" disabled={pristine || submitting}>
-                    {'Continue'}
-                </Button>
-            </Form>
+            <div className="service-tab">
+                <Form className="service-tab__form" onSubmit={handleSubmit(this.onSubmit)} noValidate>
+                    <div className="service-tab__form-header">Facilities and Services</div>
+                    <div className="service-tab__form-section">Internet</div>
+                    <label htmlFor="internet">
+                        {'Will your guests have access to the Internet?'}
+                        <Field
+                            className="service-tab__form-field"
+                            name="internet"
+                            component={DropDownSelect}
+                            options={SERVICE_ANSWERS}
+                        />
+                    </label>
+                    <div className="service-tab__form-section">Parking</div>
+                    <label htmlFor="parking">
+                        {'Is parking available?'}
+                        <Field
+                            className="service-tab__form-field"
+                            name="parking"
+                            component={DropDownSelect}
+                            options={SERVICE_ANSWERS}
+                        />
+                    </label>
+                    <div className="service-tab__form-section">Breakfast</div>
+                    <label htmlFor="breakfast">
+                        {'Is breakfast served for guests?'}
+                        <Field
+                            className="service-tab__form-field"
+                            name="breakfast"
+                            component={DropDownSelect}
+                            options={SERVICE_ANSWERS}
+                        />
+                    </label>
+                    <div className="service-tab__form-section">Another popular facilities</div>
+                    <Field name="facilities" component={CheckboxGroup} options={POPULAR_FACILITIES} />
+                    <Button className="service-tab__form-submit" color="secondary" disabled={pristine || submitting}>
+                        {'Continue'}
+                    </Button>
+                </Form>
+            </div>
         );
     }
 }

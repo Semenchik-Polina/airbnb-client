@@ -7,7 +7,7 @@ import './menu.scss';
 
 class Menu extends PureComponent {
     static defaultProps = {
-        user: {},
+        user: null,
     };
 
     static propTypes = {
@@ -25,7 +25,7 @@ class Menu extends PureComponent {
         const {
             showSignupModal, showLoginModal, logout, user,
         } = this.props;
-        const isUserValidated = Boolean(Object.entries(user).length);
+        const isUserValidated = !!user;
 
         const homeUrl = isUserValidated && (user.role === 'Admin' ? '/admin-home' : '/');
 

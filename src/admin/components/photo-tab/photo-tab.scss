@@ -2,12 +2,19 @@
     display: flex;
 
     width: 100%;
-    max-width: 500px;
 
-    flex-flow: column nowrap;
     justify-content: center;
 
-    &__photo-container {
+    &__content {
+        display: flex;
+
+        width: 100%;
+        max-width: 500px;
+
+        flex-flow: column nowrap;
+    }
+
+    &__content-photo-container {
         position: relative;
 
         display: flex;
@@ -16,28 +23,33 @@
         padding-top: 15px;
 
         flex-flow: column nowrap;
+    }
 
-        &-delete {
-            position: absolute;
-            z-index: 3;
-            top: -3px;
-            left: -10px;
-            
-            &:active {
-                background-color: rgb(233, 80, 80);
-            }
+    &__content-photo-container-delete {
+        position: absolute;
+        z-index: 3;
+        top: -3px;
+        left: -10px;
+
+        &:active {
+            background-color: rgb(233, 80, 80);
         }
         
         &-type {
             display: block;
 
-            margin: 10px 0;
-
-            font: 500 1.5em "Roboto";
-        }
     }
 
-    &__buttons-container {
+
+    &__content-photo-container-type {
+        display: block;
+
+        margin: 10px 0;
+
+        font: 500 1.5em "Roboto";
+    }
+
+    &__content-buttons-container {
         display: flex;
 
         margin-bottom: 10px;
@@ -45,7 +57,7 @@
         justify-content: row wrap;
     }
 
-    &__buttons-container-item {
+    &__content-buttons-container-item {
         margin-right: 5%;
 
         &:last-child {

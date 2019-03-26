@@ -31,40 +31,43 @@
         justify-content: flex-start;
 
         @media only screen and (max-width: 715px) {
+            width: 100%;
             margin-right: 0;
             padding: 0;
-            width: 100%;
         }
+    }
 
-        &-sity {
-            display: block;
+    &__banner-info-sity {
+        display: block;
 
-            color: rgb(129, 129, 129);
-            padding: 50px 50px 0 20px;
-            font: 700 1em "Roboto";
-        }
+        padding: 50px 50px 0 20px;
 
-        &-name {
-            display: block;
+        color: rgb(129, 129, 129);
 
-            margin: 40px 0;
-            padding: 0 50px 50px 20px;
-            color: rgb(63, 62, 62);
+        font: 700 1em "Roboto";
+    }
 
-            font: 500 2.5em "Roboto";
-        }
+    &__banner-info-name {
+        display: block;
+
+        margin: 40px 0;
+        padding: 0 50px 50px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
     }
 
     &__banner-image-container {
         flex: auto;
+    }
 
-        &-item {
-            width: 100%;
-            min-height: 600px;
-            max-height: 700px;
+    &__banner-image-container-item {
+        width: 100%;
+        min-height: 600px;
+        max-height: 700px;
 
-            object-fit: cover;
-        }
+        object-fit: cover;
     }
 
     &__overview {
@@ -73,122 +76,118 @@
         font: 500 1.25em "Roboto";
     }
 
-    &__tour {
-        &-header {
-            display: block;
+    &__tour-header {
+        display: block;
 
-            padding: 10px 20px;
+        padding: 10px 20px;
 
-            color: rgb(63, 62, 62);
+        color: rgb(63, 62, 62);
 
-            font: 500 2.5em "Roboto";
-        }
+        font: 500 2.5em "Roboto";
+    }
 
-        &-gallery {
-            display: flex;
+    &__tour-gallery {
+        display: flex;
 
-            padding: 10px;
+        padding: 10px;
 
-            flex-flow: row nowrap;
+        flex-flow: row nowrap;
 
-            @media only screen and (max-width: 715px) {
-                margin: 10px;
+        @media only screen and (max-width: 715px) {
+            margin: 10px;
 
-                align-items: center;
-                flex-flow: column nowrap;
-            }
-        }
-
-        &-gallery-item {
-            max-width: 550px;
-            padding: 10px;
-        }
-
-        &-gallery-item-categoty {
-            display: block;
-
-            margin: 10px 0;
-
-            color: rgb(63, 62, 62);
-
-            font: 500 1.5em "Roboto";
+            align-items: center;
+            flex-flow: column nowrap;
         }
     }
 
-    &__facilities {
-        &-header {
-            display: block;
+    &__tour-gallery-item {
+        max-width: 550px;
+        padding: 10px;
+    }
 
-            padding: 10px 20px;
+    &__tour-gallery-item-categoty {
+        display: block;
 
-            color: rgb(63, 62, 62);
+        margin: 10px 0;
 
-            font: 500 2.5em "Roboto";
-        }
+        color: rgb(63, 62, 62);
 
-        &-containers {
-            display: flex;
+        font: 500 1.5em "Roboto";
+    }
 
-            flex-flow: row wrap;
-            justify-content: flex-start;
+    &__facilities-header {
+        display: block;
 
-            &-wrapper {
-                display: flex;
+        padding: 10px 20px;
 
-                width: 100%;
+        color: rgb(63, 62, 62);
 
-                flex-flow: row nowrap;
-                @media only screen and (max-width: 865px) {
-                    align-items: center;
-                    flex-flow: column nowrap;
-                }
-            }
-        }
+        font: 500 2.5em "Roboto";
+    }
 
-        &-containers-wrapper-container {
-            display: flex;
+    &__facilities-containers {
+        display: flex;
 
-            flex-flow: row nowrap;
-        }
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
 
-        &-containers-wrapper-container-item {
-            display: flex;
+    &__facilities-containers-wrapper {
+        display: flex;
 
-            max-width: 200px;
-            margin: 10px;
+        width: 100%;
 
-            background: rgb(231, 231, 231);
-
+        flex-flow: row nowrap;
+        @media only screen and (max-width: 865px) {
+            align-items: center;
             flex-flow: column nowrap;
         }
+    }
 
-        &-containers-wrapper-container-item-image {
-            display: block;
+    &__facilities-containers-wrapper-container {
+        display: flex;
 
-            width: 100%;
-        }
+        flex-flow: row nowrap;
+    }
 
-        &-containers-wrapper-container-item-facility {
-            display: block;
+    &__facilities-containers-wrapper-container-item {
+        display: flex;
 
-            padding: 10px 0;
+        max-width: 200px;
+        margin: 10px;
 
-            text-align: center;
+        background: rgb(231, 231, 231);
 
-            color: rgb(63, 63, 63);
-        }
+        flex-flow: column nowrap;
+    }
+
+    &__facilities-containers-wrapper-container-item-image {
+        display: block;
+
+        width: 100%;
+    }
+
+    &__facilities-containers-wrapper-container-item-facility {
+        display: block;
+
+        padding: 10px 0;
+
+        text-align: center;
+
+        color: rgb(63, 63, 63);
     }
 
     &__photo-container {
         flex: auto;
+    }
 
-        &-item {
-            width: 100%;
-            min-height: 600px;
-            max-height: 700px;
+    &__photo-container-item {
+        width: 100%;
+        min-height: 600px;
+        max-height: 700px;
 
-            object-fit: cover;
-        }
+        object-fit: cover;
     }
 
     &__submit {

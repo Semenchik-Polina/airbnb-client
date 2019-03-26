@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 
 import PhotoTab from '../components/photo-tab/photo-tab';
 
-import { adminActions } from '../actions/actions';
+import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
-        hotelInfo: state.adminReducer.hotelInfo,
+        photoTour: state.adminReducer.hotelInfo.photoTour,
     }),
     dispatch => ({
         removePhotoItem: index => dispatch(adminActions.removePhotoItem(index)),

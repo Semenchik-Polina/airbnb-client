@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classNames';
+
 import { Field, Form } from 'redux-form';
 
 import Button from '../../../shared/components/button/button';
@@ -12,24 +14,29 @@ import * as validators from '../../../shared/tools/validators';
 import './photo-form.scss';
 
 class PhotoForm extends PureComponent {
+    static defaultProps = {
+        className: '',
+    };
+
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         addPhotos: PropTypes.func.isRequired,
-        destroyPhotoForm: PropTypes.func.isRequired,
         hideForm: PropTypes.func.isRequired,
+        className: PropTypes.string,
     };
 
     handleSubmit = (values) => {
         this.props.addPhotos(values);
-        this.props.destroyPhotoForm();
         this.props.hideForm();
     };
 
     render() {
-        const { handleSubmit, hideForm } = this.props;
+        const { handleSubmit, hideForm, className } = this.props;
+
+        const formClasses = classNames('photo-form', className);
 
         return (
-            <Form className="photo-form" onSubmit={handleSubmit(this.handleSubmit)}>
+            <Form className={formClasses} onSubmit={handleSubmit(this.handleSubmit)}>
                 <label htmlFor="type">
                     {'Choose hotel zone'}
                     <Field className="photo-form__field" name="type" component={DropDownSelect} options={HOTEL_ZONES} />
