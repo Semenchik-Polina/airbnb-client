@@ -7,6 +7,29 @@ import Select from 'react-select';
 
 import './dropdown-select.scss';
 
+const customStyles = {
+    input: provided => ({
+        ...provided,
+        paddingTop: 10,
+        paddingBottom: 10,
+    }),
+    control: provided => ({
+        ...provided,
+        boxShadow: 'none',
+    }),
+};
+
+const customTheme = theme => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+        ...theme.colors,
+        primary: 'rgb(1, 122, 133)',
+        primary25: 'rgba(1, 122, 133,0.2)',
+    },
+});
+
+
 class DropDownSelect extends PureComponent {
     static defaultProps = {
         className: '',
@@ -33,28 +56,6 @@ class DropDownSelect extends PureComponent {
         const { options, className, input } = this.props;
 
         const selectClasses = classNames('dropdown-select', className);
-
-        const customStyles = {
-            input: provided => ({
-                ...provided,
-                paddingTop: 10,
-                paddingBottom: 10,
-            }),
-            control: provided => ({
-                ...provided,
-                boxShadow: 'none',
-            }),
-        };
-
-        const customTheme = theme => ({
-            ...theme,
-            borderRadius: 0,
-            colors: {
-                ...theme.colors,
-                primary: 'rgb(1, 122, 133)',
-                primary25: 'rgba(1, 122, 133,0.2)',
-            },
-        });
 
         return (
             <Select

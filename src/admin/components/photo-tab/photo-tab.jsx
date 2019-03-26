@@ -13,7 +13,7 @@ import './photo-tab.scss';
 
 class PhotoTab extends PureComponent {
     static propTypes = {
-        hotelInfo: PropTypes.shape().isRequired,
+        photoTour: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
         removePhotoItem: PropTypes.func.isRequired,
     };
 
@@ -62,7 +62,7 @@ class PhotoTab extends PureComponent {
                             >
                                 Add photos
                             </Button>
-                            {this.props.hotelInfo.photos.length > 0 && (
+                            {this.props.photoTour.length > 0 && (
                                 <Button
                                     className="photo-tab__buttons-container-item"
                                     handleClick={this.handleClick}
@@ -72,14 +72,14 @@ class PhotoTab extends PureComponent {
                                 </Button>
                             )}
                         </div>
-                        {this.props.hotelInfo.photos.length === 0 && (
+                        {this.props.photoTour.length === 0 && (
                             <div className="photo-tab__photo-container">
                                 <PhotoItem
-                                    photoItem={{ photos: [{ preview: '/images/hotel-default.jpg' }], type: 'Default' }}
+                                    photoItem={{ photos: [{ src: '/images/hotel-default.jpg' }], type: 'Default' }}
                                 />
                             </div>
                         )}
-                        {this.props.hotelInfo.photos.map(this.renderPhotoItems)}
+                        {this.props.photoTour.map(this.renderPhotoItems)}
                     </Fragment>
                 ) : (
                     <PhotoForm hideForm={this.hideForm} />

@@ -36,57 +36,59 @@ class HotelTab extends PureComponent {
         const { pristine, submitting, handleSubmit } = this.props;
 
         return (
-            <Form className="hotel-form" onSubmit={handleSubmit(this.onSubmit)} noValidate>
-                <label className="hotel-form__label" htmlFor="hotelName">
-                    {'What is your hotel name?'}
-                    <Field
-                        validate={[validators.isRequired]}
-                        className="hotel-form__field"
-                        name="hotelName"
-                        component={TextInput}
-                        type="text"
-                        essence="Hotel name"
-                        placeholder="Hotel name"
-                    />
-                </label>
-                <div className="hotel-form__section">Where is your hotel placed?</div>
-                <label htmlFor="hotelName">
-                    {'Street and house number'}
-                    <Field
-                        validate={[validators.isRequired]}
-                        className="hotel-form__field"
-                        name="streetHouse"
-                        component={TextInput}
-                        type="text"
-                        essence="Street and house number"
-                        placeholder="For example, Red Square, house 1"
-                    />
-                </label>
-                <label htmlFor="hotelName">
-                    {'Country/territory'}
-                    <Field
-                        className="hotel-form__field"
-                        name="country"
-                        component={DropDownSelect}
-                        options={COUNTRIES}
-                    />
-                </label>
-                <label htmlFor="hotelName">
-                    {'Sity'}
-                    <Field
-                        validate={[validators.isRequired]}
-                        className="hotel-form__field"
-                        name="sity"
-                        component={TextInput}
-                        type="text"
-                        essence="Sity"
-                        placeholder="Sity"
-                    />
-                </label>
-                <Button className="hotel-form__submit" color="secondary" disabled={pristine || submitting}>
-                    Continue
-                </Button>
-            </Form>
+            <div className="hotel-tab">
+                <Form className="hotel-tab__form" onSubmit={handleSubmit(this.onSubmit)} noValidate>
+                    <label className="hotel-tab__form-label" htmlFor="hotelName">
+                        {'What is your hotel name?'}
+                        <Field
+                            validate={[validators.isRequired]}
+                            className="hotel-tab__form-field"
+                            name="hotelName"
+                            component={TextInput}
+                            type="text"
+                            essence="Hotel name"
+                            placeholder="Hotel name"
+                        />
+                    </label>
+                    <div className="hotel-tab__form-section">Where is your hotel placed?</div>
+                    <label htmlFor="hotelName">
+                        {'Street and house number'}
+                        <Field
+                            validate={[validators.isRequired]}
+                            className="hotel-tab__form-field"
+                            name="address"
+                            component={TextInput}
+                            type="text"
+                            essence="Street and house number"
+                            placeholder="For example, Red Square, house 1"
+                        />
+                    </label>
+                    <label htmlFor="hotelName">
+                        {'Country/territory'}
+                        <Field
+                            className="hotel-tab__form-field"
+                            name="country"
+                            component={DropDownSelect}
+                            options={COUNTRIES}
+                        />
+                    </label>
+                    <label htmlFor="hotelName">
+                        {'City'}
+                        <Field
+                            validate={[validators.isRequired]}
+                            className="hotel-tab__form-field"
+                            name="city"
+                            component={TextInput}
+                            type="text"
+                            essence="City"
+                            placeholder="City"
+                        />
+                    </label>
+                    <Button className="hotel-tab__form-submit" color="secondary" disabled={pristine || submitting}>
+                        Continue
+                    </Button>
+                </Form>
+            </div>
         );
     }
 }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import FinishTab from '../components/finish-tab/finish-tab';
 
-import { adminActions } from '../actions/actions';
+import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({

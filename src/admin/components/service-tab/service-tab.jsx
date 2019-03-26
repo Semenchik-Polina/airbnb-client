@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { Field, Form } from 'redux-form';
 import Button from '../../../shared/components/button/button';
@@ -17,19 +16,6 @@ class ServiceTab extends PureComponent {
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         addServices: PropTypes.func.isRequired,
-        initialize: PropTypes.func.isRequired,
-        initialValues: PropTypes.shape().isRequired,
-    };
-
-    componentDidMount = () => {
-        if (_.isEmpty(this.props.initialValues)) {
-            this.props.initialize({
-                internet: 'Yes, for free',
-                parking: 'Yes, for free',
-                breakfast: 'Yes',
-                facilities: [],
-            });
-        }
     };
 
     onSubmit = (values) => {

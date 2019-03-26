@@ -1,6 +1,6 @@
 import { userTypes } from '../constants';
 
-const initialState = JSON.parse(localStorage.getItem('user')) || {};
+const initialState = JSON.parse(localStorage.getItem('user')) || null;
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -13,7 +13,7 @@ const userReducer = (state = initialState, action) => {
     }
     case userTypes.LOGOUT_USER: {
         localStorage.removeItem('user');
-        return {};
+        return null;
     }
     default:
         return state;

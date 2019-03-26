@@ -12,23 +12,29 @@ import './room-tab.scss';
 class RoomTab extends PureComponent {
     static propTypes = {
         deleteRoomType: PropTypes.func.isRequired,
-        destroyRoomForm: PropTypes.func.isRequired,
-        rooms: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+        setEditableId: PropTypes.func.isRequired,
+        unsetEditableId: PropTypes.func.isRequired,
+        rooms: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                amount: PropTypes.number.isRequired,
+                capacity: PropTypes.number.isRequired,
+                cost: PropTypes.number.isRequired,
+                type: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
     };
 
     state = {
         isFormHidden: this.props.rooms.length > 0,
-        initialValues: {
-            type: 'Twin',
-        },
     };
 
     hideForm = () => {
-        this.resetInitialValues();
-        this.props.destroyRoomForm();
+        this.setState({ isFormHidden: true });
     };
 
     showForm = () => {
+        this.props.unsetEditableId();
         this.setState({ isFormHidden: false });
     };
 
@@ -37,18 +43,9 @@ class RoomTab extends PureComponent {
     };
 
     editRoomType = (room) => {
+        this.props.setEditableId(room.id);
         this.setState(() => ({
-            initialValues: { ...room },
             isFormHidden: false,
-        }));
-    };
-
-    resetInitialValues = () => {
-        this.setState(() => ({
-            initialValues: {
-                type: 'Twin',
-            },
-            isFormHidden: true,
         }));
     };
 
@@ -84,7 +81,7 @@ class RoomTab extends PureComponent {
                         </div>
                     </Fragment>
                 ) : (
-                    <RoomForm hideForm={this.hideForm} initialValues={this.state.initialValues} />
+                    <RoomForm hideForm={this.hideForm} />
                 )}
             </div>
         );

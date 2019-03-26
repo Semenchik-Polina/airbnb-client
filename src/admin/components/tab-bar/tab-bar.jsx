@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import _ from 'lodash';
 
 import {
     withRouter, Route, NavLink, Redirect,
@@ -16,7 +15,10 @@ import './tab-bar.scss';
 
 class TabBar extends PureComponent {
     static propTypes = {
-        hotelInfo: PropTypes.shape().isRequired,
+        isMainInfoFilled: PropTypes.bool.isRequired,
+        isRoomFormFilled: PropTypes.bool.isRequired,
+        isServiceFormFilled: PropTypes.bool.isRequired,
+        isPhotoFormFilled: PropTypes.bool.isRequired,
     };
 
     redirectToMainForm = () => <Redirect exact to="/admin-home/create-new-hotel/main-info" />;
@@ -26,15 +28,8 @@ class TabBar extends PureComponent {
 
     render() {
         const {
-            hotelInfo: {
-                mainInfo, roomTypes, services, photos,
-            },
+            isMainInfoFilled, isRoomFormFilled, isServiceFormFilled, isPhotoFormFilled,
         } = this.props;
-
-        const isMainInfoFilled = !_.isEmpty(mainInfo);
-        const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
-        const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
-        const isPhotoFormFilled = !_.isEmpty(photos) && isServiceFormFilled;
 
         const roomTabClasses = classNames('tab-bar__links-item', {
             'tab-bar__links-item_disabled': !isMainInfoFilled,

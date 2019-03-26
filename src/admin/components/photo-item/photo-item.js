@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classNames';
+
 import { Carousel } from 'react-responsive-carousel';
 
 import './photo-item.scss';
@@ -13,17 +14,14 @@ class PhotoItem extends PureComponent {
 
     static propTypes = {
         photoItem: PropTypes.shape({
-            type: PropTypes.string,
-            photos: PropTypes.arrayOf(PropTypes.shape()),
+            photos: PropTypes.arrayOf(
+                PropTypes.shape({
+                    src: PropTypes.string.isRequired,
+                }),
+            ),
         }).isRequired,
         className: PropTypes.string,
     };
-
-    renderCarouselItem = (item, index) => (
-        <div key={index}>
-            <img src={item.preview} alt="hotel" />
-        </div>
-    );
 
     render() {
         const { photoItem, className } = this.props;
@@ -31,7 +29,11 @@ class PhotoItem extends PureComponent {
 
         return (
             <Carousel infiniteLoop className={itemClasses} dynamicHeight={false} showArrows>
-                {photoItem.photos.map(this.renderCarouselItem)}
+                {photoItem.photos.map((item, index) => (
+                    <div key={index}>
+                        <img src={item.src} alt="hotel" />
+                    </div>
+                ))}
             </Carousel>
         );
     }

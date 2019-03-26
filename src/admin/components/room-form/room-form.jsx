@@ -44,7 +44,7 @@ class RoomForm extends PureComponent {
                             name="amount"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
-                            type="text"
+                            type="number"
                             essence="Number"
                             placeholder="0"
                         />
@@ -56,7 +56,7 @@ class RoomForm extends PureComponent {
                             name="capacity"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
-                            type="text"
+                            type="number"
                             icon="icon-user"
                             essence="Capacity"
                             placeholder="0"
@@ -69,7 +69,7 @@ class RoomForm extends PureComponent {
                             name="cost"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isFloat, validators.isAboveZero]}
-                            type="text"
+                            type="number"
                             essence="Cost"
                             placeholder="0"
                         />

@@ -15,13 +15,11 @@ class PhotoForm extends PureComponent {
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         addPhotos: PropTypes.func.isRequired,
-        destroyPhotoForm: PropTypes.func.isRequired,
         hideForm: PropTypes.func.isRequired,
     };
 
     handleSubmit = (values) => {
         this.props.addPhotos(values);
-        this.props.destroyPhotoForm();
         this.props.hideForm();
     };
 

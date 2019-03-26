@@ -17,7 +17,7 @@ const showSuccessToast = (message) => {
     toast(message);
 };
 
-function addHotelInfo(hotel) {
+export function addHotelInfo(hotel) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.ADD_HOTEL_MAIN_INFO,
@@ -27,7 +27,7 @@ function addHotelInfo(hotel) {
     };
 }
 
-function addServices(services) {
+export function addServices(services) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.ADD_SERVICE_INFO,
@@ -37,16 +37,16 @@ function addServices(services) {
     };
 }
 
-function addPhotos(photos) {
+export function addPhotos(photoTour) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.ADD_PHOTOS,
-            photos,
+            photoTour,
         });
     };
 }
 
-function removePhotoItem(id) {
+export function removePhotoItem(id) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.REMOVE_PHOTO_ITEM,
@@ -55,16 +55,21 @@ function removePhotoItem(id) {
     };
 }
 
-function addRoomType(roomType) {
+export function addRoomType(roomType) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.ADD_ROOM_TYPE,
-            roomType,
+            roomType: {
+                ...roomType,
+                capacity: +roomType.capacity,
+                amount: +roomType.amount,
+                cost: +roomType.cost,
+            },
         });
     };
 }
 
-function deleteRoomType(id) {
+export function deleteRoomType(id) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.DELETE_ROOM_TYPE,
@@ -73,7 +78,7 @@ function deleteRoomType(id) {
     };
 }
 
-function editRoomType(data) {
+export function editRoomType(data) {
     return (dispatch) => {
         dispatch({
             type: adminTypes.EDIT_ROOM_TYPE,
@@ -82,7 +87,7 @@ function editRoomType(data) {
     };
 }
 
-function fetchHotels() {
+export function fetchHotels() {
     return async (dispatch) => {
         try {
             const { data } = await controllers.fetchHotels();
@@ -97,16 +102,16 @@ function fetchHotels() {
     };
 }
 
-function formatData(data) {
+export function formatData(data) {
     const formData = new FormData();
-    const images = _.flattenDeep(data.photos.map(item => item.photos));
+    const images = _.flattenDeep(data.photoTour.map(item => item.photos));
     images.forEach(image => formData.append('image', image));
     const hotelInfo = JSON.stringify(data);
     formData.append('info', hotelInfo);
     return formData;
 }
 
-function createHotel(data) {
+export function createHotel(data) {
     return async (dispatch) => {
         try {
             const formData = formatData(data);
@@ -118,21 +123,26 @@ function createHotel(data) {
             dispatch(destroy('hotelForm'));
             dispatch(destroy('serviceForm'));
 
-            history.push('/admin-home/');
+            history.push('/admin-home');
         } catch (err) {
             showErrorToast(err);
         }
     };
 }
 
-export const adminActions = {
-    addHotelInfo,
-    addRoomType,
-    addServices,
-    addPhotos,
-    deleteRoomType,
-    editRoomType,
-    createHotel,
-    removePhotoItem,
-    fetchHotels,
-};
+export function setEditableId(id) {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.SET_EDITABLE_ID,
+            id,
+        });
+    };
+}
+
+export function unsetEditableId() {
+    return (dispatch) => {
+        dispatch({
+            type: adminTypes.UNSET_EDITABLE_ID,
+        });
+    };
+}
