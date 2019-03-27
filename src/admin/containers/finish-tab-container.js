@@ -7,9 +7,10 @@ import * as adminActions from '../actions/actions';
 export default connect(
     state => ({
         hotelInfo: state.adminReducer.hotelInfo,
+        isEditableHotel: !!state.adminReducer.hotelInfo.id,
     }),
     dispatch => ({
         createHotel: data => dispatch(adminActions.createHotel(data)),
-        fetchHotel: () => dispatch(adminActions.fetchHotel()),
+        editHotel: data => dispatch(adminActions.editHotel(data)),
     }),
 )(FinishTab);

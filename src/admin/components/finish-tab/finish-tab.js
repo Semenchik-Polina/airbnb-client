@@ -10,6 +10,8 @@ import './finish-tab.scss';
 class FinishTab extends PureComponent {
     static propTypes = {
         createHotel: PropTypes.func.isRequired,
+        editHotel: PropTypes.func.isRequired,
+        isEditableHotel: PropTypes.bool.isRequired,
         hotelInfo: PropTypes.shape({
             mainInfo: PropTypes.shape({
                 country: PropTypes.string.isRequired,
@@ -47,7 +49,15 @@ class FinishTab extends PureComponent {
     };
 
     handleClick = () => {
-        this.props.createHotel(this.props.hotelInfo);
+        if (this.props.isEditableHotel) {
+            this.props.editHotel(this.props.hotelInfo);
+        } else {
+            this.props.createHotel(this.props.hotelInfo);
+        }
+    };
+
+    editHotel = () => {
+        this.props.editHotel(this.props.hotelInfo);
     };
 
     devideArray = (array, size) => {

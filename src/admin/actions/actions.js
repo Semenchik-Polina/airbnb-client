@@ -116,28 +116,43 @@ export function createHotel(data) {
     return async (dispatch) => {
         try {
             const formData = formatData(data);
-            if (!data.id) {
-                const {
-                    data: { hotel },
-                } = await controllers.createHotel(formData);
 
-                dispatch({
-                    type: adminTypes.ADD_NEW_HOTEL,
-                    hotel,
-                });
+            const {
+                data: { hotel },
+            } = await controllers.createHotel(formData);
 
-                showSuccessToast('Hotel created!');
-            } else {
-                // const {
-                //     data: { hotel },
-                // } = await controllers.editHotel(formData);
+            dispatch({
+                type: adminTypes.ADD_NEW_HOTEL,
+                hotel,
+            });
 
-                dispatch({
-                    type: adminTypes.EDIT_HOTEL,
-                    data,
-                });
-                showSuccessToast('Hotel edited!');
-            }
+            showSuccessToast('Hotel created!');
+
+            dispatch({
+                type: adminTypes.RESET_HOTEL_INFO,
+            });
+
+            history.push('/admin-home');
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
+export function editHotel(data) {
+    return async (dispatch) => {
+        try {
+            // const formData = formatData(data);
+
+            // const {
+            //     data: { hotel },
+            // } = await controllers.editHotel(formData);
+
+            dispatch({
+                type: adminTypes.EDIT_HOTEL,
+                data,
+            });
+            showSuccessToast('Hotel edited!');
 
             dispatch({
                 type: adminTypes.RESET_HOTEL_INFO,
