@@ -1,17 +1,31 @@
-.hotel-form {
+.hotel-tab {
     display: flex;
 
-    font: 100 1em "Roboto";
+    width: 100%;
 
-    flex-flow: column nowrap;
+    justify-content: center;
 
-    &__section {
-        margin: 10px 0;
+    &__form {
+        display: flex;
 
-        font: 400 1.3em "Roboto";
-    }
-    
-    &__field {
-        margin: 10px 0;
+        width: 100%;
+        max-width: 500px;
+
+        font: 100 1em "Roboto";
+
+        flex-basis: 100%;
+        flex-flow: column nowrap;
+
+        &-section {
+            display: block;
+
+            margin: 10px 0;
+
+            font: 400 1.3em "Roboto";
+        }
+
+        &-field {
+            margin: 10px 0;
+        }
     }
 }

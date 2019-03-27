@@ -1,30 +1,23 @@
-import React, { PureComponent } from 'react';
-import { NavLink, withRouter, Route } from 'react-router-dom';
+import React, { PureComponent, Fragment } from 'react';
 
-import TabBar from '../tab-bar/tab-bar';
-
-import './admin-home.scss';
+import { Route, Redirect } from 'react-router-dom';
+import AdminPanel from '../../containers/admin-panel-container';
+import TabBar from '../../containers/tab-bar-container';
 
 class AdminHome extends PureComponent {
-    renderAdminActivity() {
-        return (
-            <div className="admin-home__activity">
-                <div className="admin-home__activity-image" />
-                <NavLink className="admin-home__activity-link" exact to="/admin-home/create-new-hotel">
-                    Create an awesome new hotel
-                </NavLink>
-            </div>
-        );
+    renderRiderect() {
+        return <Redirect to="/admin-home/create-new-hotel/main-info" />;
     }
 
     render() {
         return (
-            <div className="admin-home">
-                <Route exact path="/admin-home" component={this.renderAdminActivity} />
-                <Route path="/admin-home/create-new-hotel" component={TabBar} />
-            </div>
+            <Fragment>
+                <Route exact path="/admin-home" component={AdminPanel} />
+                <Route exact path="/admin-home/create-new-hotel" component={this.renderRiderect} />
+                <Route path="/admin-home/create-new-hotel/" component={TabBar} />
+            </Fragment>
         );
     }
 }
 
-export default withRouter(AdminHome);
+export default AdminHome;

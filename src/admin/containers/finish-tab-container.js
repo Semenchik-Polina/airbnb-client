@@ -1,0 +1,15 @@
+import { connect } from 'react-redux';
+
+import FinishTab from '../components/finish-tab/finish-tab';
+
+import * as adminActions from '../actions/actions';
+
+export default connect(
+    state => ({
+        hotelInfo: state.adminReducer.hotelInfo,
+    }),
+    dispatch => ({
+        createHotel: data => dispatch(adminActions.createHotel(data)),
+        fetchHotel: () => dispatch(adminActions.fetchHotel()),
+    }),
+)(FinishTab);

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import Button from '../../../shared/components/button/button';
+import Tool from '../../../shared/components/tool/tool';
 
 import './modal.scss';
 
@@ -20,8 +20,8 @@ class Modal extends PureComponent {
         return ReactDOM.createPortal(
             <div className="modal">
                 <div className="modal__inner">
-                    <Button
-                        imgSrc="https://img.icons8.com/ios/50/000000/delete-sign.png"
+                    <Tool
+                        src="images/tools/delete.png"
                         className="modal__inner-button modal__inner-button_close"
                         handleClick={onClose}
                     />

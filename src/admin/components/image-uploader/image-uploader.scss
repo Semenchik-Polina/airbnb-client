@@ -1,0 +1,57 @@
+.uploader {
+    cursor: pointer;
+
+    color: rgb(105, 102, 102);
+    border: 1px dashed gray;
+    border-radius: 5px;
+
+    &_invalid {
+        border: 2px dashed rgb(182, 10, 10);
+    }
+
+    &__active-zone {
+        padding: 7% 5%;
+
+        transition: 0.5s;
+        text-align: center;
+
+        &:hover {
+            color: rgb(0, 0, 0);
+        }
+
+        &_invalid {
+            color: rgb(182, 10, 10);
+        }
+    }
+
+    &__aside {
+        display: flex;
+
+        padding: 2% 3% 2% 3%;
+
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+
+    &__aside-container {
+        position: relative;
+
+        padding: 5px;
+    }
+
+    &__aside-container-delete {
+        position: absolute;
+        top: -3px;
+        left: -10px;
+
+        &:active {
+            background-color: rgb(233, 80, 80);
+        }
+    }
+
+    &__aside-container-image {
+        width: 100px;
+
+        border-radius: 5px;
+    }
+}

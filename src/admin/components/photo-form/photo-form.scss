@@ -1,0 +1,27 @@
+.photo-form {
+    &__field {
+        margin: 15px 0;
+    }
+
+    &__buttons-container {
+        display: flex;
+
+        justify-content: row wrap;
+    }
+
+    &__buttons-container-item {
+        margin-right: 5%;
+
+        &:first-child {
+            margin-right: 50%;
+
+            @media only screen and (max-width: 550px) {
+                margin-right: 20%;
+            }
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

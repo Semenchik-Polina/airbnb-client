@@ -5,17 +5,30 @@ export const ROOM_TYPES = [
     { value: 'Apartment', label: 'Apartment' },
 ];
 
+export const HOTEL_ZONES = [
+    { value: 'Hotel', label: 'Hotel' },
+    { value: 'Outdoor space', label: 'Outdoor space' },
+    { value: 'Bar', label: 'Bar' },
+    { value: 'Restaurant', label: 'Restaurant' },
+    { value: 'Room', label: 'Room' },
+    { value: 'Bathroom', label: 'Bathroom' },
+];
+
 export const COUNTRIES = [
     { value: 'Belarus', label: 'Belarus' },
     { value: 'Russia', label: 'Russia' },
 ];
 
 export const POPULAR_FACILITIES = [
-    { id: 1, name: 'Restaurant' },
-    { id: 2, name: 'Spa and Wellness Center' },
-    { id: 3, name: 'Swimming pool' },
-    { id: 4, name: 'Air conditioning' },
-    { id: 5, name: 'Massage' },
+    { id: 1, name: 'TV' },
+    { id: 2, name: 'Wi-Fi' },
+    { id: 3, name: 'Kitchen' },
+    { id: 5, name: 'Hair dryer' },
+    { id: 6, name: 'Iron' },
+    { id: 7, name: 'Coffee maker' },
+    { id: 7, name: 'Elevator' },
+    { id: 8, name: 'Bathroom essentials' },
+    { id: 9, name: 'Self check-in' },
 ];
 
 export const SERVICE_ANSWERS = [
@@ -25,8 +38,15 @@ export const SERVICE_ANSWERS = [
 ];
 
 export const adminTypes = {
-    CREATE_HOTEL: 'CREATE_HOTEL',
+    ADD_HOTEL_MAIN_INFO: 'ADD_HOTEL_MAIN_INFO',
+    ADD_SERVICE_INFO: 'ADD_SERVICE_INFO',
+    ADD_PHOTOS: 'ADD_PHOTOS',
+    REMOVE_PHOTO_ITEM: 'REMOVE_PHOTO_ITEM',
     ADD_ROOM_TYPE: 'ADD_ROOM_TYPE',
     DELETE_ROOM_TYPE: 'DELETE_ROOM_TYPE',
     EDIT_ROOM_TYPE: 'EDIT_ROOM_TYPE',
+    FETCH_ALL_HOTELS: 'FETCH_ALL_HOTELS',
+    RESET_HOTEL_INFO: 'RESET_HOTEL_INFO',
+    SET_EDITABLE_ID: 'SET_EDITABLE_ID',
+    UNSET_EDITABLE_ID: 'UNSET_EDITABLE_ID',
 };

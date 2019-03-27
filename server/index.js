@@ -16,8 +16,8 @@ app.use(
 );
 
 if (process.env.NODE_ENV === 'dev') {
-    const file = path.join(__dirname, '../public/index.html');
-    const bundler = new Bundler(file, {});
+    const file = path.join(__dirname, '../index.html');
+    const bundler = new Bundler(file, { outDir: './public' });
 
     bundler.on('buildError', (error) => {
         console.log(error);

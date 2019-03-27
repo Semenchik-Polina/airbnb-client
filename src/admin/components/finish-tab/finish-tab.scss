@@ -1,0 +1,197 @@
+.finish-tab {
+    width: 100%;
+
+    &__banner {
+        display: flex;
+
+        padding: 20px;
+
+        flex-flow: row nowrap;
+        @media only screen and (max-width: 715px) {
+            padding: 0;
+
+            align-items: center;
+            flex-flow: column nowrap;
+        }
+    }
+
+    &__banner-info {
+        display: flex;
+
+        width: 70%;
+        margin-right: 2%;
+        padding: 50px;
+
+        letter-spacing: 1px;
+
+        background-color: rgb(243, 243, 243);
+
+        align-content: center;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+
+        @media only screen and (max-width: 715px) {
+            width: 100%;
+            margin-right: 0;
+            padding: 0;
+        }
+    }
+
+    &__banner-info-sity {
+        display: block;
+
+        padding: 50px 50px 0 20px;
+
+        color: rgb(129, 129, 129);
+
+        font: 700 1em "Roboto";
+    }
+
+    &__banner-info-name {
+        display: block;
+
+        margin: 40px 0;
+        padding: 0 50px 50px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
+    }
+
+    &__banner-image-container {
+        flex: auto;
+    }
+
+    &__banner-image-container-item {
+        width: 100%;
+        min-height: 600px;
+        max-height: 700px;
+
+        object-fit: cover;
+    }
+
+    &__overview {
+        padding: 20px;
+
+        font: 500 1.25em "Roboto";
+    }
+
+    &__tour-header {
+        display: block;
+
+        padding: 10px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
+    }
+
+    &__tour-gallery {
+        display: flex;
+
+        padding: 10px;
+
+        flex-flow: row nowrap;
+
+        @media only screen and (max-width: 715px) {
+            margin: 10px;
+
+            align-items: center;
+            flex-flow: column nowrap;
+        }
+    }
+
+    &__tour-gallery-item {
+        max-width: 550px;
+        padding: 10px;
+    }
+
+    &__tour-gallery-item-categoty {
+        display: block;
+
+        margin: 10px 0;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 1.5em "Roboto";
+    }
+
+    &__facilities-header {
+        display: block;
+
+        padding: 10px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto";
+    }
+
+    &__facilities-containers {
+        display: flex;
+
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+
+    &__facilities-containers-wrapper {
+        display: flex;
+
+        width: 100%;
+
+        flex-flow: row nowrap;
+        @media only screen and (max-width: 865px) {
+            align-items: center;
+            flex-flow: column nowrap;
+        }
+    }
+
+    &__facilities-containers-wrapper-container {
+        display: flex;
+
+        flex-flow: row nowrap;
+    }
+
+    &__facilities-containers-wrapper-container-item {
+        display: flex;
+
+        max-width: 200px;
+        margin: 10px;
+
+        background: rgb(231, 231, 231);
+
+        flex-flow: column nowrap;
+    }
+
+    &__facilities-containers-wrapper-container-item-image {
+        display: block;
+
+        width: 100%;
+    }
+
+    &__facilities-containers-wrapper-container-item-facility {
+        display: block;
+
+        padding: 10px 0;
+
+        text-align: center;
+
+        color: rgb(63, 63, 63);
+    }
+
+    &__photo-container {
+        flex: auto;
+    }
+
+    &__photo-container-item {
+        width: 100%;
+        min-height: 600px;
+        max-height: 700px;
+
+        object-fit: cover;
+    }
+
+    &__submit {
+        max-width: 200px;
+        margin: 10px 10px 10px auto;
+    }
+}

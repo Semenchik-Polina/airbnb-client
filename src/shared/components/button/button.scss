@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 .button {
     display: flex;
@@ -13,7 +13,7 @@
     border-radius: 5px;
     outline: none;
 
-    font: 600 1em/0.5em 'Roboto';
+    font: 600 1em/0.5em "Roboto";
 
     align-items: center;
     justify-content: center;
@@ -48,8 +48,9 @@
         }
     }
 
-    &_google {
+    &_white {
         transition: 0.25s;
+
         color: rgb(72, 72, 72);
         border: 2px solid rgb(43, 40, 40);
         background-color: white;
@@ -60,10 +61,21 @@
         }
     }
 
+    &_back {
+        color: #007883;
+        border: none;
+        background-color: white;
+
+        justify-content: start;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     &__text {
         line-height: 1.25em;
     }
-    
+
     &__icon {
         display: block;
 

@@ -36,7 +36,7 @@ class ModalSignup extends PureComponent {
                 <Button
                     imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
                     href=""
-                    color="google"
+                    color="white"
                     isBehavedAsLink
                 >
                     Continue with Google

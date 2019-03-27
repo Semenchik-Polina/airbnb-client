@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Field, Form } from 'redux-form';
+import classNames from 'classnames';
 
+import { Field, Form } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
@@ -12,12 +13,17 @@ import { ROOM_TYPES } from '../../constants/index';
 import './room-form.scss';
 
 class RoomForm extends PureComponent {
+    static defaultProps = {
+        className: '',
+    };
+
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         hideForm: PropTypes.func.isRequired,
         addRoomType: PropTypes.func.isRequired,
+        className: PropTypes.string,
     };
 
     handleSubmit = (values) => {
@@ -27,11 +33,13 @@ class RoomForm extends PureComponent {
 
     render() {
         const {
-            handleSubmit, pristine, submitting, hideForm,
+            handleSubmit, pristine, submitting, hideForm, className,
         } = this.props;
 
+        const formClasses = classNames('room-form', className);
+
         return (
-            <Form className="room-form" onSubmit={handleSubmit(this.handleSubmit)} noValidate>
+            <Form className={formClasses} onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
                     <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
@@ -44,8 +52,8 @@ class RoomForm extends PureComponent {
                             name="amount"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
-                            type="text"
-                            essence="Number of type"
+                            type="number"
+                            essence="Number"
                             placeholder="0"
                         />
                     </label>
@@ -56,7 +64,8 @@ class RoomForm extends PureComponent {
                             name="capacity"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
-                            type="text"
+                            type="number"
+                            icon="icon-user"
                             essence="Capacity"
                             placeholder="0"
                         />
@@ -68,7 +77,7 @@ class RoomForm extends PureComponent {
                             name="cost"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isFloat, validators.isAboveZero]}
-                            type="text"
+                            type="number"
                             essence="Cost"
                             placeholder="0"
                         />
@@ -76,16 +85,17 @@ class RoomForm extends PureComponent {
                 </div>
                 <div className="room-form__buttons-container">
                     <Button
+                        src="https://img.icons8.com/ios/26/007883/back-filled.png"
                         className="room-form__buttons-container-item"
                         type="button"
-                        color="secondary"
+                        color="back"
                         handleClick={hideForm}
                     >
-                        Bo back
+                        Go back
                     </Button>
                     <Button
                         className="room-form__buttons-container-item"
-                        color="primary"
+                        color="secondary"
                         disabled={pristine || submitting}
                     >
                         Continue

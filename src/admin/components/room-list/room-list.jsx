@@ -10,20 +10,11 @@ class RoomForm extends PureComponent {
     };
 
     static propTypes = {
-        rooms: PropTypes.arrayOf(
-            PropTypes.shape({
-                type: PropTypes.string,
-                amount: PropTypes.number,
-                id: PropTypes.number,
-            }),
-        ).isRequired,
+        rooms: PropTypes.arrayOf(PropTypes.shape()).isRequired,
         deleteRoomType: PropTypes.func.isRequired,
+        editRoomType: PropTypes.func.isRequired,
         className: PropTypes.string,
     };
-
-    renderItem = (room, index) => (
-        <RoomItem key={index} room={room} deleteRoomType={this.props.deleteRoomType} />
-    );
 
     render() {
         const { rooms, className } = this.props;
@@ -31,7 +22,14 @@ class RoomForm extends PureComponent {
 
         return (
             <div className={roomListClasses}>
-                {rooms.map(this.renderItem)}
+                {rooms.map((room, index) => (
+                    <RoomItem
+                        key={index}
+                        room={room}
+                        deleteRoomType={this.props.deleteRoomType}
+                        editRoomType={this.props.editRoomType}
+                    />
+                ))}
             </div>
         );
     }

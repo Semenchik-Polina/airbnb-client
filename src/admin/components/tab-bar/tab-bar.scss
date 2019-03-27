@@ -6,12 +6,14 @@
         padding: 0;
 
         border: none;
+        background-color: gainsboro;
 
         font: 100 1em "Roboto";
 
         flex-flow: row wrap;
-        justify-content: center;    
+        justify-content: center;
     }
+
     &__links-item {
         display: block;
 
@@ -26,16 +28,29 @@
         border-bottom: 4px solid rgb(2, 167, 182);
 
         font-weight: 400;
+
+        &_disabled {
+            pointer-events: none;
+
+            border-bottom: 4px solid rgb(202, 221, 223);
+        }
     }
+
     &__route {
         display: flex;
 
-        max-width: 500px;
-        margin: 2% auto 0 auto;
+        padding: 20px 0;
 
         font: 100 1em "Roboto";
 
-        flex-flow: column nowrap;
+        // align-items: center;
+        // flex-flow: column nowrap;
+
+        // justify-content: center;
+
+        @media only screen and (max-width: 515px) {
+            margin: 10px;
+        }
     }
 
     .active {
