@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { destroy } from 'redux-form';
 
 import RoomTab from '../components/room-tab/room-tab';
 
@@ -14,6 +13,5 @@ export default connect(
         deleteRoomType: id => dispatch(adminActions.deleteRoomType(id)),
         setEditableId: id => dispatch(adminActions.setEditableId(id)),
         unsetEditableId: () => dispatch(adminActions.unsetEditableId()),
-        destroyRoomForm: () => dispatch(destroy('roomForm')),
     }),
 )(RoomTab);

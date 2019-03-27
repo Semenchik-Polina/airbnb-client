@@ -1,11 +1,12 @@
 import _ from 'lodash';
+
 import { adminTypes } from '../constants';
 
 const initialState = [];
 
 const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
-    case adminTypes.FETCH_ALL_HOTELS: {
+    case adminTypes.FETCH_ALL_HOTELS_FOR_ADMIN: {
         const hotels = action.data;
         return [...hotels];
     }

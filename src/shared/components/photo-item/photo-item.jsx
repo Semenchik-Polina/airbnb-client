@@ -10,6 +10,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 class PhotoItem extends PureComponent {
     static defaultProps = {
         className: '',
+        handleClick: () => {},
     };
 
     static propTypes = {
@@ -21,6 +22,11 @@ class PhotoItem extends PureComponent {
             ),
         }).isRequired,
         className: PropTypes.string,
+        handleClick: PropTypes.func,
+    };
+
+    handleClick = () => {
+        this.props.handleClick();
     };
 
     render() {
@@ -30,7 +36,7 @@ class PhotoItem extends PureComponent {
         return (
             <Carousel infiniteLoop className={itemClasses} dynamicHeight={false} showArrows>
                 {photoItem.photos.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} onClick={this.handleClick}>
                         <img src={item.src} alt="hotel" />
                     </div>
                 ))}

@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import history from '../../shared/tools/history';
 
-import controllers from '../controllers/controllers';
+import * as controllers from '../controllers/controllers';
 
 import { adminTypes } from '../constants';
 
@@ -92,7 +92,7 @@ export function fetchHotels() {
             const { data } = await controllers.fetchHotels();
 
             dispatch({
-                type: adminTypes.FETCH_ALL_HOTELS,
+                type: adminTypes.FETCH_ALL_HOTELS_FOR_ADMIN,
                 data,
             });
         } catch (err) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function createHotel(data) {
+export function createHotel(data) {
     return axios({
         method: 'post',
         url: '/api/admin/createHotel',
@@ -9,7 +9,7 @@ function createHotel(data) {
     });
 }
 
-function editHotel(data) {
+export function editHotel(data) {
     return axios({
         method: 'post',
         url: '/api/admin/editHotel',
@@ -18,13 +18,6 @@ function editHotel(data) {
     });
 }
 
-
-function fetchHotels() {
+export function fetchHotels() {
     return axios.get('/api/admin/fetchHotels');
 }
-
-export default {
-    createHotel,
-    fetchHotels,
-    editHotel,
-};

@@ -2,14 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import Tool from '../../../shared/components/tool/tool';
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
 
+import history from '../../../shared/tools/history';
 import devideArray from '../../../shared/tools/devideArray';
 
-import './admin-panel.scss';
+import './user-home.scss';
 
-class AdminPanel extends PureComponent {
+class UserHome extends PureComponent {
     static propTypes = {
         hotels: PropTypes.arrayOf(
             PropTypes.shape({
@@ -50,9 +50,6 @@ class AdminPanel extends PureComponent {
         ).isRequired,
 
         fetchHotels: PropTypes.func.isRequired,
-        removeHotel: PropTypes.func.isRequired,
-        startEditingHotel: PropTypes.func.isRequired,
-        startCreatingHotel: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -63,47 +60,19 @@ class AdminPanel extends PureComponent {
         photos: _.flattenDeep(photoTour.map(tour => tour.photos)),
     });
 
-    removeHotel = hotel => () => {
-        this.props.removeHotel(hotel.id);
-    };
-
-    startEditingHotel = hotel => () => {
-        this.props.startEditingHotel(hotel);
-    };
-
-    startCreatingHotel = () => {
-        this.props.startCreatingHotel();
-    };
-
     render() {
         return (
-            <div className="admin-panel">
-                <div className="admin-panel__activity">
-                    <div className="admin-panel__activity-image" />
-                    <button type="button" className="admin-panel__activity-link" onClick={this.startCreatingHotel}>
-                        Create an awesome new hotel
-                    </button>
-                </div>
+            <div className="user-home">
                 {this.props.hotels.length > 0 && (
-                    <section className="admin-panel__hotels">
-                        <span className="admin-panel__hotels-header">Hotels</span>
-                        <div className="admin-panel__hotels-containers">
+                    <section className="user-home__hotels">
+                        <span className="user-home__hotels-header">Hotels</span>
+                        <div className="user-home__hotels-containers">
                             {devideArray(this.props.hotels, 3).map((container, index) => (
-                                <div key={index} className="admin-panel__hotels-containers-wrapper">
+                                <div key={index} className="user-home__hotels-containers-wrapper">
                                     {container.map(hotel => (
-                                        <div key={hotel.id} className="admin-panel__hotels-containers-wrapper-item">
-                                            <Tool
-                                                src="/images/tools/delete.png"
-                                                className="admin-panel__hotels-containers-wrapper-item-delete"
-                                                handleClick={this.removeHotel(hotel)}
-                                            />
-                                            <Tool
-                                                src="/images/tools/edit.png"
-                                                className="admin-panel__hotels-containers-wrapper-item-edit"
-                                                handleClick={this.startEditingHotel(hotel)}
-                                            />
+                                        <div key={hotel.id} className="user-home__hotels-containers-wrapper-item">
                                             <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
-                                            <span className="admin-panel__hotels-containers-wrapper-item-name">
+                                            <span className="user-home__hotels-containers-wrapper-item-name">
                                                 {hotel.mainInfo.hotelName}
                                             </span>
                                         </div>
@@ -118,4 +87,4 @@ class AdminPanel extends PureComponent {
     }
 }
 
-export default AdminPanel;
+export default UserHome;

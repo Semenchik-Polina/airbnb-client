@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '../../../shared/components/button/button';
 import Tool from '../../../shared/components/tool/tool';
 
-import PhotoItem from '../photo-item/photo-item';
+import PhotoItem from '../../../shared/components/photo-item/photo-item';
 import PhotoForm from '../../containers/photo-form-container';
 
 import history from '../../../shared/tools/history';

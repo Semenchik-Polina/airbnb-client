@@ -1,17 +1,23 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-import Button from '../../../shared/components/button/button';
 import HotelItem from '../../../shared/components/hotel-item/hotel-item';
 
-import './finish-tab.scss';
+class HotelPage extends PureComponent {
+    static defaultProps = {
+        hotelInfo: null,
+    };
 
-class FinishTab extends PureComponent {
     static propTypes = {
-        createHotel: PropTypes.func.isRequired,
-        editHotel: PropTypes.func.isRequired,
-        isEditableHotel: PropTypes.bool.isRequired,
+        fetchHotel: PropTypes.func.isRequired,
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                id: PropTypes.string.isRequired,
+            }).isRequired,
+        }).isRequired,
         hotelInfo: PropTypes.shape({
+            id: PropTypes.string,
             mainInfo: PropTypes.shape({
                 country: PropTypes.string.isRequired,
                 city: PropTypes.string.isRequired,
@@ -44,27 +50,23 @@ class FinishTab extends PureComponent {
                     ).isRequired,
                 }),
             ).isRequired,
-        }).isRequired,
+        }),
     };
 
-    handleClick = () => {
-        if (this.props.isEditableHotel) {
-            this.props.editHotel(this.props.hotelInfo);
-        } else {
-            this.props.createHotel(this.props.hotelInfo);
-        }
+    componentDidMount = () => {
+        // id from url or props?
+        console.log(this.props.match.params.id);
+        //  this.props.fetchHotel(this.props.match.params.id);
     };
 
     render() {
-        return (
-            <div className="finish-tab">
-                <HotelItem hotelInfo={this.props.hotelInfo} />
-                <Button className="finish-tab__submit" handleClick={this.handleClick} color="secondary">
-                    Continue
-                </Button>
-            </div>
-        );
+        // not return anything if there is no hotel info
+        // or return spinner?
+        if (this.props.hotelInfo) {
+            return <HotelItem hotelInfo={this.props.hotelInfo} />;
+        }
+        return <div>Hotel!</div>;
     }
 }
 
-export default FinishTab;
+export default withRouter(HotelPage);
