@@ -93,7 +93,7 @@ class HotelPage extends PureComponent {
                             Booking
                         </Button>
                     </div>
-                    {this.state.isModalShown && <Modal />}
+                    {this.state.isModalShown && <Modal onClose={() => this.s} />}
                 </div>
             );
         }
