@@ -72,6 +72,17 @@
         }
     }
 
+    &_purple {
+        color: white;
+        background-color: #914669;
+
+        &:active {
+            transition: 0.25s;
+
+            background-color: #68344c;
+        }
+    }
+
     &__text {
         line-height: 1.25em;
     }

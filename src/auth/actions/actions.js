@@ -12,6 +12,7 @@ function signup(data) {
         try {
             await controllers.signup(data);
             dispatch({ type: modalTypes.HIDE_MODAL });
+            document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
         }
@@ -26,6 +27,7 @@ function login(values) {
             } = await controllers.login(values);
             dispatch({ type: userTypes.VALIDATE_USER, user });
             dispatch({ type: modalTypes.HIDE_MODAL });
+            document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
         }

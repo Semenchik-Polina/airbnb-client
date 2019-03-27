@@ -60,6 +60,10 @@ class UserHome extends PureComponent {
         photos: _.flattenDeep(photoTour.map(tour => tour.photos)),
     });
 
+    redirectToHotelPage = id => () => {
+        history.push(`/hotels/${id}`);
+    };
+
     render() {
         return (
             <div className="user-home">
@@ -71,7 +75,11 @@ class UserHome extends PureComponent {
                                 <div key={index} className="user-home__hotels-containers-wrapper">
                                     {container.map(hotel => (
                                         <div key={hotel.id} className="user-home__hotels-containers-wrapper-item">
-                                            <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
+                                            <PhotoItem
+                                                className="user-home__hotels-containers-wrapper-item-link"
+                                                photoItem={this.flatImageArray(hotel.photoTour)}
+                                                handleClick={this.redirectToHotelPage(hotel.id)}
+                                            />
                                             <span className="user-home__hotels-containers-wrapper-item-name">
                                                 {hotel.mainInfo.hotelName}
                                             </span>

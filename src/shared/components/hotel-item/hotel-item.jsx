@@ -72,7 +72,7 @@ class HotelItem extends PureComponent {
             <div className="hotel-item">
                 <div className="hotel-item__banner">
                     <div className="hotel-item__banner-info">
-                        <span className="hotel-item__banner-info-sity">Hotel in {mainInfo.sity}</span>
+                        <span className="hotel-item__banner-info-sity">Hotel in {mainInfo.city}</span>
                         <span className="hotel-item__banner-info-name">{mainInfo.hotelName}</span>
                     </div>
                     <div className="hotel-item__banner-image" style={this.state.sectionStyle} />

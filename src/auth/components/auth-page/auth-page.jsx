@@ -36,6 +36,7 @@ class AuthPage extends PureComponent {
     };
 
     handleCloseModal = () => {
+        document.body.style.overflow = 'visible';
         this.props.hideModal();
     };
 

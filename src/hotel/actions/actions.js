@@ -11,12 +11,11 @@ const showErrorToast = (err) => {
 export function fetchHotel(id) {
     return async (dispatch) => {
         try {
-            // const { data } = await controllers.fetchHotel(id);
-
-            // dispatch({
-            //     type: hotelPageTypes.FETCH_HOTEL,
-            //     data,
-            // });
+            const { data } = await controllers.fetchHotel(id);
+            dispatch({
+                type: hotelPageTypes.FETCH_HOTEL,
+                data,
+            });
         } catch (err) {
             showErrorToast(err);
         }

@@ -16,12 +16,12 @@ class Modal extends PureComponent {
 
     render() {
         const { children, onClose } = this.props;
-
+        document.body.style.overflow = 'hidden';
         return ReactDOM.createPortal(
             <div className="modal">
                 <div className="modal__inner">
                     <Tool
-                        src="images/tools/delete.png"
+                        src="/images/tools/delete.png"
                         className="modal__inner-button modal__inner-button_close"
                         handleClick={onClose}
                     />
