@@ -5,6 +5,10 @@
 
     justify-content: center;
 
+    @media only screen and (max-width: 515px) {
+        margin: 10px;
+    }
+
     &__content {
         display: flex;
 

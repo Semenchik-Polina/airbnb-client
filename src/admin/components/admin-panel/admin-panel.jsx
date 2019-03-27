@@ -5,6 +5,8 @@ import _ from 'lodash';
 import Tool from '../../../shared/components/tool/tool';
 import PhotoItem from '../photo-item/photo-item';
 
+import devideArray from '../../../shared/tools/devideArray';
+
 import './admin-panel.scss';
 
 class AdminPanel extends PureComponent {
@@ -85,23 +87,27 @@ class AdminPanel extends PureComponent {
                 {this.props.hotels.length > 0 && (
                     <section className="admin-panel__hotels">
                         <span className="admin-panel__hotels-header">Hotels</span>
-                        <div className="admin-panel__hotels-container">
-                            {this.props.hotels.map((hotel, index) => (
-                                <div key={index} className="admin-panel__hotels-container-item">
-                                    <Tool
-                                        src="/images/tools/delete.png"
-                                        className="admin-panel__hotels-container-item-delete"
-                                        handleClick={this.removeHotel(hotel)}
-                                    />
-                                    <Tool
-                                        src="/images/tools/edit.png"
-                                        className="admin-panel__hotels-container-item-edit"
-                                        handleClick={this.startEditingHotel(hotel)}
-                                    />
-                                    <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
-                                    <span className="admin-panel__hotels-container-item-name">
-                                        {hotel.mainInfo.hotelName}
-                                    </span>
+                        <div className="admin-panel__hotels-containers">
+                            {devideArray(this.props.hotels, 3).map((container, index) => (
+                                <div key={index} className="admin-panel__hotels-containers-wrapper">
+                                    {container.map(hotel => (
+                                        <div key={hotel.id} className="admin-panel__hotels-containers-wrapper-item">
+                                            <Tool
+                                                src="/images/tools/delete.png"
+                                                className="admin-panel__hotels-containers-wrapper-item-delete"
+                                                handleClick={this.removeHotel(hotel)}
+                                            />
+                                            <Tool
+                                                src="/images/tools/edit.png"
+                                                className="admin-panel__hotels-containers-wrapper-item-edit"
+                                                handleClick={this.startEditingHotel(hotel)}
+                                            />
+                                            <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
+                                            <span className="admin-panel__hotels-containers-wrapper-item-name">
+                                                {hotel.mainInfo.hotelName}
+                                            </span>
+                                        </div>
+                                    ))}
                                 </div>
                             ))}
                         </div>

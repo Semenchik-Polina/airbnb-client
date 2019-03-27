@@ -5,6 +5,8 @@ import _ from 'lodash';
 import Button from '../../../shared/components/button/button';
 import PhotoItem from '../photo-item/photo-item';
 
+import devideArray from '../../../shared/tools/devideArray';
+
 import './finish-tab.scss';
 
 class FinishTab extends PureComponent {
@@ -48,6 +50,12 @@ class FinishTab extends PureComponent {
         }).isRequired,
     };
 
+    state = {
+        sectionStyle: {
+            backgroundImage: `url(${this.props.hotelInfo.photoTour[0].photos[0].src})`,
+        },
+    };
+
     handleClick = () => {
         if (this.props.isEditableHotel) {
             this.props.editHotel(this.props.hotelInfo);
@@ -58,15 +66,6 @@ class FinishTab extends PureComponent {
 
     editHotel = () => {
         this.props.editHotel(this.props.hotelInfo);
-    };
-
-    devideArray = (array, size) => {
-        const devidedArray = [];
-        for (let i = 0; i < Math.ceil(array.length / size); i += 1) {
-            devidedArray[i] = array.slice(i * size, i * size + size);
-        }
-
-        return devidedArray;
     };
 
     renderPhotoItems = (item, index) => (
@@ -91,15 +90,7 @@ class FinishTab extends PureComponent {
                         <span className="finish-tab__banner-info-sity">Hotel in {mainInfo.sity}</span>
                         <span className="finish-tab__banner-info-name">{mainInfo.hotelName}</span>
                     </div>
-                    {photoTour.length > 0 && (
-                        <div className="finish-tab__banner-image-container">
-                            <img
-                                className="finish-tab__banner-image-container-item"
-                                src={photoTour[0].photos[0].src}
-                                alt="hotel"
-                            />
-                        </div>
-                    )}
+                    <div className="finish-tab__banner-image" style={this.state.sectionStyle} />
                 </div>
                 <div className="finish-tab__overview">
                     <span className="finish-tab__overview-item">{totalCapacity} guests </span>
@@ -108,7 +99,7 @@ class FinishTab extends PureComponent {
                 {photoTour.length > 0 && (
                     <section className="finish-tab__tour">
                         <span className="finish-tab__tour-header">Tour this hotel</span>
-                        {this.devideArray(photoTour, 4).map((item, index) => (
+                        {devideArray(photoTour, 4).map((item, index) => (
                             <div className="finish-tab__tour-wrapper" key={index}>
                                 <div className="finish-tab__tour-gallery">{item.map(this.renderPhotoItems)}</div>
                             </div>
@@ -119,7 +110,7 @@ class FinishTab extends PureComponent {
                     <section className="finish-tab__facilities">
                         <span className="finish-tab__facilities-header">Facilities and services</span>
                         <div className="finish-tab__facilities-containers">
-                            {this.devideArray(this.devideArray(services.facilities, 3), 2).map((container, index) => (
+                            {devideArray(devideArray(services.facilities, 3), 2).map((container, index) => (
                                 <div className="finish-tab__facilities-containers-wrapper" key={index}>
                                     {container.map((items, containerIndex) => (
                                         <div

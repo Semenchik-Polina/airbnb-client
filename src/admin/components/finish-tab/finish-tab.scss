@@ -58,16 +58,12 @@
         font: 500 2.5em "Roboto";
     }
 
-    &__banner-image-container {
-        flex: auto;
-    }
-
-    &__banner-image-container-item {
+    &__banner-image {
         width: 100%;
         min-height: 600px;
-        max-height: 700px;
 
-        object-fit: cover;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     &__overview {
