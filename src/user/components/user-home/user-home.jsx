@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import _ from 'lodash';
 
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
 
+import FilterPanel from '../filter-panel/filter-panel';
 import history from '../../../shared/tools/history';
 import devideArray from '../../../shared/tools/devideArray';
 
@@ -67,6 +69,7 @@ class UserHome extends PureComponent {
     render() {
         return (
             <div className="user-home">
+                <FilterPanel />
                 {this.props.hotels.length > 0 && (
                     <section className="user-home__hotels">
                         <span className="user-home__hotels-header">Hotels</span>

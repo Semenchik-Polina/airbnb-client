@@ -1,5 +1,5 @@
 .user-home {
-    font: 100 1em 'Roboto';
+    font: 100 1em "Roboto";
 
     &__hotels {
         padding: 10px;
@@ -12,7 +12,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 2.5em 'Roboto';
+        font: 500 2.5em "Roboto";
 
         @media only screen and (max-width: 515px) {
             padding: 10px 4px;
@@ -42,12 +42,183 @@
     &__hotels-containers-wrapper-item-link {
         cursor: pointer;
     }
-    
+
     &__hotels-containers-wrapper-item-name {
         display: block;
 
         margin: 10px 0;
 
-        font: 500 1.1em 'Roboto';
+        font: 500 1.1em "Roboto";
+    }
+    &__search-panel {
+        display: flex;
+
+        margin: 0 30px;
+
+        flex-flow: row nowrap;
+    }
+
+    .react-autosuggest__container {
+        position: relative;
+    }
+
+    .react-autosuggest__input {
+        width: 240px;
+        height: 30px;
+        padding: 10px 20px;
+
+        border: 1px solid #aaaaaa;
+        border-radius: 4px;
+
+        font-family: Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .react-autosuggest__input:focus {
+        outline: none;
+    }
+
+    .react-autosuggest__container--open .react-autosuggest__input {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .react-autosuggest__suggestions-container {
+        display: none;
+    }
+
+    .react-autosuggest__container--open .react-autosuggest__suggestions-container {
+        position: absolute;
+        z-index: 2;
+        top: 51px;
+
+        display: block;
+
+        width: 280px;
+
+        border: 1px solid #aaaaaa;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        background-color: #ffffff;
+
+        font-family: Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .react-autosuggest__suggestions-list {
+        margin: 0;
+        padding: 0;
+
+        list-style-type: none;
+    }
+
+    .react-autosuggest__suggestion {
+        padding: 10px 20px;
+
+        cursor: pointer;
+    }
+
+    .react-autosuggest__suggestion:not(:first-child) {
+        border-top: 1px solid #dddddd;
+    }
+
+    .react-autosuggest__suggestion--focused {
+        color: #ffffff;
+        background-color: #0c7eaf;
+    }
+
+    .suggestion-content {
+        display: flex;
+
+        background-repeat: no-repeat;
+
+        align-items: center;
+    }
+
+    .react-autosuggest__suggestion--focused .highlight {
+        color: #120000;
+    }
+
+    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+        color: #007883;
+        background-color: #f0f8ff;
+    }
+
+    .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+        background-color: #007883;
+    }
+
+    .DayPicker-Day {
+        border-radius: 0;
+    }
+
+    .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+        color: #f0f8ff;
+        background-color: #007883;
+    }
+
+    .DayPicker:not(.DayPicker--interactionDisabled)
+    .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+        background-color: #dbb7c8;
+    }
+
+    .DayPicker-Day--start {
+        border-radius: 0 50% 50% 0;
+        background-color: #007883;
+    }
+
+    .DayPicker-Day {
+        padding: 0.7em;
+
+        border: 1px solid rgb(240, 239, 239);
+        border-radius: 0;
+    }
+
+    .InputFromTo {
+        display: flex;
+
+        padding: 5px 0;
+
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 5px;
+    }
+
+    .InputFromTo
+    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+        color: white;
+        background-color: #007883;
+    }
+
+    .InputFromTo .DayPicker-Day {
+        border-radius: 0;
+    }
+
+    .InputFromTo .DayPickerInput-Overlay {
+        width: 370px;
+    }
+
+    .InputFromTo-to .DayPickerInput-Overlay {
+        margin-left: -195px;
+    }
+    .DayPickerInput input {
+        width: 155px;
+        margin: 0 5px;
+        padding: 5px;
+
+        text-align: center;
+
+        color: rgb(66, 66, 66);
+        border: none;
+
+        font: 300 1em "Roboto";
+
+        &:focus {
+            color: rgb(241, 241, 241);
+            border-radius: 5px;
+            outline: none;
+            background-color: #007883;
+        }
     }
 }
