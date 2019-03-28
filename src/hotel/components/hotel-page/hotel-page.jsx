@@ -1,29 +1,32 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+
 import { withRouter } from 'react-router-dom';
 
 import BeatLoader from 'react-spinners/BeatLoader';
 import HotelItem from '../../../shared/components/hotel-item/hotel-item';
 import Button from '../../../shared/components/button/button';
-import Modal from '../../../auth/components/modal/modal';
+import ModalBooking from '../modal-booking/modal-booking';
 
 import './hotel-page.scss';
-
-// const override = css`
-//     display: flex;
-//     justifyContent: center;
-//     margin: auto;
-//     border-color: red;
-// `;
 
 class HotelPage extends PureComponent {
     static defaultProps = {
         hotelInfo: null,
+        user: null,
     };
 
     static propTypes = {
+        user: PropTypes.shape({
+            _id: PropTypes.string,
+            email: PropTypes.string,
+            role: PropTypes.string,
+        }),
         fetchHotel: PropTypes.func.isRequired,
+        isModalShown: PropTypes.bool.isRequired,
+        showModal: PropTypes.func.isRequired,
+        hideModal: PropTypes.func.isRequired,
         match: PropTypes.shape({
             params: PropTypes.shape({
                 id: PropTypes.string.isRequired,
@@ -66,40 +69,48 @@ class HotelPage extends PureComponent {
         }),
     };
 
-    state = {
-        isModalShown: true,
-    };
-
     componentDidMount = () => {
         this.props.fetchHotel(this.props.match.params.id);
     };
 
+    handleBookingClick = () => {
+        this.props.showModal();
+    };
+
+    handleModalClose = () => {
+        this.props.hideModal();
+    };
+
     render() {
-        // not return anything if there is no hotel info
-        // or return spinner?
         if (this.props.hotelInfo && this.props.hotelInfo.id === this.props.match.params.id) {
             return (
                 <div className="hotel-page">
                     <HotelItem hotelInfo={this.props.hotelInfo} />
-                    <div className="hotel-page__booking">
-                        <div className="hotel-page__booking-price">
-                            <span className="hotel-page__booking-price-range">
-                                ${_.minBy(this.props.hotelInfo.roomTypes, 'cost').cost}-
-                                {_.maxBy(this.props.hotelInfo.roomTypes, 'cost').cost}
-                            </span>
-                            <span className="hotel-page__booking-price-time-unit">/night</span>
+                    {this.props.user && this.props.user.role !== 'Admin' && (
+                        <div className="hotel-page__booking">
+                            <div className="hotel-page__booking-price">
+                                <span className="hotel-page__booking-price-range">
+                                    ${_.minBy(this.props.hotelInfo.roomTypes, 'cost').cost}-
+                                    {_.maxBy(this.props.hotelInfo.roomTypes, 'cost').cost}
+                                </span>
+                                <span className="hotel-page__booking-price-time-unit">/night</span>
+                            </div>
+                            <Button
+                                className="hotel-page__booking-button"
+                                color="purple"
+                                handleClick={this.handleBookingClick}
+                            >
+                                Booking
+                            </Button>
                         </div>
-                        <Button className="hotel-page__booking-button" color="purple">
-                            Booking
-                        </Button>
-                    </div>
-                    {this.state.isModalShown && <Modal onClose={() => this.s} />}
+                    )}
+                    {this.props.isModalShown && <ModalBooking onClose={this.handleModalClose} />}
                 </div>
             );
         }
         return (
             <div className="hotel-page hotel-page__loader">
-                <BeatLoader sizeUnit="px" size={80} color="#2B9E86" loading />
+                <BeatLoader sizeUnit="px" size={20} color="#2B9E86" loading />
             </div>
         );
     }

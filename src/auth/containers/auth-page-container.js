@@ -2,15 +2,14 @@ import { connect } from 'react-redux';
 
 import AuthPage from '../components/auth-page/auth-page';
 
-import { modalActions } from '../actions/actions';
+import * as actions from '../actions/actions';
 
 export default connect(
     state => ({
-        isModalShown: state.auth.modal.isModalShown,
-        isShowSignUp: state.auth.modal.isShowSignUp,
+        isModalShown: state.auth.authModal.isModalShown,
     }),
     dispatch => ({
-        showModal: () => dispatch(modalActions.showModal()),
-        hideModal: () => dispatch(modalActions.hideModal()),
+        showModal: () => dispatch(actions.showModal()),
+        hideModal: () => dispatch(actions.hideModal()),
     }),
 )(AuthPage);

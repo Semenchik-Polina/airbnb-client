@@ -4,8 +4,7 @@ export const userTypes = {
     LOGOUT_USER: 'LOGOUT_USER',
 };
 
-export const modalTypes = {
-    SWITCH_MODAL_INNER: 'SWITCH_MODAL_INNER',
-    HIDE_MODAL: 'HIDE_MODAL',
-    SHOW_MODAL: 'SHOW_MODAL',
+export const authModalTypes = {
+    HIDE_AUTH_MODAL: 'HIDE_AUTH_MODAL',
+    SHOW_AUTH_MODAL: 'SHOW_AUTH_MODAL',
 };

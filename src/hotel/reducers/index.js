@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import userReducer from './user';
-
+import hotelReducer from './hotel';
 import modalReducer from './modal';
 
 export default combineReducers({
-    user: userReducer,
-    authModal: modalReducer,
+    hotel: hotelReducer,
+    bookingModal: modalReducer,
 });

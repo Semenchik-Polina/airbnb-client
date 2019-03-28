@@ -1,17 +1,17 @@
 import { toast } from 'react-toastify';
 import controllers from '../controllers/controllers';
-import { userTypes, modalTypes } from '../constants';
+import { userTypes, authModalTypes } from '../constants';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
     toast(message);
 };
 
-function signup(data) {
+export function signup(data) {
     return async (dispatch) => {
         try {
             await controllers.signup(data);
-            dispatch({ type: modalTypes.HIDE_MODAL });
+            dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
             document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
@@ -19,14 +19,14 @@ function signup(data) {
     };
 }
 
-function login(values) {
+export function login(values) {
     return async (dispatch) => {
         try {
             const {
                 data: { user },
             } = await controllers.login(values);
             dispatch({ type: userTypes.VALIDATE_USER, user });
-            dispatch({ type: modalTypes.HIDE_MODAL });
+            dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
             document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
@@ -34,7 +34,7 @@ function login(values) {
     };
 }
 
-function logout() {
+export function logout() {
     return async (dispatch) => {
         try {
             await controllers.logout();
@@ -45,25 +45,14 @@ function logout() {
     };
 }
 
-function showModal() {
+export function showModal() {
     return (dispatch) => {
-        dispatch({ type: modalTypes.SHOW_MODAL });
+        dispatch({ type: authModalTypes.SHOW_AUTH_MODAL });
     };
 }
 
-function hideModal() {
+export function hideModal() {
     return (dispatch) => {
-        dispatch({ type: modalTypes.HIDE_MODAL });
+        dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
     };
 }
-
-export const userActions = {
-    signup,
-    login,
-    logout,
-};
-
-export const modalActions = {
-    showModal,
-    hideModal,
-};

@@ -3,12 +3,12 @@ import { reduxForm } from 'redux-form';
 
 import SignupForm from '../components/signup-form/signup-form';
 
-import { userActions } from '../actions/actions';
+import * as actions from '../actions/actions';
 
 export default connect(
     null,
     dispatch => ({
-        signup: data => dispatch(userActions.signup(data)),
+        signup: data => dispatch(actions.signup(data)),
     }),
 )(
     reduxForm({

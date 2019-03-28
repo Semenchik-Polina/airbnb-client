@@ -3,12 +3,12 @@ import { reduxForm } from 'redux-form';
 
 import LoginForm from '../components/login-form/login-form';
 
-import { userActions } from '../actions/actions';
+import * as actions from '../actions/actions';
 
 export default connect(
     null,
     dispatch => ({
-        login: data => dispatch(userActions.login(data)),
+        login: data => dispatch(actions.login(data)),
     }),
 )(
     reduxForm({

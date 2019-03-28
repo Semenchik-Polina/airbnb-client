@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { ToastContainer } from 'react-toastify';
-import Modal from '../modal/modal';
+import Modal from '../../../shared/components/modal/modal';
 import ModalSignup from '../modal-signup/modal-signup';
 import ModalLogin from '../modal-login/modal-login';
 import Menu from '../../containers/menu-container';
@@ -36,7 +36,6 @@ class AuthPage extends PureComponent {
     };
 
     handleCloseModal = () => {
-        document.body.style.overflow = 'visible';
         this.props.hideModal();
     };
 

@@ -1,0 +1,92 @@
+.modal-booking {
+    min-width: 100px;
+
+    &__date-pickers-item {
+        border: 5px;
+    }
+    .DayPickerInput {
+        input {
+            width: 155px;
+            margin: 0 5px;
+            padding: 5px;
+
+            text-align: center;
+
+            color: rgb(66, 66, 66);
+            border: none;
+
+            font: 300 1em "Roboto";
+
+            &:focus {
+                color: rgb(241, 241, 241);
+                border-radius: 5px;
+                outline: none;
+                background-color: #68314b;
+            }
+        }
+    }
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    color: #914669;
+    background-color: #f0f8ff !important;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+    background-color: #68314b;
+}
+
+.DayPicker-Day {
+    border-radius: 0 !important;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    color: #f0f8ff;
+    background-color: #914669;
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+    background-color: #dbb7c8;
+}
+
+.DayPicker-Day--start {
+    border-radius: 0 50% 50% 0;
+    background-color: #914669;
+}
+
+.DayPicker-Day--end {
+    border-top-right-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+}
+
+.DayPicker-Day {
+    padding: 0.70em;
+
+    border: 1px solid rgb(240, 239, 239);
+    border-radius: 0;
+}
+
+.InputFromTo {
+    display: flex;
+
+    padding: 5px 0;
+
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+
+    flex-flow: row-nowrap;
+}
+.InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    color: white;
+    background-color: #6d354f !important;
+}
+.InputFromTo .DayPicker-Day {
+    border-radius: 0 !important;
+}
+
+.InputFromTo .DayPickerInput-Overlay {
+    width: 370px;
+}
+
+.InputFromTo-to .DayPickerInput-Overlay {
+    margin-left: -195px;
+}
