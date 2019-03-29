@@ -1,7 +1,7 @@
 .counter {
     display: flex;
 
-    width: 150px;
+    min-width: 100px;
 
     align-items: center;
     justify-content: space-between;
@@ -9,18 +9,25 @@
     &__button {
         display: flex;
 
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
 
         cursor: pointer;
         transition: 0.25s;
 
+        color: darkcyan;
         border: 1px solid darkcyan;
         border-radius: 50%;
         outline: none;
         background-color: white;
 
         justify-content: center;
+
+        &_disabled {
+            color: rgba(0, 139, 139, 0.247);
+            border: 1px solid rgba(0, 139, 139, 0.247);
+        }
+
         &:active {
             transition: 0.25s;
 
@@ -34,16 +41,14 @@
 
         min-height: 10px;
 
-        color: darkcyan;
-
         font: 800 1.3em "Roboto";
 
         align-items: center;
     }
 
     &__value {
-        margin: 0 5px;
+        color: rgb(59, 59, 59);
 
-        font: 800 1em "Roboto";
+        font: 500 1em "Roboto";
     }
 }

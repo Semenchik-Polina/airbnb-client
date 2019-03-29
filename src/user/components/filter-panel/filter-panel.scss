@@ -9,12 +9,34 @@
     &__parameters {
         display: flex;
 
-        padding: 15px 0;
+        margin-left: 20px;
+        padding: 8px 0;
 
         flex-flow: row nowrap;
     }
 
     &__parameters-item {
         margin: 0 5px;
+        .DayPicker-Months {
+            flex-flow: row nowrap;
+        }
+    }
+
+    &__parameters-item-container {
+        width: 250px;
+        padding: 10px 25px;
+    }
+
+    &__parameters-item-container-wrapper {
+        display: flex;
+
+        margin: 10px 0;
+
+        color: rgb(59, 59, 59);
+
+        align-items: center;
+        flex-flow: row nowrap;
+        justify-content: space-between;
     }
 }
+
