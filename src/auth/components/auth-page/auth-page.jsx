@@ -44,7 +44,7 @@ class AuthPage extends PureComponent {
         const { isShowSignUp } = this.state;
 
         return (
-            <header>
+            <header className="header">
                 <ToastContainer autoClose={2000} />
                 <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
                 {isModalShown && (

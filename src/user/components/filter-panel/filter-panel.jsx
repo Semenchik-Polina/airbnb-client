@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import moment from 'moment';
 
 import DayPicker, { DateUtils } from 'react-day-picker/DayPicker';
-import Button from '../../../shared/components/button/button';
+import Counter from '../../../shared/components/counter/counter';
+import DropDown from '../dropdown/dropdown';
 
 import 'react-day-picker/lib/style.css';
 import './filter-panel.scss';
@@ -21,14 +23,12 @@ class FilterPanel extends PureComponent {
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
 
+        const date = `${from ? moment(from).format('MMM D') : ''}${to ? ` — ${moment(to).format('MMM D')}` : ''}`;
+
         return (
             <div className="filter-panel">
-                <div className="filter-panel__search-panel">
-                    <div className="filter-panel__date-pickers">
-                        <div className="filter-panel__parameters">
-                            <Button className="filter-panel__parameters-item" color="white">Dates</Button>
-                            <Button className="filter-panel__parameters-item" color="white">Guests</Button>
-                        </div>
+                <div className="filter-panel__parameters">
+                    <DropDown defaultValue="Date" value={date} className="filter-panel__parameters-item">
                         <div className="InputFromTo">
                             <DayPicker
                                 className="Selectable"
@@ -38,7 +38,10 @@ class FilterPanel extends PureComponent {
                                 onDayClick={this.handleDayClick}
                             />
                         </div>
-                    </div>
+                    </DropDown>
+                    <DropDown value="Guests" className="filter-panel__parameters-item">
+                        <Counter />
+                    </DropDown>
                 </div>
             </div>
         );
