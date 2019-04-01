@@ -1,5 +1,18 @@
 .modal-booking {
     min-width: 100px;
+    max-height: 85%;
+
+    @media only screen and (max-width: 615px) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        overflow-y: scroll;
+
+        height: 100%;
+    }
 
     .DayPickerInput input {
         width: 155px;
@@ -79,5 +92,8 @@
 
     .InputFromTo-to .DayPickerInput-Overlay {
         margin-left: -195px;
+        @media only screen and (max-width: 615px) {
+            margin-left: 0;
+        }
     }
 }
