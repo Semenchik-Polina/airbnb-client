@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
 
-import FilterPanel from '../filter-panel/filter-panel';
+import FilterPanel from '../../containers/filter-panel-container';
 import history from '../../../shared/tools/history';
 import devideArray from '../../../shared/tools/devideArray';
 

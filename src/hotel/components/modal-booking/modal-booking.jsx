@@ -22,7 +22,7 @@ class ModalBooking extends PureComponent {
 
     componentWillUnmount = () => {
         this.props.onClose();
-    }
+    };
 
     showFromMonth = () => {
         const { from, to } = this.state;
