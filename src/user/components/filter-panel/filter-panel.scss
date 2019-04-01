@@ -38,5 +38,23 @@
         flex-flow: row nowrap;
         justify-content: space-between;
     }
-}
 
+    &__parameters-item-container-buttons {
+        display: flex;
+
+        padding-top: 10px;
+
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    &__parameters-item-container-buttons-item {
+        width: auto;
+        padding: 0;
+
+        font-size: 0.95em;
+        font-weight: 600;
+        &:first-of-type {
+            color: black;
+        }
+    }
+}

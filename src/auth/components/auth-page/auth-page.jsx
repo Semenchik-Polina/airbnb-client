@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { ToastContainer } from 'react-toastify';
 import Modal from '../../../shared/components/modal/modal';
 import ModalSignup from '../modal-signup/modal-signup';
 import ModalLogin from '../modal-login/modal-login';
@@ -45,7 +44,6 @@ class AuthPage extends PureComponent {
 
         return (
             <header className="header">
-                <ToastContainer autoClose={2000} />
                 <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
                 {isModalShown && (
                     <Modal onClose={this.handleCloseModal}>

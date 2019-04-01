@@ -4,6 +4,7 @@ import moment from 'moment';
 import DayPicker, { DateUtils } from 'react-day-picker/DayPicker';
 import Counter from '../../../shared/components/counter/counter';
 import DropDown from '../dropdown/dropdown';
+import Button from '../../../shared/components/button/button';
 
 import 'react-day-picker/lib/style.css';
 import './filter-panel.scss';
@@ -12,7 +13,7 @@ class FilterPanel extends PureComponent {
     state = {
         from: undefined,
         to: undefined,
-        adultGuests: 0,
+        guests: 0,
     };
 
     handleDayClick = (day) => {
@@ -20,31 +21,31 @@ class FilterPanel extends PureComponent {
         this.setState(range);
     };
 
-    handleAdultGuestsPlusClick = () => {
+    handleGuestsPlusClick = () => {
         this.setState(state => ({
-            adultGuests: state.adultGuests + 1,
+            guests: state.guests + 1,
         }));
     };
 
-    handleAdultGuestsMinusClick = () => {
-        if (this.state.adultGuests) {
+    handleGuestsMinusClick = () => {
+        if (this.state.guests) {
             this.setState(state => ({
-                adultGuests: state.adultGuests - 1,
+                guests: state.guests - 1,
             }));
         }
     };
 
     render() {
-        const { from, to, adultGuests } = this.state;
+        const { from, to, guests } = this.state;
         const modifiers = { start: from, end: to };
 
         const date = `${from ? moment(from).format('MMM D') : ''}${to ? ` — ${moment(to).format('MMM D')}` : ''}`;
 
-        let guests;
-        if (adultGuests) {
-            guests = adultGuests === 1 ? '1 guest' : `${adultGuests} guests`;
+        let guestFilterLabel;
+        if (guests) {
+            guestFilterLabel = guests === 1 ? '1 guest' : `${guests} guests`;
         } else {
-            guests = '';
+            guestFilterLabel = '';
         }
 
         return (
@@ -61,20 +62,32 @@ class FilterPanel extends PureComponent {
                             />
                         </div>
                     </DropDown>
-                    <DropDown defaultValue="Guests" value={guests} className="filter-panel__parameters-item">
+                    <DropDown defaultValue="Guests" value={guestFilterLabel} className="filter-panel__parameters-item">
                         <div className="filter-panel__parameters-item-container">
                             <div className="filter-panel__parameters-item-container-wrapper">
-                                <span>Adults</span>
+                                <span>Guests</span>
                                 <Counter
-                                    onPlusClick={this.handleAdultGuestsPlusClick}
-                                    onMinusClick={this.handleAdultGuestsMinusClick}
-                                    value={this.state.adultGuests}
+                                    onPlusClick={this.handleGuestsPlusClick}
+                                    onMinusClick={this.handleGuestsMinusClick}
+                                    value={this.state.guests}
                                 />
                             </div>
-                            <div className="filter-panel__parameters-item-container-wrapper">
-                                <span>Children</span>
-                                <Counter />
-                            </div>
+                            {guests > 0 && (
+                                <div className="filter-panel__parameters-item-container-buttons">
+                                    <Button
+                                        className="filter-panel__parameters-item-container-buttons-item"
+                                        color="back"
+                                    >
+                                        Clear
+                                    </Button>
+                                    <Button
+                                        className="filter-panel__parameters-item-container-buttons-item"
+                                        color="back"
+                                    >
+                                        Apply
+                                    </Button>
+                                </div>
+                            )}
                         </div>
                     </DropDown>
                 </div>
