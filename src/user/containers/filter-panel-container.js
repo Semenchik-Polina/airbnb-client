@@ -6,7 +6,7 @@ import * as actions from '../actions/autosuggestActions';
 
 export default connect(
     state => ({
-        value: state.userReducer.autosuggest.value,
+        autosuggestValue: state.userReducer.autosuggest.value,
         suggestions: state.userReducer.autosuggest.suggestions,
         isLoading: state.userReducer.autosuggest.isLoading,
     }),

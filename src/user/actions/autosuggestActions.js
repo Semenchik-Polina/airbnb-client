@@ -1,6 +1,6 @@
 import { autosuggestTypes } from '../constants';
 
-const countries = [
+const territories = [
     {
         name: 'Belarus, Minsk',
         country: 'Belarus',
@@ -27,7 +27,6 @@ const countries = [
         city: 'Krakow',
     },
 ];
-
 
 export function updateInputValue(value) {
     return (dispatch) => {
@@ -68,7 +67,7 @@ function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function getMatchingCountries(value) {
+function getMatchingTerritories(value) {
     const escapedValue = escapeRegexCharacters(value.trim());
 
     if (escapedValue === '') {
@@ -77,7 +76,7 @@ function getMatchingCountries(value) {
 
     const regex = new RegExp(`${escapedValue}`, 'i');
 
-    return countries.filter(language => regex.test(language.name));
+    return territories.filter(territory => regex.test(territory.name));
 }
 
 export function loadSuggestions(value) {
@@ -86,7 +85,7 @@ export function loadSuggestions(value) {
 
         // Fake call
         setTimeout(() => {
-            dispatch(maybeUpdateSuggestions(getMatchingCountries(value), value));
+            dispatch(maybeUpdateSuggestions(getMatchingTerritories(value), value));
         }, 500);
     };
 }

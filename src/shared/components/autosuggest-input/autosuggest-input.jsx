@@ -7,7 +7,19 @@ import './autosuggest-input.scss';
 
 const theme = {
     container: 'autosuggest-input__container',
+    containerOpen: 'autosuggest-input__container--open',
     input: 'autosuggest-input__input',
+    inputOpen: 'autosuggest-input__input--open',
+    inputFocused: 'autosuggest-input__input--focused',
+    suggestionsContainer: 'autosuggest-input__suggestions-container',
+    suggestionsContainerOpen: 'autosuggest-input__suggestions-container--open',
+    suggestionsList: 'autosuggest-input__suggestions-list',
+    suggestion: 'autosuggest-input__suggestion',
+    suggestionFirst: 'autosuggest-input__suggestion--first',
+    suggestionHighlighted: 'autosuggest-input__suggestion--highlighted',
+    sectionContainer: 'autosuggest-input__section-container',
+    sectionContainerFirst: 'autosuggest-input__section-container--first',
+    sectionTitle: 'autosuggest-input__section-title',
 };
 
 class AutosuggestInput extends PureComponent {
@@ -35,17 +47,15 @@ class AutosuggestInput extends PureComponent {
         };
 
         return (
-            <div className="autosuggest">
-                <Autosuggest
-                    theme={theme}
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={onSuggestionsClearRequested}
-                    getSuggestionValue={this.getSuggestionValue}
-                    renderSuggestion={this.renderSuggestion}
-                    inputProps={inputProps}
-                />
-            </div>
+            <Autosuggest
+                theme={theme}
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={onSuggestionsClearRequested}
+                getSuggestionValue={this.getSuggestionValue}
+                renderSuggestion={this.renderSuggestion}
+                inputProps={inputProps}
+            />
         );
     }
 }

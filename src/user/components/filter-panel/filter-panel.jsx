@@ -16,7 +16,7 @@ class FilterPanel extends PureComponent {
         onChange: PropTypes.func.isRequired,
         onSuggestionsFetchRequested: PropTypes.func.isRequired,
         onSuggestionsClearRequested: PropTypes.func.isRequired,
-        value: PropTypes.string.isRequired,
+        autosuggestValue: PropTypes.string.isRequired,
         suggestions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     };
 
@@ -48,7 +48,7 @@ class FilterPanel extends PureComponent {
     render() {
         const { from, to, guests } = this.state;
         const {
-            value, suggestions, onChange, onSuggestionsFetchRequested, onSuggestionsClearRequested,
+            autosuggestValue, suggestions, onChange, onSuggestionsFetchRequested, onSuggestionsClearRequested,
         } = this.props;
 
         const modifiers = { start: from, end: to };
@@ -104,13 +104,27 @@ class FilterPanel extends PureComponent {
                             )}
                         </div>
                     </DropDown>
-                    <AutosuggestInput
-                        suggestions={suggestions}
-                        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                        onSuggestionsClearRequested={onSuggestionsClearRequested}
-                        onChange={onChange}
-                        value={value}
-                    />
+                    <DropDown defaultValue="Location" value={autosuggestValue} className="filter-panel__parameters-item">
+                        <div className="filter-panel__parameters-item-container">
+                            <div className="filter-panel__parameters-item-container-wrapper">
+                                <AutosuggestInput
+                                    suggestions={suggestions}
+                                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                                    onSuggestionsClearRequested={onSuggestionsClearRequested}
+                                    onChange={onChange}
+                                    value={autosuggestValue}
+                                />
+                            </div>
+                            <div className="filter-panel__parameters-item-container-buttons">
+                                <Button className="filter-panel__parameters-item-container-buttons-item" color="back">
+                                    Clear
+                                </Button>
+                                <Button className="filter-panel__parameters-item-container-buttons-item" color="back">
+                                    Apply
+                                </Button>
+                            </div>
+                        </div>
+                    </DropDown>
                 </div>
             </div>
         );
