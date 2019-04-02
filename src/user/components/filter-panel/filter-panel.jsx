@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import moment from 'moment';
-import Autosuggest from 'react-autosuggest';
 import DayPicker, { DateUtils } from 'react-day-picker/DayPicker';
+import AutosuggestInput from '../../../shared/components/autosuggest-input/autosuggest-input';
 import Counter from '../../../shared/components/counter/counter';
 import DropDown from '../dropdown/dropdown';
 import Button from '../../../shared/components/button/button';
@@ -45,10 +45,6 @@ class FilterPanel extends PureComponent {
         }
     };
 
-    getSuggestionValue = suggestion => suggestion.name;
-
-    renderSuggestion = suggestion => <span>{suggestion.name}</span>;
-
     render() {
         const { from, to, guests } = this.state;
         const {
@@ -56,11 +52,7 @@ class FilterPanel extends PureComponent {
         } = this.props;
 
         const modifiers = { start: from, end: to };
-        const inputProps = {
-            placeholder: "Type 'c'",
-            value,
-            onChange,
-        };
+
         const date = `${from ? moment(from).format('MMM D') : ''}${to ? ` — ${moment(to).format('MMM D')}` : ''}`;
 
         let guestFilterLabel;
@@ -112,13 +104,12 @@ class FilterPanel extends PureComponent {
                             )}
                         </div>
                     </DropDown>
-                    <Autosuggest
+                    <AutosuggestInput
                         suggestions={suggestions}
                         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={onSuggestionsClearRequested}
-                        getSuggestionValue={this.getSuggestionValue}
-                        renderSuggestion={this.renderSuggestion}
-                        inputProps={inputProps}
+                        onChange={onChange}
+                        value={value}
                     />
                 </div>
             </div>

@@ -1,5 +1,34 @@
 import { autosuggestTypes } from '../constants';
 
+const countries = [
+    {
+        name: 'Belarus, Minsk',
+        country: 'Belarus',
+        city: 'Minsk',
+    },
+    {
+        name: 'Belarus, Gomel',
+        country: 'Belarus',
+        city: 'Gomel',
+    },
+    {
+        name: 'Belarus, Brest',
+        country: 'Belarus',
+        city: 'Brest',
+    },
+    {
+        name: 'Poland, Warsaw',
+        country: 'Poland',
+        city: 'Warsaw',
+    },
+    {
+        name: 'Poland, Krakow',
+        country: 'Poland',
+        city: 'Krakow',
+    },
+];
+
+
 export function updateInputValue(value) {
     return (dispatch) => {
         dispatch({
@@ -35,15 +64,6 @@ export function maybeUpdateSuggestions(suggestions, value) {
     };
 }
 
-const countries = [
-    {
-        name: 'Belarus',
-    },
-    {
-        name: 'Russia',
-    },
-];
-
 function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -55,7 +75,7 @@ function getMatchingCountries(value) {
         return [];
     }
 
-    const regex = new RegExp(`^${escapedValue}`, 'i');
+    const regex = new RegExp(`${escapedValue}`, 'i');
 
     return countries.filter(language => regex.test(language.name));
 }
