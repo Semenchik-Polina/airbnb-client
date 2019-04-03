@@ -2,129 +2,117 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import moment from 'moment';
-import DayPicker, { DateUtils } from 'react-day-picker/DayPicker';
+
+import DayPickerFilter from '../day-picker-filter/day-picker-filter';
 import AutosuggestInput from '../../../shared/components/autosuggest-input/autosuggest-input';
 import Counter from '../../../shared/components/counter/counter';
-import DropDown from '../dropdown/dropdown';
-import Button from '../../../shared/components/button/button';
+import FilterContent from '../filter-content/filter-content';
 
 import 'react-day-picker/lib/style.css';
 import './filter-panel.scss';
 
 class FilterPanel extends PureComponent {
     static propTypes = {
-        onChange: PropTypes.func.isRequired,
+        applyFilters: PropTypes.func.isRequired,
+        incrementGuestsCount: PropTypes.func.isRequired,
+        decrementGuestsCount: PropTypes.func.isRequired,
+        onInputChange: PropTypes.func.isRequired,
+        setLocation: PropTypes.func.isRequired,
+        clearDateFilter: PropTypes.func.isRequired,
+        clearGuestFilter: PropTypes.func.isRequired,
+        clearLocationFilter: PropTypes.func.isRequired,
         onSuggestionsFetchRequested: PropTypes.func.isRequired,
         onSuggestionsClearRequested: PropTypes.func.isRequired,
         autosuggestValue: PropTypes.string.isRequired,
         suggestions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    };
-
-    state = {
-        from: undefined,
-        to: undefined,
-        guests: 0,
-    };
-
-    handleDayClick = (day) => {
-        const range = DateUtils.addDayToRange(day, this.state);
-        this.setState(range);
-    };
-
-    handleGuestsPlusClick = () => {
-        this.setState(state => ({
-            guests: state.guests + 1,
-        }));
-    };
-
-    handleGuestsMinusClick = () => {
-        if (this.state.guests) {
-            this.setState(state => ({
-                guests: state.guests - 1,
-            }));
-        }
+        setDateFilterRange: PropTypes.func.isRequired,
+        guests: PropTypes.number.isRequired,
+        dateRange: PropTypes.shape({
+            from: PropTypes.instanceOf(Date),
+            to: PropTypes.instanceOf(Date),
+        }).isRequired,
+        location: PropTypes.shape({
+            country: PropTypes.string,
+            city: PropTypes.string,
+        }).isRequired,
     };
 
     render() {
-        const { from, to, guests } = this.state;
         const {
-            autosuggestValue, suggestions, onChange, onSuggestionsFetchRequested, onSuggestionsClearRequested,
+            dateRange,
+            guests,
+            location,
+            autosuggestValue,
+            suggestions,
+            onInputChange,
+            onSuggestionsFetchRequested,
+            onSuggestionsClearRequested,
+            incrementGuestsCount,
+            decrementGuestsCount,
+            setDateFilterRange,
+            setLocation,
+            clearDateFilter,
+            clearGuestFilter,
+            clearLocationFilter,
+            applyFilters,
         } = this.props;
 
-        const modifiers = { start: from, end: to };
+        const dateLabel = `${dateRange.from ? moment(dateRange.from).format('MMM D') : ''}${
+            dateRange.to ? ` — ${moment(dateRange.to).format('MMM D')}` : ''
+        }`;
 
-        const date = `${from ? moment(from).format('MMM D') : ''}${to ? ` — ${moment(to).format('MMM D')}` : ''}`;
-
-        let guestFilterLabel;
+        let guestLabel;
         if (guests) {
-            guestFilterLabel = guests === 1 ? '1 guest' : `${guests} guests`;
+            guestLabel = guests === 1 ? '1 guest' : `${guests} guests`;
         } else {
-            guestFilterLabel = '';
+            guestLabel = '';
         }
+
+        const locationFilterLabel = location.country && location.city ? `${location.country}, ${location.city}` : '';
 
         return (
             <div className="filter-panel">
                 <div className="filter-panel__parameters">
-                    <DropDown defaultValue="Date" value={date} className="filter-panel__parameters-item">
-                        <div className="InputFromTo">
-                            <DayPicker
-                                className="Selectable"
-                                numberOfMonths={2}
-                                selectedDays={[from, { from, to }]}
-                                modifiers={modifiers}
-                                onDayClick={this.handleDayClick}
-                            />
-                        </div>
-                    </DropDown>
-                    <DropDown defaultValue="Guests" value={guestFilterLabel} className="filter-panel__parameters-item">
-                        <div className="filter-panel__parameters-item-container">
-                            <div className="filter-panel__parameters-item-container-wrapper">
-                                <span>Guests</span>
-                                <Counter
-                                    onPlusClick={this.handleGuestsPlusClick}
-                                    onMinusClick={this.handleGuestsMinusClick}
-                                    value={this.state.guests}
-                                />
-                            </div>
-                            {guests > 0 && (
-                                <div className="filter-panel__parameters-item-container-buttons">
-                                    <Button
-                                        className="filter-panel__parameters-item-container-buttons-item"
-                                        color="back"
-                                    >
-                                        Clear
-                                    </Button>
-                                    <Button
-                                        className="filter-panel__parameters-item-container-buttons-item"
-                                        color="back"
-                                    >
-                                        Apply
-                                    </Button>
-                                </div>
-                            )}
-                        </div>
-                    </DropDown>
-                    <DropDown defaultValue="Location" value={autosuggestValue} className="filter-panel__parameters-item">
-                        <div className="filter-panel__parameters-item-container">
-                            <div className="filter-panel__parameters-item-container-wrapper">
-                                <AutosuggestInput
-                                    suggestions={suggestions}
-                                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                                    onSuggestionsClearRequested={onSuggestionsClearRequested}
-                                    onChange={onChange}
-                                    value={autosuggestValue}
-                                />
-                            </div>
-                            <div className="filter-panel__parameters-item-container-buttons">
-                                <Button className="filter-panel__parameters-item-container-buttons-item" color="back">
-                                    Clear
-                                </Button>
-                                <Button className="filter-panel__parameters-item-container-buttons-item" color="back">
-                                    Apply
-                                </Button>
-                            </div>
-                        </div>
-                    </DropDown>
+                    <FilterContent
+                        defaultValue="Date"
+                        value={dateLabel}
+                        className="filter-panel__parameters-item"
+                        onClearClick={clearDateFilter}
+                        onApplyClick={applyFilters}
+                    >
+                        <DayPickerFilter to={dateRange.to} from={dateRange.from} onDayClick={setDateFilterRange} />
+                    </FilterContent>
+                    <FilterContent
+                        defaultValue="Guests"
+                        value={guestLabel}
+                        className="filter-panel__parameters-item"
+                        onClearClick={clearGuestFilter}
+                        onApplyClick={applyFilters}
+                    >
+                        <span>Guests</span>
+                        <Counter
+                            onPlusClick={incrementGuestsCount}
+                            isMinusDisabled={guests === 0}
+                            onMinusClick={decrementGuestsCount}
+                            value={guests}
+                        />
+                    </FilterContent>
+                    <FilterContent
+                        defaultValue="Location"
+                        value={locationFilterLabel}
+                        className="filter-panel__parameters-item"
+                        onClearClick={clearLocationFilter}
+                        onApplyClick={applyFilters}
+                    >
+                        <AutosuggestInput
+                            suggestions={suggestions}
+                            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                            onSuggestionsClearRequested={onSuggestionsClearRequested}
+                            onChange={onInputChange}
+                            value={autosuggestValue}
+                            getSuggestionValue={setLocation}
+                        />
+                    </FilterContent>
                 </div>
             </div>
         );

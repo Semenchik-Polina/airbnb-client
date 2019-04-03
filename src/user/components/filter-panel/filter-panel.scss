@@ -17,57 +17,5 @@
 
     &__parameters-item {
         margin: 0 5px;
-
-        .DayPicker-Months {
-            flex-flow: row nowrap;
-            @media only screen and (max-width: 715px) {
-                margin: 0;
-
-                flex-flow: column nowrap;
-            }
-        }
-
-        .DayPicker-Month {
-            @media only screen and (max-width: 515px) {
-                margin: 5px 0;
-            }
-        }
-    }
-
-    &__parameters-item-container {
-        min-width: 250px;
-        padding: 10px 25px;
-    }
-
-    &__parameters-item-container-wrapper {
-        display: flex;
-
-        margin: 10px 0;
-
-        color: rgb(59, 59, 59);
-
-        align-items: center;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
-
-    &__parameters-item-container-buttons {
-        display: flex;
-
-        padding-top: 10px;
-
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
-
-    &__parameters-item-container-buttons-item {
-        width: auto;
-        padding: 0;
-
-        font-size: 0.95em;
-        font-weight: 600;
-        &:first-of-type {
-            color: black;
-        }
     }
 }

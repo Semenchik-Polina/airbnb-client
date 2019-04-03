@@ -10,10 +10,12 @@ import './dropdown.scss';
 class DropDown extends PureComponent {
     static defaultProps = {
         className: '',
+        onClickOutside: () => {},
     };
 
     static propTypes = {
         className: PropTypes.string,
+        onClickOutside: PropTypes.func,
     };
 
     state = {
@@ -28,6 +30,7 @@ class DropDown extends PureComponent {
         if (this.state.isPanelOpened) {
             this.setState(state => ({ isPanelOpened: !state.isPanelOpened }));
         }
+        this.props.onClickOutside();
     };
 
     render() {

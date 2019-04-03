@@ -1,4 +1,4 @@
-import { autosuggestTypes } from '../constants';
+import * as types from '../constants/types';
 
 const initialState = {
     value: '',
@@ -8,26 +8,25 @@ const initialState = {
 
 const autosuggestReducer = (state = initialState, action) => {
     switch (action.type) {
-    case autosuggestTypes.UPDATE_INPUT_VALUE:
+    case types.UPDATE_INPUT_VALUE:
         return {
             ...state,
             value: action.value,
         };
 
-    case autosuggestTypes.CLEAR_SUGGESTIONS:
+    case types.CLEAR_SUGGESTIONS:
         return {
             ...state,
             suggestions: [],
         };
 
-    case autosuggestTypes.LOAD_SUGGESTIONS_BEGIN:
+    case types.LOAD_SUGGESTIONS_BEGIN:
         return {
             ...state,
             isLoading: true,
         };
 
-    case autosuggestTypes.MAYBE_UPDATE_SUGGESTIONS:
-        // Ignore suggestions if input value changed
+    case types.MAYBE_UPDATE_SUGGESTIONS:
         if (action.value !== state.value) {
             return {
                 ...state,

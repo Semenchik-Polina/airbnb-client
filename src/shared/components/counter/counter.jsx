@@ -8,6 +8,8 @@ class Counter extends PureComponent {
     static defaultProps = {
         className: '',
         value: 0,
+        isMinusDisabled: false,
+        isPlusDisabled: false,
     };
 
     static propTypes = {
@@ -15,23 +17,26 @@ class Counter extends PureComponent {
         onMinusClick: PropTypes.func.isRequired,
         onPlusClick: PropTypes.func.isRequired,
         value: PropTypes.number,
+        isMinusDisabled: PropTypes.bool,
+        isPlusDisabled: PropTypes.bool,
     };
 
     render() {
         const {
-            className, onMinusClick, onPlusClick, value,
+            className, onMinusClick, onPlusClick, value, isMinusDisabled, isPlusDisabled,
         } = this.props;
 
         const counterClasses = classNames('counter', className);
-        const minusButtonClasses = classNames('counter__button', { counter__button_disabled: !value });
+        const plusButtonClasses = classNames('counter__button', { counter__button_disabled: isPlusDisabled });
+        const minusButtonClasses = classNames('counter__button', { counter__button_disabled: isMinusDisabled });
 
         return (
             <div className={counterClasses}>
-                <button className={minusButtonClasses} type="button" onClick={onMinusClick} disabled={!value}>
+                <button className={minusButtonClasses} type="button" onClick={onMinusClick} disabled={isMinusDisabled}>
                     <span className="counter__button-sign">-</span>
                 </button>
                 <span className="counter__value">{value}</span>
-                <button className="counter__button" type="button" onClick={onPlusClick}>
+                <button className={plusButtonClasses} type="button" onClick={onPlusClick} disabled={isPlusDisabled}>
                     <span className="counter__button-sign">+</span>
                 </button>
             </div>

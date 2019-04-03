@@ -1,4 +1,4 @@
-import { autosuggestTypes } from '../constants';
+import * as types from '../constants/types';
 
 const territories = [
     {
@@ -31,7 +31,7 @@ const territories = [
 export function updateInputValue(value) {
     return (dispatch) => {
         dispatch({
-            type: autosuggestTypes.UPDATE_INPUT_VALUE,
+            type: types.UPDATE_INPUT_VALUE,
             value,
         });
     };
@@ -40,7 +40,7 @@ export function updateInputValue(value) {
 export function clearSuggestions() {
     return (dispatch) => {
         dispatch({
-            type: autosuggestTypes.CLEAR_SUGGESTIONS,
+            type: types.CLEAR_SUGGESTIONS,
         });
     };
 }
@@ -48,7 +48,7 @@ export function clearSuggestions() {
 export function loadSuggestionsBegin() {
     return (dispatch) => {
         dispatch({
-            type: autosuggestTypes.LOAD_SUGGESTIONS_BEGIN,
+            type: types.LOAD_SUGGESTIONS_BEGIN,
         });
     };
 }
@@ -56,7 +56,7 @@ export function loadSuggestionsBegin() {
 export function maybeUpdateSuggestions(suggestions, value) {
     return (dispatch) => {
         dispatch({
-            type: autosuggestTypes.MAYBE_UPDATE_SUGGESTIONS,
+            type: types.MAYBE_UPDATE_SUGGESTIONS,
             suggestions,
             value,
         });

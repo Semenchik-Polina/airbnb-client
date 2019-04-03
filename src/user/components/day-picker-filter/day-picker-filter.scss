@@ -1,0 +1,36 @@
+.day-picker-filter__day {
+    padding: 0.7em;
+
+    border: 1px solid rgb(240, 239, 239);
+    border-radius: 0;
+}
+
+.day-picker-filter:not(.day-picker-filter_interaction-disabled)
+    .day-picker-filter__day:not(.day-picker-filter__day_disabled):not(.day-picker-filter__day_selected):not(.day-picker-filter__day_outside):hover {
+    background-color: #00788338;
+}
+
+.day-picker-filter__day_selected.day-picker-filter__day:not(.day-picker-filter__day_outside) {
+    color: white;
+    background-color: #007883;
+
+    &:hover {
+        color: white;
+        background-color: #007883;
+    }
+}
+
+.day-picker-filter__months {
+    flex-flow: row nowrap;
+    @media only screen and (max-width: 715px) {
+        margin: 0;
+
+        flex-flow: column nowrap;
+    }
+}
+
+.day-picker-filter__month {
+    @media only screen and (max-width: 515px) {
+        margin: 5px 0;
+    }
+}

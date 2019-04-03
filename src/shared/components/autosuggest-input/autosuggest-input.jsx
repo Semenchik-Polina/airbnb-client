@@ -23,15 +23,23 @@ const theme = {
 };
 
 class AutosuggestInput extends PureComponent {
+    static defaultProps = {
+        getSuggestionValue: () => {},
+    };
+
     static propTypes = {
         onChange: PropTypes.func.isRequired,
         onSuggestionsFetchRequested: PropTypes.func.isRequired,
         onSuggestionsClearRequested: PropTypes.func.isRequired,
         value: PropTypes.string.isRequired,
         suggestions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+        getSuggestionValue: PropTypes.func,
     };
 
-    getSuggestionValue = suggestion => suggestion.name;
+    getSuggestionValue = (suggestion) => {
+        this.props.getSuggestionValue(suggestion);
+        return suggestion.name;
+    };
 
     renderSuggestion = suggestion => <span>{suggestion.name}</span>;
 
