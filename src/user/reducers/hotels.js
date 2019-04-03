@@ -1,10 +1,10 @@
-import { sharedTypes } from '../../shared/constants';
+import * as types from '../../shared/constants/types';
 
 const initialState = [];
 
 const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
-    case sharedTypes.FETCH_ALL_HOTELS: {
+    case types.FETCH_ALL_HOTELS: {
         const hotels = action.data;
         return [...hotels];
     }

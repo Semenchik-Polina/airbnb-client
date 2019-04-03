@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 
-import { adminTypes } from '../constants';
+import * as types from '../constants/types';
 
 const initialState = {
     mainInfo: {},
@@ -13,7 +13,7 @@ const initialState = {
 
 const hotelInfoReducer = (state = initialState, action) => {
     switch (action.type) {
-    case adminTypes.ADD_HOTEL_MAIN_INFO: {
+    case types.ADD_HOTEL_MAIN_INFO: {
         const { hotel } = action;
 
         return {
@@ -21,7 +21,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             mainInfo: { ...hotel },
         };
     }
-    case adminTypes.ADD_SERVICE_INFO: {
+    case types.ADD_SERVICE_INFO: {
         const { services } = action;
 
         return {
@@ -29,7 +29,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             services: { ...services },
         };
     }
-    case adminTypes.ADD_ROOM_TYPE: {
+    case types.ADD_ROOM_TYPE: {
         const { roomType } = action;
         let newTypes;
         const { id } = roomType;
@@ -46,7 +46,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             roomTypes: newTypes,
         };
     }
-    case adminTypes.ADD_PHOTOS: {
+    case types.ADD_PHOTOS: {
         const { photoTour } = action;
         const { type } = photoTour;
 
@@ -64,7 +64,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             photoTour: newPhotos,
         };
     }
-    case adminTypes.REMOVE_PHOTO_ITEM: {
+    case types.REMOVE_PHOTO_ITEM: {
         const { id } = action;
         const items = state.photoTour.filter(item => item.id !== id);
 
@@ -73,7 +73,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             photoTour: items,
         };
     }
-    case adminTypes.DELETE_ROOM_TYPE: {
+    case types.DELETE_ROOM_TYPE: {
         const { id } = action;
         const roomTypes = state.roomTypes.filter(roomType => roomType.id !== id);
         return {
@@ -81,23 +81,23 @@ const hotelInfoReducer = (state = initialState, action) => {
             roomTypes: [...roomTypes],
         };
     }
-    case adminTypes.FILL_HOTEL_INFO: {
+    case types.FILL_HOTEL_INFO: {
         const { hotel } = action;
         return {
             ...hotel,
         };
     }
-    case adminTypes.RESET_HOTEL_INFO: {
+    case types.RESET_HOTEL_INFO: {
         return initialState;
     }
-    case adminTypes.SET_EDITABLE_ID: {
+    case types.SET_EDITABLE_ID: {
         const { id } = action;
         return {
             ...state,
             editableId: id,
         };
     }
-    case adminTypes.UNSET_EDITABLE_ID: {
+    case types.UNSET_EDITABLE_ID: {
         return {
             ...state,
             editableId: null,

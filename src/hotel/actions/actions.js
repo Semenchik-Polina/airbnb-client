@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import * as controllers from '../controllers/controllers';
-import { hotelTypes, bookingModalTypes } from '../constants';
+import * as types from '../constants/types';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
@@ -13,7 +13,7 @@ export function fetchHotel(id) {
         try {
             const { data } = await controllers.fetchHotel(id);
             dispatch({
-                type: hotelTypes.FETCH_HOTEL,
+                type: types.FETCH_HOTEL,
                 data,
             });
         } catch (err) {
@@ -24,12 +24,12 @@ export function fetchHotel(id) {
 
 export function showModal() {
     return (dispatch) => {
-        dispatch({ type: bookingModalTypes.SHOW_BOOKING_MODAL });
+        dispatch({ type: types.SHOW_BOOKING_MODAL });
     };
 }
 
 export function hideModal() {
     return (dispatch) => {
-        dispatch({ type: bookingModalTypes.HIDE_BOOKING_MODAL });
+        dispatch({ type: types.HIDE_BOOKING_MODAL });
     };
 }

@@ -1,4 +1,4 @@
-import { bookingModalTypes } from '../constants';
+import * as types from '../constants/types';
 
 const initialState = {
     isModalShown: false,
@@ -6,13 +6,13 @@ const initialState = {
 
 const modalReducer = (state = initialState, action) => {
     switch (action.type) {
-    case bookingModalTypes.SHOW_BOOKING_MODAL: {
+    case types.SHOW_BOOKING_MODAL: {
         return {
             ...state,
             isModalShown: true,
         };
     }
-    case bookingModalTypes.HIDE_BOOKING_MODAL: {
+    case types.HIDE_BOOKING_MODAL: {
         return {
             ...state,
             isModalShown: false,

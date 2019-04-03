@@ -1,10 +1,10 @@
-import { hotelTypes } from '../constants';
+import * as types from '../constants/types';
 
 const initialState = null;
 
 const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
-    case hotelTypes.FETCH_HOTEL: {
+    case types.FETCH_HOTEL: {
         const hotel = action.data;
         return hotel;
     }

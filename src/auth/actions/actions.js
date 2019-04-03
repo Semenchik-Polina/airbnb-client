@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import controllers from '../controllers/controllers';
-import { userTypes, authModalTypes } from '../constants';
+import * as types from '../constants/types';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
@@ -11,7 +11,7 @@ export function signup(data) {
     return async (dispatch) => {
         try {
             await controllers.signup(data);
-            dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
+            dispatch({ type: types.HIDE_AUTH_MODAL });
             document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
@@ -25,8 +25,8 @@ export function login(values) {
             const {
                 data: { user },
             } = await controllers.login(values);
-            dispatch({ type: userTypes.VALIDATE_USER, user });
-            dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
+            dispatch({ type: types.VALIDATE_USER, user });
+            dispatch({ type: types.HIDE_AUTH_MODAL });
             document.body.style.overflow = 'visible';
         } catch (err) {
             showErrorToast(err);
@@ -38,7 +38,7 @@ export function logout() {
     return async (dispatch) => {
         try {
             await controllers.logout();
-            dispatch({ type: userTypes.LOGOUT_USER });
+            dispatch({ type: types.LOGOUT_USER });
         } catch (err) {
             showErrorToast(err);
         }
@@ -47,12 +47,12 @@ export function logout() {
 
 export function showModal() {
     return (dispatch) => {
-        dispatch({ type: authModalTypes.SHOW_AUTH_MODAL });
+        dispatch({ type: types.SHOW_AUTH_MODAL });
     };
 }
 
 export function hideModal() {
     return (dispatch) => {
-        dispatch({ type: authModalTypes.HIDE_AUTH_MODAL });
+        dispatch({ type: types.HIDE_AUTH_MODAL });
     };
 }

@@ -4,8 +4,7 @@ import _ from 'lodash';
 import history from '../../shared/tools/history';
 
 import * as controllers from '../controllers/controllers';
-
-import { adminTypes } from '../constants';
+import * as types from '../constants/types';
 
 const showErrorToast = (err) => {
     const message = err.response && err.response.data.error ? err.response.data.error.message : `🦄 ${err}`;
@@ -19,7 +18,7 @@ const showSuccessToast = (message) => {
 export function addHotelInfo(hotel) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.ADD_HOTEL_MAIN_INFO,
+            type: types.ADD_HOTEL_MAIN_INFO,
             hotel,
         });
         history.push('/admin-home/create-new-hotel/rooms');
@@ -29,7 +28,7 @@ export function addHotelInfo(hotel) {
 export function addServices(services) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.ADD_SERVICE_INFO,
+            type: types.ADD_SERVICE_INFO,
             services,
         });
         history.push('/admin-home/create-new-hotel/photos');
@@ -39,7 +38,7 @@ export function addServices(services) {
 export function addPhotos(photoTour) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.ADD_PHOTOS,
+            type: types.ADD_PHOTOS,
             photoTour,
         });
     };
@@ -48,7 +47,7 @@ export function addPhotos(photoTour) {
 export function removePhotoItem(id) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.REMOVE_PHOTO_ITEM,
+            type: types.REMOVE_PHOTO_ITEM,
             id,
         });
     };
@@ -57,7 +56,7 @@ export function removePhotoItem(id) {
 export function addRoomType(roomType) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.ADD_ROOM_TYPE,
+            type: types.ADD_ROOM_TYPE,
             roomType: {
                 ...roomType,
                 capacity: +roomType.capacity,
@@ -71,7 +70,7 @@ export function addRoomType(roomType) {
 export function deleteRoomType(id) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.DELETE_ROOM_TYPE,
+            type: types.DELETE_ROOM_TYPE,
             id,
         });
     };
@@ -80,7 +79,7 @@ export function deleteRoomType(id) {
 export function editRoomType(data) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.EDIT_ROOM_TYPE,
+            type: types.EDIT_ROOM_TYPE,
             data,
         });
     };
@@ -92,7 +91,7 @@ export function fetchHotels() {
             const { data } = await controllers.fetchHotels();
 
             dispatch({
-                type: adminTypes.FETCH_ALL_HOTELS_FOR_ADMIN,
+                type: types.FETCH_ALL_HOTELS_FOR_ADMIN,
                 data,
             });
         } catch (err) {
@@ -122,14 +121,14 @@ export function createHotel(data) {
             } = await controllers.createHotel(formData);
 
             dispatch({
-                type: adminTypes.ADD_NEW_HOTEL,
+                type: types.ADD_NEW_HOTEL,
                 hotel,
             });
 
             showSuccessToast('Hotel created!');
 
             dispatch({
-                type: adminTypes.RESET_HOTEL_INFO,
+                type: types.RESET_HOTEL_INFO,
             });
 
             history.push('/admin-home');
@@ -149,13 +148,13 @@ export function editHotel(data) {
             // } = await controllers.editHotel(formData);
 
             dispatch({
-                type: adminTypes.EDIT_HOTEL,
+                type: types.EDIT_HOTEL,
                 data,
             });
             showSuccessToast('Hotel edited!');
 
             dispatch({
-                type: adminTypes.RESET_HOTEL_INFO,
+                type: types.RESET_HOTEL_INFO,
             });
 
             history.push('/admin-home');
@@ -171,7 +170,7 @@ export function removeHotel(id) {
             // await controllers.removeHotel(id);
             showSuccessToast('Hotel removed!');
             dispatch({
-                type: adminTypes.REMOVE_HOTEL,
+                type: types.REMOVE_HOTEL,
                 id,
             });
         } catch (err) {
@@ -183,7 +182,7 @@ export function removeHotel(id) {
 export function startEditingHotel(hotel) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.FILL_HOTEL_INFO,
+            type: types.FILL_HOTEL_INFO,
             hotel,
         });
         history.push('/admin-home/create-new-hotel');
@@ -193,7 +192,7 @@ export function startEditingHotel(hotel) {
 export function startCreatingHotel() {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.RESET_HOTEL_INFO,
+            type: types.RESET_HOTEL_INFO,
         });
         history.push('/admin-home/create-new-hotel');
     };
@@ -202,7 +201,7 @@ export function startCreatingHotel() {
 export function setEditableId(id) {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.SET_EDITABLE_ID,
+            type: types.SET_EDITABLE_ID,
             id,
         });
     };
@@ -211,7 +210,7 @@ export function setEditableId(id) {
 export function unsetEditableId() {
     return (dispatch) => {
         dispatch({
-            type: adminTypes.UNSET_EDITABLE_ID,
+            type: types.UNSET_EDITABLE_ID,
         });
     };
 }

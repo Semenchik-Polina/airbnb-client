@@ -1,4 +1,4 @@
-import { authModalTypes } from '../constants';
+import * as types from '../constants/types';
 
 const initialState = {
     isModalShown: false,
@@ -6,13 +6,13 @@ const initialState = {
 
 const modalReducer = (state = initialState, action) => {
     switch (action.type) {
-    case authModalTypes.SHOW_AUTH_MODAL: {
+    case types.SHOW_AUTH_MODAL: {
         return {
             ...state,
             isModalShown: true,
         };
     }
-    case authModalTypes.HIDE_AUTH_MODAL: {
+    case types.HIDE_AUTH_MODAL: {
         return {
             ...state,
             isModalShown: false,
