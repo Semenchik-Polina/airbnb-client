@@ -1,0 +1,48 @@
+.day-picker-dual-input {
+    &__item_to &__item-overlay {
+        margin-left: -195px;
+
+        @media only screen and (max-width: 615px) {
+            margin-left: 0;
+        }
+    }
+
+    &__item-overlay {
+        width: 370px;
+    }
+
+    &__item input {
+        width: 155px;
+        margin: 0 5px;
+        padding: 5px;
+
+        text-align: center;
+
+        color: rgb(66, 66, 66);
+        border: none;
+
+        font: 300 1em 'Roboto';
+
+        &:focus {
+            color: rgb(241, 241, 241);
+            border-radius: 5px;
+            outline: none;
+            background-color: #68314b;
+        }
+    }
+
+    &__calendar-day {
+        padding: 0.7em;
+
+        border: 1px solid rgb(240, 239, 239);
+        border-radius: 0;
+    }
+
+    &__calendar-day_selected:not(&__calendar-day_disabled):not(&__calendar-day_outside) {
+        color: #f0f8ff;
+        background-color: #914669;
+        &:hover {
+            background-color: #68314b;
+        }
+    }
+}
