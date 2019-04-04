@@ -29,7 +29,6 @@ const customTheme = theme => ({
     },
 });
 
-
 class DropDownSelect extends PureComponent {
     static defaultProps = {
         className: '',
@@ -39,14 +38,14 @@ class DropDownSelect extends PureComponent {
         className: PropTypes.string,
         options: PropTypes.arrayOf(
             PropTypes.shape({
-                value: PropTypes.string.isRequired,
+                value: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]),
                 label: PropTypes.string.isRequired,
             }),
         ).isRequired,
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
-            value: PropTypes.string,
+            value: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]),
         }).isRequired,
     };
 

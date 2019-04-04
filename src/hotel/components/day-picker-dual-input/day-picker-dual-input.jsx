@@ -37,20 +37,21 @@ const classNames = {
 
 class DayPickerDualInput extends PureComponent {
     static propTypes = {
-        onClose: PropTypes.func.isRequired,
-    };
-
-    state = {
-        from: undefined,
-        to: undefined,
-    };
-
-    componentWillUnmount = () => {
-        this.props.onClose();
+        input: PropTypes.shape({
+            onChange: PropTypes.func.isRequired,
+            onBlur: PropTypes.func.isRequired,
+            value: PropTypes.oneOfType([
+                PropTypes.shape({
+                    from: PropTypes.instanceOf(Date),
+                    to: PropTypes.instanceOf(Date),
+                }),
+                PropTypes.string,
+            ]).isRequired,
+        }).isRequired,
     };
 
     showFromMonth = () => {
-        const { from, to } = this.state;
+        const { from, to } = this.props.input.value;
         if (!from) {
             return;
         }
@@ -60,11 +61,12 @@ class DayPickerDualInput extends PureComponent {
     };
 
     handleFromChange = (from) => {
-        this.setState({ from });
+        this.props.input.onChange({ from, to: this.props.input.value.to });
     };
 
     handleToChange = (to) => {
-        this.setState({ to }, this.showFromMonth);
+        this.showFromMonth();
+        this.props.input.onChange({ from: this.props.input.value.from, to });
     };
 
     createToRef = (el) => {
@@ -76,7 +78,7 @@ class DayPickerDualInput extends PureComponent {
     };
 
     render() {
-        const { from, to } = this.state;
+        const { from, to } = this.props.input.value;
 
         return (
             <div className="day-picker-dual-input">

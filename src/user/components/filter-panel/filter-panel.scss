@@ -13,6 +13,10 @@
         padding: 8px 0;
 
         flex-flow: row nowrap;
+
+        @media only screen and (max-width: 515px) {
+            margin-left: 0;
+        }
     }
 
     &__parameters-item {

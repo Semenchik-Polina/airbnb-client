@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import BeatLoader from 'react-spinners/BeatLoader';
 import HotelItem from '../../../shared/components/hotel-item/hotel-item';
 import Button from '../../../shared/components/button/button';
-import ModalBooking from '../modal-booking/modal-booking';
+import ModalBooking from '../../containers/modal-booking-container';
 
 import './hotel-page.scss';
 

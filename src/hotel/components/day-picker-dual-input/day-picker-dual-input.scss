@@ -1,14 +1,23 @@
 .day-picker-dual-input {
+    display: flex;
+
+    flex-flow: row nowrap;
+    justify-content: center;
+
     &__item_to &__item-overlay {
         margin-left: -195px;
 
         @media only screen and (max-width: 615px) {
-            margin-left: 0;
+            margin-left: -140px;
         }
     }
 
     &__item-overlay {
         width: 370px;
+
+        @media only screen and (max-width: 615px) {
+            width: auto;
+        }
     }
 
     &__item input {
@@ -21,7 +30,11 @@
         color: rgb(66, 66, 66);
         border: none;
 
-        font: 300 1em 'Roboto';
+        font: 300 1em "Roboto";
+
+        @media only screen and (max-width: 615px) {
+            width: 100px;
+        }
 
         &:focus {
             color: rgb(241, 241, 241);
@@ -36,6 +49,10 @@
 
         border: 1px solid rgb(240, 239, 239);
         border-radius: 0;
+
+        @media only screen and (max-width: 615px) {
+            padding: 7px;
+        }
     }
 
     &__calendar-day_selected:not(&__calendar-day_disabled):not(&__calendar-day_outside) {

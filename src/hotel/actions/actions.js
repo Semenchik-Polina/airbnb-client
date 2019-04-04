@@ -22,6 +22,11 @@ export function fetchHotel(id) {
     };
 }
 
+export function requestBooking(values) {
+    return () => {
+        // fake request
+    };
+}
 export function showModal() {
     return (dispatch) => {
         dispatch({ type: types.SHOW_BOOKING_MODAL });
