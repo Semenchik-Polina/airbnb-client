@@ -2,6 +2,10 @@
     &__container {
         min-width: 250px;
         padding: 10px 25px;
+
+        @media only screen and (max-width: 515px) {
+            padding: 0;
+        }
     }
 
     &__container-filter-wrapper {

@@ -6,7 +6,7 @@ import { Field, Form } from 'redux-form';
 import Button from '../../../shared/components/button/button';
 import Modal from '../../../shared/components/modal/modal';
 import DayPickerDualInput from '../day-picker-dual-input/day-picker-dual-input';
-import CounterInput from '../counter-input/counter-input';
+import CounterInput from '../../../shared/components/counter-input/counter-input';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 
 import 'react-day-picker/lib/style.css';

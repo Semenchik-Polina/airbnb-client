@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import adminReducer from '../../admin/reducers';
 import userReducer from '../../user/reducers';
+import bookingReducer from '../../booking/reducers/booking';
 import user from '../../auth/reducers';
 import hotelPage from '../../hotel/reducers';
 
@@ -12,4 +13,5 @@ export default combineReducers({
     userReducer,
     auth: user,
     hotelPage,
+    bookingReducer,
 });

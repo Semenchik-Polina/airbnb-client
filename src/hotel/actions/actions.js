@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
 
+import history from '../../shared/tools/history';
+
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
 
@@ -25,6 +27,7 @@ export function fetchHotel(id) {
 export function requestBooking(values) {
     return () => {
         // fake request
+        history.push('/books/1');
     };
 }
 export function showModal() {

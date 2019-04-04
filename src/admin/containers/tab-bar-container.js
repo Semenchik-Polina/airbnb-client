@@ -3,18 +3,16 @@ import { connect } from 'react-redux';
 
 import TabBar from '../components/tab-bar/tab-bar';
 
-export default connect(state => ({
-    hotelInfo: state.adminReducer.hotelInfo,
-    isMainInfoFilled: !_.isEmpty(state.adminReducer.hotelInfo.mainInfo),
-    isRoomFormFilled:
-        !_.isEmpty(state.adminReducer.hotelInfo.roomTypes) && !_.isEmpty(state.adminReducer.hotelInfo.mainInfo),
-    isServiceFormFilled:
-        !_.isEmpty(state.adminReducer.hotelInfo.roomTypes)
-        && !_.isEmpty(state.adminReducer.hotelInfo.mainInfo)
-        && !_.isEmpty(state.adminReducer.hotelInfo.services),
-    isPhotoFormFilled:
-        !_.isEmpty(state.adminReducer.hotelInfo.roomTypes)
-        && !_.isEmpty(state.adminReducer.hotelInfo.mainInfo)
-        && !_.isEmpty(state.adminReducer.hotelInfo.services)
-        && !_.isEmpty(state.adminReducer.hotelInfo.photoTour),
-}))(TabBar);
+export default connect((state) => {
+    const {
+        mainInfo, roomTypes, services, photos,
+    } = state.adminReducer.hotelInfo;
+    const isMainInfoFilled = !_.isEmpty(mainInfo);
+    const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
+    const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
+    const isPhotoFormFilled = !_.isEmpty(photos) && isServiceFormFilled;
+
+    return {
+        isMainInfoFilled, isRoomFormFilled, isServiceFormFilled, isPhotoFormFilled,
+    };
+})(TabBar);

@@ -8,6 +8,7 @@ import AuthPage from '../../../auth/containers/auth-page-container';
 import AdminHome from '../../../admin/components/admin-home/admin-home';
 import UserHome from '../../../user/containers/user-home-container';
 import HotelPage from '../../../hotel/containers/hotel-page-container';
+import BookingTabBar from '../../../booking/containers/booking-tab-bar-container';
 import PrivateRoute from '../../../shared/containers/private-route-container';
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
             <Switch>
                 <Route exact path="/hotels/:id" component={HotelPage} />
                 <PrivateRoute path="/admin-home" requiredRoles={['Admin']} component={AdminHome} />
+                <PrivateRoute path="/books/:id" requiredRoles={['User']} component={BookingTabBar} />
                 <PrivateRoute exact path="/" requiredRoles={['User']} component={UserHome} />
             </Switch>
             <ToastContainer autoClose={8000} />

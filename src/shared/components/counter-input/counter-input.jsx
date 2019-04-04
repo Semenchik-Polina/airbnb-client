@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Counter from '../../../shared/components/counter/counter';
+import Counter from '../counter/counter';
 
 class CounterInput extends PureComponent {
     static defaultProps = {
