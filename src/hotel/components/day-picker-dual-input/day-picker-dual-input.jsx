@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { formatDate, parseDate } from 'react-day-picker/moment';
+import SideArrow from '../../../shared/components/side-arrow/side-arrow';
 
 import 'react-day-picker/lib/style.css';
 import './day-picker-dual-input.scss';
@@ -103,7 +104,9 @@ class DayPickerDualInput extends PureComponent {
                     }}
                     onDayChange={this.handleFromChange}
                 />
-                <span>{'—>'}</span>
+                <span>
+                    <SideArrow />
+                </span>
                 <span>
                     <DayPickerInput
                         ref={this.createToRef}

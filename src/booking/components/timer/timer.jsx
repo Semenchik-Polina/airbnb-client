@@ -8,6 +8,10 @@ class Timer extends PureComponent {
         time: 0,
     };
 
+    componentWillUnmount = () => {
+        clearInterval(this.timer);
+    };
+
     startTimer = () => {
         this.timer = setInterval(
             () => this.setState({

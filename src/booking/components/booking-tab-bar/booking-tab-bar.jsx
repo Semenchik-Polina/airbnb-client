@@ -9,7 +9,7 @@ import {
 import BeatLoader from 'react-spinners/BeatLoader';
 import DetailsTab from '../../containers/details-tab-container';
 import PayloadTab from '../../containers/payload-tab-container';
-import SideArrow from '../../components/side-arrow/side-arrow';
+import SideArrow from '../../../shared/components/side-arrow/side-arrow';
 import Timer from '../timer/timer';
 
 import './booking-tab-bar.scss';
