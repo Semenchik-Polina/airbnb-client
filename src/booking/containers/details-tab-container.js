@@ -3,13 +3,17 @@ import { reduxForm } from 'redux-form';
 
 import DetailsTab from '../components/details-tab/details-tab';
 
-// export default connect(
-//     null,
-//     null,
-// )(DetailsTab);
+import * as constants from '../constants';
 
 export default connect(
-    null,
+    state => ({
+        initialValues: {
+            arrivalTime: constants.MIN_ARRIVAL_TIME,
+            departureTime: constants.MAX_DEPARTURE_TIME,
+            guests: state.bookingReducer.guests,
+        },
+        booking: state.bookingReducer,
+    }),
     null,
 )(
     reduxForm({

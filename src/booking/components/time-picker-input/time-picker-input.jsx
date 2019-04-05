@@ -10,14 +10,25 @@ class TimePickerInput extends PureComponent {
             onBlur: PropTypes.func.isRequired,
             value: PropTypes.string,
         }).isRequired,
+        minTime: PropTypes.string.isRequired,
+        defaultTime: PropTypes.string.isRequired,
     };
 
-    onChange = time => this.props.input.onChange(time);
+    onChange = (time) => {
+        if (time) {
+            this.props.input.onChange(time);
+            return;
+        }
+        this.props.input.onChange(this.props.defaultTime);
+    };
 
     render() {
-        const { value } = this.props.input;
+        const {
+            input: { value }, defaultTime,
+            ...props
+        } = this.props;
 
-        return <TimePicker onChange={this.onChange} value={value} />;
+        return <TimePicker onChange={this.onChange} value={value} {...props} />;
     }
 }
 

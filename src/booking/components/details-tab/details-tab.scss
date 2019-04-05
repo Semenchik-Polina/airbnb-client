@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: row;
+
+    margin: 10px 0;
+    padding: 10px;
+
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    & > * {
+        & > * {
+            margin: 10px;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 100%;
+
+        align-items: stretch;
+        flex-basis: 420px;
+        flex-grow: 100;
+    }
+}

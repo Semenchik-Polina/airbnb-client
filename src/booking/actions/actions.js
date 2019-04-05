@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import * as types from '../constants/types';
 
 export function fetchBooking() {
@@ -7,7 +9,7 @@ export function fetchBooking() {
             user: {
                 _id: '1',
             },
-            requestedAt: new Date(),
+            requestedAt: moment(new Date()).add(-15, 'm'),
             guests: 3,
             room: {
                 _id: '1',

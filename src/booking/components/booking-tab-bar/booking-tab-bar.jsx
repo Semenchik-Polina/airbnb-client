@@ -9,6 +9,8 @@ import {
 import BeatLoader from 'react-spinners/BeatLoader';
 import DetailsTab from '../../containers/details-tab-container';
 import PayloadTab from '../../containers/payload-tab-container';
+import SideArrow from '../../components/side-arrow/side-arrow';
+import Timer from '../timer/timer';
 
 import './booking-tab-bar.scss';
 
@@ -76,20 +78,26 @@ class BookingTabBar extends PureComponent {
 
         if (booking && booking._id === id) {
             return (
-                <div className="tab-bar">
-                    <ul className="tab-bar__links">
+                <div className="booking-tab-bar">
+                    <ul className="booking-tab-bar__links">
                         <li>
-                            <NavLink className="tab-bar__links-item" exact to={`/books/${id}/details`}>
+                            <NavLink className="booking-tab-bar__links-item" exact to={`/books/${id}/details`}>
                                 Details
                             </NavLink>
                         </li>
+                        <span>
+                            <SideArrow />
+                        </span>
                         <li>
-                            <NavLink className="tab-bar__links-item" exact to={`/books/${id}/payload`}>
+                            <NavLink className="booking-tab-bar__links-item" exact to={`/books/${id}/payload`}>
                                 Payload
                             </NavLink>
                         </li>
+                        <span>
+                            <Timer startTime={booking.requestedAt} />
+                        </span>
                     </ul>
-                    <div className="tab-bar__route">
+                    <div className="booking-tab-bar__route">
                         <Route path="/books/:id" component={this.renderRiderect} />
                         <Route exact path="/books/:id/details" component={DetailsTab} />
                         <Route exact path="/books/:id/payload" component={PayloadTab} />

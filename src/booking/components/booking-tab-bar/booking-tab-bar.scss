@@ -1,0 +1,49 @@
+.booking-tab-bar {
+    &__links {
+        display: flex;
+
+        margin: auto 0;
+        padding: 0;
+
+        border: none;
+        background-color: rgb(255, 255, 255);
+
+        font: 100 1em "Roboto";
+
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+
+    &__links-item {
+        display: block;
+
+        height: 30px;
+        margin: 0 5px;
+        padding: 10px 30px 0 30px;
+
+        text-align: center;
+        text-decoration: none;
+
+        color: rgb(158, 152, 152);
+
+        font-weight: 400;
+
+        &_disabled {
+            pointer-events: none;
+
+            border-bottom: 4px solid rgb(202, 221, 223);
+        }
+    }
+
+    &__route {
+        display: flex;
+
+        padding: 20px 0;
+
+        font: 100 1em "Roboto";
+    }
+
+    .active {
+        color: black;
+    }
+}
