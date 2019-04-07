@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import _ from 'lodash';
 
 import PhotoItem from '../../../shared/components/photo-item/photo-item';

@@ -23,6 +23,7 @@ class FilterPanel extends PureComponent {
         clearLocationFilter: PropTypes.func.isRequired,
         onSuggestionsFetchRequested: PropTypes.func.isRequired,
         onSuggestionsClearRequested: PropTypes.func.isRequired,
+        clearSuggestions: PropTypes.func.isRequired,
         autosuggestValue: PropTypes.string.isRequired,
         suggestions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
         setDateFilterRange: PropTypes.func.isRequired,
@@ -35,6 +36,10 @@ class FilterPanel extends PureComponent {
             country: PropTypes.string,
             city: PropTypes.string,
         }).isRequired,
+    };
+
+    componentWillUnmount = () => {
+        this.props.clearSuggestions();
     };
 
     render() {

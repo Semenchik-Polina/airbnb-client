@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 import hotelReducer from './hotels';
-import filterReducer from './filters';
+import hotelFiltersReducer from './hotelFilters';
+import bookingFiltersReducer from './bookingFilters';
 import autosuggestReducer from './autosuggest';
+import userBookingsReducer from './userBookings';
 
 export default combineReducers({
     hotels: hotelReducer,
-    filters: filterReducer,
+    hotelFilters: hotelFiltersReducer,
+    bookingFilters: bookingFiltersReducer,
     autosuggest: autosuggestReducer,
+    userBookings: userBookingsReducer,
 });

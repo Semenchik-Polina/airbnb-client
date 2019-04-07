@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 import {
     withRouter, Route, NavLink, Redirect,
@@ -31,7 +32,7 @@ class BookingTabBar extends PureComponent {
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
-            requestedAt: PropTypes.instanceOf(Date),
+            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
             guests: PropTypes.number,
             room: PropTypes.shape({
                 _id: PropTypes.string,
@@ -94,7 +95,7 @@ class BookingTabBar extends PureComponent {
                             </NavLink>
                         </li>
                         <span>
-                            <Timer startTime={booking.requestedAt} />
+                            <Timer date={booking.requestedAt} />
                         </span>
                     </ul>
                     <div className="booking-tab-bar__route">

@@ -36,7 +36,7 @@
         "no-underscore-dangle": [
             "error",
             {
-                "allow": ["__REDUX_DEVTOOLS_EXTENSION__"]
+                "allow": ["__REDUX_DEVTOOLS_EXTENSION__","_id"]
             }
         ],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

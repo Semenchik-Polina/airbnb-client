@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AuthPage from '../components/auth-page/auth-page';
+import Header from '../components/header/header';
 
 import * as actions from '../actions/actions';
 
@@ -12,4 +12,4 @@ export default connect(
         showModal: () => dispatch(actions.showModal()),
         hideModal: () => dispatch(actions.hideModal()),
     }),
-)(AuthPage);
+)(Header);

@@ -1,4 +1,4 @@
-.filter-panel {
+.booking-filter-panel {
     position: sticky;
     z-index: 4;
     top: 66px;
@@ -20,6 +20,6 @@
     }
 
     &__parameters-item {
-        margin: auto 5px;
+        margin: 0 5px;
     }
 }

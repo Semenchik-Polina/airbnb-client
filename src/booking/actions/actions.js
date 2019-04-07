@@ -9,7 +9,7 @@ export function fetchBooking() {
             user: {
                 _id: '1',
             },
-            requestedAt: moment(new Date()).add(-15, 'm'),
+            requestedAt: moment(new Date()).add(-29.5, 'm'),
             guests: 3,
             room: {
                 _id: '1',
@@ -24,5 +24,12 @@ export function fetchBooking() {
         };
         dispatch({ type: types.FETCH_BOOKING, booking });
         return booking;
+    };
+}
+
+export function makeFinalBooking() {
+    return (dispatch) => {
+        // api action
+        
     };
 }

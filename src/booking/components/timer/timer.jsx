@@ -1,38 +1,33 @@
-import React, { PureComponent } from 'react';
-import moment from 'moment';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import moment, { Moment } from 'moment';
+
+import CountDown from 'react-countdown-now';
 
 import * as constants from '../../constants';
 
-class Timer extends PureComponent {
-    state = {
-        time: 0,
+class Timer extends Component {
+    static propTypes = {
+        date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]).isRequired,
     };
 
-    componentWillUnmount = () => {
-        clearInterval(this.timer);
-    };
-
-    startTimer = () => {
-        this.timer = setInterval(
-            () => this.setState({
-                time: moment(this.props.startTime - Date.now()).add(constants.BOOKING_TIME_LIMIT, 'm'),
-            }),
-            1,
+    renderer = ({ minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return <span>complete</span>;
+        }
+        // Render a countdown
+        return (
+            <span>
+                {minutes}:{seconds}
+            </span>
         );
     };
 
     render() {
-        return (
-            <div>
-                <h3>
-                    timer:{' '}
-                    {moment(this.props.startTime - Date.now())
-                        .add(constants.BOOKING_TIME_LIMIT, 'm')
-                        .format('mm:ss')}
-                </h3>
-                {this.startTimer()}
-            </div>
-        );
+        const { date } = this.props;
+
+        return <CountDown date={moment(date).add(constants.BOOKING_TIME_LIMIT, 'm')} renderer={this.renderer} />;
     }
 }
 

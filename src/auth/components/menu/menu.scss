@@ -1,5 +1,22 @@
 .menu {
-    border-bottom: 1px solid rgb(224, 224, 224);
+    display: flex;
+
+    color: white;
+
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    &_light {
+        background-color: white;
+        border-bottom: 1px solid rgb(224, 224, 224);
+    }
+    
+    &_light &__list &__list-action {
+        color: rgb(31, 31, 31);
+        &:hover {
+            color: rgb(206, 8, 84);
+        }
+    }
 
     &__list {
         display: flex;
@@ -8,11 +25,10 @@
 
         list-style-type: none;
 
-        color: black;
-        background-color: white;
-
         flex-flow: row wrap;
+        justify-content: flex-end;
     }
+
 
     &__list-action {
         display: block;
@@ -23,12 +39,20 @@
         white-space: nowrap;
         text-decoration: none;
 
-        color: black;
+        color: white;
 
         font: 600 0.9em "Roboto", sans-serif;
 
         &:hover {
-            color: rgb(129, 129, 231);
+            color: rgb(161, 161, 167);
         }
+    }
+
+    &__logo {
+        display: block;
+
+        padding: 20px;
+
+        cursor: pointer;
     }
 }

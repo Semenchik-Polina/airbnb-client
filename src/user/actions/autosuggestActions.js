@@ -28,6 +28,14 @@ const territories = [
     },
 ];
 
+export function clearValue() {
+    return (dispatch) => {
+        dispatch({
+            type: types.CLEAR_VALUE,
+        });
+    };
+}
+
 export function updateInputValue(value) {
     return (dispatch) => {
         dispatch({

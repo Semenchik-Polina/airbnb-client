@@ -21,14 +21,14 @@ export default connect(
             };
         });
 
-        const filterGuests = state.userReducer.filters.guests;
+        const filterGuests = state.userReducer.hotelFilters.guests;
         const roomType = _.find(roomTypes, type => type.value.capacity >= filterGuests)
             || _.maxBy(roomTypes, type => type.value.capacity);
         const guests = filterGuests > roomType.value.capacity ? roomType.value.capacity : filterGuests;
 
         const dates = {
-            from: state.userReducer.filters.dateRange.from || undefined,
-            to: state.userReducer.filters.dateRange.to || undefined,
+            from: state.userReducer.hotelFilters.dateRange.from || undefined,
+            to: state.userReducer.hotelFilters.dateRange.to || undefined,
         };
 
         return {

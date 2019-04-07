@@ -7,13 +7,16 @@ import ModalLogin from '../modal-login/modal-login';
 import Menu from '../../containers/menu-container';
 
 import 'react-toastify/dist/ReactToastify.css';
-import './auth-page.scss';
+import './header.scss';
 
-class AuthPage extends PureComponent {
+class Header extends PureComponent {
     static propTypes = {
         isModalShown: PropTypes.bool.isRequired,
         showModal: PropTypes.func.isRequired,
         hideModal: PropTypes.func.isRequired,
+        match: PropTypes.shape({
+            isExact: PropTypes.bool.isRequired,
+        }).isRequired,
     };
 
     state = {
@@ -44,7 +47,11 @@ class AuthPage extends PureComponent {
 
         return (
             <header className="header">
-                <Menu showSignupModal={this.handleShowSignupModal} showLoginModal={this.handleShowLoginModal} />
+                <Menu
+                    showSignupModal={this.handleShowSignupModal}
+                    showLoginModal={this.handleShowLoginModal}
+                    isLight={!this.props.match.isExact}
+                />
                 {isModalShown && (
                     <Modal onClose={this.handleCloseModal}>
                         {isShowSignUp ? (
@@ -62,4 +69,4 @@ class AuthPage extends PureComponent {
     }
 }
 
-export default AuthPage;
+export default Header;

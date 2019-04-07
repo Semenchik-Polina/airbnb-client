@@ -22,7 +22,7 @@ const initialState = {
     },
 };
 
-const filterReducer = (state = initialState, action) => {
+const hotelFiltersReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.SET_DATE_RANGE: {
         const { range } = action;
@@ -84,4 +84,4 @@ const filterReducer = (state = initialState, action) => {
     }
 };
 
-export default filterReducer;
+export default hotelFiltersReducer;

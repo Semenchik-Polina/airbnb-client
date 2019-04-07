@@ -26,6 +26,9 @@ const autosuggestReducer = (state = initialState, action) => {
             isLoading: true,
         };
 
+    case types.CLEAR_VALUE:
+        return { ...initialState };
+
     case types.MAYBE_UPDATE_SUGGESTIONS:
         if (action.value !== state.value) {
             return {
