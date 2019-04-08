@@ -8,8 +8,9 @@
         border: none;
         background-color: rgb(255, 255, 255);
 
-        font: 100 1em "Roboto", sans-serif;
+        align-items: center;
 
+// font: 600 1em "Roboto", sans-serif;
         flex-flow: row wrap;
         justify-content: flex-start;
     }
@@ -24,14 +25,14 @@
         text-align: center;
         text-decoration: none;
 
-        color: rgb(158, 152, 152);
+        color: rgb(121, 121, 121);
 
-        font-weight: 400;
+        font: 700 1em "Roboto", sans-serif;
 
         &_disabled {
             pointer-events: none;
 
-            border-bottom: 4px solid rgb(202, 221, 223);
+            color: rgb(192, 191, 191);
         }
     }
 

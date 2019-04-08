@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import TimePicker from 'react-time-picker';
+import './time-picker-input.scss';
 
 class TimePickerInput extends PureComponent {
     static propTypes = {
@@ -24,7 +24,8 @@ class TimePickerInput extends PureComponent {
 
     render() {
         const {
-            input: { value }, defaultTime,
+            input: { value },
+            defaultTime,
             ...props
         } = this.props;
 

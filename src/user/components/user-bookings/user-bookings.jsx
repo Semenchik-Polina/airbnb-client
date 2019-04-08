@@ -58,7 +58,7 @@ class UserBookings extends PureComponent {
                 {bookings ? (
                     <div>
                         {bookings.length > 0 ? (
-                            bookings.map(booking => <BookingItem booking={booking} />)
+                            bookings.map((booking, index) => <BookingItem booking={booking} key={index} />)
                         ) : (
                             <span>No future trips</span>
                         )}

@@ -1,27 +1,115 @@
-.container {
-    display: flex;
-    flex-direction: row;
+.details-tab {
+    margin: 0 auto 0 50px;
 
-    margin: 10px 0;
-    padding: 10px;
+    &__header {
+        color: rgb(75, 75, 75);
 
-    align-items: flex-start;
-    flex-wrap: wrap;
+        font: 600 2em "Roboto", sans-serif;
+    }
 
-    & > * {
-        & > * {
-            margin: 10px;
+    &__form-section {
+        margin: 20px 0;
+
+        &:not(:last-child) {
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid rgb(199, 199, 199);
         }
     }
 
-    &__content {
+    &__form-section-inner {
         display: flex;
-        flex-direction: column;
 
-        max-width: 100%;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+    }
 
-        align-items: stretch;
-        flex-basis: 420px;
-        flex-grow: 100;
+    &__form-section-header {
+        display: block;
+
+        margin: 15px 0;
+
+        color: rgb(73, 73, 73);
+
+        font: 600 1.2em "Roboto", sans-serif;
+    }
+
+    &__form-section-summary {
+        display: inline-flex;
+
+        margin-right: 15px;
+
+        color: rgb(73, 73, 73);
+
+        font: 600 1em "Roboto", sans-serif;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__form-section-inner-date {
+        display: flex;
+
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+
+        border-radius: 5px 0 0 5px;
+        background-color: #f2f2f2;
+
+        align-items: center;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+
+    &__form-section-inner-date-item {
+        display: block;
+
+        font-weight: 700;
+        &:first-child {
+            color: rgb(49, 49, 49);
+
+            font-size: 0.8em;
+        }
+
+        &:last-child {
+            color: rgb(56, 56, 56);
+
+            font-weight: 800;
+        }
+    }
+
+    &__form-section-wrapper {
+        display: flex;
+
+        flex-flow: row wrap;
+    }
+
+    &__form-section-wrapper-item {
+        display: flex;
+
+        &:last-child {
+            margin-left: 10px;
+            @media only screen and (max-width: 515px) {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+        }
+    }
+
+    &__form-button-submit {
+        width: auto;
+        padding: 15px 30px;
+
+        align-self: end;
+    }
+
+    &__wrapper {
+        display: flex;
+
+        margin: 0 auto 0 50px;
+
+        flex-flow: row nowrap;
+        justify-content: space-around;
     }
 }

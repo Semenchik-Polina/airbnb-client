@@ -11,7 +11,7 @@ class BookingItem extends PureComponent {
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
-            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
+            // requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
             guests: PropTypes.number,
             room: PropTypes.shape({
                 _id: PropTypes.string,
@@ -27,8 +27,8 @@ class BookingItem extends PureComponent {
                 hotelName: PropTypes.string.isRequired,
             }),
             totalPrice: PropTypes.number,
-            dateFrom: PropTypes.instanceOf(Date),
-            dateTo: PropTypes.instanceOf(Date),
+            dateFrom: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
+            dateTo: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
             arrivalTime: PropTypes.string.isRequired,
             departureTime: PropTypes.string.isRequired,
         }).isRequired,

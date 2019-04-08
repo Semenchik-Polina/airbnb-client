@@ -1,1 +1,3 @@
 export const FETCH_BOOKING = 'FETCH_BOOKING';
+
+export const ADD_BOOKING_DETAILS = 'ADD_BOOKING_DETAILS';

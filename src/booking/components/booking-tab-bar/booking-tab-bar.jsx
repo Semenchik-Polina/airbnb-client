@@ -1,7 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
+import classNames from 'classNames';
 
 import {
     withRouter, Route, NavLink, Redirect,
@@ -13,6 +13,8 @@ import PayloadTab from '../../containers/payload-tab-container';
 import SideArrow from '../../../shared/components/side-arrow/side-arrow';
 import Timer from '../timer/timer';
 
+import history from '../../../shared/tools/history';
+
 import './booking-tab-bar.scss';
 
 class BookingTabBar extends PureComponent {
@@ -21,6 +23,7 @@ class BookingTabBar extends PureComponent {
     };
 
     static propTypes = {
+        isDetailesFormFilled: PropTypes.bool.isRequired,
         fetchBooking: PropTypes.func.isRequired,
         match: PropTypes.shape({
             params: PropTypes.shape({
@@ -32,7 +35,7 @@ class BookingTabBar extends PureComponent {
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
-            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]),
+            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
                 _id: PropTypes.string,
@@ -40,6 +43,12 @@ class BookingTabBar extends PureComponent {
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
                 services: PropTypes.arrayOf(PropTypes.string),
+            }),
+            hotel: PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                country: PropTypes.string.isRequired,
+                city: PropTypes.string.isRequired,
+                hotelName: PropTypes.string.isRequired,
             }),
             totalPrice: PropTypes.number,
             dateFrom: PropTypes.instanceOf(Date),
@@ -52,6 +61,10 @@ class BookingTabBar extends PureComponent {
         this.props.fetchBooking(id);
     };
 
+    renderRedirectToHotels = () => {
+        history.push('/hotels');
+    }
+
     renderRiderect = () => {
         const { id } = this.props.match.params;
         return <Redirect to={`/books/${id}/details`} />;
@@ -63,15 +76,16 @@ class BookingTabBar extends PureComponent {
                 params: { id },
             },
             booking,
+            isDetailesFormFilled,
         } = this.props;
 
         // const {
         //     isMainInfoFilled, isRoomFormFilled,
         // } = this.props;
 
-        // const roomTabClasses = classNames('tab-bar__links-item', {
-        //     'tab-bar__links-item_disabled': !isMainInfoFilled,
-        // });
+        const payloadTabClasses = classNames('booking-tab-bar__links-item', {
+            'booking-tab-bar__links-item_disabled': !isDetailesFormFilled,
+        });
 
         // const serviceTabClasses = classNames('tab-bar__links-item', {
         //     'tab-bar__links-item_disabled': !isRoomFormFilled,
@@ -90,12 +104,12 @@ class BookingTabBar extends PureComponent {
                             <SideArrow />
                         </span>
                         <li>
-                            <NavLink className="booking-tab-bar__links-item" exact to={`/books/${id}/payload`}>
+                            <NavLink className={payloadTabClasses} exact to={`/books/${id}/payload`}>
                                 Payload
                             </NavLink>
                         </li>
                         <span>
-                            <Timer date={booking.requestedAt} />
+                            <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
                         </span>
                     </ul>
                     <div className="booking-tab-bar__route">

@@ -1,0 +1,29 @@
+.react-time-picker {
+    &__wrapper {
+        width: 160px;
+
+        border: none;
+
+// box-shadow: 0 5px 10px 0 rgba(16, 36, 94, 0.2);
+        border-radius: 0 5px 5px 0;
+        background-color: rgba(4, 132, 136, 0.315);
+
+        font: 500 1em Montserrat, "Segoe UI", Tahoma, sans-serif;
+    }
+
+    &__clock {
+        width: 160px;
+        height: auto;
+        padding: 0;
+
+        border: none;
+        box-shadow: 0 5px 10px 0 rgba(16, 36, 94, 0.2);
+    }
+}
+
+.react-clock {
+    margin: 5px auto;
+    &__face {
+        border: none;
+    }
+}

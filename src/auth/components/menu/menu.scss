@@ -7,12 +7,13 @@
     justify-content: space-between;
 
     &_light {
-        background-color: white;
         border-bottom: 1px solid rgb(224, 224, 224);
+        background-color: white;
     }
-    
+
     &_light &__list &__list-action {
         color: rgb(31, 31, 31);
+
         &:hover {
             color: rgb(206, 8, 84);
         }
@@ -29,7 +30,6 @@
         justify-content: flex-end;
     }
 
-
     &__list-action {
         display: block;
 
@@ -45,6 +45,10 @@
 
         &:hover {
             color: rgb(161, 161, 167);
+        }
+
+        @media only screen and (max-width: 335px) {
+            padding: 20px 15px;
         }
     }
 
