@@ -41,7 +41,7 @@
 
         min-height: 10px;
 
-        font: 800 1.3em "Roboto";
+        font: 500 1.3em "Roboto", sans-serif;
 
         align-items: center;
     }
@@ -49,6 +49,6 @@
     &__value {
         color: rgb(59, 59, 59);
 
-        font: 500 1em "Roboto";
+        font: 500 1em "Roboto", sans-serif;
     }
 }

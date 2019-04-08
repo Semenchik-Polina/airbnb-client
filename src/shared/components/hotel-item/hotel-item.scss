@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
 .hotel-item {
     width: 100%;
 
@@ -46,7 +48,7 @@
 
         color: rgb(129, 129, 129);
 
-        font: 700 1em "Roboto";
+        font: 700 1em "Roboto", sans-serif;
     }
 
     &__banner-info-name {
@@ -57,7 +59,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 2.5em "Roboto";
+        font: 500 2.5em "Roboto", sans-serif;
     }
 
     &__banner-image {
@@ -71,7 +73,7 @@
     &__overview {
         padding: 20px;
 
-        font: 500 1.25em "Roboto";
+        font: 500 1.25em "Roboto", sans-serif;
     }
 
     &__tour-header {
@@ -81,7 +83,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 2.5em "Roboto";
+        font: 500 2.5em "Roboto", sans-serif;
     }
 
     &__tour-gallery {
@@ -111,7 +113,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 1.5em "Roboto";
+        font: 500 1.5em "Roboto", sans-serif;
     }
 
     &__facilities-header {
@@ -121,7 +123,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 2.5em "Roboto";
+        font: 500 2.5em "Roboto", sans-serif;
     }
 
     &__facilities-containers {
@@ -174,6 +176,8 @@
         text-align: center;
 
         color: rgb(63, 63, 63);
+
+        font: 500 1em "Roboto", sans-serif;
     }
 
     &__photo-container {

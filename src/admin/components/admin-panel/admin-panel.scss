@@ -1,5 +1,5 @@
 .admin-panel {
-    font: 100 1em "Roboto";
+    font: 100 1em "Roboto", sans-serif;
 
     &__link {
         text-align: center;
@@ -42,15 +42,14 @@
         outline: none;
         background-color: white;
 
-        font: 500 1.5em "Roboto";
-        font-weight: 400;
+        font: 400 1.5em "Roboto", sans-serif;
 
         align-self: center;
 
         @media only screen and (max-width: 515px) {
             text-align: left;
 
-            font: 800 1em "Roboto";
+            font: 400 1em "Roboto", sans-serif;
         }
 
         &:hover {
@@ -69,7 +68,7 @@
 
         color: rgb(63, 62, 62);
 
-        font: 500 2.5em "Roboto";
+        font: 500 2.5em "Roboto", sans-serif;
 
         @media only screen and (max-width: 515px) {
             padding: 10px 4px;
@@ -135,6 +134,6 @@
 
         margin: 10px 0;
 
-        font: 500 1.1em "Roboto";
+        font: 500 1.1em "Roboto", sans-serif;
     }
 }

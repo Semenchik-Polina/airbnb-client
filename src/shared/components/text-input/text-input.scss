@@ -25,9 +25,9 @@
         border-radius: 5px;
         outline: none;
 
-        font: 100 1em/0.5em "Roboto";
+        font: 100 1em/0.5em "Roboto", sans-serif;
     }
-    
+
     &__icon {
         margin-right: 10px;
 
@@ -44,7 +44,6 @@
 
         color: rgb(236, 100, 21);
 
-        font-size: 0.85em;
-        font-weight: 800;
+        font: 500 0.85em "Roboto", sans-serif;
     }
 }

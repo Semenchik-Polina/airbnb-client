@@ -8,7 +8,7 @@
         border: none;
         background-color: gainsboro;
 
-        font: 100 1em "Roboto";
+        font: 100 1em "Roboto", sans-serif;
 
         flex-flow: row wrap;
         justify-content: center;
@@ -41,7 +41,7 @@
 
         padding: 20px 0;
 
-        font: 100 1em "Roboto";
+        font: 100 1em "Roboto", sans-serif;
     }
 
     .active {
