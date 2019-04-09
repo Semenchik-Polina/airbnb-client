@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { reduxForm, getFormValues, change } from 'redux-form';
+import { reduxForm, getFormValues } from 'redux-form';
 
 import ServiceTab from '../components/service-tab/service-tab';
 
@@ -47,6 +47,7 @@ const getServiceFormInitialValues = (services, supposedFacilities) => {
 
         return initialValues;
     }
+
     return null;
 };
 
@@ -63,7 +64,6 @@ export default connect(
     dispatch => ({
         addServices: (data, supposedFacilities) => dispatch(actions.addServices(data, supposedFacilities)),
         fetchSupposedFacilities: () => dispatch(actions.fetchSupposedFacilities()),
-        removeField: field => dispatch(change('serviceForm', field, '')),
     }),
 )(
     reduxForm({

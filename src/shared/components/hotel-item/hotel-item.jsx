@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import PhotoItem from '../photo-item/photo-item';
 
@@ -27,12 +26,16 @@ class HotelItem extends PureComponent {
                     type: PropTypes.string.isRequired,
                 }),
             ).isRequired,
-            services: PropTypes.shape({
-                internet: PropTypes.string.isRequired,
-                parking: PropTypes.string.isRequired,
-                breakfast: PropTypes.string.isRequired,
-                facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-            }).isRequired,
+            services: PropTypes.arrayOf(PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                facility: PropTypes.shape({
+                    _id: PropTypes.string.isRequired,
+                    hint: PropTypes.string,
+                    imageUrl: PropTypes.string,
+                    canBePaid: PropTypes.bool.isRequired,
+                }),
+                price: PropTypes.number,
+            })).isRequired,
             photoTour: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
@@ -68,6 +71,8 @@ class HotelItem extends PureComponent {
         const totalCapacity = roomTypes.reduce((total, room) => total + room.capacity * room.amount, 0);
         const totalRooms = roomTypes.reduce((total, room) => total + room.amount, 0);
 
+        const facilities = services.filter(service => !service.facility.canBePaid);
+
         return (
             <div className="hotel-item">
                 <div className="hotel-item__banner">
@@ -91,11 +96,11 @@ class HotelItem extends PureComponent {
                         ))}
                     </section>
                 )}
-                {services.facilities.length > 0 && (
+                {facilities.length > 0 && (
                     <section className="hotel-item__facilities">
                         <span className="hotel-item__facilities-header">Facilities and services</span>
                         <div className="hotel-item__facilities-containers">
-                            {devideArray(devideArray(services.facilities, 3), 2).map((container, index) => (
+                            {devideArray(devideArray(facilities, 3), 2).map((container, index) => (
                                 <div className="hotel-item__facilities-containers-wrapper" key={index}>
                                     {container.map((items, containerIndex) => (
                                         <div
@@ -109,11 +114,11 @@ class HotelItem extends PureComponent {
                                                 >
                                                     <img
                                                         className="hotel-item__facilities-containers-wrapper-container-item-image"
-                                                        src={`/images/facilities/${_.kebabCase(item)}.png`}
+                                                        src={item.facility.imageUrl}
                                                         alt="hotel"
                                                     />
                                                     <span className="hotel-item__facilities-containers-wrapper-container-item-facility">
-                                                        {item}
+                                                        {item.facility.name}
                                                     </span>
                                                 </div>
                                             ))}

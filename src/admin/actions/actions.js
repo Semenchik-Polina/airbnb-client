@@ -25,43 +25,40 @@ export function addHotelInfo(hotel) {
     };
 }
 
+// hotelId
 export function addServices(services, supposedFacilities) {
     return (dispatch) => {
-        // console.log(services, supposedFacilities);
         const paidFacilities = services.paidFacilities
             .filter(facility => facility.selectedOption)
             .map((facility) => {
                 const rawFacility = _.find(supposedFacilities, { _id: facility.id });
-                // if (rawFacility) {
                 return {
                     facility: {
                         ...rawFacility,
                     },
                     price: facility.selectedOption.isPaid ? facility.price : 0,
                     hotelId: '1',
-                    _id: Math.random(),
+                    _id: Math.random().toString(),
                 };
-                // }
             });
+
         const facilities = services.facilities
-            .filter(facility => facility.selectedOption)
             .map((facility) => {
-                const rawFacility = _.find(supposedFacilities, { _id: facility.id });
-                // if (rawFacility) {
+                const rawFacility = _.find(supposedFacilities, { _id: facility });
                 return {
                     facility: {
                         ...rawFacility,
                     },
-                    _id: Math.random(),
+                    hotelId: '1',
+                    _id: Math.random().toString(),
                 };
-                // }
             });
-            console.log(paidFacilities, facilities);
+
         dispatch({
             type: types.ADD_SERVICE_INFO,
             services: [...paidFacilities, ...facilities],
         });
-        // history.push('/admin-home/create-new-hotel/photos');
+        history.push('/admin-home/create-new-hotel/photos');
     };
 }
 

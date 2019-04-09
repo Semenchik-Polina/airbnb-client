@@ -29,9 +29,8 @@ class ServiceTab extends PureComponent {
         supposedFacilities: PropTypes.shape({
             freeFacilities: PropTypes.arrayOf(
                 PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
                     name: PropTypes.string.isRequired,
-                    imageUrl: PropTypes.string.isRequired,
+                    value: PropTypes.string.isRequired,
                 }),
             ),
             possiblyPaidFacilities: PropTypes.arrayOf(
@@ -39,6 +38,15 @@ class ServiceTab extends PureComponent {
                     _id: PropTypes.string.isRequired,
                     name: PropTypes.string.isRequired,
                     hint: PropTypes.string.isRequired,
+                    canBePaid: PropTypes.bool.isRequired,
+                }),
+            ),
+            rawFacilities: PropTypes.arrayOf(
+                PropTypes.shape({
+                    _id: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
+                    hint: PropTypes.string,
+                    imageUrl: PropTypes.string,
                     canBePaid: PropTypes.bool.isRequired,
                 }),
             ),
@@ -97,7 +105,6 @@ class ServiceTab extends PureComponent {
             handleSubmit, pristine, submitting, supposedFacilities,
         } = this.props;
 
-        console.log(this.props.supposedFacilities);
         if (supposedFacilities) {
             return (
                 <div className="service-tab">

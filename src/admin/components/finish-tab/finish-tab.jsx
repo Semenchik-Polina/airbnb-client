@@ -27,12 +27,15 @@ class FinishTab extends PureComponent {
                     type: PropTypes.string.isRequired,
                 }),
             ).isRequired,
-            services: PropTypes.shape({
-                internet: PropTypes.string.isRequired,
-                parking: PropTypes.string.isRequired,
-                breakfast: PropTypes.string.isRequired,
-                facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-            }).isRequired,
+            services: PropTypes.arrayOf(PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                facility: PropTypes.shape({
+                    _id: PropTypes.string.isRequired,
+                    hint: PropTypes.string,
+                    imageUrl: PropTypes.string,
+                    canBePaid: PropTypes.bool.isRequired,
+                }),
+            })).isRequired,
             photoTour: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,

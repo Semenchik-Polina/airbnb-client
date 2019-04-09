@@ -7,7 +7,7 @@ import * as adminActions from '../actions/actions';
 export default connect(
     state => ({
         hotelInfo: state.adminReducer.hotelInfo,
-        isEditableHotel: !!state.adminReducer.hotelInfo.id,
+        isEditableHotel: !!state.adminReducer.hotelInfo._id,
     }),
     dispatch => ({
         createHotel: data => dispatch(adminActions.createHotel(data)),

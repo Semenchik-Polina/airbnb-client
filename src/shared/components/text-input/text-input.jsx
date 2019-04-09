@@ -19,7 +19,7 @@ class TextInput extends PureComponent {
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
-            value: PropTypes.string,
+            value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         }).isRequired,
         meta: PropTypes.shape({
             touched: PropTypes.bool.isRequired,

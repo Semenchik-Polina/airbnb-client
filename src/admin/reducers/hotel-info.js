@@ -23,7 +23,6 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case types.ADD_SERVICE_INFO: {
         const { services } = action;
-        console.log(action, services);
         return {
             ...state,
             services,
