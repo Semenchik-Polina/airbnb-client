@@ -7,10 +7,15 @@ export default connect((state) => {
     const {
         mainInfo, roomTypes, services, photoTour,
     } = state.adminReducer.hotelInfo;
-    const isMainInfoFilled = !_.isEmpty(mainInfo);
-    const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
-    const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
-    const isPhotoFormFilled = !_.isEmpty(photoTour) && isServiceFormFilled;
+    // const isMainInfoFilled = !_.isEmpty(mainInfo);
+    // const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
+    // const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
+    // const isPhotoFormFilled = !_.isEmpty(photoTour) && isServiceFormFilled;
+
+    const isMainInfoFilled = true;
+    const isRoomFormFilled = true;
+    const isServiceFormFilled = true;
+    const isPhotoFormFilled = true;
 
     return {
         isMainInfoFilled, isRoomFormFilled, isServiceFormFilled, isPhotoFormFilled,

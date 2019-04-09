@@ -25,9 +25,9 @@ class CheckboxGroup extends PureComponent {
         const newValue = [...input.value];
 
         if (event.target.checked) {
-            newValue.push(option.name);
+            newValue.push(option.value);
         } else {
-            newValue.splice(newValue.indexOf(option.name), 1);
+            newValue.splice(newValue.indexOf(option.value), 1);
         }
 
         return input.onChange(newValue);
@@ -40,8 +40,8 @@ class CheckboxGroup extends PureComponent {
                     type="checkbox"
                     name={`${input.name}[${index}]`}
                     id={`${input.name}[${index}]`}
-                    value={option.name}
-                    checked={input.value.indexOf(option.name) !== -1}
+                    value={option.value}
+                    checked={input.value.indexOf(option.value) !== -1}
                     onChange={this.handleChange(option, input)}
                 />
                 <span>{option.name}</span>

@@ -45,13 +45,24 @@ class ModalBooking extends PureComponent {
         changeGuestValue: PropTypes.func.isRequired,
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.selectedRoomType && this.props.selectedRoomType !== nextProps.selectedRoomType) {
-            if (this.props.guestsSelector > nextProps.selectedRoomType.capacity) {
-                this.props.changeGuestValue(nextProps.selectedRoomType.capacity);
+    getSnapshotBeforeUpdate = (prevProps) => {
+        if (
+            this.props.selectedRoomType
+            && prevProps.selectedRoomType
+            && this.props.selectedRoomType !== prevProps.selectedRoomType
+        ) {
+            if (this.props.guestsSelector > this.props.selectedRoomType.capacity) {
+                return this.props.selectedRoomType.capacity;
             }
         }
-    }
+        return null;
+    };
+
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+        if (snapshot !== null) {
+            this.props.changeGuestValue(snapshot);
+        }
+    };
 
     componentWillUnmount = () => {
         this.props.onClose();

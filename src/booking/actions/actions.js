@@ -11,7 +11,7 @@ export function fetchBooking() {
             user: {
                 _id: '1',
             },
-            requestedAt: moment(new Date()).add(-20.9, 'm'),
+            requestedAt: moment(new Date()).add(-29.9, 'm'),
             guests: 3,
             room: {
                 _id: '1',

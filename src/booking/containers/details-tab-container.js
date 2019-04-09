@@ -11,7 +11,7 @@ export default connect(
         const initialValues = state.bookingReducer.details || {
             arrivalTime: constants.MIN_ARRIVAL_TIME,
             departureTime: constants.MAX_DEPARTURE_TIME,
-            guests: state.bookingReducer.guests,
+            guests: state.bookingReducer.booking.guests,
         };
 
         return {

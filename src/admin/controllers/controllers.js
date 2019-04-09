@@ -21,3 +21,7 @@ export function editHotel(data) {
 export function fetchHotels() {
     return axios.get('/api/admin/fetchHotels');
 }
+
+export function fetchSupposedFacilities() {
+    return axios.get('/api/admin/fetchSupposedFacilities');
+}

@@ -6,7 +6,7 @@ import * as types from '../constants/types';
 const initialState = {
     mainInfo: {},
     roomTypes: [],
-    services: {},
+    services: null,
     photoTour: [],
     editableId: null,
 };
@@ -23,10 +23,10 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case types.ADD_SERVICE_INFO: {
         const { services } = action;
-
+        console.log(action, services);
         return {
             ...state,
-            services: { ...services },
+            services,
         };
     }
     case types.ADD_ROOM_TYPE: {

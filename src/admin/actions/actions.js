@@ -25,13 +25,43 @@ export function addHotelInfo(hotel) {
     };
 }
 
-export function addServices(services) {
+export function addServices(services, supposedFacilities) {
     return (dispatch) => {
+        // console.log(services, supposedFacilities);
+        const paidFacilities = services.paidFacilities
+            .filter(facility => facility.selectedOption)
+            .map((facility) => {
+                const rawFacility = _.find(supposedFacilities, { _id: facility.id });
+                // if (rawFacility) {
+                return {
+                    facility: {
+                        ...rawFacility,
+                    },
+                    price: facility.selectedOption.isPaid ? facility.price : 0,
+                    hotelId: '1',
+                    _id: Math.random(),
+                };
+                // }
+            });
+        const facilities = services.facilities
+            .filter(facility => facility.selectedOption)
+            .map((facility) => {
+                const rawFacility = _.find(supposedFacilities, { _id: facility.id });
+                // if (rawFacility) {
+                return {
+                    facility: {
+                        ...rawFacility,
+                    },
+                    _id: Math.random(),
+                };
+                // }
+            });
+            console.log(paidFacilities, facilities);
         dispatch({
             type: types.ADD_SERVICE_INFO,
-            services,
+            services: [...paidFacilities, ...facilities],
         });
-        history.push('/admin-home/create-new-hotel/photos');
+        // history.push('/admin-home/create-new-hotel/photos');
     };
 }
 
@@ -212,5 +242,22 @@ export function unsetEditableId() {
         dispatch({
             type: types.UNSET_EDITABLE_ID,
         });
+    };
+}
+
+export function fetchSupposedFacilities() {
+    return async (dispatch) => {
+        try {
+            const {
+                data: { facilities },
+            } = await controllers.fetchSupposedFacilities();
+
+            dispatch({
+                type: types.FETCH_SUPPOSED_HOTEL_FACILITIES,
+                data: facilities,
+            });
+        } catch (err) {
+            showErrorToast(err);
+        }
     };
 }

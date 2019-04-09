@@ -14,25 +14,16 @@ export const HOTEL_ZONES = [
     { value: 'Bathroom', label: 'Bathroom' },
 ];
 
-export const COUNTRIES = [
-    { value: 'Belarus', label: 'Belarus' },
-    { value: 'Russia', label: 'Russia' },
-];
-
-export const POPULAR_FACILITIES = [
-    { id: 1, name: 'TV' },
-    { id: 2, name: 'Wi-Fi' },
-    { id: 3, name: 'Kitchen' },
-    { id: 5, name: 'Hair dryer' },
-    { id: 6, name: 'Iron' },
-    { id: 7, name: 'Coffee maker' },
-    { id: 7, name: 'Elevator' },
-    { id: 8, name: 'Bathroom essentials' },
-    { id: 9, name: 'Self check-in' },
-];
+export const COUNTRIES = [{ value: 'Belarus', label: 'Belarus' }, { value: 'Russia', label: 'Russia' }];
 
 export const SERVICE_ANSWERS = [
-    { value: 'Yes, for free', label: 'Yes, for free' },
-    { value: 'Yes, for money', label: 'Yes, for money' },
-    { value: 'No', label: 'No' },
+    { value: { isPaid: false }, label: 'Yes, for free' },
+    { value: { isPaid: true }, label: 'Yes, for money' },
+    { value: null, label: 'No' },
 ];
+
+export const SERVICE_ANSWERS_INDEXES = {
+    FREE_FACILITY_INDEX: 0,
+    PAID_FACILITY_INDEX: 1,
+    UNAVAILABLE_FACILITY_INDEX: 2,
+};
