@@ -223,7 +223,7 @@ class BookingDetails extends PureComponent {
                         <span className="booking-details__form-section-summary">Total price: ${totalPrice}</span>
                     </div>
                     <Button className="booking-details__form-button-submit" color="secondary">
-                        Apply
+                       BOOK
                     </Button>
                 </Form>
             </div>
