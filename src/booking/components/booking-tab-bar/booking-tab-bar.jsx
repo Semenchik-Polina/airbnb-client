@@ -31,24 +31,36 @@ class BookingTabBar extends PureComponent {
             }).isRequired,
         }).isRequired,
         booking: PropTypes.shape({
-            _id: PropTypes.string,
+            id: PropTypes.string,
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
             requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
-                _id: PropTypes.string,
+                id: PropTypes.string,
                 type: PropTypes.string,
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
-                services: PropTypes.arrayOf(PropTypes.string),
-            }),
-            hotel: PropTypes.shape({
-                _id: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
+                hotel: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    country: PropTypes.string.isRequired,
+                    city: PropTypes.string.isRequired,
+                    hotelName: PropTypes.string.isRequired,
+                    services: PropTypes.arrayOf(
+                        PropTypes.shape({
+                            id: PropTypes.string.isRequired,
+                            hotelId: PropTypes.string.isRequired,
+                            facility: PropTypes.shape({
+                                id: PropTypes.string.isRequired,
+                                name: PropTypes.string.isRequired,
+                                isPaidPerRoom: PropTypes.bool,
+                                canBePaid: PropTypes.bool.isRequired,
+                            }).isRequired,
+                            price: PropTypes.number,
+                        }),
+                    ),
+                }),
             }),
             totalPrice: PropTypes.number,
             dateFrom: PropTypes.instanceOf(Date),
@@ -63,9 +75,9 @@ class BookingTabBar extends PureComponent {
 
     renderRedirectToHotels = () => {
         history.push('/hotels');
-    }
+    };
 
-    renderRiderect = () => {
+    redirectToMainForm = () => {
         const { id } = this.props.match.params;
         return <Redirect to={`/books/${id}/details`} />;
     };
@@ -79,19 +91,11 @@ class BookingTabBar extends PureComponent {
             isDetailesFormFilled,
         } = this.props;
 
-        // const {
-        //     isMainInfoFilled, isRoomFormFilled,
-        // } = this.props;
-
         const payloadTabClasses = classNames('booking-tab-bar__links-item', {
             'booking-tab-bar__links-item_disabled': !isDetailesFormFilled,
         });
 
-        // const serviceTabClasses = classNames('tab-bar__links-item', {
-        //     'tab-bar__links-item_disabled': !isRoomFormFilled,
-        // });
-
-        if (booking && booking._id === id) {
+        if (booking && booking.id === id) {
             return (
                 <div className="booking-tab-bar">
                     <ul className="booking-tab-bar__links">
@@ -113,9 +117,9 @@ class BookingTabBar extends PureComponent {
                         </span>
                     </ul>
                     <div className="booking-tab-bar__route">
-                        <Route path="/books/:id" component={this.renderRiderect} />
+                        <Route path="/books/:id" component={this.redirectToMainForm} />
                         <Route exact path="/books/:id/details" component={DetailsTab} />
-                        <Route exact path="/books/:id/payload" component={PayloadTab} />
+                        <Route exact path="/books/:id/payload" component={isDetailesFormFilled ? PayloadTab : this.redirectToMainForm} />
                     </div>
                 </div>
             );

@@ -1,52 +1,99 @@
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
+import classNames from 'classNames';
 import moment from 'moment';
+import _ from 'lodash';
 
-import { Field, Form } from 'redux-form';
+import { Field, Form, FieldArray } from 'redux-form';
 
 import CounterInput from '../../../shared/components/counter-input/counter-input';
 import Button from '../../../shared/components/button/button';
 import TimePickerInput from '../time-picker-input/time-picker-input';
+import SwitchInput from '../switch-input/switch-input';
 
 import * as constants from '../../constants/index';
 
 import './details-tab.scss';
 
 class DetailsTab extends PureComponent {
+    static defaultProps = {
+        formValues: null,
+    };
+
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
         addBookingDetails: PropTypes.func.isRequired,
+        formValues: PropTypes.shape({}),
+        freeFacilities: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                hotelId: PropTypes.string.isRequired,
+                facility: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
+                    isPaidPerRoom: PropTypes.bool,
+                    canBePaid: PropTypes.bool.isRequired,
+                }).isRequired,
+                price: PropTypes.number,
+            }),
+        ).isRequired,
+        paidFacilities: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                hotelId: PropTypes.string.isRequired,
+                facility: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
+                    isPaidPerRoom: PropTypes.bool,
+                    canBePaid: PropTypes.bool.isRequired,
+                }).isRequired,
+                price: PropTypes.number,
+            }),
+        ).isRequired,
         booking: PropTypes.shape({
-            _id: PropTypes.string,
+            id: PropTypes.string,
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
+            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
-                _id: PropTypes.string,
+                id: PropTypes.string,
                 type: PropTypes.string,
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
-                services: PropTypes.arrayOf(PropTypes.string),
-            }),
-            hotel: PropTypes.shape({
-                _id: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
-            }),
-            totalPrice: PropTypes.number,
-            dateFrom: PropTypes.instanceOf(Date),
-            dateTo: PropTypes.instanceOf(Date),
+                hotel: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    country: PropTypes.string.isRequired,
+                    city: PropTypes.string.isRequired,
+                    hotelName: PropTypes.string.isRequired,
+                }),
+            }).isRequired,
         }).isRequired,
     };
 
     handleSubmit = (values) => {
-        this.props.addBookingDetails(values, this.props.booking._id);
+        this.props.addBookingDetails(values, this.props.booking.id);
+    };
+
+    renderPaidFacilities = ({ fields, className }) => {
+        const { formValues, paidFacilities } = this.props;
+        const fieldClasses = classNames('facility-field', className);
+
+        return fields.map((member, index) => (
+            <div key={index} className={fieldClasses}>
+                <div className="facility-field__item">{_.upperFirst(paidFacilities[index].facility.name)}</div>
+                <div className="facility-field__item-price">${_.upperFirst(paidFacilities[index].price)}</div>
+                <Field className="facility-field__item" component={SwitchInput} name={`${member}.checked`} />
+                {formValues.paidFacilities[index].checked && !paidFacilities[index].facility.isPaidPerRoom && (
+                    <Field className="facility-field__item" component={CounterInput} name={`${member}.count`} />
+                )}
+            </div>
+        ));
     };
 
     render() {
-        const { handleSubmit, booking } = this.props;
+        const { handleSubmit, booking, freeFacilities } = this.props;
 
         const nightsInHotel = moment(booking.dateTo).diff(moment(booking.dateFrom), 'days');
         const dateLabel = nightsInHotel > 1 ? `${nightsInHotel} nights` : '1 night';
@@ -57,7 +104,7 @@ class DetailsTab extends PureComponent {
                 <Form className="details-tab__form" onSubmit={handleSubmit(this.handleSubmit)}>
                     <div className="details-tab__form-section">
                         <span className="details-tab__form-section-header">
-                            {dateLabel} in {booking.hotel.city}
+                            {dateLabel} in {booking.room.hotel.city} — ${booking.room.cost} per night
                         </span>
                         <div className="details-tab__form-section-wrapper">
                             <div className="details-tab__form-section-wrapper-item">
@@ -115,10 +162,30 @@ class DetailsTab extends PureComponent {
                         </div>
                     </div>
                     <div className="details-tab__form-section">
-                        <div className="details-tab__form-section-wrapper">
-                            <span className="details-tab__form-section-summary">Services: </span>
+                        <div>
+                            <span className="details-tab__form-section-summary">Services price list per 24h: </span>
                         </div>
+                        <FieldArray
+                            name="paidFacilities"
+                            component={this.renderPaidFacilities}
+                            className="details-tab__form-section-wrapper"
+                        />
                     </div>
+                    {freeFacilities.length > 0 && (
+                        <div className="details-tab__form-section">
+                            <span className="details-tab__form-section-summary">Free facilities always available </span>
+                            <div className="details-tab__form-section-free-facilities">
+                                {freeFacilities.map(freeFacility => (
+                                    <span
+                                        key={freeFacility.id}
+                                        className="details-tab__form-section-free-facilities-item"
+                                    >
+                                        {freeFacility.facility.name}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                     <Button className="details-tab__form-button-submit" color="secondary">
                         Apply
                     </Button>

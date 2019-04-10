@@ -11,12 +11,10 @@ class HotelItem extends PureComponent {
     static propTypes = {
         hotelInfo: PropTypes.shape({
             id: PropTypes.string,
-            mainInfo: PropTypes.shape({
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
-                address: PropTypes.string.isRequired,
-            }).isRequired,
+            country: PropTypes.string.isRequired,
+            city: PropTypes.string.isRequired,
+            hotelName: PropTypes.string.isRequired,
+            address: PropTypes.string.isRequired,
             roomTypes: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
@@ -26,16 +24,18 @@ class HotelItem extends PureComponent {
                     type: PropTypes.string.isRequired,
                 }),
             ).isRequired,
-            services: PropTypes.arrayOf(PropTypes.shape({
-                _id: PropTypes.string.isRequired,
-                facility: PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
-                    hint: PropTypes.string,
-                    imageUrl: PropTypes.string,
-                    canBePaid: PropTypes.bool.isRequired,
+            services: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    facility: PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        hint: PropTypes.string,
+                        imageUrl: PropTypes.string,
+                        canBePaid: PropTypes.bool.isRequired,
+                    }),
+                    price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
                 }),
-                price: PropTypes.number,
-            })).isRequired,
+            ).isRequired,
             photoTour: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
@@ -65,7 +65,7 @@ class HotelItem extends PureComponent {
 
     render() {
         const {
-            mainInfo, photoTour, roomTypes, services,
+            photoTour, roomTypes, services, ...mainInfo
         } = this.props.hotelInfo;
 
         const totalCapacity = roomTypes.reduce((total, room) => total + room.capacity * room.amount, 0);

@@ -12,12 +12,10 @@ class FinishTab extends PureComponent {
         editHotel: PropTypes.func.isRequired,
         isEditableHotel: PropTypes.bool.isRequired,
         hotelInfo: PropTypes.shape({
-            mainInfo: PropTypes.shape({
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
-                address: PropTypes.string.isRequired,
-            }).isRequired,
+            country: PropTypes.string.isRequired,
+            city: PropTypes.string.isRequired,
+            hotelName: PropTypes.string.isRequired,
+            address: PropTypes.string.isRequired,
             roomTypes: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
@@ -27,15 +25,17 @@ class FinishTab extends PureComponent {
                     type: PropTypes.string.isRequired,
                 }),
             ).isRequired,
-            services: PropTypes.arrayOf(PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                facility: PropTypes.shape({
+            services: PropTypes.arrayOf(
+                PropTypes.shape({
                     id: PropTypes.string.isRequired,
-                    hint: PropTypes.string,
-                    imageUrl: PropTypes.string,
-                    canBePaid: PropTypes.bool.isRequired,
+                    facility: PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        hint: PropTypes.string,
+                        imageUrl: PropTypes.string,
+                        canBePaid: PropTypes.bool.isRequired,
+                    }),
                 }),
-            })).isRequired,
+            ).isRequired,
             photoTour: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,

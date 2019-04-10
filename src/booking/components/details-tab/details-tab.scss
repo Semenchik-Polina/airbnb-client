@@ -1,10 +1,19 @@
 .details-tab {
     margin: 0 auto 0 50px;
 
+    @media only screen and (max-width: 515px) {
+        margin: 0 5px;
+    }
+
     &__header {
         color: rgb(75, 75, 75);
 
         font: 600 2em "Roboto", sans-serif;
+    }
+
+    &__form {
+        width: 100%;
+        max-width: 600px;
     }
 
     &__form-section {
@@ -111,5 +120,49 @@
 
         flex-flow: row nowrap;
         justify-content: space-around;
+    }
+
+    &__form-section-free-facilities {
+        margin-top: 5px;
+    }
+
+    &__form-section-free-facilities-item {
+        display: inline-block;
+
+        margin: 5px;
+        padding: 5px;
+
+        white-space: nowrap;
+
+        border-radius: 5px;
+        background-color: rgba(97, 153, 155, 0.329);
+    }
+}
+
+.facility-field {
+    display: flex;
+
+    min-height: 70px;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    &__item {
+        padding: 0 10px;
+
+        &:first-child {
+            min-width: 80px;
+        }
+
+        @media only screen and (max-width: 515px) {
+            min-width: auto;
+            padding: 0 2px;
+        }
+    }
+    &__item-price {
+        min-width: 35px;
+        padding-right: 5px;
+
+        text-align: right;
     }
 }

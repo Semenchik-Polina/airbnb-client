@@ -5,10 +5,10 @@ import TabBar from '../components/tab-bar/tab-bar';
 
 export default connect((state) => {
     const {
-        mainInfo, roomTypes, services, photoTour,
+        roomTypes, services, photoTour,
     } = state.adminReducer.hotelInfo;
 
-    const isMainInfoFilled = !_.isEmpty(mainInfo);
+    const isMainInfoFilled = !!state.adminReducer.hotelInfo.hotelName;
     const isRoomFormFilled = !_.isEmpty(roomTypes) && isMainInfoFilled;
     const isServiceFormFilled = !_.isEmpty(services) && isRoomFormFilled;
     const isPhotoFormFilled = !_.isEmpty(photoTour) && isServiceFormFilled;

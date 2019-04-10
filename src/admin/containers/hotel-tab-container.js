@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -8,9 +7,14 @@ import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
-        initialValues: _.isEmpty(state.adminReducer.hotelInfo.mainInfo)
+        initialValues: state.adminReducer.hotelInfo.hotelName
             ? { country: 'Russia' }
-            : { ...state.adminReducer.hotelInfo.mainInfo },
+            : {
+                hotelName: state.adminReducer.hotelInfo.hotelName,
+                country: state.adminReducer.hotelInfo.country,
+                city: state.adminReducer.hotelInfo.city,
+                address: state.adminReducer.hotelInfo.address,
+            },
     }),
     dispatch => ({
         addHotelInfo: data => dispatch(adminActions.addHotelInfo(data)),

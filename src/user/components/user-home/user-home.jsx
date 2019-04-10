@@ -15,12 +15,10 @@ class UserHome extends PureComponent {
         hotels: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                mainInfo: PropTypes.shape({
-                    country: PropTypes.string.isRequired,
-                    city: PropTypes.string.isRequired,
-                    hotelName: PropTypes.string.isRequired,
-                    address: PropTypes.string.isRequired,
-                }).isRequired,
+                country: PropTypes.string.isRequired,
+                city: PropTypes.string.isRequired,
+                hotelName: PropTypes.string.isRequired,
+                address: PropTypes.string.isRequired,
                 roomTypes: PropTypes.arrayOf(
                     PropTypes.shape({
                         id: PropTypes.string.isRequired,
@@ -30,12 +28,18 @@ class UserHome extends PureComponent {
                         type: PropTypes.string.isRequired,
                     }),
                 ).isRequired,
-                services: PropTypes.shape({
-                    internet: PropTypes.string.isRequired,
-                    parking: PropTypes.string.isRequired,
-                    breakfast: PropTypes.string.isRequired,
-                    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-                }).isRequired,
+                services: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        facility: PropTypes.shape({
+                            id: PropTypes.string.isRequired,
+                            hint: PropTypes.string,
+                            imageUrl: PropTypes.string,
+                            canBePaid: PropTypes.bool.isRequired,
+                        }),
+                        price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+                    }),
+                ).isRequired,
                 photoTour: PropTypes.arrayOf(
                     PropTypes.shape({
                         id: PropTypes.string.isRequired,
@@ -49,7 +53,6 @@ class UserHome extends PureComponent {
                 ).isRequired,
             }),
         ).isRequired,
-
         fetchHotels: PropTypes.func.isRequired,
     };
 
@@ -83,7 +86,7 @@ class UserHome extends PureComponent {
                                                 handleClick={this.redirectToHotelPage(hotel.id)}
                                             />
                                             <span className="user-home__hotels-containers-wrapper-item-name">
-                                                {hotel.mainInfo.hotelName}
+                                                {hotel.hotelName}
                                             </span>
                                         </div>
                                     ))}

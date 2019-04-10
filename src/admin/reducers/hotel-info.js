@@ -4,7 +4,10 @@ import uuidv1 from 'uuid/v1';
 import * as types from '../constants/types';
 
 const initialState = {
-    mainInfo: {},
+    hotelName: '',
+    country: '',
+    city: '',
+    address: '',
     roomTypes: [],
     services: null,
     photoTour: [],
@@ -18,7 +21,7 @@ const hotelInfoReducer = (state = initialState, action) => {
 
         return {
             ...state,
-            mainInfo: { ...hotel },
+            ...hotel,
         };
     }
     case types.ADD_SERVICE_INFO: {

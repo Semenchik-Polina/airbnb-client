@@ -66,38 +66,35 @@ class ServiceTab extends PureComponent {
 
     renderPaidFacilities = ({ fields }) => {
         const { formValues } = this.props;
+        const { possiblyPaidFacilities } = this.props.supposedFacilities;
 
-        return fields.map((member, index) => {
-            const { possiblyPaidFacilities } = this.props.supposedFacilities;
-
-            return (
-                <Fragment key={index}>
-                    <div className="service-tab__form-section">{_.upperFirst(possiblyPaidFacilities[index].name)}</div>
-                    <label htmlFor="internet">
-                        {possiblyPaidFacilities[index].hint}
+        return fields.map((member, index) => (
+            <Fragment key={index}>
+                <div className="service-tab__form-section">{_.upperFirst(possiblyPaidFacilities[index].name)}</div>
+                <label htmlFor={`${member}.selectedOption`}>
+                    {possiblyPaidFacilities[index].hint}
+                    <Field
+                        className="service-tab__form-field"
+                        name={`${member}.selectedOption`}
+                        component={DropDownSelect}
+                        options={SERVICE_ANSWERS}
+                        format={value => (value === '' ? null : value)}
+                    />
+                    {formValues.paidFacilities[index].selectedOption
+                        && formValues.paidFacilities[index].selectedOption.isPaid && (
                         <Field
-                            className="service-tab__form-field"
-                            name={`${member}.selectedOption`}
-                            component={DropDownSelect}
-                            options={SERVICE_ANSWERS}
-                            format={value => (value === '' ? null : value)}
+                            className="room-form__field room-form__field_left"
+                            name={`${member}.price`}
+                            component={TextInput}
+                            validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
+                            type="number"
+                            essence="Price"
+                            placeholder="0"
                         />
-                        {formValues.paidFacilities[index].selectedOption
-                            && formValues.paidFacilities[index].selectedOption.isPaid && (
-                            <Field
-                                className="room-form__field room-form__field_left"
-                                name={`${member}.price`}
-                                component={TextInput}
-                                validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
-                                type="number"
-                                essence="Price"
-                                placeholder="0"
-                            />
-                        )}
-                    </label>
-                </Fragment>
-            );
-        });
+                    )}
+                </label>
+            </Fragment>
+        ));
     };
 
     render() {

@@ -14,12 +14,10 @@ class AdminPanel extends PureComponent {
         hotels: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                mainInfo: PropTypes.shape({
-                    country: PropTypes.string.isRequired,
-                    city: PropTypes.string.isRequired,
-                    hotelName: PropTypes.string.isRequired,
-                    address: PropTypes.string.isRequired,
-                }).isRequired,
+                country: PropTypes.string.isRequired,
+                city: PropTypes.string.isRequired,
+                hotelName: PropTypes.string.isRequired,
+                address: PropTypes.string.isRequired,
                 roomTypes: PropTypes.arrayOf(
                     PropTypes.shape({
                         id: PropTypes.string.isRequired,
@@ -29,16 +27,18 @@ class AdminPanel extends PureComponent {
                         type: PropTypes.string.isRequired,
                     }),
                 ).isRequired,
-                services: PropTypes.arrayOf(PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    facility: PropTypes.shape({
+                services: PropTypes.arrayOf(
+                    PropTypes.shape({
                         id: PropTypes.string.isRequired,
-                        hint: PropTypes.string,
-                        imageUrl: PropTypes.string,
-                        canBePaid: PropTypes.bool.isRequired,
+                        facility: PropTypes.shape({
+                            id: PropTypes.string.isRequired,
+                            hint: PropTypes.string,
+                            imageUrl: PropTypes.string,
+                            canBePaid: PropTypes.bool.isRequired,
+                        }),
+                        price: PropTypes.number,
                     }),
-                    price: PropTypes.number,
-                })).isRequired,
+                ).isRequired,
                 photoTour: PropTypes.arrayOf(
                     PropTypes.shape({
                         id: PropTypes.string.isRequired,
@@ -108,7 +108,7 @@ class AdminPanel extends PureComponent {
                                             />
                                             <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
                                             <span className="admin-panel__hotels-containers-wrapper-item-name">
-                                                {hotel.mainInfo.hotelName}
+                                                {hotel.hotelName}
                                             </span>
                                         </div>
                                     ))}

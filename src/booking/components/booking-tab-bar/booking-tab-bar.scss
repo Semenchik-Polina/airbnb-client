@@ -9,8 +9,6 @@
         background-color: rgb(255, 255, 255);
 
         align-items: center;
-
-// font: 600 1em "Roboto", sans-serif;
         flex-flow: row wrap;
         justify-content: flex-start;
     }
@@ -33,6 +31,10 @@
             pointer-events: none;
 
             color: rgb(192, 191, 191);
+        }
+
+        @media only screen and (max-width: 515px) {
+            padding: 10px 10px 0 10px;
         }
     }
 
