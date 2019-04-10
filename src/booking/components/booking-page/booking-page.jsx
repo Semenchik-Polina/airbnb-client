@@ -1,29 +1,24 @@
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
-import classNames from 'classNames';
 
 import {
-    withRouter, Route, NavLink, Redirect,
+    withRouter, Route, Redirect,
 } from 'react-router-dom';
 
 import BeatLoader from 'react-spinners/BeatLoader';
-import DetailsTab from '../../containers/details-tab-container';
-import PayloadTab from '../../containers/payload-tab-container';
-import SideArrow from '../../../shared/components/side-arrow/side-arrow';
-import Timer from '../timer/timer';
+import DetailsTab from '../../containers/booking-details-container';
 
 import history from '../../../shared/tools/history';
 
-import './booking-tab-bar.scss';
+import './booking-page.scss';
 
-class BookingTabBar extends PureComponent {
+class BookingPage extends PureComponent {
     static defaultProps = {
         booking: null,
     };
 
     static propTypes = {
-        isDetailesFormFilled: PropTypes.bool.isRequired,
         fetchBooking: PropTypes.func.isRequired,
         match: PropTypes.shape({
             params: PropTypes.shape({
@@ -88,38 +83,14 @@ class BookingTabBar extends PureComponent {
                 params: { id },
             },
             booking,
-            isDetailesFormFilled,
         } = this.props;
-
-        const payloadTabClasses = classNames('booking-tab-bar__links-item', {
-            'booking-tab-bar__links-item_disabled': !isDetailesFormFilled,
-        });
 
         if (booking && booking.id === id) {
             return (
-                <div className="booking-tab-bar">
-                    <ul className="booking-tab-bar__links">
-                        <li>
-                            <NavLink className="booking-tab-bar__links-item" exact to={`/books/${id}/details`}>
-                                Details
-                            </NavLink>
-                        </li>
-                        <span>
-                            <SideArrow />
-                        </span>
-                        <li>
-                            <NavLink className={payloadTabClasses} exact to={`/books/${id}/payload`}>
-                                Payload
-                            </NavLink>
-                        </li>
-                        <span>
-                            <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
-                        </span>
-                    </ul>
-                    <div className="booking-tab-bar__route">
+                <div className="booking-page">
+                    <div className="booking-page__route">
                         <Route path="/books/:id" component={this.redirectToMainForm} />
                         <Route exact path="/books/:id/details" component={DetailsTab} />
-                        <Route exact path="/books/:id/payload" component={isDetailesFormFilled ? PayloadTab : this.redirectToMainForm} />
                     </div>
                 </div>
             );
@@ -132,4 +103,4 @@ class BookingTabBar extends PureComponent {
     }
 }
 
-export default withRouter(BookingTabBar);
+export default withRouter(BookingPage);

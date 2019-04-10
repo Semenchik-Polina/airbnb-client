@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { reduxForm, getFormValues } from 'redux-form';
 import _ from 'lodash';
 
-import DetailsTab from '../components/details-tab/details-tab';
+import BookingDetails from '../components/booking-details/booking-details';
 
 import * as actions from '../actions/actions';
 import * as constants from '../constants';
@@ -54,10 +54,10 @@ export default connect(
         formValues: getFormValues('bookingDetailsForm')(state),
     }),
     dispatch => ({
-        addBookingDetails: (details, id) => dispatch(actions.addBookingDetails(details, id)),
+        makeFinalBooking: (booking, details) => dispatch(actions.makeFinalBooking(booking, details)),
     }),
 )(
     reduxForm({
         form: 'bookingDetailsForm',
-    })(DetailsTab),
+    })(BookingDetails),
 );

@@ -1,4 +1,4 @@
-.details-tab {
+.booking-details {
     margin: 0 auto 0 50px;
 
     @media only screen and (max-width: 515px) {
@@ -9,6 +9,20 @@
         color: rgb(75, 75, 75);
 
         font: 600 2em "Roboto", sans-serif;
+    }
+
+    &__timer {
+        display: flex;
+
+        margin: auto 0;
+        padding: 10px 0 0 0;
+
+        border: none;
+        background-color: rgb(255, 255, 255);
+
+        align-items: center;
+        flex-flow: row wrap;
+        justify-content: flex-start;
     }
 
     &__form {

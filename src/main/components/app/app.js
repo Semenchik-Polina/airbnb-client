@@ -9,7 +9,7 @@ import Header from '../../../auth/containers/header-container';
 import AdminHome from '../../../admin/components/admin-home/admin-home';
 import UserHome from '../../../user/containers/user-home-container';
 import HotelPage from '../../../hotel/containers/hotel-page-container';
-import BookingTabBar from '../../../booking/containers/booking-tab-bar-container';
+import BookingPage from '../../../booking/containers/booking-page-container';
 import PrivateRoute from '../../../shared/containers/private-route-container';
 import UserBookings from '../../../user/containers/user-bookings-container';
 
@@ -21,7 +21,7 @@ const App = () => (
                 <Route exact path="/" component={Banner} />
                 <Route exact path="/hotels/:id" component={HotelPage} />
                 <PrivateRoute path="/admin-home" requiredRoles={['Admin']} component={AdminHome} />
-                <PrivateRoute path="/books/:id" requiredRoles={['User']} component={BookingTabBar} />
+                <PrivateRoute path="/books/:id" requiredRoles={['User']} component={BookingPage} />
                 <PrivateRoute exact path="/hotels" requiredRoles={['User']} component={UserHome} />
                 <PrivateRoute exact path="/:id" requiredRoles={['User']} component={UserHome} />
                 <PrivateRoute exact path="/:id/bookings" requiredRoles={['User']} component={UserBookings} />

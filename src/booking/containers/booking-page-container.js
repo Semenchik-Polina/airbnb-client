@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import BookingTabBar from '../components/booking-tab-bar/booking-tab-bar';
+import BookingPage from '../components/booking-page/booking-page';
 
 import * as actions from '../actions/actions';
 
@@ -12,4 +12,4 @@ export default connect(
     dispatch => ({
         fetchBooking: id => dispatch(actions.fetchBooking(id)),
     }),
-)(BookingTabBar);
+)(BookingPage);

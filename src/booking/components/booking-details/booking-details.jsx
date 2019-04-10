@@ -10,20 +10,29 @@ import CounterInput from '../../../shared/components/counter-input/counter-input
 import Button from '../../../shared/components/button/button';
 import TimePickerInput from '../time-picker-input/time-picker-input';
 import SwitchInput from '../switch-input/switch-input';
+import Timer from '../timer/timer';
 
+import history from '../../../shared/tools/history';
 import * as constants from '../../constants/index';
 
-import './details-tab.scss';
+import './booking-details.scss';
 
-class DetailsTab extends PureComponent {
+class BookingDetails extends PureComponent {
     static defaultProps = {
         formValues: null,
     };
 
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
-        addBookingDetails: PropTypes.func.isRequired,
-        formValues: PropTypes.shape({}),
+        makeFinalBooking: PropTypes.func.isRequired,
+        formValues: PropTypes.shape({
+            paidFacilities: PropTypes.arrayOf(
+                PropTypes.shape({
+                    checked: PropTypes.bool.isRequired,
+                    count: PropTypes.number,
+                }),
+            ),
+        }),
         freeFacilities: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
@@ -72,8 +81,12 @@ class DetailsTab extends PureComponent {
         }).isRequired,
     };
 
-    handleSubmit = (values) => {
-        this.props.addBookingDetails(values, this.props.booking.id);
+    handleSubmit = (details) => {
+        this.props.makeFinalBooking(this.props.booking, details);
+    };
+
+    renderRedirectToHotels = () => {
+        history.push('/hotels');
     };
 
     renderPaidFacilities = ({ fields, className }) => {
@@ -98,29 +111,47 @@ class DetailsTab extends PureComponent {
         const nightsInHotel = moment(booking.dateTo).diff(moment(booking.dateFrom), 'days');
         const dateLabel = nightsInHotel > 1 ? `${nightsInHotel} nights` : '1 night';
 
+        const timeUnit = moment(booking.dateTo).diff(moment(booking.dateFrom), 'd');
+        const roomPrice = booking.room.cost;
+
+        const detailsPrice = this.props.formValues
+            ? _.sumBy(this.props.formValues.paidFacilities, (facility) => {
+                const { price } = _.find(booking.room.hotel.services, { id: facility.id });
+                if (facility.checked) {
+                    return facility.count ? facility.count * price : price;
+                }
+                return 0;
+            })
+            : 0;
+
+        const totalPrice = (detailsPrice + roomPrice) * timeUnit;
+
         return (
-            <div className="details-tab">
-                <div className="details-tab__header">Booking details</div>
-                <Form className="details-tab__form" onSubmit={handleSubmit(this.handleSubmit)}>
-                    <div className="details-tab__form-section">
-                        <span className="details-tab__form-section-header">
+            <div className="booking-details">
+                <span className="booking-details__header">Booking details</span>
+                <span className="booking-details__timer">
+                    <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
+                </span>
+                <Form className="booking-details__form" onSubmit={handleSubmit(this.handleSubmit)}>
+                    <div className="booking-details__form-section">
+                        <span className="booking-details__form-section-header">
                             {dateLabel} in {booking.room.hotel.city} — ${booking.room.cost} per night
                         </span>
-                        <div className="details-tab__form-section-wrapper">
-                            <div className="details-tab__form-section-wrapper-item">
-                                <div className="details-tab__form-section-inner">
-                                    <div className="details-tab__form-section-inner-date">
-                                        <span className="details-tab__form-section-inner-date-item">
+                        <div className="booking-details__form-section-wrapper">
+                            <div className="booking-details__form-section-wrapper-item">
+                                <div className="booking-details__form-section-inner">
+                                    <div className="booking-details__form-section-inner-date">
+                                        <span className="booking-details__form-section-inner-date-item">
                                             {moment(booking.dateFrom)
                                                 .format('MMM')
                                                 .toUpperCase()}
                                         </span>
-                                        <span className="details-tab__form-section-inner-date-item">
+                                        <span className="booking-details__form-section-inner-date-item">
                                             {moment(booking.dateFrom).format('D')}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="details-tab__form-section-inner">
+                                <div className="booking-details__form-section-inner">
                                     <Field
                                         component={TimePickerInput}
                                         name="arrivalTime"
@@ -130,20 +161,20 @@ class DetailsTab extends PureComponent {
                                     />
                                 </div>
                             </div>
-                            <div className="details-tab__form-section-wrapper-item">
-                                <div className="details-tab__form-section-inner">
-                                    <div className="details-tab__form-section-inner-date">
-                                        <span className="details-tab__form-section-inner-date-item">
+                            <div className="booking-details__form-section-wrapper-item">
+                                <div className="booking-details__form-section-inner">
+                                    <div className="booking-details__form-section-inner-date">
+                                        <span className="booking-details__form-section-inner-date-item">
                                             {moment(booking.dateTo)
                                                 .format('MMM')
                                                 .toUpperCase()}
                                         </span>
-                                        <span className="details-tab__form-section-inner-date-item">
+                                        <span className="booking-details__form-section-inner-date-item">
                                             {moment(booking.dateTo).format('D')}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="details-tab__form-section-inner">
+                                <div className="booking-details__form-section-inner">
                                     <Field
                                         component={TimePickerInput}
                                         name="departureTime"
@@ -155,30 +186,32 @@ class DetailsTab extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    <div className="details-tab__form-section">
-                        <div className="details-tab__form-section-wrapper">
-                            <span className="details-tab__form-section-summary">Final guests count: </span>
+                    <div className="booking-details__form-section">
+                        <div className="booking-details__form-section-wrapper">
+                            <span className="booking-details__form-section-summary">Final guests count: </span>
                             <Field component={CounterInput} name="guests" maxValue={booking.room.capacity} />
                         </div>
                     </div>
-                    <div className="details-tab__form-section">
+                    <div className="booking-details__form-section">
                         <div>
-                            <span className="details-tab__form-section-summary">Services price list per 24h: </span>
+                            <span className="booking-details__form-section-summary">Services price list per 24h: </span>
                         </div>
                         <FieldArray
                             name="paidFacilities"
                             component={this.renderPaidFacilities}
-                            className="details-tab__form-section-wrapper"
+                            className="booking-details__form-section-wrapper"
                         />
                     </div>
                     {freeFacilities.length > 0 && (
-                        <div className="details-tab__form-section">
-                            <span className="details-tab__form-section-summary">Free facilities always available </span>
-                            <div className="details-tab__form-section-free-facilities">
+                        <div className="booking-details__form-section">
+                            <span className="booking-details__form-section-summary">
+                                Free facilities are always available
+                            </span>
+                            <div className="booking-details__form-section-free-facilities">
                                 {freeFacilities.map(freeFacility => (
                                     <span
                                         key={freeFacility.id}
-                                        className="details-tab__form-section-free-facilities-item"
+                                        className="booking-details__form-section-free-facilities-item"
                                     >
                                         {freeFacility.facility.name}
                                     </span>
@@ -186,7 +219,10 @@ class DetailsTab extends PureComponent {
                             </div>
                         </div>
                     )}
-                    <Button className="details-tab__form-button-submit" color="secondary">
+                    <div className="booking-details__form-section">
+                        <span className="booking-details__form-section-summary">Total price: ${totalPrice}</span>
+                    </div>
+                    <Button className="booking-details__form-button-submit" color="secondary">
                         Apply
                     </Button>
                 </Form>
@@ -195,4 +231,4 @@ class DetailsTab extends PureComponent {
     }
 }
 
-export default DetailsTab;
+export default BookingDetails;

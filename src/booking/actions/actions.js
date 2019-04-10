@@ -153,9 +153,29 @@ export function addBookingDetails(details, id) {
     };
 }
 
-export function makeFinalBooking() {
+export function makeFinalBooking(booking, details) {
     return () => {
-        // api action
+        const paidFacilities = details.paidFacilities
+            .filter(facility => facility.checked)
+            .map((facility) => {
+                const bookingFacility = { id: facility.id };
+                if (!facility.isPaidPerRoom) {
+                    bookingFacility.count = +facility.count;
+                }
+
+                return bookingFacility;
+            });
+        const finalBooking = {
+            ...booking,
+            paidFacilities,
+            arrivalTime: details.arrivalTime,
+            departureTime: details.departureTime,
+            guests: +details.guests,
+            isApproved: true,
+        };
+
+        console.log(finalBooking);
+        // api - send finalBooking to server
         history.push('/hotels');
     };
 }
