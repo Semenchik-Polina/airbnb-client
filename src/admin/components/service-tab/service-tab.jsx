@@ -35,7 +35,7 @@ class ServiceTab extends PureComponent {
             ),
             possiblyPaidFacilities: PropTypes.arrayOf(
                 PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
+                    id: PropTypes.string.isRequired,
                     name: PropTypes.string.isRequired,
                     hint: PropTypes.string.isRequired,
                     canBePaid: PropTypes.bool.isRequired,
@@ -43,7 +43,7 @@ class ServiceTab extends PureComponent {
             ),
             rawFacilities: PropTypes.arrayOf(
                 PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
+                    id: PropTypes.string.isRequired,
                     name: PropTypes.string.isRequired,
                     hint: PropTypes.string,
                     imageUrl: PropTypes.string,

@@ -15,14 +15,14 @@ const getServiceFormInitialValues = (services, supposedFacilities) => {
             paidFacilities: supposedFacilities.possiblyPaidFacilities.map(facility => ({
                 selectedOption: SERVICE_ANSWERS[SERVICE_ANSWERS_INDEXES.UNAVAILABLE_FACILITY_INDEX].value,
                 price: null,
-                id: facility._id,
+                id: facility.id,
             })),
         };
 
         if (services) {
             initialValues.facilities = services
                 .filter(service => !service.facility.canBePaid)
-                .map(service => service.facility._id);
+                .map(service => service.facility.id);
 
             const existingFacilities = services
                 .filter(service => service.facility.canBePaid)
@@ -34,7 +34,7 @@ const getServiceFormInitialValues = (services, supposedFacilities) => {
                                 : SERVICE_ANSWERS_INDEXES.FREE_FACILITY_INDEX
                         ].value,
                     price: service.price,
-                    id: service.facility._id,
+                    id: service.facility.id,
                 }));
 
             const newFacilities = initialValues.paidFacilities.map((facility) => {

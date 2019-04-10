@@ -28,9 +28,9 @@ class FinishTab extends PureComponent {
                 }),
             ).isRequired,
             services: PropTypes.arrayOf(PropTypes.shape({
-                _id: PropTypes.string.isRequired,
+                id: PropTypes.string.isRequired,
                 facility: PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
+                    id: PropTypes.string.isRequired,
                     hint: PropTypes.string,
                     imageUrl: PropTypes.string,
                     canBePaid: PropTypes.bool.isRequired,

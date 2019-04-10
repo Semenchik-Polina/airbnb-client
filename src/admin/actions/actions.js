@@ -26,31 +26,32 @@ export function addHotelInfo(hotel) {
 }
 
 // hotelId
+// id
 export function addServices(services, supposedFacilities) {
     return (dispatch) => {
         const paidFacilities = services.paidFacilities
             .filter(facility => facility.selectedOption)
             .map((facility) => {
-                const rawFacility = _.find(supposedFacilities, { _id: facility.id });
+                const rawFacility = _.find(supposedFacilities, { id: facility.id });
                 return {
                     facility: {
                         ...rawFacility,
                     },
                     price: facility.selectedOption.isPaid ? facility.price : 0,
                     hotelId: '1',
-                    _id: Math.random().toString(),
+                    id: Math.random().toString(),
                 };
             });
 
         const facilities = services.facilities
             .map((facility) => {
-                const rawFacility = _.find(supposedFacilities, { _id: facility });
+                const rawFacility = _.find(supposedFacilities, { id: facility });
                 return {
                     facility: {
                         ...rawFacility,
                     },
                     hotelId: '1',
-                    _id: Math.random().toString(),
+                    id: Math.random().toString(),
                 };
             });
 

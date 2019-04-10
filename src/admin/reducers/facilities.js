@@ -9,7 +9,7 @@ const facilitiesReducer = (state = initialState, action) => {
 
         const freeFacilities = data
             .filter(facility => !facility.canBePaid)
-            .map(facility => ({ value: facility._id, name: facility.name }));
+            .map(facility => ({ value: facility.id, name: facility.name }));
 
         const possiblyPaidFacilities = data.filter(facility => facility.canBePaid);
 

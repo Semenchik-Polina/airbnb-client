@@ -13,7 +13,7 @@ class AdminPanel extends PureComponent {
     static propTypes = {
         hotels: PropTypes.arrayOf(
             PropTypes.shape({
-                _id: PropTypes.string.isRequired,
+                id: PropTypes.string.isRequired,
                 mainInfo: PropTypes.shape({
                     country: PropTypes.string.isRequired,
                     city: PropTypes.string.isRequired,
@@ -30,9 +30,9 @@ class AdminPanel extends PureComponent {
                     }),
                 ).isRequired,
                 services: PropTypes.arrayOf(PropTypes.shape({
-                    _id: PropTypes.string.isRequired,
+                    id: PropTypes.string.isRequired,
                     facility: PropTypes.shape({
-                        _id: PropTypes.string.isRequired,
+                        id: PropTypes.string.isRequired,
                         hint: PropTypes.string,
                         imageUrl: PropTypes.string,
                         canBePaid: PropTypes.bool.isRequired,
@@ -95,7 +95,7 @@ class AdminPanel extends PureComponent {
                             {devideArray(this.props.hotels, 3).map((container, index) => (
                                 <div key={index} className="admin-panel__hotels-containers-wrapper">
                                     {container.map(hotel => (
-                                        <div key={hotel._id} className="admin-panel__hotels-containers-wrapper-item">
+                                        <div key={hotel.id} className="admin-panel__hotels-containers-wrapper-item">
                                             <Tool
                                                 src="/images/tools/delete.png"
                                                 className="admin-panel__hotels-containers-wrapper-item-delete"
