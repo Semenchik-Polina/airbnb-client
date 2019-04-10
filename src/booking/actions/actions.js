@@ -18,7 +18,7 @@ export function fetchBooking() {
                 type: 'Twin',
                 capacity: 5,
                 cost: 15,
-                services: [{ id: '2', count: 3 }], // booking services will store like that
+                services: [{ id: '2', count: 3 }], // booking services will be stored like that
                 hotel: {
                     id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
                     country: 'Belarus',

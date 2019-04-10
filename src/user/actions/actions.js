@@ -11,56 +11,128 @@ const showErrorToast = (err) => {
 
 const userBookings = [
     {
-        _id: '1',
+        id: '1',
         user: {
             _id: '1',
         },
         requestedAt: moment(new Date()).add(-29.5, 'm'),
         guests: 3,
         room: {
-            _id: '1',
+            id: '1',
             type: 'Twin',
             capacity: 5,
             cost: 15,
-            services: [],
+            services: [{ id: '2', count: 3 }],
+            hotel: {
+                id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
+                country: 'Belarus',
+                hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
+                address: 'Red Square, 1',
+                city: 'Minsk',
+                services: [
+                    {
+                        id: '1',
+                        hotelId: '1',
+                        facility: {
+                            id: '1',
+                            name: 'internet',
+                            isPaidPerRoom: true,
+                            canBePaid: true,
+                        },
+                        price: 2,
+                    },
+                    {
+                        id: '2',
+                        hotelId: '1',
+                        facility: {
+                            id: '3',
+                            name: 'breakfast',
+                            isPaidPerRoom: false,
+                            canBePaid: true,
+                        },
+                        price: 5,
+                    },
+                    {
+                        id: '3',
+                        hotelId: '1',
+                        facility: {
+                            id: '4',
+                            name: 'TV',
+                            canBePaid: false,
+                        },
+                    },
+                ],
+            },
         },
-        hotel: {
-            _id: '1',
-            country: 'Belarus',
-            city: 'Minsk',
-            hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
-        },
-        totalPrice: 15,
+        totalPrice: 35,
         dateFrom: new Date(),
-        dateTo: new Date(),
+        dateTo: moment(new Date())
+            .add(3, 'd')
+            .toDate(),
         arrivalTime: '15:30',
         departureTime: '09:30',
     },
     {
-        _id: '1',
+        id: '1',
         user: {
             _id: '1',
         },
         requestedAt: moment(new Date()).add(-29.5, 'm'),
         guests: 3,
         room: {
-            _id: '1',
+            id: '1',
             type: 'Twin',
             capacity: 5,
             cost: 15,
-            services: [],
+            services: [{ id: '2', count: 1 }],
+            hotel: {
+                id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
+                country: 'Belarus',
+                hotelName: 'Forest-and-Heaven',
+                address: 'Red Square, 1',
+                city: 'Minsk',
+                services: [
+                    {
+                        id: '1',
+                        hotelId: '1',
+                        facility: {
+                            id: '1',
+                            name: 'internet',
+                            isPaidPerRoom: true,
+                            canBePaid: true,
+                        },
+                        price: 2,
+                    },
+                    {
+                        id: '2',
+                        hotelId: '1',
+                        facility: {
+                            id: '3',
+                            name: 'breakfast',
+                            isPaidPerRoom: false,
+                            canBePaid: true,
+                        },
+                        price: 5,
+                    },
+                    {
+                        id: '3',
+                        hotelId: '1',
+                        facility: {
+                            id: '4',
+                            name: 'TV',
+                            canBePaid: false,
+                        },
+                    },
+                ],
+            },
         },
-        hotel: {
-            _id: '1',
-            country: 'Belarus',
-            city: 'Minsk',
-            hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
-        },
-        totalPrice: 15,
+        totalPrice: 135,
         dateFrom: new Date(),
-        dateTo: new Date(),
-        arrivalTime: '15:30',
-        departureTime: '09:30',
+        dateTo: moment(new Date())
+            .add(7, 'd')
+            .toDate(),
+        arrivalTime: '12:30',
+        departureTime: '11:30',
     },
 ];
 
