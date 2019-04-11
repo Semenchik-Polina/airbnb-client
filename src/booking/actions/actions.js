@@ -19,7 +19,124 @@ const bookings = [
             capacity: 5,
             cost: 15,
             hotel: {
-                id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
+                id: '1',
+                country: 'Belarus',
+                hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
+                address: 'Red Square, 1',
+                city: 'Minsk',
+                services: [
+                    {
+                        id: '1',
+                        hotelId: '1',
+                        facility: {
+                            id: '1',
+                            name: 'internet',
+                            isPaidPerRoom: true,
+                            canBePaid: true,
+                        },
+                        price: 2,
+                    },
+                    {
+                        id: '2',
+                        hotelId: '1',
+                        facility: {
+                            id: '2',
+                            name: 'parking',
+                            isPaidPerRoom: false,
+                            canBePaid: true,
+                        },
+                        price: 10,
+                    },
+                    {
+                        id: '4',
+                        hotelId: '1',
+                        facility: {
+                            id: '3',
+                            name: 'breakfast',
+                            isPaidPerRoom: false,
+                            canBePaid: true,
+                        },
+                        price: 5,
+                    },
+                    {
+                        id: '3',
+                        hotelId: '1',
+                        facility: {
+                            id: '4',
+                            name: 'TV',
+                            canBePaid: false,
+                        },
+                    },
+                    {
+                        id: '4',
+                        hotelId: '1',
+                        facility: {
+                            id: '5',
+                            name: 'Iron',
+                            canBePaid: false,
+                        },
+                    },
+                    {
+                        id: '5',
+                        hotelId: '1',
+                        facility: {
+                            id: '7',
+                            name: 'Kitchen',
+                            canBePaid: false,
+                        },
+                    },
+                    {
+                        id: '6',
+                        hotelId: '1',
+                        facility: {
+                            id: '9',
+                            name: 'Coffee maker',
+                            canBePaid: false,
+                        },
+                    },
+                    {
+                        id: '7',
+                        hotelId: '1',
+                        facility: {
+                            id: '12',
+                            name: 'Self check-in',
+                            canBePaid: false,
+                        },
+                    },
+                    {
+                        id: '8',
+                        hotelId: '1',
+                        facility: {
+                            id: '11',
+                            name: 'Bathroom essentials',
+                            canBePaid: false,
+                        },
+                    },
+                ],
+            },
+        },
+        totalPrice: 15,
+        isApproved: false,
+        dateFrom: new Date(),
+        dateTo: moment(new Date())
+            .add(3, 'd')
+            .toDate(),
+    },
+    {
+        id: '2',
+        user: {
+            _id: '5c8baf13896e7f4b60d6796f',
+        },
+        requestedAt: new Date(),
+        services: [{ id: '2', count: 3 }],
+        guests: 3,
+        room: {
+            id: '1',
+            type: 'Twin',
+            capacity: 5,
+            cost: 15,
+            hotel: {
+                id: '3',
                 country: 'Belarus',
                 hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
                 address: 'Red Square, 1',
@@ -119,123 +236,6 @@ const bookings = [
         isApproved: true,
         arrivalTime: '11:00:00',
         departureTime: '16:00:00',
-        dateFrom: new Date(),
-        dateTo: moment(new Date())
-            .add(3, 'd')
-            .toDate(),
-    },
-    {
-        id: '2',
-        user: {
-            _id: '5c8baf13896e7f4b60d6796f',
-        },
-        requestedAt: new Date(),
-        services: [{ id: '2', count: 3 }], // booking services will be stored like that
-        guests: 3,
-        room: {
-            id: '1',
-            type: 'Twin',
-            capacity: 5,
-            cost: 15,
-            hotel: {
-                id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
-                country: 'Belarus',
-                hotelName: 'Forest-and-Heaven Themed Apartment Close to the Heart of the CBD',
-                address: 'Red Square, 1',
-                city: 'Minsk',
-                services: [
-                    {
-                        id: '1',
-                        hotelId: '1',
-                        facility: {
-                            id: '1',
-                            name: 'internet',
-                            isPaidPerRoom: true,
-                            canBePaid: true,
-                        },
-                        price: 2,
-                    },
-                    {
-                        id: '2',
-                        hotelId: '1',
-                        facility: {
-                            id: '2',
-                            name: 'parking',
-                            isPaidPerRoom: false,
-                            canBePaid: true,
-                        },
-                        price: 10,
-                    },
-                    {
-                        id: '4',
-                        hotelId: '1',
-                        facility: {
-                            id: '3',
-                            name: 'breakfast',
-                            isPaidPerRoom: false,
-                            canBePaid: true,
-                        },
-                        price: 5,
-                    },
-                    {
-                        id: '3',
-                        hotelId: '1',
-                        facility: {
-                            id: '4',
-                            name: 'TV',
-                            canBePaid: false,
-                        },
-                    },
-                    {
-                        id: '4',
-                        hotelId: '1',
-                        facility: {
-                            id: '5',
-                            name: 'Iron',
-                            canBePaid: false,
-                        },
-                    },
-                    {
-                        id: '5',
-                        hotelId: '1',
-                        facility: {
-                            id: '7',
-                            name: 'Kitchen',
-                            canBePaid: false,
-                        },
-                    },
-                    {
-                        id: '6',
-                        hotelId: '1',
-                        facility: {
-                            id: '9',
-                            name: 'Coffee maker',
-                            canBePaid: false,
-                        },
-                    },
-                    {
-                        id: '7',
-                        hotelId: '1',
-                        facility: {
-                            id: '12',
-                            name: 'Self check-in',
-                            canBePaid: false,
-                        },
-                    },
-                    {
-                        id: '8',
-                        hotelId: '1',
-                        facility: {
-                            id: '11',
-                            name: 'Bathroom essentials',
-                            canBePaid: false,
-                        },
-                    },
-                ],
-            },
-        },
-        totalPrice: 15,
-        isApproved: false,
         dateFrom: new Date(),
         dateTo: moment(new Date())
             .add(3, 'd')
