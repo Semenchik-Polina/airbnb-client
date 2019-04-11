@@ -17,6 +17,10 @@ import * as constants from '../../constants/index';
 
 import './booking-details.scss';
 
+const disableField = () => null;
+
+const defaultFormat = value => value;
+
 class BookingDetails extends PureComponent {
     static defaultProps = {
         formValues: null,
@@ -64,6 +68,7 @@ class BookingDetails extends PureComponent {
             user: PropTypes.shape({
                 _id: PropTypes.string,
             }),
+            isApproved: PropTypes.bool.isRequired,
             requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
@@ -89,6 +94,8 @@ class BookingDetails extends PureComponent {
         history.push('/hotels');
     };
 
+    formatField = value => (this.props.booking.isApproved ? disableField() : defaultFormat(value));
+
     renderPaidFacilities = ({ fields, className }) => {
         const { formValues, paidFacilities } = this.props;
         const fieldClasses = classNames('facility-field', className);
@@ -97,9 +104,19 @@ class BookingDetails extends PureComponent {
             <div key={index} className={fieldClasses}>
                 <div className="facility-field__item">{_.upperFirst(paidFacilities[index].facility.name)}</div>
                 <div className="facility-field__item-price">${_.upperFirst(paidFacilities[index].price)}</div>
-                <Field className="facility-field__item" component={SwitchInput} name={`${member}.checked`} />
+                <Field
+                    format={this.formatField}
+                    className="facility-field__item"
+                    component={SwitchInput}
+                    name={`${member}.checked`}
+                />
                 {formValues.paidFacilities[index].checked && !paidFacilities[index].facility.isPaidPerRoom && (
-                    <Field className="facility-field__item" component={CounterInput} name={`${member}.count`} />
+                    <Field
+                        format={this.formatField}
+                        className="facility-field__item"
+                        component={CounterInput}
+                        name={`${member}.count`}
+                    />
                 )}
             </div>
         ));
@@ -129,9 +146,11 @@ class BookingDetails extends PureComponent {
         return (
             <div className="booking-details">
                 <span className="booking-details__header">Booking details</span>
-                <span className="booking-details__timer">
-                    <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
-                </span>
+                {!booking.isApproved && (
+                    <span className="booking-details__timer">
+                        <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
+                    </span>
+                )}
                 <Form className="booking-details__form" onSubmit={handleSubmit(this.handleSubmit)}>
                     <div className="booking-details__form-section">
                         <span className="booking-details__form-section-header">
@@ -189,7 +208,12 @@ class BookingDetails extends PureComponent {
                     <div className="booking-details__form-section">
                         <div className="booking-details__form-section-wrapper">
                             <span className="booking-details__form-section-summary">Final guests count: </span>
-                            <Field component={CounterInput} name="guests" maxValue={booking.room.capacity} />
+                            <Field
+                                format={this.formatField}
+                                component={CounterInput}
+                                name="guests"
+                                maxValue={booking.room.capacity}
+                            />
                         </div>
                     </div>
                     <div className="booking-details__form-section">
@@ -223,7 +247,7 @@ class BookingDetails extends PureComponent {
                         <span className="booking-details__form-section-summary">Total price: ${totalPrice}</span>
                     </div>
                     <Button className="booking-details__form-button-submit" color="secondary">
-                       BOOK
+                        BOOK
                     </Button>
                 </Form>
             </div>

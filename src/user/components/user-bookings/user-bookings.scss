@@ -1,4 +1,22 @@
 .user-bookings {
     font-size: 0.9em;
     font-weight: 600;
+
+    &__container {
+        display: flex;
+
+        padding: 10px;
+
+        flex-flow: row wrap;
+    }
+
+    &__header {
+        display: block;
+
+        padding: 10px 20px;
+
+        color: rgb(63, 62, 62);
+
+        font: 500 2.5em "Roboto", sans-serif;
+    }
 }

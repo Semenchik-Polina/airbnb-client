@@ -50,12 +50,6 @@ class HotelItem extends PureComponent {
         }).isRequired,
     };
 
-    state = {
-        sectionStyle: {
-            backgroundImage: `url(${this.props.hotelInfo.photoTour[0].photos[0].src})`,
-        },
-    };
-
     renderPhotoItems = (item, index) => (
         <div className="hotel-item__tour-gallery-item" key={item.id}>
             <PhotoItem photoItem={item} key={index} />
@@ -80,7 +74,12 @@ class HotelItem extends PureComponent {
                         <span className="hotel-item__banner-info-sity">Hotel in {mainInfo.city}</span>
                         <span className="hotel-item__banner-info-name">{mainInfo.hotelName}</span>
                     </div>
-                    <div className="hotel-item__banner-image" style={this.state.sectionStyle} />
+                    <div
+                        className="hotel-item__banner-image"
+                        style={{
+                            backgroundImage: `url(${photoTour[0].photos[0].src})`,
+                        }}
+                    />
                 </div>
                 <div className="hotel-item__overview">
                     <span className="hotel-item__overview-item">{totalCapacity} guests </span>

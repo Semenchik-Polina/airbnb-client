@@ -54,9 +54,9 @@ class UserBookings extends PureComponent {
         return (
             <div className="user-bookings">
                 <BookingFilterPanel />
-                <span className="hotel-item__tour-header">{label}</span>
+                <span className="user-bookings__header">{label}</span>
                 {bookings ? (
-                    <div>
+                    <div className="user-bookings__container">
                         {bookings.length > 0 ? (
                             bookings.map((booking, index) => <BookingItem booking={booking} key={index} />)
                         ) : (

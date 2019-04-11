@@ -10,13 +10,15 @@ class SwitchInput extends PureComponent {
         input: PropTypes.shape({
             onChange: PropTypes.func.isRequired,
             onBlur: PropTypes.func.isRequired,
-            value: PropTypes.bool.isRequired,
+            value: PropTypes.bool,
         }).isRequired,
     };
 
     onChange = () => {
         const { input } = this.props;
-        input.onChange(!input.value);
+        if (input.value !== null) {
+            input.onChange(!input.value);
+        }
     };
 
     render() {

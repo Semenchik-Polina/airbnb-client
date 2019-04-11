@@ -117,6 +117,7 @@ export function fetchBooking() {
                 },
             },
             totalPrice: 15,
+            isApproved: false,
             dateFrom: new Date(),
             dateTo: moment(new Date())
                 .add(3, 'd')

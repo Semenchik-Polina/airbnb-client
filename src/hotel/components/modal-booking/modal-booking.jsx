@@ -77,22 +77,27 @@ class ModalBooking extends PureComponent {
 
         return (
             <Modal onClose={this.props.onClose} className="modal-booking">
-                <span>Dates</span>
-                <Form onSubmit={handleSubmit(this.handleSubmit)}>
-                    <div className="modal-booking__date-pickers">
+                <Form className="modal-booking__form" onSubmit={handleSubmit(this.handleSubmit)}>
+                    <div className="modal-booking__date-pickers modal-booking__form-section">
                         <Field component={DayPickerDualInput} name="dates" />
                     </div>
-                    <Field
-                        component={CounterInput}
-                        name="guests"
-                        maxValue={selectedRoomType && +selectedRoomType.capacity}
-                    />
-                    <Field
-                        component={DropDownSelect}
-                        name="roomType"
-                        options={roomTypes}
-                        handleRoomTypeOnChange={this.handleRoomTypeOnChange}
-                    />
+                    <div className="modal-booking__form-section">
+                        <span className="modal-booking__form-section-summary">Guests</span>
+                        <Field
+                            component={CounterInput}
+                            name="guests"
+                            maxValue={selectedRoomType && +selectedRoomType.capacity}
+                        />
+                    </div>
+                    <div className="modal-booking__form-section">
+                        <Field
+                            className="modal-booking__form-section-item"
+                            component={DropDownSelect}
+                            name="roomType"
+                            options={roomTypes}
+                            handleRoomTypeOnChange={this.handleRoomTypeOnChange}
+                        />
+                    </div>
                     <Button color="purple">REQUEST TO BOOK</Button>
                 </Form>
             </Modal>

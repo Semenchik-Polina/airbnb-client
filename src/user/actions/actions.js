@@ -71,9 +71,11 @@ const userBookings = [
             .toDate(),
         arrivalTime: '15:30',
         departureTime: '09:30',
+        isApproved: true,
+        hotelThumbnailUrl: 'http://localhost:3000/default-images/polar.jpg',
     },
     {
-        id: '1',
+        id: '2',
         user: {
             _id: '1',
         },
@@ -84,11 +86,11 @@ const userBookings = [
             type: 'Twin',
             capacity: 5,
             cost: 15,
-            services: [{ id: '2', count: 1 }],
+            services: [{ id: '2', count: 3 }],
             hotel: {
                 id: '630e8a94-4f9se-11je9-8647-ds663bd873d93',
                 country: 'Belarus',
-                hotelName: 'Forest-and-Heaven',
+                hotelName: 'Boutique Loft with a Private Terrace',
                 address: 'Red Square, 1',
                 city: 'Minsk',
                 services: [
@@ -126,13 +128,15 @@ const userBookings = [
                 ],
             },
         },
-        totalPrice: 135,
+        totalPrice: 305,
         dateFrom: new Date(),
         dateTo: moment(new Date())
-            .add(7, 'd')
+            .add(3, 'd')
             .toDate(),
-        arrivalTime: '12:30',
-        departureTime: '11:30',
+        arrivalTime: '15:30',
+        departureTime: '09:30',
+        isApproved: true,
+        hotelThumbnailUrl: 'http://localhost:3000/default-images/pool.jpg',
     },
 ];
 
