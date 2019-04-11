@@ -21,7 +21,7 @@ export default connect(
             };
         });
 
-        const filterGuests = state.userReducer.hotelFilters.guests;
+        const filterGuests = state.userReducer.hotelFilters.guests || 1;
         const roomType = _.find(roomTypes, type => type.value.capacity >= filterGuests)
             || _.maxBy(roomTypes, type => type.value.capacity);
         const guests = filterGuests > roomType.value.capacity ? roomType.value.capacity : filterGuests;
