@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { withRouter } from 'react-router-dom';
-import BeatLoader from 'react-spinners/BeatLoader';
+import Loader from '../../../shared/components/loader/loader';
 import TripsSvg from '../trips-svg/trips-svg';
 import BookingFilterPanel from '../../containers/booking-filter-panel-container';
 import BookingItem from '../booking-item/booking-item';
@@ -65,7 +65,7 @@ class UserBookings extends PureComponent {
                         <TripsSvg />
                     </div>
                 ) : (
-                    <BeatLoader sizeUnit="px" size={20} color="#2B9E86" loading />
+                    <Loader />
                 )}
             </div>
         );

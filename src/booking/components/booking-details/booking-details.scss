@@ -11,6 +11,18 @@
         font: 600 2em "Roboto", sans-serif;
     }
 
+    &__header-link {
+        margin-left: 10px;
+
+        color: rgb(75, 75, 75);
+
+        font: italic 1em "Roboto", sans-serif;
+
+        &:hover {
+            color: cadetblue;
+        }
+    }
+
     &__timer {
         display: flex;
 

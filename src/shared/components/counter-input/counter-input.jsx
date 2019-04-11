@@ -18,16 +18,21 @@ class CounterInput extends PureComponent {
     };
 
     handlePlusClick = () => {
-        this.props.input.onChange(+this.props.input.value + 1);
+        if (this.props.input.value !== null) {
+            this.props.input.onChange(+this.props.input.value + 1);
+        }
     };
 
     handleMinusClick = () => {
-        this.props.input.onChange(this.props.input.value - 1);
+        if (this.props.input.value !== null) {
+            this.props.input.onChange(this.props.input.value - 1);
+        }
     };
 
     render() {
         const {
-            input: { value }, maxValue,
+            input: { value },
+            maxValue,
             ...props
         } = this.props;
 

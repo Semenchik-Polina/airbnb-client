@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { Field, Form, FieldArray } from 'redux-form';
-import BeatLoader from 'react-spinners/BeatLoader';
+import Loader from '../../../shared/components/loader/loader';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
 import CheckboxGroup from '../../../shared/components/checkbox-group/checkbox-group';
@@ -126,9 +126,7 @@ class ServiceTab extends PureComponent {
             );
         }
         return (
-            <div className="hotel-page hotel-page__loader">
-                <BeatLoader sizeUnit="px" size={20} color="#2B9E86" loading />
-            </div>
+            <Loader />
         );
     }
 }

@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { withRouter } from 'react-router-dom';
 
-import BeatLoader from 'react-spinners/BeatLoader';
+import Loader from '../../../shared/components/loader/loader';
 import HotelItem from '../../../shared/components/hotel-item/hotel-item';
 import Button from '../../../shared/components/button/button';
 import ModalBooking from '../../containers/modal-booking-container';
@@ -112,9 +112,7 @@ class HotelPage extends PureComponent {
             );
         }
         return (
-            <div className="hotel-page hotel-page__loader">
-                <BeatLoader sizeUnit="px" size={20} color="#2B9E86" loading />
-            </div>
+            <Loader />
         );
     }
 }

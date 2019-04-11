@@ -6,7 +6,7 @@ import {
     withRouter, Route, Redirect,
 } from 'react-router-dom';
 
-import BeatLoader from 'react-spinners/BeatLoader';
+import Loader from '../../../shared/components/loader/loader';
 import DetailsTab from '../../containers/booking-details-container';
 
 import history from '../../../shared/tools/history';
@@ -96,9 +96,7 @@ class BookingPage extends PureComponent {
             );
         }
         return (
-            <div className="hotel-page hotel-page__loader">
-                <BeatLoader sizeUnit="px" size={20} color="#2B9E86" loading />
-            </div>
+            <Loader />
         );
     }
 }

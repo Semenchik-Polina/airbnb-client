@@ -4,6 +4,7 @@ import classNames from 'classNames';
 import moment from 'moment';
 import _ from 'lodash';
 
+import { NavLink } from 'react-router-dom';
 import { Field, Form, FieldArray } from 'redux-form';
 
 import CounterInput from '../../../shared/components/counter-input/counter-input';
@@ -28,7 +29,7 @@ class BookingDetails extends PureComponent {
 
     static propTypes = {
         handleSubmit: PropTypes.func.isRequired,
-        makeFinalBooking: PropTypes.func.isRequired,
+        bookingAction: PropTypes.func.isRequired,
         formValues: PropTypes.shape({
             paidFacilities: PropTypes.arrayOf(
                 PropTypes.shape({
@@ -87,7 +88,7 @@ class BookingDetails extends PureComponent {
     };
 
     handleSubmit = (details) => {
-        this.props.makeFinalBooking(this.props.booking, details);
+        this.props.bookingAction(this.props.booking, details);
     };
 
     renderRedirectToHotels = () => {
@@ -145,13 +146,18 @@ class BookingDetails extends PureComponent {
 
         return (
             <div className="booking-details">
-                <span className="booking-details__header">Booking details</span>
+                <span className="booking-details__header">
+                    Booking details
+                    <NavLink className="booking-details__header-link" exact to={`/hotels/${booking.room.hotel.id}`}>
+                        view hotel
+                    </NavLink>
+                </span>
                 {!booking.isApproved && (
                     <span className="booking-details__timer">
                         <Timer date={booking.requestedAt} onTimeout={this.renderRedirectToHotels} />
                     </span>
                 )}
-                <Form className="booking-details__form" onSubmit={handleSubmit(this.handleSubmit)}>
+                <Form className="booking-details__form" onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                     <div className="booking-details__form-section">
                         <span className="booking-details__form-section-header">
                             {dateLabel} in {booking.room.hotel.city} — ${booking.room.cost} per night
@@ -246,8 +252,11 @@ class BookingDetails extends PureComponent {
                     <div className="booking-details__form-section">
                         <span className="booking-details__form-section-summary">Total price: ${totalPrice}</span>
                     </div>
-                    <Button className="booking-details__form-button-submit" color="secondary">
-                        BOOK
+                    <Button
+                        className="booking-details__form-button-submit"
+                        color={booking.isApproved ? 'primary' : 'secondary'}
+                    >
+                        {booking.isApproved ? 'CHANGE TIME' : 'BOOK'}
                     </Button>
                 </Form>
             </div>
