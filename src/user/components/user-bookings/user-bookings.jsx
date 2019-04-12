@@ -62,11 +62,11 @@ class UserBookings extends PureComponent {
                         ) : (
                             <span>No future trips</span>
                         )}
-                        <TripsSvg />
                     </div>
                 ) : (
                     <Loader />
                 )}
+                <TripsSvg />
             </div>
         );
     }

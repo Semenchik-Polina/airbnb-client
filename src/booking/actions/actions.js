@@ -12,7 +12,7 @@ const bookings = [
         },
         requestedAt: new Date(),
         guests: 3,
-        services: [{ id: '2', count: 3 }], // booking services will be stored like that
+        services: [], // booking services will be stored like that
         room: {
             id: '1',
             type: 'Twin',
@@ -253,7 +253,7 @@ export function fetchBooking(id) {
 
 export function addBookingDetails(details, id) {
     return (dispatch) => {
-        const paidFacilities = details.paidFacilities
+        const services = details.paidFacilities
             .filter(facility => facility.checked)
             .map((facility) => {
                 const bookingFacility = { id: facility.id };
@@ -267,7 +267,7 @@ export function addBookingDetails(details, id) {
         dispatch({
             type: types.ADD_BOOKING_DETAILS,
             details: {
-                paidFacilities,
+                services,
                 arrivalTime: details.arrivalTime,
                 departureTime: details.departureTime,
                 guests: +details.guests,

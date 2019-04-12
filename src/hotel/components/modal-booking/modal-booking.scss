@@ -2,18 +2,6 @@
     min-width: 100px;
     max-height: 85%;
 
-    @media only screen and (max-width: 415px) {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        overflow-y: scroll;
-
-        height: 100%;
-    }
-
     &__form-section {
         display: flex;
 

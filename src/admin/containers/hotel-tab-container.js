@@ -7,7 +7,7 @@ import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
-        initialValues: state.adminReducer.hotelInfo.hotelName
+        initialValues: !state.adminReducer.hotelInfo.hotelName
             ? { country: 'Russia' }
             : {
                 hotelName: state.adminReducer.hotelInfo.hotelName,
