@@ -14,13 +14,11 @@ class PhotoItem extends PureComponent {
     };
 
     static propTypes = {
-        photoItem: PropTypes.shape({
-            photos: PropTypes.arrayOf(
-                PropTypes.shape({
-                    src: PropTypes.string.isRequired,
-                }),
-            ),
-        }).isRequired,
+        photos: PropTypes.arrayOf(
+            PropTypes.shape({
+                src: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
         className: PropTypes.string,
         handleClick: PropTypes.func,
     };
@@ -30,12 +28,12 @@ class PhotoItem extends PureComponent {
     };
 
     render() {
-        const { photoItem, className } = this.props;
+        const { photos, className } = this.props;
         const itemClasses = classNames('photo-item', className);
 
         return (
             <Carousel infiniteLoop className={itemClasses} dynamicHeight={false} showArrows>
-                {photoItem.photos.map((item, index) => (
+                {photos.map((item, index) => (
                     <div key={index} onClick={this.handleClick}>
                         <img src={item.src} alt="hotel" />
                     </div>

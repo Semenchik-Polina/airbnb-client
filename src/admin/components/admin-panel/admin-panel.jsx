@@ -106,7 +106,7 @@ class AdminPanel extends PureComponent {
                                                 className="admin-panel__hotels-containers-wrapper-item-edit"
                                                 handleClick={this.startEditingHotel(hotel)}
                                             />
-                                            <PhotoItem photoItem={this.flatImageArray(hotel.photoTour)} />
+                                            <PhotoItem photos={this.flatImageArray(hotel.photoTour).photos} />
                                             <span className="admin-panel__hotels-containers-wrapper-item-name">
                                                 {hotel.hotelName}
                                             </span>

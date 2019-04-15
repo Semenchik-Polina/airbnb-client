@@ -13,6 +13,8 @@ import BookingPage from '../../../booking/containers/booking-page-container';
 import PrivateRoute from '../../../shared/containers/private-route-container';
 import UserBookings from '../../../user/containers/user-bookings-container';
 
+import { ROLES } from '../../../shared/constants/roles';
+
 const App = () => (
     <Router history={history}>
         <div className="App">
@@ -20,11 +22,11 @@ const App = () => (
             <Switch>
                 <Route exact path="/" component={Banner} />
                 <Route exact path="/hotels/:id" component={HotelPage} />
-                <PrivateRoute path="/admin-home" requiredRoles={['Admin']} component={AdminHome} />
-                <PrivateRoute path="/books/:id" requiredRoles={['User']} component={BookingPage} />
-                <PrivateRoute exact path="/hotels" requiredRoles={['User']} component={UserHome} />
-                <PrivateRoute exact path="/:id" requiredRoles={['User']} component={UserHome} />
-                <PrivateRoute exact path="/:id/bookings" requiredRoles={['User']} component={UserBookings} />
+                <PrivateRoute path="/admin-home" requiredRoles={[ROLES.ADMIN]} component={AdminHome} />
+                <PrivateRoute path="/books/:id" requiredRoles={[ROLES.USER]} component={BookingPage} />
+                <PrivateRoute exact path="/hotels" requiredRoles={[ROLES.USER]} component={UserHome} />
+                <PrivateRoute exact path="/:id" requiredRoles={[ROLES.USER]} component={UserHome} />
+                <PrivateRoute exact path="/:id/bookings" requiredRoles={[ROLES.USER]} component={UserBookings} />
             </Switch>
             <ToastContainer autoClose={8000} />
         </div>

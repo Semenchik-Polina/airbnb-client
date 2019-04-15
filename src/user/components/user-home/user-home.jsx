@@ -82,7 +82,7 @@ class UserHome extends PureComponent {
                                         <div key={hotel.id} className="user-home__hotels-containers-wrapper-item">
                                             <PhotoItem
                                                 className="user-home__hotels-containers-wrapper-item-link"
-                                                photoItem={this.flatImageArray(hotel.photoTour)}
+                                                photos={this.flatImageArray(hotel.photoTour).photos}
                                                 handleClick={this.redirectToHotelPage(hotel.id)}
                                             />
                                             <span className="user-home__hotels-containers-wrapper-item-name">

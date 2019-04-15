@@ -52,7 +52,7 @@ class HotelItem extends PureComponent {
 
     renderPhotoItems = (item, index) => (
         <div className="hotel-item__tour-gallery-item" key={item.id}>
-            <PhotoItem photoItem={item} key={index} />
+            <PhotoItem photos={item.photos} key={index} />
             <span className="hotel-item__tour-gallery-item-categoty">{item.type}</span>
         </div>
     );

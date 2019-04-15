@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { withRouter } from 'react-router-dom';
 
@@ -8,6 +7,8 @@ import Loader from '../../../shared/components/loader/loader';
 import HotelItem from '../../../shared/components/hotel-item/hotel-item';
 import Button from '../../../shared/components/button/button';
 import ModalBooking from '../../containers/modal-booking-container';
+
+import { ROLES } from '../../../shared/constants/roles';
 
 import './hotel-page.scss';
 
@@ -32,6 +33,8 @@ class HotelPage extends PureComponent {
                 id: PropTypes.string.isRequired,
             }).isRequired,
         }).isRequired,
+        minPrice: PropTypes.number.isRequired,
+        maxPrice: PropTypes.number.isRequired,
         hotelInfo: PropTypes.shape({
             id: PropTypes.string,
             country: PropTypes.string.isRequired,
@@ -85,16 +88,19 @@ class HotelPage extends PureComponent {
     };
 
     render() {
-        if (this.props.hotelInfo && this.props.hotelInfo.id === this.props.match.params.id) {
+        const {
+            hotelInfo, user, maxPrice, minPrice, isModalShown, match,
+        } = this.props;
+
+        if (hotelInfo && hotelInfo.id === match.params.id) {
             return (
                 <div className="hotel-page">
-                    <HotelItem hotelInfo={this.props.hotelInfo} />
-                    {this.props.user && this.props.user.role !== 'Admin' && (
+                    <HotelItem hotelInfo={hotelInfo} />
+                    {user && user.role !== ROLES.ADMIN && (
                         <div className="hotel-page__booking">
                             <div className="hotel-page__booking-price">
                                 <span className="hotel-page__booking-price-range">
-                                    ${_.minBy(this.props.hotelInfo.roomTypes, 'cost').cost}-
-                                    {_.maxBy(this.props.hotelInfo.roomTypes, 'cost').cost}
+                                    ${minPrice}-{maxPrice}
                                 </span>
                                 <span className="hotel-page__booking-price-time-unit">/night</span>
                             </div>
@@ -107,13 +113,11 @@ class HotelPage extends PureComponent {
                             </Button>
                         </div>
                     )}
-                    {this.props.isModalShown && <ModalBooking onClose={this.handleModalClose} />}
+                    {isModalShown && <ModalBooking onClose={this.handleModalClose} />}
                 </div>
             );
         }
-        return (
-            <Loader />
-        );
+        return <Loader />;
     }
 }
 

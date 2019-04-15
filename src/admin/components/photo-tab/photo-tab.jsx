@@ -21,7 +21,6 @@ class PhotoTab extends PureComponent {
         isFormHidden: true,
     };
 
-
     showForm = () => {
         this.setState({ isFormHidden: false });
     };
@@ -45,7 +44,7 @@ class PhotoTab extends PureComponent {
                 src="/images/tools/delete.png"
                 handleClick={this.removePhotoItem(item.id)}
             />
-            <PhotoItem className="photo-tab__content-photo-container-item" photoItem={item} />
+            <PhotoItem className="photo-tab__content-photo-container-item" photos={item.photos} />
             <span className="photo-tab__content-photo-container-type">{item.type}</span>
         </div>
     );
@@ -75,9 +74,7 @@ class PhotoTab extends PureComponent {
                         </div>
                         {this.props.photoTour.length === 0 && (
                             <div className="photo-tab__content-photo-container">
-                                <PhotoItem
-                                    photoItem={{ photos: [{ src: '/images/hotel-default.jpg' }], type: 'Default' }}
-                                />
+                                <PhotoItem photos={[{ src: '/images/hotel-default.jpg' }]} />
                             </div>
                         )}
                         {this.props.photoTour.map(this.renderPhotoItems)}

@@ -126,10 +126,9 @@ class BookingDetails extends PureComponent {
     render() {
         const { handleSubmit, booking, freeFacilities } = this.props;
 
-        const nightsInHotel = moment(booking.dateTo).diff(moment(booking.dateFrom), 'days');
-        const dateLabel = nightsInHotel > 1 ? `${nightsInHotel} nights` : '1 night';
-
         const timeUnit = moment(booking.dateTo).diff(moment(booking.dateFrom), 'd');
+        const dateLabel = timeUnit > 1 ? `${timeUnit} nights` : '1 night';
+
         const roomPrice = booking.room.cost;
 
         const detailsPrice = this.props.formValues
