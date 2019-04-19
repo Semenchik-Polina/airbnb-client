@@ -13,7 +13,7 @@ class HotelItem extends PureComponent {
             id: PropTypes.string,
             country: PropTypes.string.isRequired,
             city: PropTypes.string.isRequired,
-            hotelName: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
             roomTypes: PropTypes.arrayOf(
                 PropTypes.shape({
@@ -72,7 +72,7 @@ class HotelItem extends PureComponent {
                 <div className="hotel-item__banner">
                     <div className="hotel-item__banner-info">
                         <span className="hotel-item__banner-info-sity">Hotel in {mainInfo.city}</span>
-                        <span className="hotel-item__banner-info-name">{mainInfo.hotelName}</span>
+                        <span className="hotel-item__banner-info-name">{mainInfo.name}</span>
                     </div>
                     <div
                         className="hotel-item__banner-image"

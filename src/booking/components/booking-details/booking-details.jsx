@@ -81,7 +81,7 @@ class BookingDetails extends PureComponent {
                     id: PropTypes.string.isRequired,
                     country: PropTypes.string.isRequired,
                     city: PropTypes.string.isRequired,
-                    hotelName: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
                 }),
             }).isRequired,
         }).isRequired,

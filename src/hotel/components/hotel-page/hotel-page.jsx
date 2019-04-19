@@ -39,7 +39,7 @@ class HotelPage extends PureComponent {
             id: PropTypes.string,
             country: PropTypes.string.isRequired,
             city: PropTypes.string.isRequired,
-            hotelName: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
             roomTypes: PropTypes.arrayOf(
                 PropTypes.shape({

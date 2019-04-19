@@ -17,7 +17,7 @@ class UserHome extends PureComponent {
                 id: PropTypes.string.isRequired,
                 country: PropTypes.string.isRequired,
                 city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
                 address: PropTypes.string.isRequired,
                 roomTypes: PropTypes.arrayOf(
                     PropTypes.shape({
@@ -86,7 +86,7 @@ class UserHome extends PureComponent {
                                                 handleClick={this.redirectToHotelPage(hotel.id)}
                                             />
                                             <span className="user-home__hotels-containers-wrapper-item-name">
-                                                {hotel.hotelName}
+                                                {hotel.name}
                                             </span>
                                         </div>
                                     ))}

@@ -7,7 +7,7 @@ const initialState = [];
 const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.FETCH_ALL_HOTELS_FOR_ADMIN: {
-        const hotels = action.data;
+        const { hotels } = action.data;
         return [...hotels];
     }
     case types.ADD_NEW_HOTEL: {

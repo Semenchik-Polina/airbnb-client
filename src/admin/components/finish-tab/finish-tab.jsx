@@ -14,7 +14,7 @@ class FinishTab extends PureComponent {
         hotelInfo: PropTypes.shape({
             country: PropTypes.string.isRequired,
             city: PropTypes.string.isRequired,
-            hotelName: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
             roomTypes: PropTypes.arrayOf(
                 PropTypes.shape({

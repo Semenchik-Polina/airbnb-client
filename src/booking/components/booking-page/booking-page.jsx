@@ -41,7 +41,7 @@ class BookingPage extends PureComponent {
                     id: PropTypes.string.isRequired,
                     country: PropTypes.string.isRequired,
                     city: PropTypes.string.isRequired,
-                    hotelName: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
                     services: PropTypes.arrayOf(
                         PropTypes.shape({
                             id: PropTypes.string.isRequired,

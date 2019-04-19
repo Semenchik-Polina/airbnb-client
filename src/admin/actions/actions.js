@@ -43,17 +43,16 @@ export function addServices(services, supposedFacilities) {
                 };
             });
 
-        const facilities = services.facilities
-            .map((facility) => {
-                const rawFacility = _.find(supposedFacilities, { id: facility });
-                return {
-                    facility: {
-                        ...rawFacility,
-                    },
-                    hotelId: '1',
-                    id: Math.random().toString(),
-                };
-            });
+        const facilities = services.facilities.map((facility) => {
+            const rawFacility = _.find(supposedFacilities, { id: facility });
+            return {
+                facility: {
+                    ...rawFacility,
+                },
+                hotelId: '1',
+                id: Math.random().toString(),
+            };
+        });
 
         dispatch({
             type: types.ADD_SERVICE_INFO,
@@ -117,7 +116,6 @@ export function fetchHotels() {
     return async (dispatch) => {
         try {
             const { data } = await controllers.fetchHotels();
-
             dispatch({
                 type: types.FETCH_ALL_HOTELS_FOR_ADMIN,
                 data,

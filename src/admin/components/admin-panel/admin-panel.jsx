@@ -16,7 +16,7 @@ class AdminPanel extends PureComponent {
                 id: PropTypes.string.isRequired,
                 country: PropTypes.string.isRequired,
                 city: PropTypes.string.isRequired,
-                hotelName: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
                 address: PropTypes.string.isRequired,
                 roomTypes: PropTypes.arrayOf(
                     PropTypes.shape({
@@ -108,7 +108,7 @@ class AdminPanel extends PureComponent {
                                             />
                                             <PhotoItem photos={this.flatImageArray(hotel.photoTour).photos} />
                                             <span className="admin-panel__hotels-containers-wrapper-item-name">
-                                                {hotel.hotelName}
+                                                {hotel.name}
                                             </span>
                                         </div>
                                     ))}
