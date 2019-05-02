@@ -152,11 +152,13 @@ export function fetchUserBookings() {
 export function fetchHotels() {
     return async (dispatch) => {
         try {
-            const { data } = await controllers.fetchHotels();
+            const {
+                data: { hotels },
+            } = await controllers.fetchHotels();
 
             dispatch({
                 type: types.FETCH_ALL_HOTELS,
-                data,
+                hotels,
             });
         } catch (err) {
             showErrorToast(err);

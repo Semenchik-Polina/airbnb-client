@@ -17,7 +17,7 @@ class RoomTab extends PureComponent {
         rooms: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                amount: PropTypes.number.isRequired,
+                count: PropTypes.number.isRequired,
                 capacity: PropTypes.number.isRequired,
                 cost: PropTypes.number.isRequired,
                 type: PropTypes.string.isRequired,

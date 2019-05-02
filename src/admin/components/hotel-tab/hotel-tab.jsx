@@ -29,12 +29,12 @@ class HotelTab extends PureComponent {
         return (
             <div className="hotel-tab">
                 <Form className="hotel-tab__form" onSubmit={handleSubmit(this.onSubmit)} noValidate>
-                    <label className="hotel-tab__form-label" htmlFor="hotelName">
+                    <label className="hotel-tab__form-label" htmlFor="name">
                         {'What is your hotel name?'}
                         <Field
                             validate={[validators.isRequired]}
                             className="hotel-tab__form-field"
-                            name="hotelName"
+                            name="name"
                             component={TextInput}
                             type="text"
                             essence="Hotel name"

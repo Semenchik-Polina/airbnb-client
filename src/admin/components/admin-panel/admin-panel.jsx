@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import Tool from '../../../shared/components/tool/tool';
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
@@ -18,36 +17,9 @@ class AdminPanel extends PureComponent {
                 city: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired,
                 address: PropTypes.string.isRequired,
-                roomTypes: PropTypes.arrayOf(
+                photos: PropTypes.arrayOf(
                     PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        amount: PropTypes.number.isRequired,
-                        capacity: PropTypes.number.isRequired,
-                        cost: PropTypes.number.isRequired,
-                        type: PropTypes.string.isRequired,
-                    }),
-                ).isRequired,
-                services: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        facility: PropTypes.shape({
-                            id: PropTypes.string.isRequired,
-                            hint: PropTypes.string,
-                            imageUrl: PropTypes.string,
-                            canBePaid: PropTypes.bool.isRequired,
-                        }),
-                        price: PropTypes.number,
-                    }),
-                ).isRequired,
-                photoTour: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        type: PropTypes.string.isRequired,
-                        photos: PropTypes.arrayOf(
-                            PropTypes.shape({
-                                src: PropTypes.string.isRequired,
-                            }),
-                        ).isRequired,
+                        src: PropTypes.string.isRequired,
                     }),
                 ).isRequired,
             }),
@@ -63,16 +35,12 @@ class AdminPanel extends PureComponent {
         this.props.fetchHotels();
     }
 
-    flatImageArray = photoTour => ({
-        photos: _.flattenDeep(photoTour.map(tour => tour.photos)),
-    });
-
     removeHotel = hotel => () => {
         this.props.removeHotel(hotel.id);
     };
 
     startEditingHotel = hotel => () => {
-        this.props.startEditingHotel(hotel);
+        this.props.startEditingHotel(hotel.id);
     };
 
     startCreatingHotel = () => {
@@ -106,7 +74,7 @@ class AdminPanel extends PureComponent {
                                                 className="admin-panel__hotels-containers-wrapper-item-edit"
                                                 handleClick={this.startEditingHotel(hotel)}
                                             />
-                                            <PhotoItem photos={this.flatImageArray(hotel.photoTour).photos} />
+                                            <PhotoItem photos={hotel.photos} />
                                             <span className="admin-panel__hotels-containers-wrapper-item-name">
                                                 {hotel.name}
                                             </span>

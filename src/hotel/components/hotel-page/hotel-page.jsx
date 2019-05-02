@@ -41,35 +41,28 @@ class HotelPage extends PureComponent {
             city: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
-            roomTypes: PropTypes.arrayOf(
+            rooms: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
-                    amount: PropTypes.number.isRequired,
+                    count: PropTypes.number.isRequired,
                     capacity: PropTypes.number.isRequired,
                     cost: PropTypes.number.isRequired,
                     type: PropTypes.string.isRequired,
                 }),
             ).isRequired,
-            services: PropTypes.arrayOf(
+            facilities: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
-                    facility: PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        hint: PropTypes.string,
-                        imageUrl: PropTypes.string,
-                        canBePaid: PropTypes.bool.isRequired,
-                    }),
+
+                    hint: PropTypes.string,
+                    imageUrl: PropTypes.string,
+                    canBePaid: PropTypes.bool.isRequired,
                 }),
             ).isRequired,
-            photoTour: PropTypes.arrayOf(
+
+            photos: PropTypes.arrayOf(
                 PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    type: PropTypes.string.isRequired,
-                    photos: PropTypes.arrayOf(
-                        PropTypes.shape({
-                            src: PropTypes.string.isRequired,
-                        }),
-                    ).isRequired,
+                    src: PropTypes.string.isRequired,
                 }),
             ).isRequired,
         }),

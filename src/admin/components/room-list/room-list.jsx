@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import RoomItem from '../room-item/room-item';
 
-class RoomForm extends PureComponent {
+class RoomList extends PureComponent {
     static defaultProps = {
         className: '',
     };
@@ -35,4 +35,4 @@ class RoomForm extends PureComponent {
     }
 }
 
-export default RoomForm;
+export default RoomList;

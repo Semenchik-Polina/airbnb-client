@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
 
@@ -18,39 +17,11 @@ class UserHome extends PureComponent {
                 country: PropTypes.string.isRequired,
                 city: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired,
-                address: PropTypes.string.isRequired,
-                roomTypes: PropTypes.arrayOf(
+                photos: PropTypes.arrayOf(
                     PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        amount: PropTypes.number.isRequired,
-                        capacity: PropTypes.number.isRequired,
-                        cost: PropTypes.number.isRequired,
-                        type: PropTypes.string.isRequired,
+                        src: PropTypes.string.isRequired,
                     }),
-                ).isRequired,
-                services: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        facility: PropTypes.shape({
-                            id: PropTypes.string.isRequired,
-                            hint: PropTypes.string,
-                            imageUrl: PropTypes.string,
-                            canBePaid: PropTypes.bool.isRequired,
-                        }),
-                        price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                    }),
-                ).isRequired,
-                photoTour: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        type: PropTypes.string.isRequired,
-                        photos: PropTypes.arrayOf(
-                            PropTypes.shape({
-                                src: PropTypes.string.isRequired,
-                            }),
-                        ).isRequired,
-                    }),
-                ).isRequired,
+                ),
             }),
         ).isRequired,
         fetchHotels: PropTypes.func.isRequired,
@@ -59,10 +30,6 @@ class UserHome extends PureComponent {
     componentDidMount() {
         this.props.fetchHotels();
     }
-
-    flatImageArray = photoTour => ({
-        photos: _.flattenDeep(photoTour.map(tour => tour.photos)),
-    });
 
     redirectToHotelPage = id => () => {
         history.push(`/hotels/${id}`);
@@ -82,7 +49,7 @@ class UserHome extends PureComponent {
                                         <div key={hotel.id} className="user-home__hotels-containers-wrapper-item">
                                             <PhotoItem
                                                 className="user-home__hotels-containers-wrapper-item-link"
-                                                photos={this.flatImageArray(hotel.photoTour).photos}
+                                                photos={hotel.photos}
                                                 handleClick={this.redirectToHotelPage(hotel.id)}
                                             />
                                             <span className="user-home__hotels-containers-wrapper-item-name">

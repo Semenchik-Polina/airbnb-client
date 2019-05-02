@@ -35,7 +35,7 @@ class ModalBooking extends PureComponent {
             cost: PropTypes.number.isRequired,
             type: PropTypes.string.isRequired,
         }),
-        roomTypes: PropTypes.arrayOf(
+        rooms: PropTypes.arrayOf(
             PropTypes.shape({
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
@@ -73,7 +73,7 @@ class ModalBooking extends PureComponent {
     };
 
     render() {
-        const { handleSubmit, roomTypes, selectedRoomType } = this.props;
+        const { handleSubmit, rooms, selectedRoomType } = this.props;
 
         return (
             <Modal onClose={this.props.onClose} className="modal-booking">
@@ -94,7 +94,7 @@ class ModalBooking extends PureComponent {
                             className="modal-booking__form-section-item"
                             component={DropDownSelect}
                             name="roomType"
-                            options={roomTypes}
+                            options={rooms}
                             handleRoomTypeOnChange={this.handleRoomTypeOnChange}
                         />
                     </div>

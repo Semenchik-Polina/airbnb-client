@@ -11,7 +11,7 @@ export default connect(
     dispatch => ({
         fetchHotels: () => dispatch(adminActions.fetchHotels()),
         removeHotel: id => dispatch(adminActions.removeHotel(id)),
-        startEditingHotel: hotel => dispatch(adminActions.startEditingHotel(hotel)),
+        startEditingHotel: id => dispatch(adminActions.startEditingHotel(id)),
         startCreatingHotel: () => dispatch(adminActions.startCreatingHotel()),
     }),
 )(AdminPanel);

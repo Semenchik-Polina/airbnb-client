@@ -6,6 +6,7 @@ import { Field, Form } from 'redux-form';
 import TextInput from '../../../shared/components/text-input/text-input';
 import Button from '../../../shared/components/button/button';
 import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-select';
+import ImageUploader from '../image-uploader/image-uploader';
 
 import * as validators from '../../../shared/tools/validators';
 import { ROOM_TYPES } from '../../constants/index';
@@ -45,11 +46,11 @@ class RoomForm extends PureComponent {
                     <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
                 </label>
                 <div className="room-form__multiple-field">
-                    <label htmlFor="amount">
+                    <label htmlFor="count">
                         {'Number of type'}
                         <Field
                             className="room-form__field room-form__field_left"
-                            name="amount"
+                            name="count"
                             component={TextInput}
                             validate={[validators.isRequired, validators.isInt, validators.isAboveZero]}
                             type="number"
@@ -82,6 +83,14 @@ class RoomForm extends PureComponent {
                             placeholder="0"
                         />
                     </label>
+                </div>
+                <div>
+                    <Field
+                        name="photos"
+                        className="photo-form__field"
+                        validate={[validators.isRequired]}
+                        component={ImageUploader}
+                    />
                 </div>
                 <div className="room-form__buttons-container">
                     <Button

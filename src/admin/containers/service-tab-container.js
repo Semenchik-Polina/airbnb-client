@@ -21,11 +21,11 @@ const getServiceFormInitialValues = (services, supposedFacilities) => {
 
         if (services) {
             initialValues.facilities = services
-                .filter(service => !service.facility.canBePaid)
-                .map(service => service.facility.id);
+                .filter(service => !service.canBePaid)
+                .map(service => service.id);
 
             const existingFacilities = services
-                .filter(service => service.facility.canBePaid)
+                .filter(service => service.canBePaid)
                 .map(service => ({
                     selectedOption:
                         SERVICE_ANSWERS[
@@ -34,7 +34,7 @@ const getServiceFormInitialValues = (services, supposedFacilities) => {
                                 : SERVICE_ANSWERS_INDEXES.FREE_FACILITY_INDEX
                         ].value,
                     price: service.price,
-                    id: service.facility.id,
+                    id: service.id,
                 }));
 
             const newFacilities = initialValues.paidFacilities.map((facility) => {
@@ -55,9 +55,9 @@ export default connect(
     state => ({
         supposedFacilities: state.adminReducer.supposedFacilities,
         formValues: getFormValues('serviceForm')(state),
-        services: state.adminReducer.hotelInfo.services,
+        facilities: state.adminReducer.hotelInfo.facilities,
         initialValues: getServiceFormInitialValues(
-            state.adminReducer.hotelInfo.services,
+            state.adminReducer.hotelInfo.facilities,
             state.adminReducer.supposedFacilities,
         ),
     }),

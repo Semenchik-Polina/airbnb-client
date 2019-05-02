@@ -13,10 +13,13 @@ const showErrorToast = (err) => {
 export function fetchHotel(id) {
     return async (dispatch) => {
         try {
-            const { data } = await controllers.fetchHotel(id);
+            const {
+                data: { hotel },
+            } = await controllers.fetchHotel(id);
+
             dispatch({
                 type: types.FETCH_HOTEL,
-                data,
+                hotel,
             });
         } catch (err) {
             showErrorToast(err);

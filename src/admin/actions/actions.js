@@ -34,23 +34,15 @@ export function addServices(services, supposedFacilities) {
             .map((facility) => {
                 const rawFacility = _.find(supposedFacilities, { id: facility.id });
                 return {
-                    facility: {
-                        ...rawFacility,
-                    },
+                    ...rawFacility,
                     price: facility.selectedOption.isPaid ? facility.price : 0,
-                    hotelId: '1',
-                    id: Math.random().toString(),
                 };
             });
 
         const facilities = services.facilities.map((facility) => {
             const rawFacility = _.find(supposedFacilities, { id: facility });
             return {
-                facility: {
-                    ...rawFacility,
-                },
-                hotelId: '1',
-                id: Math.random().toString(),
+                ...rawFacility,
             };
         });
 
@@ -58,7 +50,7 @@ export function addServices(services, supposedFacilities) {
             type: types.ADD_SERVICE_INFO,
             services: [...paidFacilities, ...facilities],
         });
-        history.push('/admin-home/create-new-hotel/photos');
+        history.push('/admin-home/create-new-hotel/finish');
     };
 }
 
@@ -193,7 +185,7 @@ export function editHotel(data) {
 export function removeHotel(id) {
     return async (dispatch) => {
         try {
-            // await controllers.removeHotel(id);
+            await controllers.deleteHotel(id);
             showSuccessToast('Hotel removed!');
             dispatch({
                 type: types.REMOVE_HOTEL,
@@ -205,8 +197,12 @@ export function removeHotel(id) {
     };
 }
 
-export function startEditingHotel(hotel) {
-    return (dispatch) => {
+export function startEditingHotel(id) {
+    return async (dispatch) => {
+        const {
+            data: { hotel },
+        } = await controllers.fetchHotel(id);
+
         dispatch({
             type: types.FILL_HOTEL_INFO,
             hotel,

@@ -10,7 +10,7 @@ export default connect(
     state => ({
         initialValues: state.adminReducer.hotelInfo.editableId
             ? {
-                ..._.find(state.adminReducer.hotelInfo.roomTypes, {
+                ..._.find(state.adminReducer.hotelInfo.rooms, {
                     id: state.adminReducer.hotelInfo.editableId,
                 }),
             }

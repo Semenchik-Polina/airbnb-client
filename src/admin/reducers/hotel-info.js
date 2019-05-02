@@ -4,13 +4,12 @@ import uuidv1 from 'uuid/v1';
 import * as types from '../constants/types';
 
 const initialState = {
-    hotelName: '',
+    name: '',
     country: '',
     city: '',
     address: '',
-    roomTypes: [],
-    services: null,
-    photoTour: [],
+    rooms: [],
+    facilities: null,
     editableId: null,
 };
 
@@ -28,24 +27,24 @@ const hotelInfoReducer = (state = initialState, action) => {
         const { services } = action;
         return {
             ...state,
-            services,
+            facilities: services,
         };
     }
     case types.ADD_ROOM_TYPE: {
         const { roomType } = action;
-        let newTypes;
+        let newRooms;
         const { id } = roomType;
         if (id) {
-            newTypes = _.cloneDeep(state.roomTypes);
-            newTypes[_.findIndex(state.roomTypes, { id })] = roomType;
+            newRooms = _.cloneDeep(state.roomTypes);
+            newRooms[_.findIndex(state.roomTypes, { id })] = roomType;
         } else {
             roomType.id = uuidv1();
-            newTypes = [...state.roomTypes, roomType];
+            newRooms = [...state.roomTypes, roomType];
         }
 
         return {
             ...state,
-            roomTypes: newTypes,
+            rooms: newRooms,
         };
     }
     case types.ADD_PHOTOS: {
@@ -85,6 +84,7 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case types.FILL_HOTEL_INFO: {
         const { hotel } = action;
+
         return {
             ...hotel,
         };

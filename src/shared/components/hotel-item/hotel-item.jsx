@@ -10,41 +10,30 @@ import './hotel-item.scss';
 class HotelItem extends PureComponent {
     static propTypes = {
         hotelInfo: PropTypes.shape({
-            id: PropTypes.string,
             country: PropTypes.string.isRequired,
             city: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
-            roomTypes: PropTypes.arrayOf(
+            rooms: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,
-                    amount: PropTypes.number.isRequired,
+                    count: PropTypes.number.isRequired,
                     capacity: PropTypes.number.isRequired,
                     cost: PropTypes.number.isRequired,
-                    type: PropTypes.string.isRequired,
-                }),
-            ).isRequired,
-            services: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    facility: PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        hint: PropTypes.string,
-                        imageUrl: PropTypes.string,
-                        canBePaid: PropTypes.bool.isRequired,
-                    }),
-                    price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                }),
-            ).isRequired,
-            photoTour: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
                     type: PropTypes.string.isRequired,
                     photos: PropTypes.arrayOf(
                         PropTypes.shape({
                             src: PropTypes.string.isRequired,
                         }),
                     ).isRequired,
+                }),
+            ).isRequired,
+            facilities: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    hint: PropTypes.string,
+                    imageUrl: PropTypes.string,
+                    canBePaid: PropTypes.bool,
                 }),
             ).isRequired,
         }).isRequired,
@@ -58,14 +47,12 @@ class HotelItem extends PureComponent {
     );
 
     render() {
-        const {
-            photoTour, roomTypes, services, ...mainInfo
-        } = this.props.hotelInfo;
+        const { rooms, facilities, ...mainInfo } = this.props.hotelInfo;
 
-        const totalCapacity = roomTypes.reduce((total, room) => total + room.capacity * room.amount, 0);
-        const totalRooms = roomTypes.reduce((total, room) => total + room.amount, 0);
+        const totalCapacity = rooms.reduce((total, room) => total + room.capacity * room.count, 0);
+        const totalRooms = rooms.reduce((total, room) => total + room.count, 0);
 
-        const facilities = services.filter(service => !service.facility.canBePaid);
+        const freeFacilities = facilities.filter(service => !service.canBePaid);
 
         return (
             <div className="hotel-item">
@@ -77,7 +64,7 @@ class HotelItem extends PureComponent {
                     <div
                         className="hotel-item__banner-image"
                         style={{
-                            backgroundImage: `url(${photoTour[0].photos[0].src})`,
+                            backgroundImage: `url(${rooms[0].photos[0].src})`,
                         }}
                     />
                 </div>
@@ -85,7 +72,7 @@ class HotelItem extends PureComponent {
                     <span className="hotel-item__overview-item">{totalCapacity} guests </span>
                     <span className="hotel-item__overview-item">{totalRooms} rooms</span>
                 </div>
-                {photoTour.length > 0 && (
+                {/* {photoTour.length > 0 && (
                     <section className="hotel-item__tour">
                         <span className="hotel-item__tour-header">Tour this hotel</span>
                         {devideArray(photoTour, 4).map((item, index) => (
@@ -94,12 +81,12 @@ class HotelItem extends PureComponent {
                             </div>
                         ))}
                     </section>
-                )}
-                {facilities.length > 0 && (
+                )} */}
+                {freeFacilities.length > 0 && (
                     <section className="hotel-item__facilities">
-                        <span className="hotel-item__facilities-header">Facilities and services</span>
+                        <span className="hotel-item__facilities-header">Facilities and facilities</span>
                         <div className="hotel-item__facilities-containers">
-                            {devideArray(devideArray(facilities, 3), 2).map((container, index) => (
+                            {devideArray(devideArray(freeFacilities, 3), 2).map((container, index) => (
                                 <div className="hotel-item__facilities-containers-wrapper" key={index}>
                                     {container.map((items, containerIndex) => (
                                         <div
@@ -113,11 +100,11 @@ class HotelItem extends PureComponent {
                                                 >
                                                     <img
                                                         className="hotel-item__facilities-containers-wrapper-container-item-image"
-                                                        src={item.facility.imageUrl}
+                                                        src={item.imageUrl}
                                                         alt="hotel"
                                                     />
                                                     <span className="hotel-item__facilities-containers-wrapper-container-item-facility">
-                                                        {item.facility.name}
+                                                        {item.name}
                                                     </span>
                                                 </div>
                                             ))}

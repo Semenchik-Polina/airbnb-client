@@ -5,7 +5,8 @@ const initialState = null;
 const hotelReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.FETCH_HOTEL: {
-        const hotel = action.data;
+        const { hotel } = action;
+
         return hotel;
     }
     default:

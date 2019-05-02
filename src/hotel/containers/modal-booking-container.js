@@ -13,8 +13,8 @@ export default connect(
         const selectedRoomType = selector(state, 'roomType');
         const guestsSelector = selector(state, 'guests');
 
-        const roomTypes = state.hotelPage.hotel.roomTypes.map((item) => {
-            const { id, amount, ...value } = item;
+        const rooms = state.hotelPage.hotel.rooms.map((item) => {
+            const { id, count, ...value } = item;
             return {
                 value,
                 label: `Type: ${item.type}, capacity: ${item.capacity}, cost: ${item.cost}`,
@@ -22,9 +22,9 @@ export default connect(
         });
 
         const filterGuests = state.userReducer.hotelFilters.guests || 1;
-        const roomType = _.find(roomTypes, type => type.value.capacity >= filterGuests)
-            || _.maxBy(roomTypes, type => type.value.capacity);
-        const guests = filterGuests > roomType.value.capacity ? roomType.value.capacity : filterGuests;
+        const room = _.find(rooms, type => type.value.capacity >= filterGuests)
+            || _.maxBy(rooms, type => type.value.capacity);
+        const guests = filterGuests > room.value.capacity ? room.value.capacity : filterGuests;
 
         const dates = {
             from: state.userReducer.hotelFilters.dateRange.from || undefined,
@@ -32,10 +32,10 @@ export default connect(
         };
 
         return {
-            roomTypes,
+            rooms,
             guestsSelector,
             selectedRoomType,
-            initialValues: { roomType: roomType.value, guests, dates },
+            initialValues: { room: room.value, guests, dates },
         };
     },
     dispatch => ({

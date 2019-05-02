@@ -10,8 +10,8 @@ export default connect(
         hotelInfo: state.hotelPage.hotel,
         isModalShown: state.hotelPage.bookingModal.isModalShown,
         user: state.auth.user,
-        minPrice: state.hotelPage.hotel ? _.minBy(state.hotelPage.hotel.roomTypes, 'cost').cost : 0,
-        maxPrice: state.hotelPage.hotel ? _.maxBy(state.hotelPage.hotel.roomTypes, 'cost').cost : 0,
+        minPrice: state.hotelPage.hotel ? _.minBy(state.hotelPage.hotel.rooms, 'cost').cost : 0,
+        maxPrice: state.hotelPage.hotel ? _.maxBy(state.hotelPage.hotel.rooms, 'cost').cost : 0,
     }),
     dispatch => ({
         fetchHotel: id => dispatch(actions.fetchHotel(id)),
