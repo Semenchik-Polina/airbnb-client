@@ -41,49 +41,39 @@ class BookingDetails extends PureComponent {
         freeFacilities: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                hotelId: PropTypes.string.isRequired,
-                facility: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    name: PropTypes.string.isRequired,
-                    isPaidPerRoom: PropTypes.bool,
-                    canBePaid: PropTypes.bool.isRequired,
-                }).isRequired,
+                name: PropTypes.string.isRequired,
+                isPaidPerRoom: PropTypes.bool,
+                canBePaid: PropTypes.bool.isRequired,
                 price: PropTypes.number,
             }),
         ).isRequired,
         paidFacilities: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.string.isRequired,
-                hotelId: PropTypes.string.isRequired,
-                facility: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    name: PropTypes.string.isRequired,
-                    isPaidPerRoom: PropTypes.bool,
-                    canBePaid: PropTypes.bool.isRequired,
-                }).isRequired,
+                name: PropTypes.string.isRequired,
+                isPaidPerRoom: PropTypes.bool,
+                canBePaid: PropTypes.bool.isRequired,
                 price: PropTypes.number,
             }),
         ).isRequired,
         booking: PropTypes.shape({
             id: PropTypes.string,
-            user: PropTypes.shape({
-                _id: PropTypes.string,
-            }),
+            user: PropTypes.string,
+
             isApproved: PropTypes.bool.isRequired,
             requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
-                id: PropTypes.string,
                 type: PropTypes.string,
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
-                hotel: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    country: PropTypes.string.isRequired,
-                    city: PropTypes.string.isRequired,
-                    name: PropTypes.string.isRequired,
-                }),
             }).isRequired,
+            hotel: PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                country: PropTypes.string.isRequired,
+                city: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+            }),
         }).isRequired,
     };
 
@@ -103,7 +93,7 @@ class BookingDetails extends PureComponent {
 
         return fields.map((member, index) => (
             <div key={index} className={fieldClasses}>
-                <div className="facility-field__item">{_.upperFirst(paidFacilities[index].facility.name)}</div>
+                <div className="facility-field__item">{_.upperFirst(paidFacilities[index].name)}</div>
                 <div className="facility-field__item-price">${_.upperFirst(paidFacilities[index].price)}</div>
                 <Field
                     format={this.formatField}
@@ -111,7 +101,7 @@ class BookingDetails extends PureComponent {
                     component={SwitchInput}
                     name={`${member}.checked`}
                 />
-                {formValues.paidFacilities[index].checked && !paidFacilities[index].facility.isPaidPerRoom && (
+                {formValues.paidFacilities[index].checked && !paidFacilities[index].isPaidPerRoom && (
                     <Field
                         format={this.formatField}
                         className="facility-field__item"
@@ -133,7 +123,7 @@ class BookingDetails extends PureComponent {
 
         const detailsPrice = this.props.formValues
             ? _.sumBy(this.props.formValues.paidFacilities, (facility) => {
-                const { price } = _.find(booking.room.hotel.services, { id: facility.id });
+                const { price } = _.find(booking.hotel.facilities, { id: facility.id });
                 if (facility.checked) {
                     return facility.count ? facility.count * price : price;
                 }
@@ -147,7 +137,7 @@ class BookingDetails extends PureComponent {
             <div className="booking-details">
                 <span className="booking-details__header">
                     Booking details
-                    <NavLink className="booking-details__header-link" exact to={`/hotels/${booking.room.hotel.id}`}>
+                    <NavLink className="booking-details__header-link" exact to={`/hotels/${booking.hotel.id}`}>
                         view hotel
                     </NavLink>
                 </span>
@@ -159,7 +149,7 @@ class BookingDetails extends PureComponent {
                 <Form className="booking-details__form" onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                     <div className="booking-details__form-section">
                         <span className="booking-details__form-section-header">
-                            {dateLabel} in {booking.room.hotel.city} — ${booking.room.cost} per night
+                            {dateLabel} in {booking.hotel.city} — ${booking.room.cost} per night
                         </span>
                         <div className="booking-details__form-section-wrapper">
                             <div className="booking-details__form-section-wrapper-item">
@@ -242,7 +232,7 @@ class BookingDetails extends PureComponent {
                                         key={freeFacility.id}
                                         className="booking-details__form-section-free-facilities-item"
                                     >
-                                        {freeFacility.facility.name}
+                                        {freeFacility.name}
                                     </span>
                                 ))}
                             </div>

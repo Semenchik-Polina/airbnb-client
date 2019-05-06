@@ -9,6 +9,7 @@ import './booking-filter-panel.scss';
 
 class BookingFilterPanel extends PureComponent {
     static propTypes = {
+        applyFilters: PropTypes.func.isRequired,
         onSuggestionsFetchRequested: PropTypes.func.isRequired,
         onSuggestionsClearRequested: PropTypes.func.isRequired,
         clearSuggestions: PropTypes.func.isRequired,
@@ -23,7 +24,7 @@ class BookingFilterPanel extends PureComponent {
                 country: PropTypes.string,
                 city: PropTypes.string,
             }).isRequired,
-            isFutureBookingsFetched: PropTypes.bool.isRequired,
+            isCompleted: PropTypes.bool.isRequired,
         }).isRequired,
     };
 
@@ -36,7 +37,14 @@ class BookingFilterPanel extends PureComponent {
         this.props.clearSuggestions();
     };
 
-    applyFilters = () => {};
+    applyFilters = () => {
+        this.props.applyFilters();
+    };
+
+    switchBookingRelevance = async () => {
+        await this.props.switchBookingRelevance();
+        // this.props.applyFilters();
+    };
 
     render() {
         const {
@@ -46,8 +54,7 @@ class BookingFilterPanel extends PureComponent {
             setBookingLocation,
             onSuggestionsFetchRequested,
             onSuggestionsClearRequested,
-            switchBookingRelevance,
-            bookingFilters: { location, isFutureBookingsFetched },
+            bookingFilters: { location, isCompleted },
         } = this.props;
 
         const locationFilterLabel = location.country && location.city ? `${location.country}, ${location.city}` : '';
@@ -55,7 +62,11 @@ class BookingFilterPanel extends PureComponent {
         return (
             <div className="booking-filter-panel">
                 <div className="booking-filter-panel__parameters">
-                    <SwitchFilter className="filter-panel__parameters-item" checked={isFutureBookingsFetched} onChange={switchBookingRelevance} />
+                    <SwitchFilter
+                        className="filter-panel__parameters-item"
+                        checked={isCompleted}
+                        onChange={this.switchBookingRelevance}
+                    />
                     <FilterContent
                         defaultValue="Location"
                         value={locationFilterLabel}

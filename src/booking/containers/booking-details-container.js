@@ -9,13 +9,13 @@ import * as constants from '../constants';
 
 const getDetailsFormInitialValues = (booking) => {
     if (booking) {
-        const paidFacilities = booking.room.hotel.services
+        const paidFacilities = booking.hotel.facilities
             .filter(hotelFacility => hotelFacility.price)
             .map(facility => ({
                 count: 1,
                 id: facility.id,
                 checked: false,
-                isPaidPerRoom: facility.facility.isPaidPerRoom,
+                isPaidPerRoom: facility.isPaidPerRoom,
             }));
 
         return booking.isApproved
@@ -24,7 +24,7 @@ const getDetailsFormInitialValues = (booking) => {
                 departureTime: booking.departureTime,
                 guests: booking.guests,
                 paidFacilities: paidFacilities.map((facility) => {
-                    const matchingFacility = _.find(booking.services, { id: facility.id });
+                    const matchingFacility = _.find(booking.facilities, { id: facility.id });
                     if (matchingFacility) {
                         return { ...facility, ...matchingFacility, checked: true };
                     }
@@ -46,10 +46,8 @@ export default connect(
     state => ({
         initialValues: getDetailsFormInitialValues(state.bookingReducer.booking, state.bookingReducer.details),
         booking: state.bookingReducer.booking,
-        freeFacilities: state.bookingReducer.booking.room.hotel.services.filter(
-            hotelFacility => !hotelFacility.price,
-        ),
-        paidFacilities: state.bookingReducer.booking.room.hotel.services.filter(hotelFacility => hotelFacility.price),
+        freeFacilities: state.bookingReducer.booking.hotel.facilities.filter(hotelFacility => !hotelFacility.price),
+        paidFacilities: state.bookingReducer.booking.hotel.facilities.filter(hotelFacility => hotelFacility.price),
         formValues: getFormValues('bookingDetailsForm')(state),
     }),
     dispatch => ({

@@ -1,7 +1,7 @@
 import * as types from '../constants/types';
 
 const initialState = {
-    isFutureBookingsFetched: true,
+    isCompleted: true,
     location: {
         country: '',
         city: '',
@@ -13,7 +13,7 @@ const bookingFiltersReducer = (state = initialState, action) => {
     case types.SWITCH_BOOKING_RELEVANCE: {
         return {
             ...state,
-            isFutureBookingsFetched: !state.isFutureBookingsFetched,
+            isCompleted: !state.isCompleted,
         };
     }
     case types.SET_BOOKING_LOCATION: {

@@ -5,8 +5,9 @@ const initialState = null;
 const userBookingsReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.FETCH_USER_BOOKINGS: {
-        const { data } = action;
-        return [...data];
+        console.log(action);
+        const { bookings } = action;
+        return [...bookings.approvedBookings, ...bookings.unapprovedBookings];
     }
     default:
         return state;

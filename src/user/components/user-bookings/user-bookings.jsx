@@ -20,7 +20,7 @@ class UserBookings extends PureComponent {
                 id: PropTypes.string.isRequired,
             }),
         }).isRequired,
-        _id: PropTypes.string.isRequired,
+        // _id: PropTypes.string.isRequired,
         fetchUserBookings: PropTypes.func.isRequired,
         bookings: PropTypes.arrayOf(PropTypes.shape({})),
 
@@ -29,31 +29,34 @@ class UserBookings extends PureComponent {
                 country: PropTypes.string,
                 city: PropTypes.string,
             }).isRequired,
-            isFutureBookingsFetched: PropTypes.bool.isRequired,
+            isCompleted: PropTypes.bool.isRequired,
         }).isRequired,
     };
 
     componentDidMount = () => {
-        if (this.props.match.params.id === this.props._id) {
-            this.props.fetchUserBookings(this.props._id, this.props.bookingFilters);
-        }
+        // if (this.props.match.params.id === this.props._id) {
+        this.props.fetchUserBookings(this.props.bookingFilters);
+        // }
     };
 
-    applyFilters = () => {};
+    applyFilters = () => {
+        this.props.fetchUserBookings(this.props.bookingFilters);
+        console.log("apply");
+    };
 
     render() {
         const {
             bookings,
-            bookingFilters: { isFutureBookingsFetched, location },
+            bookingFilters: { isCompleted, location },
         } = this.props;
 
-        const label = `${isFutureBookingsFetched ? 'Future' : 'Past'} trips${
+        const label = `${isCompleted ? 'Future' : 'Past'} trips${
             location.country ? ` in ${location.country}, ${location.city}` : ''
         }`;
 
         return (
             <div className="user-bookings">
-                <BookingFilterPanel />
+                <BookingFilterPanel applyFilters={this.applyFilters} />
                 <span className="user-bookings__header">{label}</span>
                 {bookings ? (
                     <div className="user-bookings__container">

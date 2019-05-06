@@ -10,29 +10,28 @@ class BookingItem extends PureComponent {
     static propTypes = {
         booking: PropTypes.shape({
             id: PropTypes.string,
-            user: PropTypes.shape({
-                _id: PropTypes.string,
-            }),
+            user: PropTypes.string,
+
             requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]),
             guests: PropTypes.number,
-            room: PropTypes.shape({
-                id: PropTypes.string,
-                type: PropTypes.string,
-                capacity: PropTypes.number,
-                cost: PropTypes.number,
-                services: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        count: PropTypes.number,
-                    }),
-                ),
-                hotel: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    country: PropTypes.string.isRequired,
-                    city: PropTypes.string.isRequired,
-                    hotelName: PropTypes.string.isRequired,
-                }),
-            }),
+            // room: PropTypes.shape({
+            //     id: PropTypes.string,
+            //     type: PropTypes.string,
+            //     capacity: PropTypes.number,
+            //     cost: PropTypes.number,
+            //     services: PropTypes.arrayOf(
+            //         PropTypes.shape({
+            //             id: PropTypes.string.isRequired,
+            //             count: PropTypes.number,
+            //         }),
+            //     ),
+            //     hotel: PropTypes.shape({
+            //         id: PropTypes.string.isRequired,
+            //         country: PropTypes.string.isRequired,
+            //         city: PropTypes.string.isRequired,
+            //         hotelName: PropTypes.string.isRequired,
+            //     }),
+            // }),
             totalPrice: PropTypes.number.isRequired,
             dateFrom: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
             dateTo: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
@@ -58,9 +57,9 @@ class BookingItem extends PureComponent {
                     }}
                 />
                 <div className="booking-item__content">
-                    <div className="booking-item__content-hotel-name">
+                    {/* <div className="booking-item__content-hotel-name">
                         <span>{booking.room.hotel.hotelName}</span>
-                    </div>
+                    </div> */}
                     <div className="booking-item__content-dates">
                         <span className="booking-item__content-dates-item">
                             {moment(booking.dateFrom).format('MMMM Do YYYY')} - {booking.arrivalTime}

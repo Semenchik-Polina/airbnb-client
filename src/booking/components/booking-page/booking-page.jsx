@@ -2,9 +2,7 @@ import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 
-import {
-    withRouter, Route, Redirect,
-} from 'react-router-dom';
+import { withRouter, Route, Redirect } from 'react-router-dom';
 
 import Loader from '../../../shared/components/loader/loader';
 import DetailsTab from '../../containers/booking-details-container';
@@ -27,9 +25,8 @@ class BookingPage extends PureComponent {
         }).isRequired,
         booking: PropTypes.shape({
             id: PropTypes.string,
-            user: PropTypes.shape({
-                _id: PropTypes.string,
-            }),
+            user: PropTypes.string,
+
             requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]).isRequired,
             guests: PropTypes.number,
             room: PropTypes.shape({
@@ -37,25 +34,21 @@ class BookingPage extends PureComponent {
                 type: PropTypes.string,
                 capacity: PropTypes.number,
                 cost: PropTypes.number,
-                hotel: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    country: PropTypes.string.isRequired,
-                    city: PropTypes.string.isRequired,
-                    name: PropTypes.string.isRequired,
-                    services: PropTypes.arrayOf(
-                        PropTypes.shape({
-                            id: PropTypes.string.isRequired,
-                            hotelId: PropTypes.string.isRequired,
-                            facility: PropTypes.shape({
-                                id: PropTypes.string.isRequired,
-                                name: PropTypes.string.isRequired,
-                                isPaidPerRoom: PropTypes.bool,
-                                canBePaid: PropTypes.bool.isRequired,
-                            }).isRequired,
-                            price: PropTypes.number,
-                        }),
-                    ),
-                }),
+            }),
+            hotel: PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                country: PropTypes.string.isRequired,
+                city: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                facilities: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        name: PropTypes.string.isRequired,
+                        isPaidPerRoom: PropTypes.bool,
+                        canBePaid: PropTypes.bool.isRequired,
+                        price: PropTypes.number,
+                    }),
+                ),
             }),
             totalPrice: PropTypes.number,
             dateFrom: PropTypes.instanceOf(Date),
@@ -95,9 +88,7 @@ class BookingPage extends PureComponent {
                 </div>
             );
         }
-        return (
-            <Loader />
-        );
+        return <Loader />;
     }
 }
 

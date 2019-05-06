@@ -9,10 +9,10 @@ export default connect(
     state => ({
         bookings: state.userReducer.userBookings,
         bookingFilters: state.userReducer.bookingFilters,
-        _id: state.auth.user._id,
+        // _id: state.auth.user._id,
     }),
     dispatch => ({
-        fetchUserBookings: id => dispatch(actions.fetchUserBookings(id)),
+        fetchUserBookings: filters => dispatch(actions.fetchUserBookings(filters)),
         onInputChange: (event, { newValue }) => dispatch(autosuggestActions.updateInputValue(newValue)),
         onSuggestionsFetchRequested: ({ value }) => dispatch(autosuggestActions.loadSuggestions(value)),
         onSuggestionsClearRequested: () => dispatch(autosuggestActions.clearSuggestions()),
