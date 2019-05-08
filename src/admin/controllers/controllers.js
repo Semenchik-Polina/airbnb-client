@@ -1,27 +1,21 @@
 import axios from 'axios';
 
-// test
 export function saveImages(formData) {
-    return axios({
-        method: 'post',
-        url: '/api/images',
-        formData,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } },
+    return axios.post('/api/images', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
     });
 }
 
-export function createHotel(data) {
-    return axios({
-        method: 'post',
-        url: '/api/hotels',
-        data,
-        config: { headers: { 'Content-Type': 'multipart/form-data' } },
-    });
+export function createHotel(hotel) {
+    return axios.post('/api/hotels', { ...hotel });
 }
 
 export function deleteHotel(id) {
     return axios.delete(`/api/hotels/${id}`);
 }
+
 // not working yet
 export function editHotel(data) {
     return axios({
@@ -42,4 +36,8 @@ export function fetchHotel(id) {
 
 export function fetchSupposedFacilities() {
     return axios.get('/api/admin/base-facilities');
+}
+
+export function fetchSupposedRoomTypes() {
+    return axios.get('/api/admin/room-types');
 }

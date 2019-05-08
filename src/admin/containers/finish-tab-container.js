@@ -8,7 +8,7 @@ import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
-        hotel: new Hotel(state.adminReducer.hotelInfo),
+        hotel: new Hotel({ ...state.adminReducer.hotelInfo, photo: state.adminReducer.hotelInfo.rooms[0].photos[0] }),
         isEditableHotel: !!state.adminReducer.hotelInfo.id,
     }),
     dispatch => ({

@@ -34,16 +34,16 @@ class RoomForm extends PureComponent {
 
     render() {
         const {
-            handleSubmit, pristine, submitting, hideForm, className,
+            handleSubmit, pristine, submitting, hideForm, className, roomTypes,
         } = this.props;
 
         const formClasses = classNames('room-form', className);
-
-        return (
+        console.log(roomTypes);
+        return roomTypes ? (
             <Form className={formClasses} onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
-                    <Field className="room-form__field" name="type" component={DropDownSelect} options={ROOM_TYPES} />
+                    <Field className="room-form__field" name="type" component={DropDownSelect} options={roomTypes} />
                 </label>
                 <div className="room-form__multiple-field">
                     <label htmlFor="count">
@@ -87,7 +87,7 @@ class RoomForm extends PureComponent {
                 <div>
                     <Field
                         name="photos"
-                        className="photo-form__field"
+                        className="room-form__field"
                         validate={[validators.isRequired]}
                         component={ImageUploader}
                     />
@@ -111,7 +111,7 @@ class RoomForm extends PureComponent {
                     </Button>
                 </div>
             </Form>
-        );
+        ) : null;
     }
 }
 

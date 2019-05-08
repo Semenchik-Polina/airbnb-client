@@ -5,15 +5,6 @@ export const ROOM_TYPES = [
     { value: 'Apartment', label: 'Apartment' },
 ];
 
-export const HOTEL_ZONES = [
-    { value: 'Hotel', label: 'Hotel' },
-    { value: 'Outdoor space', label: 'Outdoor space' },
-    { value: 'Bar', label: 'Bar' },
-    { value: 'Restaurant', label: 'Restaurant' },
-    { value: 'Room', label: 'Room' },
-    { value: 'Bathroom', label: 'Bathroom' },
-];
-
 export const COUNTRIES = [{ value: 'Belarus', label: 'Belarus' }, { value: 'Russia', label: 'Russia' }];
 
 export const SERVICE_ANSWERS = [

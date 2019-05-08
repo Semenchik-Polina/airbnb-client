@@ -8,6 +8,12 @@ import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
+        roomTypes: state.adminReducer.roomTypes
+            ? state.adminReducer.roomTypes.map(type => ({
+                value: type.id,
+                label: type.name,
+            }))
+            : null,
         initialValues: state.adminReducer.hotelInfo.editableId
             ? {
                 ..._.find(state.adminReducer.hotelInfo.rooms, {

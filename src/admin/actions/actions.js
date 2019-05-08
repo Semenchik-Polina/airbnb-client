@@ -73,15 +73,15 @@ export function removePhotoItem(id) {
     };
 }
 
-export function addRoomType(roomType) {
+export function addRoomType(room) {
     return (dispatch) => {
         dispatch({
             type: types.ADD_ROOM_TYPE,
-            roomType: {
-                ...roomType,
-                capacity: +roomType.capacity,
-                amount: +roomType.amount,
-                cost: +roomType.cost,
+            room: {
+                ...room,
+                capacity: +room.capacity,
+                count: +room.count,
+                cost: +room.cost,
             },
         });
     };
@@ -108,7 +108,9 @@ export function editRoomType(data) {
 export function fetchHotels() {
     return async (dispatch) => {
         try {
-            const { data: { hotels } } = await controllers.fetchHotels();
+            const {
+                data: { hotels },
+            } = await controllers.fetchHotels();
             dispatch({
                 type: types.FETCH_ALL_HOTELS_FOR_ADMIN,
                 hotels: hotels.map(hotel => new Hotel(hotel)),
@@ -121,11 +123,9 @@ export function fetchHotels() {
 
 export function formatData(data) {
     const formData = new FormData();
-    const images = _.flattenDeep(data.photoTour.map(item => item.photos));
-    images.forEach(image => formData.append('image', image));
+    const images = _.flattenDeep(data.rooms.map(room => room.photos));
 
-    const hotelInfo = JSON.stringify(data);
-    formData.append('info', hotelInfo);
+    images.forEach(image => formData.append('image', image));
 
     return formData;
 }
@@ -136,8 +136,23 @@ export function createHotel(data) {
             const formData = formatData(data);
 
             const {
+                data: { images },
+            } = await controllers.saveImages(formData);
+
+            const newHotel = {
+                ...data,
+                rooms: data.rooms
+                    .reverse()
+                    .map(room => ({
+                        ...room,
+                        photos: room.photos.reverse().map(() => images.pop()),
+                    }))
+                    .reverse(),
+            };
+
+            const {
                 data: { hotel },
-            } = await controllers.createHotel(formData);
+            } = await controllers.createHotel(newHotel);
 
             dispatch({
                 type: types.ADD_NEW_HOTEL,
@@ -157,6 +172,7 @@ export function createHotel(data) {
     };
 }
 
+// not working yet
 export function editHotel(data) {
     return async (dispatch) => {
         try {
@@ -248,6 +264,23 @@ export function fetchSupposedFacilities() {
             dispatch({
                 type: types.FETCH_SUPPOSED_HOTEL_FACILITIES,
                 data: facilities,
+            });
+        } catch (err) {
+            showErrorToast(err);
+        }
+    };
+}
+
+export function fetchRoomTypes() {
+    return async (dispatch) => {
+        try {
+            const {
+                data: { roomTypes },
+            } = await controllers.fetchSupposedRoomTypes();
+
+            dispatch({
+                type: types.FETCH_SUPPOSED_ROOM_TYPES,
+                roomTypes,
             });
         } catch (err) {
             showErrorToast(err);

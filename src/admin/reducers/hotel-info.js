@@ -31,15 +31,15 @@ const hotelInfoReducer = (state = initialState, action) => {
         };
     }
     case types.ADD_ROOM_TYPE: {
-        const { roomType } = action;
+        const { room } = action;
         let newRooms;
-        const { id } = roomType;
+        const { id } = room;
         if (id) {
-            newRooms = _.cloneDeep(state.roomTypes);
-            newRooms[_.findIndex(state.roomTypes, { id })] = roomType;
+            newRooms = _.cloneDeep(state.rooms);
+            newRooms[_.findIndex(state.rooms, { id })] = room;
         } else {
-            roomType.id = uuidv1();
-            newRooms = [...state.roomTypes, roomType];
+            room.id = uuidv1();
+            newRooms = [...state.rooms, room];
         }
 
         return {
@@ -76,10 +76,10 @@ const hotelInfoReducer = (state = initialState, action) => {
     }
     case types.DELETE_ROOM_TYPE: {
         const { id } = action;
-        const roomTypes = state.roomTypes.filter(roomType => roomType.id !== id);
+        const rooms = state.rooms.filter(room => room.id !== id);
         return {
             ...state,
-            roomTypes: [...roomTypes],
+            rooms: [...rooms],
         };
     }
     case types.FILL_HOTEL_INFO: {
