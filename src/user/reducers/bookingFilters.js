@@ -1,7 +1,7 @@
 import * as types from '../constants/types';
 
 const initialState = {
-    isCompleted: true,
+    isCompleted: false,
     location: {
         country: '',
         city: '',

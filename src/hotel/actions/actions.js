@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 import history from '../../shared/tools/history';
+import Hotel from '../../shared/models/hotel';
 
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
@@ -19,7 +20,7 @@ export function fetchHotel(id) {
 
             dispatch({
                 type: types.FETCH_HOTEL,
-                hotel,
+                hotel: new Hotel(hotel),
             });
         } catch (err) {
             showErrorToast(err);
@@ -28,9 +29,20 @@ export function fetchHotel(id) {
 }
 
 export function requestBooking(values) {
-    return () => {
+    return async () => {
         // fake request
-        history.push('/books/1');
+        console.log(values);
+        const booking = {
+            guests: values.guests,
+            room: values.room.id,
+            dateFrom: values.dates.from,
+            dateTo: values.dates.to,
+        };
+        console.log(booking);
+        const {
+            data: { id },
+        } = await controllers.createBooking(booking);
+        history.push(`/books/${id}`);
     };
 }
 export function showModal() {

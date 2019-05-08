@@ -1,5 +1,7 @@
 import history from '../../shared/tools/history';
 
+import Booking from '../../shared/models/booking';
+
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
 
@@ -9,12 +11,12 @@ export function fetchBooking(id) {
             data: { booking },
         } = await controllers.fetchBooking(id);
 
-        dispatch({ type: types.FETCH_BOOKING, booking });
+        dispatch({ type: types.FETCH_BOOKING, booking: new Booking(booking) });
     };
 }
 
 export function makeFinalBooking(booking, details) {
-    return () => {
+    return async () => {
         const paidFacilities = details.paidFacilities
             .filter(facility => facility.checked)
             .map((facility) => {
@@ -34,8 +36,9 @@ export function makeFinalBooking(booking, details) {
             isApproved: true,
         };
 
+        await controllers.approveBooking(finalBooking);
         // api - send finalBooking to server
-        history.push(`/${finalBooking.user._id}/bookings`);
+        history.push('/user/bookings');
     };
 }
 

@@ -4,50 +4,26 @@ import PropTypes from 'prop-types';
 import PhotoItem from '../photo-item/photo-item';
 
 import devideArray from '../../tools/devideArray';
+import Hotel from '../../models/hotel';
 
 import './hotel-item.scss';
 
 class HotelItem extends PureComponent {
     static propTypes = {
-        hotelInfo: PropTypes.shape({
-            country: PropTypes.string.isRequired,
-            city: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            address: PropTypes.string.isRequired,
-            rooms: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    count: PropTypes.number.isRequired,
-                    capacity: PropTypes.number.isRequired,
-                    cost: PropTypes.number.isRequired,
-                    type: PropTypes.string.isRequired,
-                    photos: PropTypes.arrayOf(
-                        PropTypes.shape({
-                            src: PropTypes.string.isRequired,
-                        }),
-                    ).isRequired,
-                }),
-            ).isRequired,
-            facilities: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    hint: PropTypes.string,
-                    imageUrl: PropTypes.string,
-                    canBePaid: PropTypes.bool,
-                }),
-            ).isRequired,
-        }).isRequired,
+        hotel: PropTypes.instanceOf(Hotel).isRequired,
     };
 
     renderPhotoItems = (item, index) => (
         <div className="hotel-item__tour-gallery-item" key={item.id}>
             <PhotoItem photos={item.photos} key={index} />
-            <span className="hotel-item__tour-gallery-item-categoty">{item.type}</span>
+            <span className="hotel-item__tour-gallery-item-categoty">Room {index + 1}</span>
         </div>
     );
 
     render() {
-        const { rooms, facilities, ...mainInfo } = this.props.hotelInfo;
+        const {
+            rooms, facilities, photo, ...mainInfo
+        } = this.props.hotel;
 
         const totalCapacity = rooms.reduce((total, room) => total + room.capacity * room.count, 0);
         const totalRooms = rooms.reduce((total, room) => total + room.count, 0);
@@ -64,7 +40,7 @@ class HotelItem extends PureComponent {
                     <div
                         className="hotel-item__banner-image"
                         style={{
-                            backgroundImage: `url(${rooms[0].photos[0].src})`,
+                            backgroundImage: `url(${photo.src})`,
                         }}
                     />
                 </div>
@@ -72,16 +48,16 @@ class HotelItem extends PureComponent {
                     <span className="hotel-item__overview-item">{totalCapacity} guests </span>
                     <span className="hotel-item__overview-item">{totalRooms} rooms</span>
                 </div>
-                {/* {photoTour.length > 0 && (
+                {rooms.length > 0 && (
                     <section className="hotel-item__tour">
                         <span className="hotel-item__tour-header">Tour this hotel</span>
-                        {devideArray(photoTour, 4).map((item, index) => (
+                        {devideArray(rooms, 4).map((item, index) => (
                             <div className="hotel-item__tour-wrapper" key={index}>
                                 <div className="hotel-item__tour-gallery">{item.map(this.renderPhotoItems)}</div>
                             </div>
                         ))}
                     </section>
-                )} */}
+                )}
                 {freeFacilities.length > 0 && (
                     <section className="hotel-item__facilities">
                         <span className="hotel-item__facilities-header">Facilities and facilities</span>

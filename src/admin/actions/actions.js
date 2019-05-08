@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import _ from 'lodash';
 
 import history from '../../shared/tools/history';
+import Hotel from '../../shared/models/hotel';
 
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
@@ -107,10 +108,10 @@ export function editRoomType(data) {
 export function fetchHotels() {
     return async (dispatch) => {
         try {
-            const { data } = await controllers.fetchHotels();
+            const { data: { hotels } } = await controllers.fetchHotels();
             dispatch({
                 type: types.FETCH_ALL_HOTELS_FOR_ADMIN,
-                data,
+                hotels: hotels.map(hotel => new Hotel(hotel)),
             });
         } catch (err) {
             showErrorToast(err);
@@ -140,7 +141,7 @@ export function createHotel(data) {
 
             dispatch({
                 type: types.ADD_NEW_HOTEL,
-                hotel,
+                hotel: new Hotel(hotel),
             });
 
             showSuccessToast('Hotel created!');
@@ -205,7 +206,7 @@ export function startEditingHotel(id) {
 
         dispatch({
             type: types.FILL_HOTEL_INFO,
-            hotel,
+            hotel: new Hotel(hotel),
         });
         history.push('/admin-home/create-new-hotel');
     };

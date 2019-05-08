@@ -59,7 +59,7 @@ class Menu extends PureComponent {
                         )}
                         {isUserValidated && user.role === 'User' && (
                             <li className="menu__list-item">
-                                <NavLink exact to={`/${user._id}/bookings`} className="menu__list-action">
+                                <NavLink exact to="/user/bookings" className="menu__list-action">
                                     {'My trips'}
                                 </NavLink>
                             </li>

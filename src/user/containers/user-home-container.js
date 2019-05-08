@@ -7,8 +7,9 @@ import * as userActions from '../actions/actions';
 export default connect(
     state => ({
         hotels: state.userReducer.hotels,
+        filters: state.userReducer.hotelFilters,
     }),
     dispatch => ({
-        fetchHotels: () => dispatch(userActions.fetchHotels()),
+        fetchHotels: filters => dispatch(userActions.fetchHotels(filters)),
     }),
 )(UserHome);

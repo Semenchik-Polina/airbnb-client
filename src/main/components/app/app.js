@@ -25,8 +25,8 @@ const App = () => (
                 <PrivateRoute path="/admin-home" requiredRoles={[ROLES.ADMIN]} component={AdminHome} />
                 <PrivateRoute path="/books/:id" requiredRoles={[ROLES.USER]} component={BookingPage} />
                 <PrivateRoute exact path="/hotels" requiredRoles={[ROLES.USER]} component={UserHome} />
-                <PrivateRoute exact path="/:id" requiredRoles={[ROLES.USER]} component={UserHome} />
-                <PrivateRoute exact path="/:id/bookings" requiredRoles={[ROLES.USER]} component={UserBookings} />
+                <PrivateRoute exact path="/user" requiredRoles={[ROLES.USER]} component={UserHome} />
+                <PrivateRoute exact path="/user/bookings" requiredRoles={[ROLES.USER]} component={UserBookings} />
             </Switch>
             <ToastContainer autoClose={8000} />
         </div>

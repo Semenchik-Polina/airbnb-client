@@ -30,7 +30,11 @@ class DropDown extends PureComponent {
         if (this.state.isPanelOpened) {
             this.setState(state => ({ isPanelOpened: !state.isPanelOpened }));
         }
-        this.props.onClickOutside();
+        // this.props.onClickOutside();
+    };
+
+    closePanel = () => {
+        this.setState({ isPanelOpened: false });
     };
 
     render() {
@@ -43,6 +47,7 @@ class DropDown extends PureComponent {
                     {...props}
                     handleClick={this.handleClick}
                     isPanelOpened={this.state.isPanelOpened}
+                    closePanel={this.closePanel}
                     handleClickOutside={this.handleClickOutside}
                 />
                 {this.state.isPanelOpened && <div className="dropdown__shadow" />}

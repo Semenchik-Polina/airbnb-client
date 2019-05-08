@@ -7,7 +7,7 @@ import * as actions from '../actions/actions';
 
 export default connect(
     state => ({
-        hotelInfo: state.hotelPage.hotel,
+        hotel: state.hotelPage.hotel,
         isModalShown: state.hotelPage.bookingModal.isModalShown,
         user: state.auth.user,
         minPrice: state.hotelPage.hotel ? _.minBy(state.hotelPage.hotel.rooms, 'cost').cost : 0,

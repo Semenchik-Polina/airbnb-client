@@ -14,7 +14,7 @@ export default connect(
         const guestsSelector = selector(state, 'guests');
 
         const rooms = state.hotelPage.hotel.rooms.map((item) => {
-            const { id, count, ...value } = item;
+            const { count, ...value } = item;
             return {
                 value,
                 label: `Type: ${item.type}, capacity: ${item.capacity}, cost: ${item.cost}`,

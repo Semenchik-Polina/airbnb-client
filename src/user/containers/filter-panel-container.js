@@ -13,6 +13,7 @@ export default connect(
         guests: state.userReducer.hotelFilters.guests,
         dateRange: state.userReducer.hotelFilters.dateRange,
         location: state.userReducer.hotelFilters.location,
+        filters: state.userReducer.hotelFilters,
     }),
     dispatch => ({
         onInputChange: (event, { newValue }) => dispatch(autosuggestActions.updateInputValue(newValue)),
@@ -26,6 +27,6 @@ export default connect(
         clearDateFilter: () => dispatch(actions.clearDateFilter()),
         clearGuestFilter: () => dispatch(actions.clearGuestFilter()),
         clearLocationFilter: () => dispatch(actions.clearLocationFilter()),
-        applyFilters: () => dispatch(actions.applyFilters()),
+        applyFilters: filters => dispatch(actions.fetchHotels(filters)),
     }),
 )(FilterPanel);

@@ -9,6 +9,7 @@ import Button from '../../../shared/components/button/button';
 import ModalBooking from '../../containers/modal-booking-container';
 
 import { ROLES } from '../../../shared/constants/roles';
+import Hotel from '../../../shared/models/hotel';
 
 import './hotel-page.scss';
 
@@ -35,37 +36,7 @@ class HotelPage extends PureComponent {
         }).isRequired,
         minPrice: PropTypes.number.isRequired,
         maxPrice: PropTypes.number.isRequired,
-        hotelInfo: PropTypes.shape({
-            id: PropTypes.string,
-            country: PropTypes.string.isRequired,
-            city: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            address: PropTypes.string.isRequired,
-            rooms: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    count: PropTypes.number.isRequired,
-                    capacity: PropTypes.number.isRequired,
-                    cost: PropTypes.number.isRequired,
-                    type: PropTypes.string.isRequired,
-                }),
-            ).isRequired,
-            facilities: PropTypes.arrayOf(
-                PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-
-                    hint: PropTypes.string,
-                    imageUrl: PropTypes.string,
-                    canBePaid: PropTypes.bool.isRequired,
-                }),
-            ).isRequired,
-
-            photos: PropTypes.arrayOf(
-                PropTypes.shape({
-                    src: PropTypes.string.isRequired,
-                }),
-            ).isRequired,
-        }),
+        hotel: PropTypes.instanceOf(Hotel),
     };
 
     componentDidMount = () => {
@@ -82,13 +53,13 @@ class HotelPage extends PureComponent {
 
     render() {
         const {
-            hotelInfo, user, maxPrice, minPrice, isModalShown, match,
+            hotel, user, maxPrice, minPrice, isModalShown, match,
         } = this.props;
 
-        if (hotelInfo && hotelInfo.id === match.params.id) {
+        if (hotel && hotel.id === match.params.id) {
             return (
                 <div className="hotel-page">
-                    <HotelItem hotelInfo={hotelInfo} />
+                    <HotelItem hotel={hotel} />
                     {user && user.role !== ROLES.ADMIN && (
                         <div className="hotel-page__booking">
                             <div className="hotel-page__booking-price">

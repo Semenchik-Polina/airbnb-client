@@ -28,7 +28,7 @@ class UserHome extends PureComponent {
     };
 
     componentDidMount() {
-        this.props.fetchHotels();
+        this.props.fetchHotels(this.props.filters);
     }
 
     redirectToHotelPage = id => () => {

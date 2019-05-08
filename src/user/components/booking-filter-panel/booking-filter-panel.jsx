@@ -43,7 +43,7 @@ class BookingFilterPanel extends PureComponent {
 
     switchBookingRelevance = async () => {
         await this.props.switchBookingRelevance();
-        // this.props.applyFilters();
+        this.props.applyFilters();
     };
 
     render() {

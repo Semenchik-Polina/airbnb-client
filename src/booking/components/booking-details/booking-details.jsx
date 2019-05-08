@@ -13,6 +13,7 @@ import TimePickerInput from '../time-picker-input/time-picker-input';
 import SwitchInput from '../switch-input/switch-input';
 import Timer from '../timer/timer';
 
+import Booking from '../../../shared/models/booking';
 import history from '../../../shared/tools/history';
 import * as constants from '../../constants/index';
 
@@ -56,25 +57,7 @@ class BookingDetails extends PureComponent {
                 price: PropTypes.number,
             }),
         ).isRequired,
-        booking: PropTypes.shape({
-            id: PropTypes.string,
-            user: PropTypes.string,
-
-            isApproved: PropTypes.bool.isRequired,
-            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
-            guests: PropTypes.number,
-            room: PropTypes.shape({
-                type: PropTypes.string,
-                capacity: PropTypes.number,
-                cost: PropTypes.number,
-            }).isRequired,
-            hotel: PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired,
-            }),
-        }).isRequired,
+        booking: PropTypes.instanceOf(Booking).isRequired,
     };
 
     handleSubmit = (details) => {

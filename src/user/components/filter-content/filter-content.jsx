@@ -29,7 +29,7 @@ class FilterContent extends PureComponent {
         const filterContentClasses = classNames('filter-content', className);
 
         return (
-            <DropDown className={filterContentClasses} onClickOutside={onApplyClick} {...props}>
+            <DropDown className={filterContentClasses} onClickOutside={onClearClick} {...props}>
                 <div className="filter-content__container">
                     <div className="filter-content__container-filter-wrapper">{children}</div>
                     {!!props.value && (

@@ -15,11 +15,11 @@ class UserBookings extends PureComponent {
     };
 
     static propTypes = {
-        match: PropTypes.shape({
-            params: PropTypes.shape({
-                id: PropTypes.string.isRequired,
-            }),
-        }).isRequired,
+        // match: PropTypes.shape({
+        //     params: PropTypes.shape({
+        //         id: PropTypes.string.isRequired,
+        //     }),
+        // }).isRequired,
         // _id: PropTypes.string.isRequired,
         fetchUserBookings: PropTypes.func.isRequired,
         bookings: PropTypes.arrayOf(PropTypes.shape({})),
@@ -41,7 +41,7 @@ class UserBookings extends PureComponent {
 
     applyFilters = () => {
         this.props.fetchUserBookings(this.props.bookingFilters);
-        console.log("apply");
+        console.log('apply');
     };
 
     render() {
@@ -50,7 +50,7 @@ class UserBookings extends PureComponent {
             bookingFilters: { isCompleted, location },
         } = this.props;
 
-        const label = `${isCompleted ? 'Future' : 'Past'} trips${
+        const label = `${isCompleted ? 'Past' : 'Future'} trips${
             location.country ? ` in ${location.country}, ${location.city}` : ''
         }`;
 

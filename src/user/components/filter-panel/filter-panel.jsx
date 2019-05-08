@@ -42,6 +42,10 @@ class FilterPanel extends PureComponent {
         this.props.clearSuggestions();
     };
 
+    applyFilters = () => {
+        this.props.applyFilters(this.props.filters);
+    };
+
     render() {
         const {
             dateRange,
@@ -59,7 +63,6 @@ class FilterPanel extends PureComponent {
             clearDateFilter,
             clearGuestFilter,
             clearLocationFilter,
-            applyFilters,
         } = this.props;
 
         const dateLabel = `${dateRange.from ? moment(dateRange.from).format('MMM D') : ''}${
@@ -83,7 +86,7 @@ class FilterPanel extends PureComponent {
                         value={dateLabel}
                         className="filter-panel__parameters-item"
                         onClearClick={clearDateFilter}
-                        onApplyClick={applyFilters}
+                        onApplyClick={this.applyFilters}
                     >
                         <DayPickerFilter to={dateRange.to} from={dateRange.from} onDayClick={setDateFilterRange} />
                     </FilterContent>
@@ -92,7 +95,7 @@ class FilterPanel extends PureComponent {
                         value={guestLabel}
                         className="filter-panel__parameters-item"
                         onClearClick={clearGuestFilter}
-                        onApplyClick={applyFilters}
+                        onApplyClick={this.applyFilters}
                     >
                         <span>Guests</span>
                         <Counter
@@ -107,7 +110,7 @@ class FilterPanel extends PureComponent {
                         value={locationFilterLabel}
                         className="filter-panel__parameters-item"
                         onClearClick={clearLocationFilter}
-                        onApplyClick={applyFilters}
+                        onApplyClick={this.applyFilters}
                     >
                         <AutosuggestInput
                             suggestions={suggestions}

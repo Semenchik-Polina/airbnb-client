@@ -9,9 +9,6 @@ const bookingReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.FETCH_BOOKING: {
         const { booking } = action;
-        booking.requestedAt = new Date(booking.requestedAt);
-        booking.dateFrom = new Date(booking.dateFrom);
-        booking.dateTo = new Date(booking.dateTo);
 
         return {
             ...state,

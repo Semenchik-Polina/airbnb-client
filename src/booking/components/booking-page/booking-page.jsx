@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'React';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
 
 import { withRouter, Route, Redirect } from 'react-router-dom';
 
 import Loader from '../../../shared/components/loader/loader';
-import DetailsTab from '../../containers/booking-details-container';
+import EditDetailsTab from '../../containers/booking-details-approve-container';
+import ShiftDetailsTab from '../../containers/booking-details-edit-container';
 
+import Booking from '../../../shared/models/booking';
 import history from '../../../shared/tools/history';
 
 import './booking-page.scss';
@@ -23,37 +24,7 @@ class BookingPage extends PureComponent {
                 id: PropTypes.string.isRequired,
             }).isRequired,
         }).isRequired,
-        booking: PropTypes.shape({
-            id: PropTypes.string,
-            user: PropTypes.string,
-
-            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(Moment)]).isRequired,
-            guests: PropTypes.number,
-            room: PropTypes.shape({
-                id: PropTypes.string,
-                type: PropTypes.string,
-                capacity: PropTypes.number,
-                cost: PropTypes.number,
-            }),
-            hotel: PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired,
-                facilities: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        name: PropTypes.string.isRequired,
-                        isPaidPerRoom: PropTypes.bool,
-                        canBePaid: PropTypes.bool.isRequired,
-                        price: PropTypes.number,
-                    }),
-                ),
-            }),
-            totalPrice: PropTypes.number,
-            dateFrom: PropTypes.instanceOf(Date),
-            dateTo: PropTypes.instanceOf(Date),
-        }),
+        booking: PropTypes.instanceOf(Booking),
     };
 
     componentDidMount = () => {
@@ -83,7 +54,11 @@ class BookingPage extends PureComponent {
                 <div className="booking-page">
                     <div className="booking-page__route">
                         <Route path="/books/:id" component={this.redirectToMainForm} />
-                        <Route exact path="/books/:id/details" component={DetailsTab} />
+                        <Route
+                            exact
+                            path="/books/:id/details"
+                            component={booking.isApproved ? ShiftDetailsTab : EditDetailsTab}
+                        />
                     </div>
                 </div>
             );

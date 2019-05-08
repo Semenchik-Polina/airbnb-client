@@ -5,24 +5,14 @@ import Tool from '../../../shared/components/tool/tool';
 import PhotoItem from '../../../shared/components/photo-item/photo-item';
 
 import devideArray from '../../../shared/tools/devideArray';
+import Hotel from '../../../shared/models/hotel';
 
 import './admin-panel.scss';
 
 class AdminPanel extends PureComponent {
     static propTypes = {
         hotels: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-                city: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired,
-                address: PropTypes.string.isRequired,
-                photos: PropTypes.arrayOf(
-                    PropTypes.shape({
-                        src: PropTypes.string.isRequired,
-                    }),
-                ).isRequired,
-            }),
+            PropTypes.instanceOf(Hotel),
         ).isRequired,
 
         fetchHotels: PropTypes.func.isRequired,

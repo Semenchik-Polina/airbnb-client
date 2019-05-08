@@ -2,43 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import Booking from '../../../shared/models/booking';
 import history from '../../../shared/tools/history';
 
 import './booking-item.scss';
 
 class BookingItem extends PureComponent {
     static propTypes = {
-        booking: PropTypes.shape({
-            id: PropTypes.string,
-            user: PropTypes.string,
-
-            requestedAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]),
-            guests: PropTypes.number,
-            // room: PropTypes.shape({
-            //     id: PropTypes.string,
-            //     type: PropTypes.string,
-            //     capacity: PropTypes.number,
-            //     cost: PropTypes.number,
-            //     services: PropTypes.arrayOf(
-            //         PropTypes.shape({
-            //             id: PropTypes.string.isRequired,
-            //             count: PropTypes.number,
-            //         }),
-            //     ),
-            //     hotel: PropTypes.shape({
-            //         id: PropTypes.string.isRequired,
-            //         country: PropTypes.string.isRequired,
-            //         city: PropTypes.string.isRequired,
-            //         hotelName: PropTypes.string.isRequired,
-            //     }),
-            // }),
-            totalPrice: PropTypes.number.isRequired,
-            dateFrom: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
-            dateTo: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.instanceOf(moment)]).isRequired,
-            arrivalTime: PropTypes.string.isRequired,
-            departureTime: PropTypes.string.isRequired,
-            hotelThumbnailUrl: PropTypes.string.isRequired,
-        }).isRequired,
+        booking: PropTypes.instanceOf(Booking).isRequired,
     };
 
     redirectToBookingDetails = () => {
@@ -53,19 +24,19 @@ class BookingItem extends PureComponent {
                 <div
                     className="booking-item__image"
                     style={{
-                        backgroundImage: `url(${booking.hotelThumbnailUrl})`,
+                        backgroundImage: `url(${booking.photo})`,
                     }}
                 />
                 <div className="booking-item__content">
-                    {/* <div className="booking-item__content-hotel-name">
-                        <span>{booking.room.hotel.hotelName}</span>
-                    </div> */}
+                    <div className="booking-item__content-hotel-name">
+                        <span>{booking.hotel.name}</span>
+                    </div>
                     <div className="booking-item__content-dates">
                         <span className="booking-item__content-dates-item">
-                            {moment(booking.dateFrom).format('MMMM Do YYYY')} - {booking.arrivalTime}
+                            {moment(booking.dateFrom).format('MMMM Do YYYY')} - {booking.arrivalTime || 'no time'}
                         </span>
                         <span className="booking-item__content-dates-item">
-                            {moment(booking.dateTo).format('MMMM Do YYYY')} - {booking.departureTime}
+                            {moment(booking.dateTo).format('MMMM Do YYYY')} - {booking.departureTime || 'no time'}
                         </span>
                     </div>
                 </div>

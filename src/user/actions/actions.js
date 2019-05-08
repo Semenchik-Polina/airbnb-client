@@ -1,6 +1,8 @@
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
+import Booking from '../../shared/models/booking';
+
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
 
@@ -14,20 +16,25 @@ export function fetchUserBookings(filters) {
         const {
             data: { bookings },
         } = await controllers.fetchUserBookings(filters);
-        console.log(bookings);
+
         dispatch({
             type: types.FETCH_USER_BOOKINGS,
-            bookings,
+            bookings: {
+                approvedBookings: bookings.approvedBookings.map(booking => new Booking(booking)),
+                unapprovedBookings: bookings.unapprovedBookings.map(booking => new Booking(booking)),
+                expiredBookings: bookings.expiredBookings.map(booking => new Booking(booking)),
+            },
         });
     };
 }
 
-export function fetchHotels() {
+export function fetchHotels(filters) {
     return async (dispatch) => {
+
         try {
             const {
                 data: { hotels },
-            } = await controllers.fetchHotels();
+            } = await controllers.fetchHotels(filters);
 
             dispatch({
                 type: types.FETCH_ALL_HOTELS,
@@ -100,13 +107,6 @@ export function clearLocationFilter() {
         dispatch({
             type: types.CLEAR_SUGGESTIONS,
         });
-    };
-}
-
-export function applyFilters() {
-    return () => {
-        // fake request here
-        // fetchHotels with filters field
     };
 }
 

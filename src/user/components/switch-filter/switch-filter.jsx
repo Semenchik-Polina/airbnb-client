@@ -23,8 +23,8 @@ class SwitchFilter extends PureComponent {
                 <Switch
                     onClick={this.onChange}
                     checked={this.props.checked}
-                    checkedChildren="Future"
-                    unCheckedChildren="Past"
+                    checkedChildren="Past"
+                    unCheckedChildren="Future"
                     prefixCls="switch-filter"
                 />
             </div>
