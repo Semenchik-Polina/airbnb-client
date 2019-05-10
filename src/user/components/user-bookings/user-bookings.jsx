@@ -15,15 +15,8 @@ class UserBookings extends PureComponent {
     };
 
     static propTypes = {
-        // match: PropTypes.shape({
-        //     params: PropTypes.shape({
-        //         id: PropTypes.string.isRequired,
-        //     }),
-        // }).isRequired,
-        // _id: PropTypes.string.isRequired,
         fetchUserBookings: PropTypes.func.isRequired,
         bookings: PropTypes.arrayOf(PropTypes.shape({})),
-
         bookingFilters: PropTypes.shape({
             location: PropTypes.shape({
                 country: PropTypes.string,
@@ -34,14 +27,11 @@ class UserBookings extends PureComponent {
     };
 
     componentDidMount = () => {
-        // if (this.props.match.params.id === this.props._id) {
         this.props.fetchUserBookings(this.props.bookingFilters);
-        // }
     };
 
     applyFilters = () => {
         this.props.fetchUserBookings(this.props.bookingFilters);
-        console.log('apply');
     };
 
     render() {
@@ -63,7 +53,7 @@ class UserBookings extends PureComponent {
                         {bookings.length > 0 ? (
                             bookings.map((booking, index) => <BookingItem booking={booking} key={index} />)
                         ) : (
-                            <span>No future trips</span>
+                            <span>No {isCompleted ? 'past' : 'future'} trips</span>
                         )}
                     </div>
                 ) : (

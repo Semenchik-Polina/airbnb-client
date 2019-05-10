@@ -7,3 +7,7 @@ export function fetchBooking(id) {
 export function approveBooking(booking) {
     return axios.put(`/api/user/bookings/approve/${booking.id}`, { ...booking });
 }
+
+export function shiftTime(booking) {
+    return axios.patch(`/api/user/bookings/shift-time/${booking.id}`, { ...booking });
+}

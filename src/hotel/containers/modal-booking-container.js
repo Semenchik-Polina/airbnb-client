@@ -5,19 +5,20 @@ import { reduxForm, formValueSelector, change } from 'redux-form';
 import ModalBooking from '../components/modal-booking/modal-booking';
 
 import * as actions from '../actions/actions';
+import Room from '../../shared/models/room';
 
 const selector = formValueSelector('bookingForm');
 
 export default connect(
     (state) => {
-        const selectedRoomType = selector(state, 'roomType');
+        const selectedRoom = selector(state, 'room');
         const guestsSelector = selector(state, 'guests');
 
-        const rooms = state.hotelPage.hotel.rooms.map((item) => {
+        const rooms = state.hotelPage.hotel.rooms.map((item, index) => {
             const { count, ...value } = item;
             return {
-                value,
-                label: `Type: ${item.type}, capacity: ${item.capacity}, cost: ${item.cost}`,
+                value: new Room(value),
+                label: `Room ${index + 1}: guests: ${item.capacity}, cost: $${item.cost}`,
             };
         });
 
@@ -34,7 +35,7 @@ export default connect(
         return {
             rooms,
             guestsSelector,
-            selectedRoomType,
+            selectedRoom,
             initialValues: { room: room.value, guests, dates },
         };
     },

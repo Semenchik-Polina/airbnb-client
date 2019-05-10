@@ -38,7 +38,7 @@ export default connect(
     }),
     dispatch => ({
         bookingAction: (booking, details) => {
-            dispatch(actions.changeCheckInCheckOutTime(booking, details));
+            dispatch(actions.shiftTime(booking, details));
         },
     }),
 )(

@@ -37,20 +37,19 @@ export function makeFinalBooking(booking, details) {
         };
 
         await controllers.approveBooking(finalBooking);
-        // api - send finalBooking to server
         history.push('/user/bookings');
     };
 }
 
-export function changeCheckInCheckOutTime(booking, details) {
-    return () => {
+export function shiftTime(booking, details) {
+    return async () => {
         const finalBooking = {
             ...booking,
             arrivalTime: details.arrivalTime,
             departureTime: details.departureTime,
         };
 
-        // api - send booking to server
-        history.push(`/${finalBooking.user._id}/bookings`);
+        await controllers.shiftTime(finalBooking);
+        history.push('/user/bookings');
     };
 }

@@ -30,15 +30,13 @@ export function fetchHotel(id) {
 
 export function requestBooking(values) {
     return async () => {
-        // fake request
-        console.log(values);
         const booking = {
             guests: values.guests,
             room: values.room.id,
             dateFrom: values.dates.from,
             dateTo: values.dates.to,
         };
-        console.log(booking);
+
         const {
             data: { id },
         } = await controllers.createBooking(booking);
