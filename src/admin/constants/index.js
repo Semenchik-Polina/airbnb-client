@@ -1,10 +1,3 @@
-export const ROOM_TYPES = [
-    { value: 'Single', label: 'Single' },
-    { value: 'Double', label: 'Double' },
-    { value: 'Twin', label: 'Twin' },
-    { value: 'Apartment', label: 'Apartment' },
-];
-
 export const COUNTRIES = [{ value: 'Belarus', label: 'Belarus' }, { value: 'Russia', label: 'Russia' }];
 
 export const SERVICE_ANSWERS = [

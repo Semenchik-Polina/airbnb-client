@@ -7,7 +7,7 @@ const roomTypesReducer = (state = initialState, action) => {
     case types.FETCH_SUPPOSED_ROOM_TYPES: {
         const { roomTypes } = action;
 
-        return roomTypes;
+        return [...roomTypes];
     }
     default:
         return state;

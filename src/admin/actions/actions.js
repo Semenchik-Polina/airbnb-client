@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import history from '../../shared/tools/history';
 import Hotel from '../../shared/models/hotel';
+import Room from '../../shared/models/room';
 
 import * as controllers from '../controllers/controllers';
 import * as types from '../constants/types';
@@ -73,33 +74,28 @@ export function removePhotoItem(id) {
     };
 }
 
-export function addRoomType(room) {
+export function addRoom(room) {
     return (dispatch) => {
         dispatch({
-            type: types.ADD_ROOM_TYPE,
-            room: {
-                ...room,
-                capacity: +room.capacity,
-                count: +room.count,
-                cost: +room.cost,
-            },
+            type: types.ADD_ROOM,
+            room: new Room(room),
         });
     };
 }
 
-export function deleteRoomType(id) {
+export function deleteRoom(id) {
     return (dispatch) => {
         dispatch({
-            type: types.DELETE_ROOM_TYPE,
+            type: types.DELETE_ROOM,
             id,
         });
     };
 }
 
-export function editRoomType(data) {
+export function editRoom(data) {
     return (dispatch) => {
         dispatch({
-            type: types.EDIT_ROOM_TYPE,
+            type: types.EDIT_ROOM,
             data,
         });
     };
@@ -141,6 +137,12 @@ export function createHotel(data) {
 
             const newHotel = {
                 ...data,
+                facilities: data.facilities.map((facility) => {
+                    if (facility.price === 0) {
+                        delete facility.price;
+                    }
+                    return facility;
+                }),
                 rooms: data.rooms
                     .reverse()
                     .map(room => ({

@@ -8,24 +8,25 @@ import * as adminActions from '../actions/actions';
 
 export default connect(
     state => ({
-        roomTypes: state.adminReducer.roomTypes
-            ? state.adminReducer.roomTypes.map(type => ({
-                value: type.id,
-                label: type.name,
-            }))
-            : null,
+        roomTypes: state.adminReducer.roomTypes.map(type => ({
+            value: type.id,
+            label: type.name,
+        })),
         initialValues: state.adminReducer.hotelInfo.editableId
             ? {
                 ..._.find(state.adminReducer.hotelInfo.rooms, {
                     id: state.adminReducer.hotelInfo.editableId,
                 }),
+                type: _.find(state.adminReducer.hotelInfo.rooms, {
+                    id: state.adminReducer.hotelInfo.editableId,
+                }).type._id,
             }
             : {
-                type: 'Twin',
+                type: state.adminReducer.roomTypes[0].id,
             },
     }),
     dispatch => ({
-        addRoomType: data => dispatch(adminActions.addRoomType(data)),
+        addRoom: data => dispatch(adminActions.addRoom(data)),
     }),
 )(
     reduxForm({

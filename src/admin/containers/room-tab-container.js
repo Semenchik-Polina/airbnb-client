@@ -7,10 +7,10 @@ import * as actions from '../actions/actions';
 export default connect(
     state => ({
         rooms: state.adminReducer.hotelInfo.rooms,
+        roomTypes: state.adminReducer.roomTypes,
     }),
     dispatch => ({
-        addRooms: data => dispatch(actions.addRooms(data)),
-        deleteRoomType: id => dispatch(actions.deleteRoomType(id)),
+        deleteRoom: id => dispatch(actions.deleteRoom(id)),
         setEditableId: id => dispatch(actions.setEditableId(id)),
         unsetEditableId: () => dispatch(actions.unsetEditableId()),
         fetchRoomTypes: () => dispatch(actions.fetchRoomTypes()),

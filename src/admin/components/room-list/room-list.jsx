@@ -1,19 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 import RoomItem from '../room-item/room-item';
 
 class RoomList extends PureComponent {
     static defaultProps = {
         className: '',
+        roomTypes: null,
     };
 
     static propTypes = {
         rooms: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-        deleteRoomType: PropTypes.func.isRequired,
-        editRoomType: PropTypes.func.isRequired,
         className: PropTypes.string,
+        roomTypes: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+            }),
+        ),
     };
 
     render() {
@@ -26,8 +32,8 @@ class RoomList extends PureComponent {
                     <RoomItem
                         key={index}
                         room={room}
-                        deleteRoomType={this.props.deleteRoomType}
-                        editRoomType={this.props.editRoomType}
+                        type={_.find(this.props.roomTypes, { id: room.type }).name}
+                        {...this.props}
                     />
                 ))}
             </div>

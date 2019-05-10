@@ -30,7 +30,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             facilities: services,
         };
     }
-    case types.ADD_ROOM_TYPE: {
+    case types.ADD_ROOM: {
         const { room } = action;
         let newRooms;
         const { id } = room;
@@ -74,7 +74,7 @@ const hotelInfoReducer = (state = initialState, action) => {
             photoTour: items,
         };
     }
-    case types.DELETE_ROOM_TYPE: {
+    case types.DELETE_ROOM: {
         const { id } = action;
         const rooms = state.rooms.filter(room => room.id !== id);
         return {

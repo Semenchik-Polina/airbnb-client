@@ -9,7 +9,6 @@ import DropDownSelect from '../../../shared/components/dropdown-select/dropdown-
 import ImageUploader from '../image-uploader/image-uploader';
 
 import * as validators from '../../../shared/tools/validators';
-import { ROOM_TYPES } from '../../constants/index';
 
 import './room-form.scss';
 
@@ -23,27 +22,38 @@ class RoomForm extends PureComponent {
         pristine: PropTypes.bool.isRequired,
         submitting: PropTypes.bool.isRequired,
         hideForm: PropTypes.func.isRequired,
-        addRoomType: PropTypes.func.isRequired,
+        addRoom: PropTypes.func.isRequired,
         className: PropTypes.string,
+        roomTypes: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.string.isRequired,
+                label: PropTypes.string.isRequired,
+            }),
+        ).isRequired,
     };
 
     handleSubmit = (values) => {
-        this.props.addRoomType(values);
+        this.props.addRoom(values);
         this.props.hideForm();
     };
 
     render() {
         const {
-            handleSubmit, pristine, submitting, hideForm, className, roomTypes,
+            handleSubmit, pristine, submitting, hideForm, className,
         } = this.props;
 
         const formClasses = classNames('room-form', className);
-        console.log(roomTypes);
-        return roomTypes ? (
+
+        return (
             <Form className={formClasses} onSubmit={handleSubmit(this.handleSubmit)} noValidate>
                 <label htmlFor="type">
                     {'Choose room type'}
-                    <Field className="room-form__field" name="type" component={DropDownSelect} options={roomTypes} />
+                    <Field
+                        className="room-form__field"
+                        name="type"
+                        component={DropDownSelect}
+                        options={this.props.roomTypes}
+                    />
                 </label>
                 <div className="room-form__multiple-field">
                     <label htmlFor="count">
@@ -111,7 +121,7 @@ class RoomForm extends PureComponent {
                     </Button>
                 </div>
             </Form>
-        ) : null;
+        );
     }
 }
 
