@@ -12,6 +12,7 @@ export default connect(
         // _id: state.auth.user._id,
     }),
     dispatch => ({
+        removeBooking: id => dispatch(actions.removeBooking(id)),
         fetchUserBookings: filters => dispatch(actions.fetchUserBookings(filters)),
         onInputChange: (event, { newValue }) => dispatch(autosuggestActions.updateInputValue(newValue)),
         onSuggestionsFetchRequested: ({ value }) => dispatch(autosuggestActions.loadSuggestions(value)),

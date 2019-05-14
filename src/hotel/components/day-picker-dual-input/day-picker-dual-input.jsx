@@ -36,6 +36,20 @@ const classNames = {
     outside: 'DayPicker-Day--outside day-picker-dual-input__calendar-day_outside',
 };
 
+const getDatesOfRange = (startDate, occipiedDate, endDate) => {
+    const dates = [];
+    let currentDate = occipiedDate;
+    if (moment(startDate).isBefore(occipiedDate)) {
+        while (currentDate <= endDate) {
+            dates.push(currentDate);
+            currentDate = moment(currentDate)
+                .add(1, 'd')
+                .toDate();
+        }
+    }
+    return dates;
+};
+
 class DayPickerDualInput extends PureComponent {
     static propTypes = {
         input: PropTypes.shape({
@@ -49,6 +63,7 @@ class DayPickerDualInput extends PureComponent {
                 PropTypes.string,
             ]).isRequired,
         }).isRequired,
+        occupiedDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
     };
 
     showFromMonth = () => {
@@ -66,20 +81,22 @@ class DayPickerDualInput extends PureComponent {
     };
 
     handleToChange = (to) => {
-        this.showFromMonth();
-        this.props.input.onChange({ from: this.props.input.value.from, to });
+        const dates = this.props.occupiedDates
+            .map(date => moment(date).isBetween(this.props.input.value.from, to, null, '[]'))
+            .filter(bool => bool);
+
+        if (dates.length === 0) {
+            this.props.input.onChange({ from: this.props.input.value.from, to });
+        }
     };
 
     createToRef = (el) => {
         this.to = el;
     };
 
-    handleOnDayClick = () => {
-        this.to.getInput().focus();
-    };
-
     render() {
         const { from, to } = this.props.input.value;
+        const { occupiedDates } = this.props;
 
         return (
             <div className="day-picker-dual-input">
@@ -96,10 +113,19 @@ class DayPickerDualInput extends PureComponent {
                     }}
                     dayPickerProps={{
                         selectedDays: [from, { from, to }],
-                        disabledDays: { after: to },
+                        // modifiers,
+                        // disabledDays: { after: to },
+                        disabledDays: [
+                            {
+                                before: new Date(2019, 4, 14),
+                            },
+                            { after: getDatesOfRange(from, occupiedDates[0], new Date(2019, 5)).pop() },
+
+                            ...occupiedDates,
+                        ],
+
                         toMonth: to,
                         numberOfMonths: 1,
-                        onDayClick: this.handleOnDayClick,
                         classNames,
                     }}
                     onDayChange={this.handleFromChange}
@@ -122,8 +148,17 @@ class DayPickerDualInput extends PureComponent {
                         }}
                         dayPickerProps={{
                             selectedDays: [from, { from, to }],
-                            disabledDays: { before: from },
+                            disabledDays: [
+                                { before: from },
+                                {
+                                    before: new Date(2019, 4, 14),
+                                },
+                                { after: getDatesOfRange(from, occupiedDates[0], new Date(2019, 5))[0] },
+                                ...occupiedDates,
+                            ],
+
                             month: from,
+                            // modifiers: {disabledDay} ,
                             fromMonth: from,
                             numberOfMonths: 1,
                             classNames,

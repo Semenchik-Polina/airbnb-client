@@ -65,7 +65,7 @@ class BookingDetails extends PureComponent {
     };
 
     renderRedirectToHotels = () => {
-        history.push('/hotels');
+        history.push('/user/bookings');
     };
 
     formatField = value => (this.props.booking.isApproved ? disableField() : defaultFormat(value));
@@ -121,7 +121,11 @@ class BookingDetails extends PureComponent {
                 <span className="booking-details__header">
                     Booking details
                     <NavLink className="booking-details__header-link" exact to={`/hotels/${booking.hotel.id}`}>
-                        view hotel
+                        <img
+                            src="https://img.icons8.com/metro/26/4b4b4b/3-star-hotel.png"
+                            alt="hotel"
+                        />
+                        <span>HOTEL</span>
                     </NavLink>
                 </span>
                 {!booking.isApproved && (

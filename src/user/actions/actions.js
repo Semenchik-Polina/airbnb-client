@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import moment from 'moment';
 
 import Booking from '../../shared/models/booking';
 
@@ -30,7 +29,6 @@ export function fetchUserBookings(filters) {
 
 export function fetchHotels(filters) {
     return async (dispatch) => {
-
         try {
             const {
                 data: { hotels },
@@ -132,5 +130,20 @@ export function clearBookingLocation() {
         dispatch({
             type: types.CLEAR_BOOKING_LOCATION_FILTER,
         });
+    };
+}
+
+export function removeBooking(id) {
+    return async (dispatch) => {
+        try {
+            await controllers.removeBooking(id);
+
+            dispatch({
+                type: types.REMOVE_BOOKING,
+                id,
+            });
+        } catch (err) {
+            showErrorToast(err);
+        }
     };
 }

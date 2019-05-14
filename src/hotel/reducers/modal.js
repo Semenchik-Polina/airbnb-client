@@ -2,6 +2,7 @@ import * as types from '../constants/types';
 
 const initialState = {
     isModalShown: false,
+    occupiedDates: [],
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -16,6 +17,13 @@ const modalReducer = (state = initialState, action) => {
         return {
             ...state,
             isModalShown: false,
+        };
+    }
+    case types.FETCH_OCCUPIED_DATES: {
+        const { occupiedDates } = action;
+        return {
+            ...state,
+            occupiedDates,
         };
     }
     default:

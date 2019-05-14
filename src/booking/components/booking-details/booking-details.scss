@@ -14,9 +14,11 @@
     &__header-link {
         margin-left: 10px;
 
+        text-decoration: none;
+
         color: rgb(75, 75, 75);
 
-        font: italic 1em "Roboto", sans-serif;
+        font: 500 0.7em "Roboto", sans-serif;
 
         &:hover {
             color: cadetblue;
@@ -183,7 +185,7 @@
         &:last-child {
             padding-left: 5px;
         }
-        
+
         @media only screen and (max-width: 515px) {
             padding: 0 2px;
         }

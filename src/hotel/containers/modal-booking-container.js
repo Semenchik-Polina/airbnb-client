@@ -35,13 +35,15 @@ export default connect(
         return {
             rooms,
             guestsSelector,
-            selectedRoom,
+            selectedRoom: selectedRoom || room.value,
             initialValues: { room: room.value, guests, dates },
+            occupiedDates: state.hotelPage.bookingModal.occupiedDates,
         };
     },
     dispatch => ({
         changeGuestValue: value => dispatch(change('bookingForm', 'guests', value)),
         requestBooking: values => dispatch(actions.requestBooking(values)),
+        fetchOccupiedDates: (room, dateFrom, dateTo) => dispatch(actions.fetchOccupiedDates(room, dateFrom, dateTo)),
     }),
 )(
     reduxForm({

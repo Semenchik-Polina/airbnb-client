@@ -1,32 +1,5 @@
 import * as types from '../constants/types';
-
-const territories = [
-    {
-        name: 'Belarus, Minsk',
-        country: 'Belarus',
-        city: 'Minsk',
-    },
-    {
-        name: 'Belarus, Gomel',
-        country: 'Belarus',
-        city: 'Gomel',
-    },
-    {
-        name: 'Belarus, Brest',
-        country: 'Belarus',
-        city: 'Brest',
-    },
-    {
-        name: 'Poland, Warsaw',
-        country: 'Poland',
-        city: 'Warsaw',
-    },
-    {
-        name: 'Poland, Krakow',
-        country: 'Poland',
-        city: 'Krakow',
-    },
-];
+import { territories } from '../constants/territories';
 
 export function clearValue() {
     return (dispatch) => {

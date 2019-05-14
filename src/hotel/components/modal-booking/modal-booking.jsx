@@ -23,6 +23,7 @@ class ModalBooking extends PureComponent {
 
     static propTypes = {
         onClose: PropTypes.func.isRequired,
+        fetchOccupiedDates: PropTypes.func.isRequired,
         handleSubmit: PropTypes.func.isRequired,
         requestBooking: PropTypes.func.isRequired,
         guestsSelector: PropTypes.number,
@@ -34,10 +35,16 @@ class ModalBooking extends PureComponent {
             }),
         ).isRequired,
         changeGuestValue: PropTypes.func.isRequired,
+        occupiedDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+    };
+
+    componentDidMount = () => {
+        this.props.fetchOccupiedDates(this.props.selectedRoom.id, new Date(2019, 4), new Date(2019, 5));
     };
 
     getSnapshotBeforeUpdate = (prevProps) => {
         if (this.props.selectedRoom && prevProps.selectedRoom && this.props.selectedRoom !== prevProps.selectedRoom) {
+            this.props.fetchOccupiedDates(this.props.selectedRoom.id, new Date(2019, 4), new Date(2019, 5));
             if (this.props.guestsSelector > this.props.selectedRoom.capacity) {
                 return this.props.selectedRoom.capacity;
             }
@@ -60,35 +67,37 @@ class ModalBooking extends PureComponent {
     };
 
     render() {
-        const { handleSubmit, rooms, selectedRoom } = this.props;
+        const {
+            handleSubmit, rooms, selectedRoom, occupiedDates,
+        } = this.props;
 
         return (
             <Modal onClose={this.props.onClose} className="modal-booking">
-                <LoaderWrapper isLoading={false}>
-                    <Form className="modal-booking__form" onSubmit={handleSubmit(this.handleSubmit)}>
-                        <div className="modal-booking__date-pickers modal-booking__form-section">
-                            <Field component={DayPickerDualInput} name="dates" />
-                        </div>
-                        <div className="modal-booking__form-section">
-                            <span className="modal-booking__form-section-summary">Guests</span>
-                            <Field
-                                component={CounterInput}
-                                name="guests"
-                                maxValue={selectedRoom && +selectedRoom.capacity}
-                            />
-                        </div>
-                        <div className="modal-booking__form-section">
-                            <Field
-                                className="modal-booking__form-section-item"
-                                component={DropDownSelect}
-                                name="room"
-                                options={rooms}
-                                handleRoomTypeOnChange={this.handleRoomTypeOnChange}
-                            />
-                        </div>
-                        <Button color="purple">REQUEST TO BOOK</Button>
-                    </Form>
-                </LoaderWrapper>
+                <Form className="modal-booking__form" onSubmit={handleSubmit(this.handleSubmit)}>
+                    {/* <LoaderWrapper isLoading> */}
+                    <div className="modal-booking__date-pickers modal-booking__form-section">
+                        <Field component={DayPickerDualInput} occupiedDates={occupiedDates} name="dates" />
+                    </div>
+                    {/* </LoaderWrapper> */}
+                    <div className="modal-booking__form-section">
+                        <span className="modal-booking__form-section-summary">Guests</span>
+                        <Field
+                            component={CounterInput}
+                            name="guests"
+                            maxValue={selectedRoom && +selectedRoom.capacity}
+                        />
+                    </div>
+                    <div className="modal-booking__form-section">
+                        <Field
+                            className="modal-booking__form-section-item"
+                            component={DropDownSelect}
+                            name="room"
+                            options={rooms}
+                            // handleRoomTypeOnChange={this.handleRoomTypeOnChange}
+                        />
+                    </div>
+                    <Button color="purple">REQUEST TO BOOK</Button>
+                </Form>
             </Modal>
         );
     }

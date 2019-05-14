@@ -5,9 +5,14 @@ const initialState = null;
 const userBookingsReducer = (state = initialState, action) => {
     switch (action.type) {
     case types.FETCH_USER_BOOKINGS: {
-        console.log(action);
         const { bookings } = action;
-        return [...bookings.approvedBookings, ...bookings.unapprovedBookings];
+
+        return [...bookings.approvedBookings, ...bookings.unapprovedBookings, ...bookings.expiredBookings];
+    }
+    case types.REMOVE_BOOKING: {
+        const { id } = action;
+
+        return state.filter(item => item.id !== id);
     }
     default:
         return state;
